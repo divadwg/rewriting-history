@@ -1,0 +1,185 @@
+{
+  "id": "gulf-of-tonkin",
+  "title": "Gulf of Tonkin Incident",
+  "period": "1964-2005",
+  "summary": "On August 2, 1964, the USS Maddox was attacked by North Vietnamese torpedo boats in the Gulf of Tonkin. A second attack was reported on August 4. The second incident was used to pass the Gulf of Tonkin Resolution, authorizing military force in Vietnam without a formal declaration of war. Declassified documents in 2005 revealed the second attack never occurred.",
+  "hypotheses": [
+    {
+      "id": "h1-both-attacks-real",
+      "caseStudyId": "gulf-of-tonkin",
+      "label": "Both attacks on USS Maddox were real, unprovoked attacks by North Vietnam",
+      "description": "The official US government position from 1964-2005: North Vietnamese torpedo boats attacked the Maddox on both August 2 and August 4, justifying military escalation.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": true
+    },
+    {
+      "id": "h2-second-fabricated",
+      "caseStudyId": "gulf-of-tonkin",
+      "label": "The August 4 attack did not occur; reports were misinterpreted or fabricated to justify escalation",
+      "description": "The second incident was a combination of radar ghosts, nervous sailors, and deliberate misrepresentation by officials seeking congressional authorization for war.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": false
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1-herrick-cable",
+      "label": "Captain Herrick's cable expressing doubt (Aug 4, 1964)",
+      "description": "Within hours of the alleged second attack, Captain John Herrick sent a cable to Washington stating: 'Review of action makes many reported contacts and torpedoes fired appear doubtful. Freak weather effects on radar and overeager sonarmen may have accounted for many reports.'",
+      "date": "1964-08-04",
+      "likelihoodRatios": { "h1-both-attacks-real": 0.2, "h2-second-fabricated": 0.9 },
+      "sourceReliability": 0.95,
+      "wasClassified": true,
+      "declassifiedDate": "1968"
+    },
+    {
+      "id": "e2-mcnamara-testimony",
+      "label": "McNamara's testimony to Congress (Aug 6, 1964)",
+      "description": "Secretary of Defense Robert McNamara presented the attacks as definitive and unprovoked to Congress, without mentioning Herrick's doubts or the Maddox's intelligence-gathering mission.",
+      "date": "1964-08-06",
+      "likelihoodRatios": { "h1-both-attacks-real": 0.6, "h2-second-fabricated": 0.4 },
+      "sourceReliability": 0.4,
+      "wasClassified": false
+    },
+    {
+      "id": "e3-nsa-intercepts-original",
+      "label": "NSA intercepts presented as proof of attack (1964)",
+      "description": "NSA translated intercepts that appeared to confirm the August 4 attack. These were presented to Johnson and Congress as definitive proof.",
+      "date": "1964-08-04",
+      "likelihoodRatios": { "h1-both-attacks-real": 0.7, "h2-second-fabricated": 0.3 },
+      "sourceReliability": 0.6,
+      "wasClassified": true,
+      "declassifiedDate": "2005"
+    },
+    {
+      "id": "e4-nsa-2005-report",
+      "label": "NSA declassified study confirming no Aug 4 attack (2005)",
+      "description": "NSA historian Robert Hanyok's study, declassified in 2005, found that the intelligence had been deliberately skewed: intercepts were mistranslated, and contradicting signals were omitted. The study concluded the second attack definitively did not occur.",
+      "date": "2005-11-30",
+      "likelihoodRatios": { "h1-both-attacks-real": 0.02, "h2-second-fabricated": 0.98 },
+      "sourceReliability": 0.99,
+      "wasClassified": true,
+      "declassifiedDate": "2005"
+    },
+    {
+      "id": "e5-lbj-tapes",
+      "label": "LBJ White House tapes reveal private doubts",
+      "description": "Recordings of President Johnson show he privately expressed doubt about the second attack even while publicly pushing the resolution. In one tape he says the Navy was 'shooting at whales out there.'",
+      "date": "1964-08-04",
+      "likelihoodRatios": { "h1-both-attacks-real": 0.1, "h2-second-fabricated": 0.85 },
+      "sourceReliability": 0.98,
+      "wasClassified": true,
+      "declassifiedDate": "1997"
+    },
+    {
+      "id": "e6-resolution-speed",
+      "label": "Gulf of Tonkin Resolution passed with extraordinary speed",
+      "description": "The resolution was passed by Congress on August 7, just 3 days after the alleged second attack, with only 2 dissenting votes in the Senate. A pre-drafted resolution had been prepared weeks before the incident.",
+      "date": "1964-08-07",
+      "likelihoodRatios": { "h1-both-attacks-real": 0.3, "h2-second-fabricated": 0.8 },
+      "sourceReliability": 0.99,
+      "wasClassified": false
+    },
+    {
+      "id": "e7-oplan34a",
+      "label": "OPLAN 34A covert operations against North Vietnam",
+      "description": "The Maddox was conducting signals intelligence as part of DESOTO patrols, while simultaneous South Vietnamese commando raids (OPLAN 34A) were hitting North Vietnamese targets. This context was hidden from Congress.",
+      "date": "1964-07-31",
+      "likelihoodRatios": { "h1-both-attacks-real": 0.3, "h2-second-fabricated": 0.75 },
+      "sourceReliability": 0.95,
+      "wasClassified": true,
+      "declassifiedDate": "1971"
+    },
+    {
+      "id": "e8-vietnamese-accounts",
+      "label": "Vietnamese military officials deny second attack",
+      "description": "After normalization of relations, former North Vietnamese military officials consistently stated that they ordered the August 2 attack but no attack on August 4. General Vo Nguyen Giap confirmed this to McNamara directly in 1995.",
+      "date": "1995-11-09",
+      "likelihoodRatios": { "h1-both-attacks-real": 0.1, "h2-second-fabricated": 0.9 },
+      "sourceReliability": 0.8,
+      "wasClassified": false
+    }
+  ],
+  "nodes": [
+    { "id": "n1-maddox-attack-1", "type": "event", "label": "First attack on USS Maddox (Aug 2)", "description": "North Vietnamese torpedo boats attack the Maddox. This attack is confirmed by both sides.", "date": "1964-08-02", "confidence": 0.99, "metadata": {}, "caseStudyId": "gulf-of-tonkin" },
+    { "id": "n2-alleged-attack-2", "type": "event", "label": "Alleged second attack (Aug 4)", "description": "Crew reports torpedo attacks at night. Later found to be radar ghosts and misinterpretation.", "date": "1964-08-04", "confidence": 0.05, "metadata": {}, "caseStudyId": "gulf-of-tonkin" },
+    { "id": "n3-claim-unprovoked", "type": "claim", "label": "Attacks were unprovoked", "description": "Official claim that North Vietnam attacked without provocation", "date": "1964-08-05", "confidence": 0.15, "metadata": {}, "caseStudyId": "gulf-of-tonkin" },
+    { "id": "n4-claim-justified-war", "type": "claim", "label": "Military response was justified", "description": "The attacks justified the Gulf of Tonkin Resolution and escalation", "date": "1964-08-07", "confidence": 0.1, "metadata": {}, "caseStudyId": "gulf-of-tonkin" },
+    { "id": "n5-actor-mcnamara", "type": "actor", "label": "Robert McNamara", "description": "Secretary of Defense who presented evidence to Congress", "date": "1964-08-06", "confidence": 1.0, "metadata": { "role": "Secretary of Defense" }, "caseStudyId": "gulf-of-tonkin" },
+    { "id": "n6-actor-lbj", "type": "actor", "label": "Lyndon B. Johnson", "description": "President who privately doubted the attack but publicly pushed for war authorization", "date": "1964-08-04", "confidence": 1.0, "metadata": { "role": "President" }, "caseStudyId": "gulf-of-tonkin" },
+    { "id": "n7-actor-herrick", "type": "actor", "label": "Captain John Herrick", "description": "Commander of the Maddox who expressed doubt about the second attack", "date": "1964-08-04", "confidence": 1.0, "metadata": { "role": "USS Maddox Commander" }, "caseStudyId": "gulf-of-tonkin" },
+    { "id": "n8-resolution", "type": "event", "label": "Gulf of Tonkin Resolution", "description": "Congressional resolution giving president authority to use military force in Southeast Asia", "date": "1964-08-07", "confidence": 1.0, "metadata": {}, "caseStudyId": "gulf-of-tonkin" },
+    { "id": "n9-nsa-study", "type": "evidence", "label": "NSA 2005 declassified study", "description": "Definitive internal study proving the second attack did not occur", "date": "2005-11-30", "confidence": 0.99, "metadata": {}, "caseStudyId": "gulf-of-tonkin" },
+    { "id": "n10-oplan34a", "type": "event", "label": "OPLAN 34A covert raids", "description": "Secret commando raids against North Vietnam concurrent with Maddox patrols", "date": "1964-07-31", "confidence": 0.99, "metadata": {}, "caseStudyId": "gulf-of-tonkin" },
+    { "id": "n11-claim-second-real", "type": "claim", "label": "Second attack occurred as reported", "description": "Official narrative that a genuine torpedo attack happened on Aug 4", "date": "1964-08-04", "confidence": 0.05, "metadata": {}, "caseStudyId": "gulf-of-tonkin" },
+    { "id": "n12-claim-second-false", "type": "claim", "label": "Second attack did not occur", "description": "The Aug 4 incident was radar ghosts, weather, and nervous crew", "date": "2005-11-30", "confidence": 0.97, "metadata": {}, "caseStudyId": "gulf-of-tonkin" },
+    { "id": "n13-narrative-official", "type": "narrative", "label": "Official narrative: unprovoked aggression justified response", "description": "The narrative presented to Congress and the public", "date": "1964-08-05", "confidence": 0.1, "metadata": {}, "caseStudyId": "gulf-of-tonkin" },
+    { "id": "n14-narrative-revised", "type": "narrative", "label": "Revised narrative: fabricated pretext for war", "description": "The historical consensus after declassification", "date": "2005-11-30", "confidence": 0.95, "metadata": {}, "caseStudyId": "gulf-of-tonkin" },
+    { "id": "n15-source-pentagon-papers", "type": "source", "label": "Pentagon Papers (1971)", "description": "Daniel Ellsberg's leaked documents revealing systematic deception about Vietnam", "date": "1971-06-13", "confidence": 0.95, "metadata": { "actor": "Daniel Ellsberg" }, "caseStudyId": "gulf-of-tonkin" }
+  ],
+  "edges": [
+    { "id": "e-1", "source": "n5-actor-mcnamara", "target": "n3-claim-unprovoked", "type": "claims", "weight": 0.9, "date": "1964-08-06", "metadata": {} },
+    { "id": "e-2", "source": "n5-actor-mcnamara", "target": "n11-claim-second-real", "type": "claims", "weight": 0.9, "date": "1964-08-06", "metadata": {} },
+    { "id": "e-3", "source": "n6-actor-lbj", "target": "n4-claim-justified-war", "type": "claims", "weight": 0.8, "date": "1964-08-05", "metadata": {} },
+    { "id": "e-4", "source": "n11-claim-second-real", "target": "n12-claim-second-false", "type": "contradicts", "weight": 1.0, "metadata": {} },
+    { "id": "e-5", "source": "n3-claim-unprovoked", "target": "n10-oplan34a", "type": "contradicts", "weight": 0.85, "metadata": {} },
+    { "id": "e-6", "source": "n9-nsa-study", "target": "n12-claim-second-false", "type": "cites", "weight": 0.99, "date": "2005-11-30", "metadata": {} },
+    { "id": "e-7", "source": "n7-actor-herrick", "target": "n12-claim-second-false", "type": "cites", "weight": 0.8, "date": "1964-08-04", "metadata": {} },
+    { "id": "e-8", "source": "n2-alleged-attack-2", "target": "n8-resolution", "type": "causes", "weight": 0.95, "date": "1964-08-07", "metadata": {} },
+    { "id": "e-9", "source": "n13-narrative-official", "target": "n14-narrative-revised", "type": "contradicts", "weight": 0.95, "metadata": {} },
+    { "id": "e-10", "source": "n15-source-pentagon-papers", "target": "n13-narrative-official", "type": "contradicts", "weight": 0.8, "date": "1971-06-13", "metadata": {} },
+    { "id": "e-11", "source": "n6-actor-lbj", "target": "n8-resolution", "type": "benefits", "weight": 0.95, "metadata": {} },
+    { "id": "e-12", "source": "n1-maddox-attack-1", "target": "n2-alleged-attack-2", "type": "precedes", "weight": 1.0, "date": "1964-08-02", "metadata": {} },
+    { "id": "e-13", "source": "n5-actor-mcnamara", "target": "n7-actor-herrick", "type": "suppresses", "weight": 0.8, "date": "1964-08-04", "metadata": { "detail": "Herrick's doubts were not relayed to Congress" } }
+  ],
+  "causalFactors": [
+    { "id": "cf1", "type": "institutional", "label": "Desire to escalate Vietnam involvement", "date": "1964-01-01" },
+    { "id": "cf2", "type": "power_change", "label": "Pre-drafted resolution awaiting pretext", "date": "1964-06-01" },
+    { "id": "cf3", "type": "narrative_change", "label": "Selective intelligence presentation to Congress", "date": "1964-08-06" },
+    { "id": "cf4", "type": "evidence_action", "label": "Classification of contradicting evidence", "date": "1964-08-05" },
+    { "id": "cf5", "type": "narrative_change", "label": "Pentagon Papers leak begins to erode official story", "date": "1971-06-13" },
+    { "id": "cf6", "type": "evidence_action", "label": "NSA declassification definitively debunks second attack", "date": "2005-11-30" }
+  ],
+  "causalLinks": [
+    { "from": "cf1", "to": "cf2", "mechanism": "Policy goal required congressional authorization, which needed a triggering event", "strength": 0.9 },
+    { "from": "cf2", "to": "cf3", "mechanism": "Pre-existing resolution meant any incident could be leveraged; selective presentation ensured passage", "strength": 0.85 },
+    { "from": "cf3", "to": "cf4", "mechanism": "Contradicting evidence (Herrick's cable) had to be suppressed to maintain the narrative", "strength": 0.9 },
+    { "from": "cf4", "to": "cf5", "mechanism": "Decades of classification created a pressure cooker; the Pentagon Papers were the first major leak", "strength": 0.7, "timelag": "7 years" },
+    { "from": "cf5", "to": "cf6", "mechanism": "Gradual declassification process eventually forced full disclosure", "strength": 0.6, "timelag": "34 years" }
+  ],
+  "timeSlices": [
+    {
+      "date": "1964-08-03",
+      "label": "Before alleged second attack",
+      "description": "Only the first attack is known. OPLAN 34A operations are classified.",
+      "activeNodeIds": ["n1-maddox-attack-1", "n10-oplan34a", "n5-actor-mcnamara", "n6-actor-lbj", "n7-actor-herrick"],
+      "activeEdgeIds": []
+    },
+    {
+      "date": "1964-08-06",
+      "label": "Official narrative established",
+      "description": "McNamara presents both attacks as real and unprovoked. Herrick's doubts suppressed.",
+      "activeNodeIds": ["n1-maddox-attack-1", "n2-alleged-attack-2", "n3-claim-unprovoked", "n4-claim-justified-war", "n5-actor-mcnamara", "n6-actor-lbj", "n7-actor-herrick", "n11-claim-second-real", "n13-narrative-official"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-8", "e-11", "e-12", "e-13"],
+      "narrativeShift": "Official narrative crystallizes: two unprovoked attacks justify military response"
+    },
+    {
+      "date": "1971-06-14",
+      "label": "Pentagon Papers leaked",
+      "description": "Daniel Ellsberg leaks classified documents revealing systematic deception about Vietnam.",
+      "activeNodeIds": ["n1-maddox-attack-1", "n2-alleged-attack-2", "n3-claim-unprovoked", "n4-claim-justified-war", "n5-actor-mcnamara", "n6-actor-lbj", "n7-actor-herrick", "n8-resolution", "n10-oplan34a", "n11-claim-second-real", "n13-narrative-official", "n15-source-pentagon-papers"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-8", "e-10", "e-11", "e-12", "e-13"],
+      "narrativeShift": "Official narrative begins to crack. Covert operations context becomes public."
+    },
+    {
+      "date": "2005-12-01",
+      "label": "NSA declassification",
+      "description": "NSA study conclusively proves the second attack never happened. The rewriting is complete.",
+      "activeNodeIds": ["n1-maddox-attack-1", "n2-alleged-attack-2", "n3-claim-unprovoked", "n4-claim-justified-war", "n5-actor-mcnamara", "n6-actor-lbj", "n7-actor-herrick", "n8-resolution", "n9-nsa-study", "n10-oplan34a", "n11-claim-second-real", "n12-claim-second-false", "n13-narrative-official", "n14-narrative-revised", "n15-source-pentagon-papers"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13"],
+      "narrativeShift": "The definitive reversal: NSA's own study confirms the official narrative was false."
+    }
+  ]
+}

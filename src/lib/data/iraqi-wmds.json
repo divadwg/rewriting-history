@@ -1,0 +1,184 @@
+{
+  "id": "iraqi-wmds",
+  "title": "Iraqi Weapons of Mass Destruction",
+  "period": "2001-2005",
+  "summary": "In the lead-up to the 2003 Iraq War, the US and UK governments claimed Iraq possessed weapons of mass destruction and active WMD programs. The primary intelligence source ('Curveball') later admitted fabrication. The Duelfer Report (2004) found Iraq had no WMD stockpiles and no active programs. Multiple intelligence agencies had dissented from key claims before the invasion.",
+  "hypotheses": [
+    {
+      "id": "h1-wmds-existed",
+      "caseStudyId": "iraqi-wmds",
+      "label": "Iraq possessed WMDs and active programs in 2002-2003",
+      "description": "The official position of the US and UK governments: Iraq had chemical and biological weapons stockpiles, was reconstituting its nuclear program, and posed an imminent threat.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": true
+    },
+    {
+      "id": "h2-no-wmds",
+      "caseStudyId": "iraqi-wmds",
+      "label": "Iraq had no WMD stockpiles and no active programs",
+      "description": "Iraq had destroyed its WMD stockpiles in the 1990s and had not reconstituted programs. Intelligence was cherry-picked and exaggerated to build a case for war.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": false
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1-curveball",
+      "label": "Curveball's testimony on mobile bio-weapons labs",
+      "description": "Rafid Ahmed Alwan al-Janabi (codename 'Curveball') provided the primary intelligence claiming Iraq had mobile biological weapons labs. He was the sole source. BND (German intelligence) warned the CIA about his reliability. In 2011, he publicly admitted fabricating the claims.",
+      "date": "2002-09-01",
+      "likelihoodRatios": { "h1-wmds-existed": 0.15, "h2-no-wmds": 0.85 },
+      "sourceReliability": 0.1,
+      "wasClassified": true,
+      "declassifiedDate": "2005"
+    },
+    {
+      "id": "e2-aluminum-tubes",
+      "label": "Aluminum tubes assessment (CIA vs DOE dissent)",
+      "description": "CIA assessed aluminum tubes imported by Iraq were for uranium enrichment centrifuges. The Department of Energy (the actual nuclear experts) dissented, concluding the tubes were for conventional rocket bodies. DOE's assessment was buried in footnotes of the NIE.",
+      "date": "2002-10-01",
+      "likelihoodRatios": { "h1-wmds-existed": 0.2, "h2-no-wmds": 0.8 },
+      "sourceReliability": 0.85,
+      "wasClassified": true,
+      "declassifiedDate": "2004"
+    },
+    {
+      "id": "e3-powell-un",
+      "label": "Colin Powell's UN presentation (Feb 5, 2003)",
+      "description": "Secretary of State Powell presented satellite imagery, intercepted communications, and intelligence assessments to the UN Security Council. Much of the evidence was later found to be wrong, misleading, or fabricated. Powell later called it a 'blot' on his record.",
+      "date": "2003-02-05",
+      "likelihoodRatios": { "h1-wmds-existed": 0.35, "h2-no-wmds": 0.55 },
+      "sourceReliability": 0.3,
+      "wasClassified": false
+    },
+    {
+      "id": "e4-duelfer-report",
+      "label": "Duelfer Report (Iraq Survey Group final report, 2004)",
+      "description": "After 18 months of searching with 1,400 inspectors, the Iraq Survey Group concluded: Iraq had no WMD stockpiles, no active biological or chemical weapons programs, and its nuclear program had not been reconstituted. The regime had aspirations but no capabilities.",
+      "date": "2004-09-30",
+      "likelihoodRatios": { "h1-wmds-existed": 0.02, "h2-no-wmds": 0.98 },
+      "sourceReliability": 0.99,
+      "wasClassified": false
+    },
+    {
+      "id": "e5-downing-street-memo",
+      "label": "Downing Street Memo (July 2002)",
+      "description": "Leaked minutes of a UK government meeting where the head of MI6 reported that in Washington 'the intelligence and facts were being fixed around the policy' — meaning the decision to go to war preceded the intelligence assessment, not the other way around.",
+      "date": "2002-07-23",
+      "likelihoodRatios": { "h1-wmds-existed": 0.1, "h2-no-wmds": 0.9 },
+      "sourceReliability": 0.95,
+      "wasClassified": true,
+      "declassifiedDate": "2005"
+    },
+    {
+      "id": "e6-unmovic-inspections",
+      "label": "UNMOVIC inspections found no WMDs (2002-2003)",
+      "description": "UN weapons inspectors led by Hans Blix conducted 731 inspections at 411 sites in Iraq from November 2002 to March 2003. They found no evidence of WMD programs. The US demanded they leave before completing their work.",
+      "date": "2003-03-07",
+      "likelihoodRatios": { "h1-wmds-existed": 0.1, "h2-no-wmds": 0.85 },
+      "sourceReliability": 0.95,
+      "wasClassified": false
+    },
+    {
+      "id": "e7-niger-uranium",
+      "label": "Niger uranium forgery",
+      "description": "Claims that Iraq sought uranium from Niger, cited in Bush's 2003 State of the Union address, were based on forged documents. The IAEA determined the documents were crude forgeries within hours of receiving them. Ambassador Joseph Wilson had earlier debunked the claim.",
+      "date": "2003-03-07",
+      "likelihoodRatios": { "h1-wmds-existed": 0.05, "h2-no-wmds": 0.9 },
+      "sourceReliability": 0.95,
+      "wasClassified": false
+    },
+    {
+      "id": "e8-state-inr-dissent",
+      "label": "State Department INR dissent in the NIE",
+      "description": "The State Department's Bureau of Intelligence and Research (INR) formally dissented from the 2002 National Intelligence Estimate, calling the nuclear evidence 'not compelling' and noting the case was weaker than being presented.",
+      "date": "2002-10-01",
+      "likelihoodRatios": { "h1-wmds-existed": 0.2, "h2-no-wmds": 0.8 },
+      "sourceReliability": 0.9,
+      "wasClassified": true,
+      "declassifiedDate": "2004"
+    }
+  ],
+  "nodes": [
+    { "id": "n1-claim-wmds", "type": "claim", "label": "Iraq has WMD stockpiles", "description": "Core official claim", "date": "2002-09-01", "confidence": 0.03, "metadata": {}, "caseStudyId": "iraqi-wmds" },
+    { "id": "n2-claim-nuclear", "type": "claim", "label": "Iraq reconstituting nuclear program", "description": "Based on aluminum tubes and Niger uranium claims", "date": "2002-09-01", "confidence": 0.05, "metadata": {}, "caseStudyId": "iraqi-wmds" },
+    { "id": "n3-claim-bio", "type": "claim", "label": "Iraq has mobile bio-weapons labs", "description": "Based entirely on Curveball's testimony", "date": "2002-09-01", "confidence": 0.02, "metadata": {}, "caseStudyId": "iraqi-wmds" },
+    { "id": "n4-source-curveball", "type": "source", "label": "Curveball (Rafid al-Janabi)", "description": "Iraqi defector, sole source for mobile labs claim, admitted fabrication in 2011", "date": "2000-01-01", "confidence": 0.05, "metadata": { "actor": "Curveball" }, "caseStudyId": "iraqi-wmds" },
+    { "id": "n5-actor-powell", "type": "actor", "label": "Colin Powell", "description": "Secretary of State who presented case at UN", "date": "2003-02-05", "confidence": 1.0, "metadata": { "role": "Secretary of State" }, "caseStudyId": "iraqi-wmds" },
+    { "id": "n6-actor-cheney", "type": "actor", "label": "Dick Cheney", "description": "Vice President who made repeated public claims about WMDs and pressured intelligence agencies", "date": "2002-08-26", "confidence": 1.0, "metadata": { "role": "Vice President" }, "caseStudyId": "iraqi-wmds" },
+    { "id": "n7-evidence-duelfer", "type": "evidence", "label": "Duelfer Report: No WMDs found", "description": "Comprehensive post-invasion investigation finding no stockpiles or active programs", "date": "2004-09-30", "confidence": 0.99, "metadata": {}, "caseStudyId": "iraqi-wmds" },
+    { "id": "n8-event-un-speech", "type": "event", "label": "Powell's UN presentation", "description": "February 5, 2003 presentation to UN Security Council", "date": "2003-02-05", "confidence": 1.0, "metadata": {}, "caseStudyId": "iraqi-wmds" },
+    { "id": "n9-event-invasion", "type": "event", "label": "US invasion of Iraq begins", "description": "March 20, 2003", "date": "2003-03-20", "confidence": 1.0, "metadata": {}, "caseStudyId": "iraqi-wmds" },
+    { "id": "n10-claim-no-wmds", "type": "claim", "label": "Iraq had no WMDs or active programs", "description": "Conclusion of post-invasion investigations", "date": "2004-09-30", "confidence": 0.97, "metadata": {}, "caseStudyId": "iraqi-wmds" },
+    { "id": "n11-evidence-doe-dissent", "type": "evidence", "label": "DOE dissent on aluminum tubes", "description": "Nuclear experts concluded tubes were for rockets, not centrifuges", "date": "2002-10-01", "confidence": 0.9, "metadata": { "actor": "DOE" }, "caseStudyId": "iraqi-wmds" },
+    { "id": "n12-evidence-niger-forgery", "type": "evidence", "label": "Niger uranium documents: forgeries", "description": "IAEA determined documents were crude forgeries", "date": "2003-03-07", "confidence": 0.99, "metadata": {}, "caseStudyId": "iraqi-wmds" },
+    { "id": "n13-narrative-threat", "type": "narrative", "label": "Imminent threat narrative", "description": "Iraq posed an imminent WMD threat requiring preemptive action", "date": "2002-09-01", "confidence": 0.05, "metadata": {}, "caseStudyId": "iraqi-wmds" },
+    { "id": "n14-narrative-fixed", "type": "narrative", "label": "Intelligence fixed around policy", "description": "The decision to invade preceded and shaped the intelligence, not vice versa", "date": "2005-05-01", "confidence": 0.9, "metadata": {}, "caseStudyId": "iraqi-wmds" },
+    { "id": "n15-source-bnd-warning", "type": "source", "label": "BND warning about Curveball", "description": "German intelligence warned CIA that Curveball was unreliable", "date": "2002-05-01", "confidence": 0.9, "metadata": { "actor": "BND" }, "caseStudyId": "iraqi-wmds" }
+  ],
+  "edges": [
+    { "id": "e-1", "source": "n4-source-curveball", "target": "n3-claim-bio", "type": "cites", "weight": 0.95, "metadata": { "note": "Sole source for mobile labs claim" } },
+    { "id": "e-2", "source": "n5-actor-powell", "target": "n1-claim-wmds", "type": "claims", "weight": 0.9, "date": "2003-02-05", "metadata": {} },
+    { "id": "e-3", "source": "n6-actor-cheney", "target": "n2-claim-nuclear", "type": "claims", "weight": 0.95, "date": "2002-08-26", "metadata": {} },
+    { "id": "e-4", "source": "n1-claim-wmds", "target": "n10-claim-no-wmds", "type": "contradicts", "weight": 1.0, "metadata": {} },
+    { "id": "e-5", "source": "n2-claim-nuclear", "target": "n11-evidence-doe-dissent", "type": "contradicts", "weight": 0.85, "metadata": {} },
+    { "id": "e-6", "source": "n7-evidence-duelfer", "target": "n10-claim-no-wmds", "type": "cites", "weight": 0.99, "date": "2004-09-30", "metadata": {} },
+    { "id": "e-7", "source": "n12-evidence-niger-forgery", "target": "n2-claim-nuclear", "type": "contradicts", "weight": 0.95, "date": "2003-03-07", "metadata": {} },
+    { "id": "e-8", "source": "n15-source-bnd-warning", "target": "n4-source-curveball", "type": "contradicts", "weight": 0.8, "date": "2002-05-01", "metadata": {} },
+    { "id": "e-9", "source": "n1-claim-wmds", "target": "n9-event-invasion", "type": "causes", "weight": 0.9, "metadata": {} },
+    { "id": "e-10", "source": "n13-narrative-threat", "target": "n14-narrative-fixed", "type": "contradicts", "weight": 0.9, "metadata": {} },
+    { "id": "e-11", "source": "n6-actor-cheney", "target": "n9-event-invasion", "type": "benefits", "weight": 0.7, "metadata": {} },
+    { "id": "e-12", "source": "n5-actor-powell", "target": "n8-event-un-speech", "type": "causes", "weight": 0.9, "metadata": {} },
+    { "id": "e-13", "source": "n6-actor-cheney", "target": "n11-evidence-doe-dissent", "type": "suppresses", "weight": 0.7, "metadata": { "detail": "DOE dissent buried in NIE footnotes" } }
+  ],
+  "causalFactors": [
+    { "id": "cf1", "type": "power_change", "label": "Post-9/11 political environment enables preemptive war doctrine", "date": "2001-09-12" },
+    { "id": "cf2", "type": "institutional", "label": "Neoconservative policy goal of regime change in Iraq (predates 9/11)", "date": "1998-01-26" },
+    { "id": "cf3", "type": "narrative_change", "label": "Intelligence cherry-picked and fixed around policy", "date": "2002-07-23" },
+    { "id": "cf4", "type": "evidence_action", "label": "Dissenting intelligence assessments suppressed or buried", "date": "2002-10-01" },
+    { "id": "cf5", "type": "narrative_change", "label": "Post-invasion: narrative shifts from WMDs to democracy promotion", "date": "2004-01-01" },
+    { "id": "cf6", "type": "evidence_action", "label": "Duelfer Report and Senate Intelligence Committee reports confirm no WMDs", "date": "2004-09-30" }
+  ],
+  "causalLinks": [
+    { "from": "cf1", "to": "cf2", "mechanism": "9/11 created political space for pre-existing regime change agenda", "strength": 0.85 },
+    { "from": "cf2", "to": "cf3", "mechanism": "Policy goal required intelligence justification; intelligence was shaped to fit", "strength": 0.9 },
+    { "from": "cf3", "to": "cf4", "mechanism": "Cherry-picked case required suppression of contradicting assessments", "strength": 0.85 },
+    { "from": "cf4", "to": "cf5", "mechanism": "When WMDs weren't found, the justification had to shift retroactively", "strength": 0.8 },
+    { "from": "cf5", "to": "cf6", "mechanism": "Official investigations eventually documented the intelligence failure", "strength": 0.7, "timelag": "1-2 years" }
+  ],
+  "timeSlices": [
+    {
+      "date": "2002-08-01",
+      "label": "Pre-war intelligence buildup",
+      "description": "Administration begins public case for Iraq possessing WMDs. Dissents exist within intelligence community but are not public.",
+      "activeNodeIds": ["n1-claim-wmds", "n2-claim-nuclear", "n3-claim-bio", "n4-source-curveball", "n6-actor-cheney", "n15-source-bnd-warning"],
+      "activeEdgeIds": ["e-1", "e-3", "e-8"]
+    },
+    {
+      "date": "2003-02-06",
+      "label": "Powell's UN presentation",
+      "description": "The most detailed public presentation of the WMD case. Widely seen as credible at the time.",
+      "activeNodeIds": ["n1-claim-wmds", "n2-claim-nuclear", "n3-claim-bio", "n4-source-curveball", "n5-actor-powell", "n6-actor-cheney", "n8-event-un-speech", "n11-evidence-doe-dissent", "n13-narrative-threat", "n15-source-bnd-warning"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-5", "e-8", "e-12", "e-13"],
+      "narrativeShift": "Official narrative reaches maximum credibility. Powell's reputation lends weight to contested claims."
+    },
+    {
+      "date": "2004-10-01",
+      "label": "Duelfer Report published",
+      "description": "After 18 months of post-invasion searching, no WMDs found. The official narrative collapses.",
+      "activeNodeIds": ["n1-claim-wmds", "n2-claim-nuclear", "n3-claim-bio", "n4-source-curveball", "n5-actor-powell", "n6-actor-cheney", "n7-evidence-duelfer", "n8-event-un-speech", "n9-event-invasion", "n10-claim-no-wmds", "n11-evidence-doe-dissent", "n12-evidence-niger-forgery", "n13-narrative-threat", "n15-source-bnd-warning"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-12", "e-13"],
+      "narrativeShift": "The definitive collapse: comprehensive investigation finds no WMDs. Pre-war claims fully contradicted."
+    },
+    {
+      "date": "2005-06-01",
+      "label": "Downing Street Memo and full reckoning",
+      "description": "Leaked documents confirm intelligence was 'fixed around the policy'. The narrative reversal is complete.",
+      "activeNodeIds": ["n1-claim-wmds", "n2-claim-nuclear", "n3-claim-bio", "n4-source-curveball", "n5-actor-powell", "n6-actor-cheney", "n7-evidence-duelfer", "n8-event-un-speech", "n9-event-invasion", "n10-claim-no-wmds", "n11-evidence-doe-dissent", "n12-evidence-niger-forgery", "n13-narrative-threat", "n14-narrative-fixed", "n15-source-bnd-warning"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13"],
+      "narrativeShift": "Full reversal: the dominant historical narrative now holds that intelligence was deliberately manipulated."
+    }
+  ]
+}

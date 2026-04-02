@@ -1,0 +1,220 @@
+{
+  "id": "sykes-picot",
+  "title": "Sykes-Picot & the Arab Revolt: Betrayal or Systematic Over-Commitment?",
+  "period": "1915-1920",
+  "summary": "The standard narrative frames the Sykes-Picot Agreement (1916) as a straightforward British betrayal of promises made to Sharif Hussein of Mecca during WWI. But a Bayesian analysis of the McMahon-Hussein correspondence, the Sykes-Picot Agreement, the Balfour Declaration, and French diplomatic records reveals that the highest-probability explanation is not simple betrayal but systematic over-commitment under uncertainty — a pattern where multiple contradictory promises were made simultaneously, each party interpreted ambiguity in their favor, and the 'betrayal' narrative was partly constructed after the fact to serve various political agendas.",
+  "hypotheses": [
+    {
+      "id": "h1-deliberate-betrayal",
+      "caseStudyId": "sykes-picot",
+      "label": "Britain deliberately betrayed its promises to the Arabs",
+      "description": "The standard narrative: Britain made clear promises of Arab independence, then cynically broke them through the secret Sykes-Picot Agreement and the Balfour Declaration. The Arabs were deceived from the start.",
+      "prior": 0.4,
+      "posterior": 0.4,
+      "isOfficial": true
+    },
+    {
+      "id": "h2-over-commitment",
+      "caseStudyId": "sykes-picot",
+      "label": "Systematic over-commitment under uncertainty, with post-hoc narrative construction",
+      "description": "Britain made deliberately ambiguous promises to multiple parties simultaneously (Arabs, French, Zionists) because the war's outcome was uncertain. No single promise was clearly 'the real one.' Each party later constructed a narrative of betrayal or fulfillment based on their preferred interpretation of the ambiguity. The 'betrayal' frame was amplified by later Arab nationalist movements for political purposes.",
+      "prior": 0.35,
+      "posterior": 0.35,
+      "isOfficial": false
+    },
+    {
+      "id": "h3-french-pressure",
+      "caseStudyId": "sykes-picot",
+      "label": "Britain intended to honor Arab promises but was constrained by French alliance demands",
+      "description": "British officials genuinely intended Arab independence but France's pre-existing claims to Syria and the exigencies of the wartime alliance made it impossible. The outcome was a tragic compromise, not a premeditated betrayal.",
+      "prior": 0.25,
+      "posterior": 0.5,
+      "isOfficial": false
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1-mcmahon-hussein",
+      "label": "McMahon-Hussein Correspondence (1915-1916)",
+      "description": "Ten letters between Sir Henry McMahon and Sharif Hussein. McMahon's key letter (Oct 24, 1915) promised to 'recognize and support the independence of the Arabs' but with significant caveats and geographic exclusions that were deliberately vague. The phrase 'districts of Mersina and Alexandretta and portions of Syria lying to the west of the districts of Damascus, Homs, Hama and Aleppo' has been debated for a century — does 'districts of Damascus' include Palestine?",
+      "date": "1915-10-24",
+      "likelihoodRatios": { "h1-deliberate-betrayal": 0.5, "h2-over-commitment": 0.85, "h3-french-pressure": 0.6 },
+      "sourceReliability": 0.9,
+      "wasClassified": true,
+      "declassifiedDate": "1939"
+    },
+    {
+      "id": "e2-sykes-picot-agreement",
+      "label": "Sykes-Picot Agreement (May 1916)",
+      "description": "Secret agreement between Britain and France (with Russian assent) dividing Ottoman territories into spheres of influence. Signed while McMahon correspondence was still ongoing. The agreement gave France control of Syria and Lebanon, Britain got Iraq and Jordan, and Palestine was to be under international administration.",
+      "date": "1916-05-16",
+      "likelihoodRatios": { "h1-deliberate-betrayal": 0.75, "h2-over-commitment": 0.7, "h3-french-pressure": 0.8 },
+      "sourceReliability": 0.99,
+      "wasClassified": true,
+      "declassifiedDate": "1917"
+    },
+    {
+      "id": "e3-balfour-declaration",
+      "label": "Balfour Declaration (November 1917)",
+      "description": "Letter from Foreign Secretary Balfour to Lord Rothschild declaring British support for 'a national home for the Jewish people' in Palestine. A third contradictory commitment regarding the same territory.",
+      "date": "1917-11-02",
+      "likelihoodRatios": { "h1-deliberate-betrayal": 0.7, "h2-over-commitment": 0.85, "h3-french-pressure": 0.4 },
+      "sourceReliability": 0.99,
+      "wasClassified": false
+    },
+    {
+      "id": "e4-hogarth-message",
+      "label": "Hogarth Message to Hussein (January 1918)",
+      "description": "Commander Hogarth was sent to inform Hussein of the Balfour Declaration. His message carefully reassured Hussein that Arab interests would be protected while not retracting the Balfour commitment. This 'squaring the circle' approach is more consistent with juggling commitments than simple betrayal.",
+      "date": "1918-01-04",
+      "likelihoodRatios": { "h1-deliberate-betrayal": 0.3, "h2-over-commitment": 0.9, "h3-french-pressure": 0.5 },
+      "sourceReliability": 0.85,
+      "wasClassified": true,
+      "declassifiedDate": "1939"
+    },
+    {
+      "id": "e5-bolshevik-leak",
+      "label": "Bolshevik publication of Sykes-Picot (November 1917)",
+      "description": "After the Russian Revolution, the Bolsheviks published the secret Sykes-Picot Agreement to embarrass the Western powers. Hussein was informed but British officials convinced him the agreement was just a 'provisional' wartime discussion, not binding.",
+      "date": "1917-11-23",
+      "likelihoodRatios": { "h1-deliberate-betrayal": 0.6, "h2-over-commitment": 0.75, "h3-french-pressure": 0.5 },
+      "sourceReliability": 0.95,
+      "wasClassified": false
+    },
+    {
+      "id": "e6-declaration-to-seven",
+      "label": "Declaration to the Seven (June 1918)",
+      "description": "British statement to seven Syrian leaders promising that Arab territories liberated by Arab armies would become fully independent. This fourth commitment, made after Sykes-Picot and Balfour, shows continued willingness to make new promises without reconciling old ones.",
+      "date": "1918-06-16",
+      "likelihoodRatios": { "h1-deliberate-betrayal": 0.4, "h2-over-commitment": 0.95, "h3-french-pressure": 0.5 },
+      "sourceReliability": 0.9,
+      "wasClassified": false
+    },
+    {
+      "id": "e7-faisal-clemenceau",
+      "label": "Faisal-Clemenceau Agreement (January 1920)",
+      "description": "Faisal (Hussein's son) negotiated directly with French PM Clemenceau, suggesting he understood the French claim was real and tried to work within it rather than treating it as a purely British betrayal.",
+      "date": "1920-01-06",
+      "likelihoodRatios": { "h1-deliberate-betrayal": 0.3, "h2-over-commitment": 0.7, "h3-french-pressure": 0.85 },
+      "sourceReliability": 0.85,
+      "wasClassified": false
+    },
+    {
+      "id": "e8-churchill-1922",
+      "label": "Churchill White Paper (1922)",
+      "description": "Churchill's White Paper tried to retroactively narrow the McMahon-Hussein promises, claiming Palestine was never included. McMahon himself later privately said he intended to exclude Palestine, but the text is genuinely ambiguous. The retroactive narrowing supports the over-commitment hypothesis.",
+      "date": "1922-06-03",
+      "likelihoodRatios": { "h1-deliberate-betrayal": 0.4, "h2-over-commitment": 0.85, "h3-french-pressure": 0.5 },
+      "sourceReliability": 0.8,
+      "wasClassified": false
+    },
+    {
+      "id": "e9-arab-bureau-memos",
+      "label": "Arab Bureau internal memos (1916-1918)",
+      "description": "Internal British documents from the Arab Bureau in Cairo show officials genuinely disagreed among themselves about what had been promised and what should be honored. T.E. Lawrence, Mark Sykes, and the India Office held contradictory views. This internal confusion is more consistent with over-commitment than coordinated betrayal.",
+      "date": "1917-01-01",
+      "likelihoodRatios": { "h1-deliberate-betrayal": 0.2, "h2-over-commitment": 0.9, "h3-french-pressure": 0.6 },
+      "sourceReliability": 0.9,
+      "wasClassified": true,
+      "declassifiedDate": "1968"
+    },
+    {
+      "id": "e10-arab-nationalist-framing",
+      "label": "Post-1920 Arab nationalist construction of betrayal narrative",
+      "description": "The 'betrayal' interpretation became a foundational narrative for Arab nationalist movements from the 1920s onward. The narrative served political purposes: it delegitimized colonial boundaries and unified disparate groups against Western powers. This doesn't mean the grievance was illegitimate, but the simplified 'betrayal' frame was at least partly a political construction.",
+      "date": "1920-07-24",
+      "likelihoodRatios": { "h1-deliberate-betrayal": 0.5, "h2-over-commitment": 0.8, "h3-french-pressure": 0.5 },
+      "sourceReliability": 0.75,
+      "wasClassified": false
+    }
+  ],
+  "nodes": [
+    { "id": "n1-mcmahon-promise", "type": "claim", "label": "McMahon promised Arab independence", "description": "Based on Oct 1915 letter; scope of promise heavily debated", "date": "1915-10-24", "confidence": 0.7, "metadata": { "ambiguity": "high" }, "caseStudyId": "sykes-picot" },
+    { "id": "n2-sykes-picot", "type": "event", "label": "Sykes-Picot Agreement signed", "description": "Secret Anglo-French partition agreement", "date": "1916-05-16", "confidence": 1.0, "metadata": {}, "caseStudyId": "sykes-picot" },
+    { "id": "n3-balfour", "type": "event", "label": "Balfour Declaration issued", "description": "British support for Jewish national home in Palestine", "date": "1917-11-02", "confidence": 1.0, "metadata": {}, "caseStudyId": "sykes-picot" },
+    { "id": "n4-arab-revolt", "type": "event", "label": "Arab Revolt begins", "description": "Hussein launches revolt against Ottoman Empire, expecting independence", "date": "1916-06-10", "confidence": 1.0, "metadata": {}, "caseStudyId": "sykes-picot" },
+    { "id": "n5-actor-hussein", "type": "actor", "label": "Sharif Hussein of Mecca", "description": "Launched Arab Revolt based on British promises", "date": "1915-07-14", "confidence": 1.0, "metadata": { "role": "Sharif of Mecca" }, "caseStudyId": "sykes-picot" },
+    { "id": "n6-actor-mcmahon", "type": "actor", "label": "Sir Henry McMahon", "description": "British High Commissioner in Egypt, made promises to Hussein", "date": "1915-10-24", "confidence": 1.0, "metadata": { "role": "High Commissioner" }, "caseStudyId": "sykes-picot" },
+    { "id": "n7-actor-sykes", "type": "actor", "label": "Sir Mark Sykes", "description": "British negotiator of the Sykes-Picot Agreement", "date": "1916-01-03", "confidence": 1.0, "metadata": { "role": "Diplomat" }, "caseStudyId": "sykes-picot" },
+    { "id": "n8-actor-lawrence", "type": "actor", "label": "T.E. Lawrence", "description": "British officer who fought with Arab forces and later expressed guilt about the promises", "date": "1916-10-01", "confidence": 1.0, "metadata": { "role": "Intelligence Officer" }, "caseStudyId": "sykes-picot" },
+    { "id": "n9-claim-betrayal", "type": "claim", "label": "Britain deliberately betrayed the Arabs", "description": "Standard narrative of premeditated deception", "date": "1920-07-24", "confidence": 0.35, "metadata": {}, "caseStudyId": "sykes-picot" },
+    { "id": "n10-claim-overcommit", "type": "claim", "label": "Britain over-committed to incompatible parties", "description": "Ambiguity was deliberate; contradictions were managed, not resolved", "date": "1920-07-24", "confidence": 0.65, "metadata": {}, "caseStudyId": "sykes-picot" },
+    { "id": "n11-san-remo", "type": "event", "label": "San Remo Conference (mandates assigned)", "description": "Britain gets Palestine and Iraq mandates; France gets Syria", "date": "1920-04-25", "confidence": 1.0, "metadata": {}, "caseStudyId": "sykes-picot" },
+    { "id": "n12-faisal-damascus", "type": "event", "label": "Faisal declared King of Syria (March 1920)", "description": "Short-lived kingdom; France expelled Faisal in July 1920", "date": "1920-03-08", "confidence": 1.0, "metadata": {}, "caseStudyId": "sykes-picot" },
+    { "id": "n13-narrative-betrayal", "type": "narrative", "label": "Betrayal narrative: Arabs were deceived by imperial powers", "description": "Dominant historical narrative, foundational for Arab nationalism", "date": "1920-07-24", "confidence": 0.5, "metadata": { "serves": "Arab nationalist movements" }, "caseStudyId": "sykes-picot" },
+    { "id": "n14-narrative-complexity", "type": "narrative", "label": "Complexity narrative: multiple overlapping commitments, no master plan", "description": "Revisionist historical view supported by archival evidence", "date": "1960-01-01", "confidence": 0.65, "metadata": { "serves": "historical accuracy" }, "caseStudyId": "sykes-picot" },
+    { "id": "n15-source-arab-bureau", "type": "source", "label": "Arab Bureau internal correspondence", "description": "Shows British officials disagreeing among themselves about commitments", "date": "1917-01-01", "confidence": 0.9, "metadata": { "actor": "Arab Bureau" }, "caseStudyId": "sykes-picot" }
+  ],
+  "edges": [
+    { "id": "e-1", "source": "n6-actor-mcmahon", "target": "n1-mcmahon-promise", "type": "claims", "weight": 0.8, "date": "1915-10-24", "metadata": {} },
+    { "id": "e-2", "source": "n1-mcmahon-promise", "target": "n2-sykes-picot", "type": "contradicts", "weight": 0.7, "metadata": { "note": "Depending on interpretation of geographic exclusions" } },
+    { "id": "e-3", "source": "n1-mcmahon-promise", "target": "n3-balfour", "type": "contradicts", "weight": 0.8, "metadata": {} },
+    { "id": "e-4", "source": "n2-sykes-picot", "target": "n3-balfour", "type": "contradicts", "weight": 0.5, "metadata": { "note": "Sykes-Picot proposed international administration of Palestine; Balfour implied British control" } },
+    { "id": "e-5", "source": "n9-claim-betrayal", "target": "n10-claim-overcommit", "type": "contradicts", "weight": 0.6, "metadata": {} },
+    { "id": "e-6", "source": "n5-actor-hussein", "target": "n4-arab-revolt", "type": "causes", "weight": 0.9, "date": "1916-06-10", "metadata": {} },
+    { "id": "e-7", "source": "n1-mcmahon-promise", "target": "n4-arab-revolt", "type": "causes", "weight": 0.85, "metadata": { "note": "Revolt launched based on perceived promise of independence" } },
+    { "id": "e-8", "source": "n15-source-arab-bureau", "target": "n10-claim-overcommit", "type": "cites", "weight": 0.85, "date": "1917-01-01", "metadata": {} },
+    { "id": "e-9", "source": "n8-actor-lawrence", "target": "n9-claim-betrayal", "type": "cites", "weight": 0.7, "date": "1919-01-01", "metadata": { "note": "Lawrence's guilt and Seven Pillars of Wisdom shaped betrayal narrative" } },
+    { "id": "e-10", "source": "n2-sykes-picot", "target": "n11-san-remo", "type": "causes", "weight": 0.8, "date": "1920-04-25", "metadata": {} },
+    { "id": "e-11", "source": "n11-san-remo", "target": "n12-faisal-damascus", "type": "contradicts", "weight": 0.9, "metadata": { "note": "French mandate over Syria ended Faisal's kingdom" } },
+    { "id": "e-12", "source": "n13-narrative-betrayal", "target": "n14-narrative-complexity", "type": "contradicts", "weight": 0.5, "metadata": {} },
+    { "id": "e-13", "source": "n7-actor-sykes", "target": "n2-sykes-picot", "type": "causes", "weight": 0.9, "date": "1916-01-03", "metadata": {} }
+  ],
+  "causalFactors": [
+    { "id": "cf1", "type": "institutional", "label": "Wartime pressure: Britain needed Arab revolt AND French alliance simultaneously", "date": "1915-07-01" },
+    { "id": "cf2", "type": "power_change", "label": "Competing bureaucracies: Cairo (Arab Bureau) vs London (Foreign Office) vs Delhi (India Office)", "date": "1915-10-01" },
+    { "id": "cf3", "type": "narrative_change", "label": "Deliberate ambiguity in McMahon correspondence", "date": "1915-10-24" },
+    { "id": "cf4", "type": "evidence_action", "label": "Sykes-Picot kept secret from Hussein and Arab allies", "date": "1916-05-16" },
+    { "id": "cf5", "type": "power_change", "label": "War ends; wartime promises meet peacetime realities at Paris Peace Conference", "date": "1919-01-18" },
+    { "id": "cf6", "type": "narrative_change", "label": "Betrayal narrative crystallizes as foundational Arab nationalist story", "date": "1920-07-24" }
+  ],
+  "causalLinks": [
+    { "from": "cf1", "to": "cf2", "mechanism": "Wartime urgency meant different departments made promises without coordination", "strength": 0.9 },
+    { "from": "cf2", "to": "cf3", "mechanism": "When you can't satisfy everyone, you use ambiguity to keep all parties engaged", "strength": 0.85 },
+    { "from": "cf3", "to": "cf4", "mechanism": "Incompatible promises required secrecy — if Hussein saw Sykes-Picot, the revolt might collapse", "strength": 0.9 },
+    { "from": "cf4", "to": "cf5", "mechanism": "Secret agreements surfaced at the peace conference, but by then fait accompli of occupation dominated", "strength": 0.75 },
+    { "from": "cf5", "to": "cf6", "mechanism": "The gap between promises and outcomes provided raw material for the betrayal narrative, which was amplified by political movements", "strength": 0.8, "timelag": "1-2 years" }
+  ],
+  "timeSlices": [
+    {
+      "date": "1916-01-01",
+      "label": "McMahon correspondence period",
+      "description": "Britain and Hussein exchanging letters. Promise of Arab independence (with vague exclusions) is the only commitment on the table.",
+      "activeNodeIds": ["n1-mcmahon-promise", "n5-actor-hussein", "n6-actor-mcmahon"],
+      "activeEdgeIds": ["e-1"],
+      "narrativeShift": "At this point, only one promise exists. The betrayal hasn't happened yet because the contradicting commitments don't exist yet."
+    },
+    {
+      "date": "1916-06-15",
+      "label": "Arab Revolt launched + Sykes-Picot signed",
+      "description": "Hussein launches the revolt (June 10) not knowing that Sykes-Picot was signed a month earlier (May 16). Two contradictory commitments now coexist in secret.",
+      "activeNodeIds": ["n1-mcmahon-promise", "n2-sykes-picot", "n4-arab-revolt", "n5-actor-hussein", "n6-actor-mcmahon", "n7-actor-sykes", "n8-actor-lawrence"],
+      "activeEdgeIds": ["e-1", "e-2", "e-6", "e-7", "e-13"],
+      "narrativeShift": "Critical moment: the contradiction exists but is hidden. The Arab Revolt proceeds based on an incomplete picture."
+    },
+    {
+      "date": "1917-12-01",
+      "label": "Balfour Declaration + Bolshevik leak",
+      "description": "Three contradictory commitments now public. Hussein is reassured by Hogarth that Arab interests are protected.",
+      "activeNodeIds": ["n1-mcmahon-promise", "n2-sykes-picot", "n3-balfour", "n4-arab-revolt", "n5-actor-hussein", "n6-actor-mcmahon", "n7-actor-sykes", "n8-actor-lawrence"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-6", "e-7", "e-13"],
+      "narrativeShift": "The contradictions are now visible but managed through reassurance and ambiguity."
+    },
+    {
+      "date": "1920-08-01",
+      "label": "Post-San Remo: mandates imposed, Faisal expelled",
+      "description": "The contradictions resolve in favor of colonial power. France takes Syria, Britain takes Palestine and Iraq. The betrayal narrative begins to crystallize.",
+      "activeNodeIds": ["n1-mcmahon-promise", "n2-sykes-picot", "n3-balfour", "n4-arab-revolt", "n5-actor-hussein", "n6-actor-mcmahon", "n7-actor-sykes", "n8-actor-lawrence", "n9-claim-betrayal", "n10-claim-overcommit", "n11-san-remo", "n12-faisal-damascus", "n13-narrative-betrayal", "n15-source-arab-bureau"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-13"],
+      "narrativeShift": "The 'betrayal' interpretation solidifies. But the archival evidence (Arab Bureau memos, multiple contradictory commitments) supports a more complex picture."
+    },
+    {
+      "date": "1970-01-01",
+      "label": "Archival evidence available",
+      "description": "With declassification of Arab Bureau papers and diplomatic correspondence, the full picture of competing bureaucracies and deliberate ambiguity becomes visible.",
+      "activeNodeIds": ["n1-mcmahon-promise", "n2-sykes-picot", "n3-balfour", "n4-arab-revolt", "n5-actor-hussein", "n6-actor-mcmahon", "n7-actor-sykes", "n8-actor-lawrence", "n9-claim-betrayal", "n10-claim-overcommit", "n11-san-remo", "n12-faisal-damascus", "n13-narrative-betrayal", "n14-narrative-complexity", "n15-source-arab-bureau"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13"],
+      "narrativeShift": "A more nuanced picture emerges from the archives, but the simpler betrayal narrative remains politically dominant."
+    }
+  ]
+}
