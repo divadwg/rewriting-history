@@ -55,7 +55,7 @@ export interface EvidenceItem {
 
 export interface CausalFactor {
   id: string;
-  type: 'power_change' | 'narrative_change' | 'evidence_action' | 'institutional';
+  type: 'power_change' | 'narrative_change' | 'evidence_action' | 'institutional' | 'economic' | 'demographic' | 'technological';
   label: string;
   date: string;
 }
