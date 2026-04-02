@@ -45,11 +45,11 @@ export default function Home() {
             Explore Case Studies
           </Link>
           <Link
-            href="/discover"
+            href="/challenge"
             className="px-6 py-3 rounded-lg font-medium border transition-opacity hover:opacity-90"
             style={{ borderColor: '#e87b35', color: '#e87b35' }}
           >
-            Discovery Mode
+            Evidence Discovery
           </Link>
           <Link
             href="/live"
@@ -87,6 +87,50 @@ export default function Home() {
               Each historical claim gets a probability that updates as evidence
               is added. Toggle evidence on/off and watch beliefs shift.
             </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Evidence Discovery */}
+      <div className="mb-16 rounded-lg p-8" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
+        <div className="flex items-start justify-between gap-8">
+          <div className="flex-1">
+            <h2 className="text-2xl font-bold mb-3" style={{ color: '#1a1a1a' }}>Evidence-First Discovery</h2>
+            <p className="text-sm leading-relaxed mb-4" style={{ color: '#6b6b6b' }}>
+              Pick any historical topic. The system gathers <strong>raw primary source evidence</strong> — documents,
+              statistics, dates — then generates hypotheses from the data, runs Bayesian inference, and surfaces
+              what the evidence actually shows. Including things nobody may have noticed.
+            </p>
+            <div className="text-xs font-mono flex gap-3 mb-5" style={{ color: '#999999' }}>
+              <span>1. Evidence</span>
+              <span style={{ color: '#e5e5e5' }}>→</span>
+              <span>2. Hypotheses</span>
+              <span style={{ color: '#e5e5e5' }}>→</span>
+              <span>3. Bayesian Math</span>
+              <span style={{ color: '#e5e5e5' }}>→</span>
+              <span>4. Discovery</span>
+            </div>
+            <Link
+              href="/challenge"
+              className="inline-block px-6 py-3 rounded-lg font-bold text-sm transition-opacity hover:opacity-90"
+              style={{ background: '#e87b35', color: 'white' }}
+            >
+              Start Discovering
+            </Link>
+          </div>
+          <div className="hidden md:block text-right flex-shrink-0" style={{ minWidth: 180 }}>
+            <div className="text-xs font-mono mb-2" style={{ color: '#999999' }}>SAMPLE QUESTIONS</div>
+            <div className="space-y-2 text-xs" style={{ color: '#6b6b6b' }}>
+              <div className="rounded p-2" style={{ background: '#ffffff', border: '1px solid #e5e5e5' }}>
+                What do casualty records reveal about the atomic bombings?
+              </div>
+              <div className="rounded p-2" style={{ background: '#ffffff', border: '1px solid #e5e5e5' }}>
+                What do ship manifests show about Viking trade vs. raiding?
+              </div>
+              <div className="rounded p-2" style={{ background: '#ffffff', border: '1px solid #e5e5e5' }}>
+                What do parish records reveal about post-Black Death living standards?
+              </div>
+            </div>
           </div>
         </div>
       </div>

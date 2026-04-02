@@ -33,14 +33,11 @@ export default function RootLayout({
               <Link href="/cases" className="hover:opacity-80 transition-opacity" style={{ color: '#6b6b6b' }}>
                 Case Studies
               </Link>
-              <Link href="/discover" className="hover:opacity-80 transition-opacity" style={{ color: '#6b6b6b' }}>
-                Discovery Mode
-              </Link>
-              <Link href="/live" className="hover:opacity-80 transition-opacity" style={{ color: '#e87b35' }}>
+              <Link href="/live" className="hover:opacity-80 transition-opacity" style={{ color: '#6b6b6b' }}>
                 Live Analysis
               </Link>
-              <Link href="/challenge" className="hover:opacity-80 transition-opacity font-bold" style={{ color: '#2a9d5c' }}>
-                Challenge History
+              <Link href="/challenge" className="hover:opacity-80 transition-opacity font-bold" style={{ color: '#e87b35' }}>
+                Evidence Discovery
               </Link>
             </div>
             <NavSettingsButton />
