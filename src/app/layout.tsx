@@ -39,6 +39,9 @@ export default function RootLayout({
               <Link href="/challenge" className="hover:opacity-80 transition-opacity font-bold" style={{ color: '#e87b35' }}>
                 Evidence Discovery
               </Link>
+              <Link href="/help" className="hover:opacity-80 transition-opacity" style={{ color: '#6b6b6b' }}>
+                Help
+              </Link>
             </div>
             <NavSettingsButton />
           </nav>
