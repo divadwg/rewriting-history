@@ -13,6 +13,20 @@ function parseJSON<T>(text: string): T | null {
   }
 }
 
+// ─── Date context for knowledge cutoff awareness ──────────────────────────
+function dateContext(articleDate?: string): string {
+  const today = new Date().toISOString().split('T')[0];
+  return `TODAY'S DATE: ${today}${articleDate ? `\nARTICLE DATE: ${articleDate}` : ''}
+
+CRITICAL — KNOWLEDGE CUTOFF AWARENESS:
+Your training data has a cutoff date. The article you are analyzing may describe events AFTER your cutoff.
+- If the article describes recent events (personnel changes, policy decisions, conflicts, appointments) that occurred after your training cutoff, you MUST treat the article as the PRIMARY SOURCE for those facts.
+- Do NOT fabricate "independent evidence" contradicting recent events just because they are not in your training data.
+- "I have no record of X" does NOT mean "X didn't happen." It means your data predates the event.
+- When events are too recent to verify from your training data, mark them as "unverifiable_recent" — NEVER as "contradicted."
+- The article itself IS evidence. A news report from a major outlet is a primary source for the events it describes.`;
+}
+
 // ─── STEP 1: Extract verifiable claims from the article ─────────────────────
 
 const EXTRACT_CLAIMS_PROMPT = `You are a fact-checker extracting VERIFIABLE CLAIMS from a news article.
@@ -50,6 +64,16 @@ CRITICAL RULES:
 - Include the RELIABILITY of each evidence source.
 - DO NOT just agree or disagree with claims. Find EVIDENCE.
 
+KNOWLEDGE CUTOFF — CRITICAL:
+- If a claim describes a RECENT EVENT (personnel change, policy action, conflict, appointment) that you cannot verify because it occurred after your training data cutoff, you MUST:
+  - Set "supports" to null (not false!)
+  - Set "type" to "unverifiable_recent"
+  - State clearly: "This event occurred after my knowledge cutoff and cannot be independently verified from my training data"
+  - Set "sourceReliability" to 0.3 (low confidence due to inability to verify, NOT because the claim is wrong)
+- NEVER fabricate evidence contradicting recent events. Saying "there is no record of X" when X happened after your cutoff is FABRICATION.
+- For BACKGROUND FACTS (historical context, institutional rules, biographical details), you CAN verify from your training data normally.
+- When in doubt about whether something is recent, check: does the article's date postdate your training data? If so, treat event-claims as unverifiable_recent.
+
 Return a JSON object:
 {
   "evidence": [
@@ -58,7 +82,7 @@ Return a JSON object:
       "fact": "Specific verifiable fact from an independent source",
       "source": "Organization/document/database name",
       "date": "YYYY or YYYY-MM-DD",
-      "type": "statistic|government_data|academic_study|court_record|independent_report|scientific|official_record",
+      "type": "statistic|government_data|academic_study|court_record|independent_report|scientific|official_record|unverifiable_recent",
       "sourceReliability": 0.0-1.0,
       "relevantToClaims": ["c1", "c2"],
       "supports": true/false/null,
@@ -79,6 +103,10 @@ Generate hypotheses about the article's OVERALL narrative reliability. Think abo
 - Is it selectively presenting evidence?
 - Is it making unsupported extrapolations?
 - Are there legitimate alternative explanations the article ignores?
+
+IMPORTANT: If most evidence items are "unverifiable_recent" (because events postdate your training data), your hypotheses should reflect this uncertainty honestly. Do NOT conclude the article is inaccurate just because you can't verify recent events. A news report from a major outlet IS a primary source.
+- Give the "article is largely accurate" hypothesis a reasonable prior (0.4-0.6) unless you have actual contradicting evidence (not just absence of data).
+- "Unverifiable" evidence should have likelihood ratios near 0.5 (uninformative), NOT ratios that penalize the article.
 
 Return a JSON object:
 {
@@ -108,6 +136,15 @@ Priors must sum to 1.0.`;
 // ─── STEP 4: Synthesis ──────────────────────────────────────────────────────
 
 const SYNTHESIS_PROMPT = `You are a fact-checking analyst reporting what INDEPENDENT EVIDENCE reveals about a news article's claims. Bayesian inference has been run mathematically.
+
+IMPORTANT: Distinguish clearly between:
+- "contradicted" — actual evidence DISPROVES the claim
+- "unsupported" — no evidence found to support it, but no counter-evidence either
+- "unverifiable" — the event is too recent to verify from available data (this is NOT the same as contradicted!)
+- "supported" — independent evidence confirms the claim
+- "partially_supported" — some aspects verified, others not
+
+If most claims are about recent events you cannot verify, say so honestly. Do NOT say the article is inaccurate just because you lack data on recent events.
 
 Given the claims, independent evidence, and Bayesian posteriors, return:
 {
@@ -150,14 +187,17 @@ export async function POST(request: Request) {
   const config = { provider: resolvedProvider, apiKey: resolvedKey };
 
   // Combine articles into one text block
+  const articleDate = articles[0]?.date || '';
   const articleText = articles
     .map((a, i) => `--- Article ${i + 1} (${a.url || 'no URL'}, ${a.date}) ---\n${a.text}`)
     .join('\n\n')
     .slice(0, 12000);
 
+  const datePreamble = dateContext(articleDate);
+
   try {
     // ── STEP 1: Extract verifiable claims ────────────────────────────────
-    const claimsText = await callLLM(config, `${EXTRACT_CLAIMS_PROMPT}\n\nTOPIC: ${topic}\n\nARTICLE TEXT:\n${articleText}\n\nReturn ONLY the JSON array:`, 4096);
+    const claimsText = await callLLM(config, `${datePreamble}\n\n${EXTRACT_CLAIMS_PROMPT}\n\nTOPIC: ${topic}\n\nARTICLE TEXT:\n${articleText}\n\nReturn ONLY the JSON array:`, 4096);
     if (!claimsText) {
       return NextResponse.json({ error: 'Failed to extract claims' }, { status: 500 });
     }
@@ -173,7 +213,7 @@ export async function POST(request: Request) {
 
     // ── STEP 2: Gather independent evidence ──────────────────────────────
     const claimsJson = JSON.stringify(claims, null, 2);
-    const evidenceText = await callLLM(config, `${VERIFY_EVIDENCE_PROMPT}\n\nTOPIC: ${topic}\n\nCLAIMS TO VERIFY:\n${claimsJson}\n\nReturn ONLY the JSON object:`, 8192);
+    const evidenceText = await callLLM(config, `${datePreamble}\n\n${VERIFY_EVIDENCE_PROMPT}\n\nTOPIC: ${topic}\n\nCLAIMS TO VERIFY:\n${claimsJson}\n\nReturn ONLY the JSON object:`, 8192);
 
     if (!evidenceText) {
       return NextResponse.json({ error: 'Failed to gather independent evidence' }, { status: 500 });
@@ -194,7 +234,7 @@ export async function POST(request: Request) {
 
     // ── STEP 3: Generate hypotheses + likelihood ratios ──────────────────
     const evidenceJson = JSON.stringify(evidenceResult.evidence, null, 2);
-    const hypothesisText = await callLLM(config, `${HYPOTHESIS_PROMPT}\n\nTOPIC: ${topic}\n\nCLAIMS:\n${claimsJson}\n\nINDEPENDENT EVIDENCE:\n${evidenceJson}\n\nReturn ONLY the JSON object:`, 8192);
+    const hypothesisText = await callLLM(config, `${datePreamble}\n\n${HYPOTHESIS_PROMPT}\n\nTOPIC: ${topic}\n\nCLAIMS:\n${claimsJson}\n\nINDEPENDENT EVIDENCE:\n${evidenceJson}\n\nReturn ONLY the JSON object:`, 8192);
 
     if (!hypothesisText) {
       return NextResponse.json({ error: 'Failed to generate hypotheses' }, { status: 500 });
@@ -246,7 +286,7 @@ export async function POST(request: Request) {
     // ── STEP 5: Synthesis ────────────────────────────────────────────────
     const posteriorsJson = JSON.stringify(posteriors, null, 2);
     const sensitivityJson = JSON.stringify(sensitivity.slice(0, 8), null, 2);
-    const synthesisText = await callLLM(config, `${SYNTHESIS_PROMPT}\n\nTOPIC: ${topic}\n\nCLAIMS:\n${claimsJson}\n\nINDEPENDENT EVIDENCE:\n${evidenceJson}\n\nBAYESIAN POSTERIORS:\n${posteriorsJson}\n\nEVIDENCE IMPACT:\n${sensitivityJson}\n\nReturn ONLY the JSON object:`, 4096);
+    const synthesisText = await callLLM(config, `${datePreamble}\n\n${SYNTHESIS_PROMPT}\n\nTOPIC: ${topic}\n\nCLAIMS:\n${claimsJson}\n\nINDEPENDENT EVIDENCE:\n${evidenceJson}\n\nBAYESIAN POSTERIORS:\n${posteriorsJson}\n\nEVIDENCE IMPACT:\n${sensitivityJson}\n\nReturn ONLY the JSON object:`, 4096);
 
     let synthesis = null;
     if (synthesisText) {
