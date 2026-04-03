@@ -118,12 +118,22 @@ export function generateVerdict(
   evidence: EvidenceItem[]
 ): BayesianVerdict {
   const updated = updatePosteriors(hypotheses, evidence);
-  const official = updated.find(h => h.isOfficial)!;
-  const alternatives = updated.filter(h => !h.isOfficial);
-  const bestAlt = alternatives.reduce(
-    (best, h) => (h.posterior > best.posterior ? h : best),
-    alternatives[0]
-  );
+  // If no hypothesis is marked isOfficial, treat the first one as official
+  const official = updated.find(h => h.isOfficial) ?? updated[0];
+  if (!official) {
+    return {
+      officialHypothesis: { id: 'none', caseStudyId: '', label: 'No hypotheses', description: '', prior: 0, posterior: 0, isOfficial: true },
+      alternativeHypotheses: [],
+      officialPosterior: 0,
+      bestAlternativePosterior: 0,
+      criticalEvidence: [],
+      verdict: 'official_questionable' as const,
+    };
+  }
+  const alternatives = updated.filter(h => h.id !== official.id);
+  const bestAlt = alternatives.length > 0
+    ? alternatives.reduce((best, h) => (h.posterior > best.posterior ? h : best), alternatives[0])
+    : null;
 
   const sensitivity = evidenceSensitivity(hypotheses, evidence);
   const criticalEvidence = sensitivity.slice(0, 3).map(s => s.evidenceId);
