@@ -86,7 +86,9 @@ Return a JSON object:
       "sourceReliability": 0.0-1.0,
       "relevantToClaims": ["c1", "c2"],
       "supports": true/false/null,
-      "dataPoint": "Specific number/measurement if quantitative"
+      "dataPoint": "Specific number/measurement if quantitative",
+      "sourceUrl": "Direct URL to the source if you are CONFIDENT it exists (e.g. a specific .gov page, a known database URL, a Wikipedia article). Use null if uncertain — do NOT guess URLs.",
+      "searchQuery": "Google search query a reader could use to verify this fact independently"
     }
   ],
   "missingData": "What data would be needed but is not publicly available"
@@ -154,7 +156,9 @@ Given the claims, independent evidence, and Bayesian posteriors, return:
       "claimId": "c1",
       "status": "supported|partially_supported|unsupported|contradicted|unverifiable",
       "explanation": "What the independent evidence shows about this specific claim",
-      "keyEvidence": ["e1", "e2"]
+      "keyEvidence": ["e1", "e2"],
+      "verifyUrl": "Direct URL to a source that verifies or falsifies this claim (if known with high confidence), or null",
+      "verifySearchQuery": "Google search query to check this specific claim"
     }
   ],
   "missingContext": "Important context the article omits that the evidence reveals",
@@ -223,7 +227,7 @@ export async function POST(request: Request) {
       evidence: Array<{
         id: string; fact: string; source: string; date: string; type: string;
         sourceReliability: number; relevantToClaims: string[]; supports: boolean | null;
-        dataPoint: string | null;
+        dataPoint: string | null; sourceUrl: string | null; searchQuery: string | null;
       }>;
       missingData: string;
     }>(evidenceText);
@@ -292,7 +296,10 @@ export async function POST(request: Request) {
     if (synthesisText) {
       synthesis = parseJSON<{
         overallAssessment: string;
-        claimVerifications: Array<{ claimId: string; status: string; explanation: string; keyEvidence: string[] }>;
+        claimVerifications: Array<{
+          claimId: string; status: string; explanation: string; keyEvidence: string[];
+          verifyUrl?: string | null; verifySearchQuery?: string | null;
+        }>;
         missingContext: string;
         strongestEvidence: string[];
         recommendations: string[];

@@ -24,6 +24,8 @@ interface IndependentEvidence {
   relevantToClaims: string[];
   supports: boolean | null;
   dataPoint: string | null;
+  sourceUrl?: string | null;
+  searchQuery?: string | null;
 }
 
 interface ClaimVerification {
@@ -31,6 +33,12 @@ interface ClaimVerification {
   status: string;
   explanation: string;
   keyEvidence: string[];
+  verifyUrl?: string | null;
+  verifySearchQuery?: string | null;
+}
+
+function searchUrl(query: string): string {
+  return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
 }
 
 interface Synthesis {
@@ -355,6 +363,24 @@ export default function LivePage() {
                     {verification?.explanation && (
                       <div className="text-xs leading-relaxed rounded p-2 mt-2" style={{ background: '#f7f7f7', color: '#6b6b6b' }}>
                         {verification.explanation}
+                        {(verification.verifyUrl || verification.verifySearchQuery) && (
+                          <span className="ml-2">
+                            {verification.verifyUrl && (
+                              <a href={verification.verifyUrl} target="_blank" rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 font-mono hover:underline"
+                                style={{ color: '#e87b35' }}>
+                                [source]
+                              </a>
+                            )}
+                            {verification.verifySearchQuery && (
+                              <a href={searchUrl(verification.verifySearchQuery)} target="_blank" rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 font-mono hover:underline ml-1"
+                                style={{ color: '#999999' }}>
+                                [verify]
+                              </a>
+                            )}
+                          </span>
+                        )}
                       </div>
                     )}
                   </div>
@@ -387,17 +413,29 @@ export default function LivePage() {
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1">
                         <div className="text-sm leading-relaxed mb-1" style={{ color: '#1a1a1a' }}>{e.fact}</div>
-                        <div className="flex flex-wrap gap-3 text-xs font-mono" style={{ color: '#999999' }}>
+                        <div className="flex flex-wrap gap-3 text-xs font-mono items-center" style={{ color: '#999999' }}>
                           <span>{e.source}</span>
                           <span>{e.date}</span>
                           <span>reliability: {(e.sourceReliability * 100).toFixed(0)}%</span>
                           <span className="px-1 rounded" style={{
-                            background: e.type === 'statistic' ? '#fdf0e6' : '#f7f7f7',
-                            color: e.type === 'statistic' ? '#d06a2a' : '#999999',
+                            background: e.type === 'statistic' ? '#fdf0e6' : e.type === 'unverifiable_recent' ? '#e87b3510' : '#f7f7f7',
+                            color: e.type === 'statistic' ? '#d06a2a' : e.type === 'unverifiable_recent' ? '#e87b35' : '#999999',
                           }}>
                             {e.type.replace(/_/g, ' ')}
                           </span>
                           {e.dataPoint && <span style={{ color: '#e87b35' }}>Data: {e.dataPoint}</span>}
+                          {e.sourceUrl && (
+                            <a href={e.sourceUrl} target="_blank" rel="noopener noreferrer"
+                              className="hover:underline" style={{ color: '#e87b35' }}>
+                              [source]
+                            </a>
+                          )}
+                          {e.searchQuery && (
+                            <a href={searchUrl(e.searchQuery)} target="_blank" rel="noopener noreferrer"
+                              className="hover:underline" style={{ color: '#999999' }}>
+                              [verify]
+                            </a>
+                          )}
                         </div>
                       </div>
                       <div className="text-xs font-mono text-right flex-shrink-0" style={{
