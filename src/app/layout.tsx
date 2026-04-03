@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
 import { ApiKeyProvider, ApiKeyBanner, ApiKeySettings } from "@/components/ApiKeyProvider";
+import { ScribbleLogo } from "@/components/ScribbleLogo";
 
 export const metadata: Metadata = {
   title: "Rewriting History",
@@ -26,8 +27,11 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col" style={{ background: '#ffffff', color: '#1a1a1a' }}>
         <ApiKeyProvider>
           <nav className="border-b px-6 py-3 flex items-center gap-8" style={{ borderColor: '#e5e5e5', background: '#ffffff' }}>
-            <Link href="/" className="text-lg font-bold tracking-tight" style={{ color: '#e87b35' }}>
-              Rewriting History
+            <Link href="/" className="flex items-center gap-2">
+              <ScribbleLogo size={26} />
+              <span className="text-sm font-medium tracking-widest uppercase" style={{ color: '#1a1a1a', fontFamily: "'DM Mono', monospace" }}>
+                REWRITING HISTORY
+              </span>
             </Link>
             <div className="flex gap-6 text-sm flex-1">
               <Link href="/cases" className="hover:opacity-80 transition-opacity" style={{ color: '#6b6b6b' }}>
