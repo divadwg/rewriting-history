@@ -77,26 +77,58 @@ const STATUS_COLORS: Record<string, string> = {
 };
 
 export default function LivePage() {
+  const [urlInput, setUrlInput] = useState('');
   const [topic, setTopic] = useState('');
-  const [articleInputs, setArticleInputs] = useState([{ text: '', url: '', date: new Date().toISOString().split('T')[0] }]);
+  const [showManual, setShowManual] = useState(false);
+  const [articleText, setArticleText] = useState('');
+  const [articleUrl, setArticleUrl] = useState('');
+  const [articleDate, setArticleDate] = useState(new Date().toISOString().split('T')[0]);
+  const [articleTitle, setArticleTitle] = useState('');
+  const [fetching, setFetching] = useState(false);
+  const [fetched, setFetched] = useState(false);
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [loadingStep, setLoadingStep] = useState('');
   const [error, setError] = useState<string | null>(null);
   const { provider, apiKey, isConfigured, setShowSettings } = useApiKey();
 
-  const addArticle = () => {
-    setArticleInputs(prev => [...prev, { text: '', url: '', date: new Date().toISOString().split('T')[0] }]);
-  };
+  const fetchArticle = async () => {
+    const url = urlInput.trim();
+    if (!url || !url.startsWith('http')) {
+      setError('Enter a valid URL starting with http:// or https://');
+      return;
+    }
 
-  const updateArticle = (index: number, field: string, value: string) => {
-    setArticleInputs(prev => prev.map((a, i) => i === index ? { ...a, [field]: value } : a));
+    setFetching(true);
+    setError(null);
+
+    try {
+      const res = await fetch('/api/live/fetch-article', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to fetch article');
+
+      setArticleText(data.text);
+      setArticleUrl(data.url || url);
+      setArticleDate(data.date || new Date().toISOString().split('T')[0]);
+      setArticleTitle(data.title || '');
+      setTopic(data.title || '');
+      setFetched(true);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Failed to fetch article');
+    } finally {
+      setFetching(false);
+    }
   };
 
   const analyze = async () => {
-    const articles = articleInputs.filter(a => a.text.trim().length > 50);
-    if (articles.length === 0) {
-      setError('Paste at least one article (50+ characters)');
+    const text = articleText.trim();
+    if (text.length < 50) {
+      setError('Article text must be at least 50 characters');
       return;
     }
     if (!isConfigured) {
@@ -121,10 +153,11 @@ export default function LivePage() {
     }, 10000);
 
     try {
+      const articles = [{ text, url: articleUrl, date: articleDate }];
       const res = await fetch('/api/live/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ topic: topic || 'Unnamed topic', articles, provider, apiKey }),
+        body: JSON.stringify({ topic: topic || articleTitle || 'Unnamed topic', articles, provider, apiKey }),
       });
 
       if (!res.ok) {
@@ -143,103 +176,229 @@ export default function LivePage() {
     }
   };
 
+  const reset = () => {
+    setUrlInput('');
+    setTopic('');
+    setArticleText('');
+    setArticleUrl('');
+    setArticleDate(new Date().toISOString().split('T')[0]);
+    setArticleTitle('');
+    setFetched(false);
+    setShowManual(false);
+    setResult(null);
+    setError(null);
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
       <h1 className="text-3xl font-bold mb-2" style={{ color: '#1a1a1a' }}>Live Article Verification</h1>
       <p className="text-sm mb-2" style={{ color: '#6b6b6b' }}>
-        Paste a news article. The system extracts every verifiable claim, gathers <strong>independent
+        Enter an article URL or paste text. The system extracts every verifiable claim, gathers <strong>independent
         evidence</strong> from outside the article, runs Bayesian inference, and tells you which claims
         the evidence actually supports.
       </p>
       <div className="text-xs mb-8 font-mono flex gap-4" style={{ color: '#999999' }}>
         <span>1. Extract Claims</span>
-        <span style={{ color: '#e5e5e5' }}>→</span>
+        <span style={{ color: '#e5e5e5' }}>&rarr;</span>
         <span>2. Independent Evidence</span>
-        <span style={{ color: '#e5e5e5' }}>→</span>
+        <span style={{ color: '#e5e5e5' }}>&rarr;</span>
         <span>3. Bayesian Math</span>
-        <span style={{ color: '#e5e5e5' }}>→</span>
+        <span style={{ color: '#e5e5e5' }}>&rarr;</span>
         <span>4. Claim-by-Claim Verdict</span>
       </div>
 
-      {/* Input */}
-      <div className="mb-8 space-y-4">
-        <div>
-          <label className="text-xs font-bold mb-1 block" style={{ color: '#6b6b6b' }}>Topic / Context</label>
-          <input
-            type="text"
-            value={topic}
-            onChange={e => setTopic(e.target.value)}
-            placeholder="e.g., 'Government claims about defense spending', 'Coverage of the housing crisis'"
-            className="w-full rounded-lg px-4 py-2 text-sm"
-            style={{ background: '#ffffff', border: '1px solid #e5e5e5', color: '#1a1a1a' }}
-          />
-        </div>
+      {/* Input - only show when no result */}
+      {!result && !loading && (
+        <div className="mb-8 space-y-4">
+          {/* URL input - primary */}
+          {!fetched && !showManual && (
+            <>
+              <div>
+                <label className="text-xs font-bold mb-1 block" style={{ color: '#6b6b6b' }}>Article URL</label>
+                <div className="flex gap-3">
+                  <input
+                    type="url"
+                    value={urlInput}
+                    onChange={e => setUrlInput(e.target.value)}
+                    onKeyDown={e => e.key === 'Enter' && fetchArticle()}
+                    placeholder="https://www.example.com/article..."
+                    className="flex-1 rounded-lg px-4 py-3 text-sm"
+                    style={{ background: '#ffffff', border: '1px solid #e5e5e5', color: '#1a1a1a' }}
+                    disabled={fetching}
+                  />
+                  <button
+                    onClick={fetchArticle}
+                    disabled={fetching || !urlInput.trim()}
+                    className="px-6 py-3 rounded-lg font-bold text-sm transition-opacity whitespace-nowrap"
+                    style={{
+                      background: fetching ? '#d06a2a' : '#e87b35',
+                      color: 'white',
+                      opacity: fetching || !urlInput.trim() ? 0.5 : 1,
+                    }}
+                  >
+                    {fetching ? 'Fetching...' : 'Fetch Article'}
+                  </button>
+                </div>
+              </div>
+              <div className="text-center">
+                <button
+                  onClick={() => setShowManual(true)}
+                  className="text-xs hover:underline"
+                  style={{ color: '#999999' }}
+                >
+                  Or paste article text manually
+                </button>
+              </div>
+            </>
+          )}
 
-        {articleInputs.map((article, i) => (
-          <div key={i} className="rounded-lg p-4 space-y-3" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold" style={{ color: '#999999' }}>Article {i + 1}</span>
-              <div className="flex gap-2">
+          {/* Manual text input */}
+          {showManual && !fetched && (
+            <>
+              <div className="flex items-center justify-between">
+                <label className="text-xs font-bold" style={{ color: '#6b6b6b' }}>Paste Article Text</label>
+                <button
+                  onClick={() => setShowManual(false)}
+                  className="text-xs hover:underline"
+                  style={{ color: '#999999' }}
+                >
+                  Back to URL input
+                </button>
+              </div>
+              <div>
+                <label className="text-xs font-bold mb-1 block" style={{ color: '#6b6b6b' }}>Topic / Context</label>
                 <input
                   type="text"
-                  value={article.url}
-                  onChange={e => updateArticle(i, 'url', e.target.value)}
-                  placeholder="Source URL (optional)"
-                  className="rounded px-2 py-1 text-xs w-48"
-                  style={{ background: '#f7f7f7', border: '1px solid #e5e5e5', color: '#1a1a1a' }}
+                  value={topic}
+                  onChange={e => setTopic(e.target.value)}
+                  placeholder="e.g., 'Government claims about defense spending'"
+                  className="w-full rounded-lg px-4 py-2 text-sm"
+                  style={{ background: '#ffffff', border: '1px solid #e5e5e5', color: '#1a1a1a' }}
                 />
-                <input
-                  type="date"
-                  value={article.date}
-                  onChange={e => updateArticle(i, 'date', e.target.value)}
-                  className="rounded px-2 py-1 text-xs"
+              </div>
+              <div className="rounded-lg p-4 space-y-3" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={articleUrl}
+                    onChange={e => setArticleUrl(e.target.value)}
+                    placeholder="Source URL (optional)"
+                    className="rounded px-2 py-1 text-xs flex-1"
+                    style={{ background: '#f7f7f7', border: '1px solid #e5e5e5', color: '#1a1a1a' }}
+                  />
+                  <input
+                    type="date"
+                    value={articleDate}
+                    onChange={e => setArticleDate(e.target.value)}
+                    className="rounded px-2 py-1 text-xs"
+                    style={{ background: '#f7f7f7', border: '1px solid #e5e5e5', color: '#1a1a1a' }}
+                  />
+                </div>
+                <textarea
+                  value={articleText}
+                  onChange={e => setArticleText(e.target.value)}
+                  placeholder="Paste the article text here..."
+                  rows={8}
+                  className="w-full rounded-lg px-4 py-3 text-sm resize-y"
                   style={{ background: '#f7f7f7', border: '1px solid #e5e5e5', color: '#1a1a1a' }}
                 />
               </div>
+              <button
+                onClick={analyze}
+                disabled={loading || articleText.trim().length < 50}
+                className="px-6 py-3 rounded-lg font-bold text-sm transition-opacity"
+                style={{
+                  background: '#e87b35',
+                  color: 'white',
+                  opacity: articleText.trim().length < 50 ? 0.5 : 1,
+                }}
+              >
+                Verify Claims
+              </button>
+            </>
+          )}
+
+          {/* Fetched article preview */}
+          {fetched && (
+            <>
+              <div className="rounded-lg p-5" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <div className="flex-1">
+                    {articleTitle && (
+                      <h3 className="font-bold text-lg mb-1" style={{ color: '#1a1a1a' }}>{articleTitle}</h3>
+                    )}
+                    <div className="flex flex-wrap gap-3 text-xs font-mono" style={{ color: '#999999' }}>
+                      {articleUrl && (
+                        <a href={articleUrl} target="_blank" rel="noopener noreferrer"
+                          className="hover:underline" style={{ color: '#e87b35' }}>
+                          {new URL(articleUrl).hostname}
+                        </a>
+                      )}
+                      <span>{articleDate}</span>
+                      <span>{articleText.length.toLocaleString()} characters</span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={reset}
+                    className="text-xs px-3 py-1 rounded"
+                    style={{ border: '1px solid #e5e5e5', color: '#999999' }}
+                  >
+                    Change
+                  </button>
+                </div>
+
+                {/* Expandable preview */}
+                <details className="mt-3">
+                  <summary className="text-xs cursor-pointer select-none" style={{ color: '#999999' }}>
+                    Show article text
+                  </summary>
+                  <div className="mt-2 rounded p-3 text-xs leading-relaxed max-h-48 overflow-y-auto"
+                    style={{ background: '#f7f7f7', color: '#6b6b6b' }}>
+                    {articleText.slice(0, 3000)}
+                    {articleText.length > 3000 && '...'}
+                  </div>
+                </details>
+              </div>
+
+              <div>
+                <label className="text-xs font-bold mb-1 block" style={{ color: '#6b6b6b' }}>Topic / Context (auto-filled from title)</label>
+                <input
+                  type="text"
+                  value={topic}
+                  onChange={e => setTopic(e.target.value)}
+                  placeholder="e.g., 'Government claims about defense spending'"
+                  className="w-full rounded-lg px-4 py-2 text-sm"
+                  style={{ background: '#ffffff', border: '1px solid #e5e5e5', color: '#1a1a1a' }}
+                />
+              </div>
+
+              <button
+                onClick={analyze}
+                disabled={loading}
+                className="px-6 py-3 rounded-lg font-bold text-sm transition-opacity"
+                style={{ background: '#e87b35', color: 'white' }}
+              >
+                Verify Claims
+              </button>
+            </>
+          )}
+
+          {error && (
+            <div className="text-xs rounded-lg p-3" style={{ background: 'rgba(196,69,54,0.08)', color: '#c44536' }}>
+              {error}
             </div>
-            <textarea
-              value={article.text}
-              onChange={e => updateArticle(i, 'text', e.target.value)}
-              placeholder="Paste the article text here..."
-              rows={6}
-              className="w-full rounded-lg px-4 py-3 text-sm resize-y"
-              style={{ background: '#f7f7f7', border: '1px solid #e5e5e5', color: '#1a1a1a' }}
-            />
-          </div>
-        ))}
-
-        <div className="flex gap-3">
-          <button
-            onClick={addArticle}
-            className="text-xs px-4 py-2 rounded-lg"
-            style={{ border: '1px solid #e5e5e5', color: '#6b6b6b' }}
-          >
-            + Add Another Article
-          </button>
-          <button
-            onClick={analyze}
-            disabled={loading}
-            className="text-xs px-6 py-2 rounded-lg font-bold transition-opacity"
-            style={{
-              background: loading ? '#d06a2a' : '#e87b35',
-              color: 'white',
-              opacity: loading ? 0.7 : 1,
-            }}
-          >
-            {loading ? 'Analyzing...' : 'Verify Claims'}
-          </button>
+          )}
         </div>
-
-        {error && (
-          <div className="text-xs rounded-lg p-3" style={{ background: 'rgba(196,69,54,0.08)', color: '#c44536' }}>
-            {error}
-          </div>
-        )}
-      </div>
+      )}
 
       {/* Loading */}
       {loading && (
         <div className="text-center py-16">
+          {articleTitle && (
+            <div className="text-sm font-medium mb-4" style={{ color: '#6b6b6b' }}>
+              Analyzing: {articleTitle}
+            </div>
+          )}
           <div className="inline-block w-10 h-10 rounded-full border-2 animate-spin mb-4"
             style={{ borderColor: '#e5e5e5', borderTopColor: '#e87b35' }} />
           <div className="text-sm font-medium" style={{ color: '#1a1a1a' }}>{loadingStep}</div>
@@ -261,7 +420,7 @@ export default function LivePage() {
                   }}>
                     {step}
                   </div>
-                  {i < 3 && <span style={{ color: '#e5e5e5' }}>→</span>}
+                  {i < 3 && <span style={{ color: '#e5e5e5' }}>&rarr;</span>}
                 </div>
               );
             })}
@@ -272,6 +431,33 @@ export default function LivePage() {
       {/* Results */}
       {result && (
         <div className="space-y-8">
+          {/* Article header in results */}
+          {articleTitle && (
+            <div className="rounded-lg p-4" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="font-bold" style={{ color: '#1a1a1a' }}>{articleTitle}</h3>
+                  <div className="flex flex-wrap gap-3 text-xs font-mono mt-1" style={{ color: '#999999' }}>
+                    {articleUrl && (
+                      <a href={articleUrl} target="_blank" rel="noopener noreferrer"
+                        className="hover:underline" style={{ color: '#e87b35' }}>
+                        {(() => { try { return new URL(articleUrl).hostname; } catch { return articleUrl; } })()}
+                      </a>
+                    )}
+                    <span>{articleDate}</span>
+                  </div>
+                </div>
+                <button
+                  onClick={reset}
+                  className="text-xs px-3 py-1 rounded"
+                  style={{ border: '1px solid #e5e5e5', color: '#999999' }}
+                >
+                  New Analysis
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Pipeline badge */}
           <div className="flex items-center gap-3 text-xs font-mono" style={{ color: '#999999' }}>
             <span className="px-2 py-1 rounded" style={{ background: '#2a9d5c10', color: '#2a9d5c', border: '1px solid #2a9d5c30' }}>
@@ -307,7 +493,7 @@ export default function LivePage() {
                     <div className="flex justify-between text-xs mb-1">
                       <span style={{ color: '#6b6b6b' }}>
                         {isWinner && <span className="font-mono mr-1" style={{ color: '#2a9d5c' }}>[BEST FIT]</span>}
-                        {h.isOfficial && <span className="font-mono mr-1" style={{ color: '#999999' }}>[ARTICLE'S FRAMING]</span>}
+                        {h.isOfficial && <span className="font-mono mr-1" style={{ color: '#999999' }}>[ARTICLE&apos;S FRAMING]</span>}
                         {h.label}
                       </span>
                       <span className="font-mono font-bold" style={{ color }}>{formatProb(h.posterior)}</span>
