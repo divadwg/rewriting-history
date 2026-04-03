@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { callLLM, LLMProvider } from '@/lib/engine/live/llm-provider';
 import { updatePosteriors, evidenceSensitivity, generateVerdict } from '@/lib/engine/bayesian';
 import { Hypothesis, EvidenceItem } from '@/lib/types/graph';
+import { multiSearch, formatSearchContext } from '@/lib/engine/live/web-search';
 
 function parseJSON<T>(text: string): T | null {
   const jsonMatch = text.match(/[\[{][\s\S]*[\]}]/);
@@ -166,6 +167,39 @@ Given the claims, independent evidence, and Bayesian posteriors, return:
   "recommendations": ["What a reader should do to verify these claims themselves"]
 }`;
 
+// ─── STEP 6: Contradictions / Hypocrisy Detection ─────────────────────────
+
+const CONTRADICTIONS_PROMPT = `You are an investigative journalist finding CONTRADICTIONS and HYPOCRISY — cases where people quoted or mentioned in this article have previously said or done things that contradict their current statements or actions.
+
+RULES:
+- For each key actor in the article, search your knowledge for their PAST statements, votes, policies, or actions on the SAME topic.
+- A contradiction means: what they say NOW vs what they said/did BEFORE. Quote both sides specifically.
+- Include the DATE and CONTEXT of both the current and past statements.
+- Only include REAL, verifiable contradictions — do not fabricate quotes.
+- If web search results are provided, use them as primary sources and cite the URLs.
+- If you are not confident a past statement is real, do NOT include it.
+
+Return a JSON array:
+[
+  {
+    "id": "x1",
+    "actor": "Name of the person",
+    "actorRole": "Their role/title",
+    "currentStatement": "What they say or do in this article (quote or paraphrase)",
+    "currentDate": "YYYY-MM-DD or approximate",
+    "pastStatement": "What they previously said or did that contradicts the current position",
+    "pastDate": "YYYY-MM-DD or approximate",
+    "pastSource": "Where the past statement was made (speech, interview, tweet, vote, etc.)",
+    "contradictionType": "direct_reversal|selective_memory|double_standard|changed_position|hypocrisy",
+    "severity": 1-5,
+    "explanation": "One sentence explaining why this is a contradiction",
+    "sourceUrl": "URL to a source documenting the past statement (if known with confidence), or null",
+    "searchQuery": "Google search query to find the past statement"
+  }
+]
+
+Return an empty array [] if no credible contradictions are found. Quality over quantity — only include contradictions you are confident are real.`;
+
 export async function POST(request: Request) {
   const body = await request.json();
   const { topic, articles, provider, apiKey } = body as {
@@ -215,9 +249,28 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Could not parse claims from article' }, { status: 500 });
     }
 
-    // ── STEP 2: Gather independent evidence ──────────────────────────────
+    // ── STEP 1.5: Web search for key claims ─────────────────────────────
+    // Build search queries from the top claims and run web searches
+    const searchQueries = claims.slice(0, 5).map(c => c.claim.slice(0, 100));
+    // Also search for key actors
+    const actors = [...new Set(claims.map(c => c.claimant).filter(a => a && a !== 'Article statement'))];
+    if (actors.length > 0) {
+      searchQueries.push(...actors.slice(0, 3).map(a => `${a} ${topic}`.slice(0, 100)));
+    }
+
+    const webResults = await multiSearch(searchQueries, 3);
+    const webContext = formatSearchContext(webResults);
+
+    // ── STEP 2: Gather independent evidence (with web search) ─────────
     const claimsJson = JSON.stringify(claims, null, 2);
-    const evidenceText = await callLLM(config, `${datePreamble}\n\n${VERIFY_EVIDENCE_PROMPT}\n\nTOPIC: ${topic}\n\nCLAIMS TO VERIFY:\n${claimsJson}\n\nReturn ONLY the JSON object:`, 8192);
+
+    // Use provider-native web search for the evidence call where available
+    const evidenceText = await callLLM(
+      config,
+      `${datePreamble}\n\n${VERIFY_EVIDENCE_PROMPT}${webContext}\n\nTOPIC: ${topic}\n\nCLAIMS TO VERIFY:\n${claimsJson}\n\nReturn ONLY the JSON object:`,
+      8192,
+      { webSearch: true }
+    );
 
     if (!evidenceText) {
       return NextResponse.json({ error: 'Failed to gather independent evidence' }, { status: 500 });
@@ -306,6 +359,32 @@ export async function POST(request: Request) {
       }>(synthesisText);
     }
 
+    // ── STEP 6: Contradictions / Hypocrisy Detection ────────────────────
+    // Search for past statements by key actors to find contradictions
+    const actorSearchQueries = actors.slice(0, 5).map(a =>
+      `"${a}" previous statements ${topic}`.slice(0, 120)
+    );
+    const actorWebResults = await multiSearch(actorSearchQueries, 3);
+    const actorWebContext = formatSearchContext(actorWebResults);
+
+    const contradictionsText = await callLLM(
+      config,
+      `${datePreamble}\n\n${CONTRADICTIONS_PROMPT}${actorWebContext}\n\nARTICLE TOPIC: ${topic}\n\nKEY ACTORS: ${actors.join(', ')}\n\nCLAIMS FROM ARTICLE:\n${claimsJson}\n\nReturn ONLY the JSON array:`,
+      4096,
+      { webSearch: true }
+    );
+
+    let contradictions = null;
+    if (contradictionsText) {
+      contradictions = parseJSON<Array<{
+        id: string; actor: string; actorRole: string;
+        currentStatement: string; currentDate: string;
+        pastStatement: string; pastDate: string; pastSource: string;
+        contradictionType: string; severity: number; explanation: string;
+        sourceUrl?: string | null; searchQuery?: string | null;
+      }>>(contradictionsText);
+    }
+
     return NextResponse.json({
       claims,
       evidence: evidenceResult.evidence,
@@ -313,6 +392,8 @@ export async function POST(request: Request) {
       hypotheses,
       bayesian: { posteriors, sensitivity, verdict },
       synthesis,
+      contradictions: contradictions || [],
+      webSearchUsed: webResults.length > 0,
       pipeline: 'evidence-first',
     });
   } catch (error) {

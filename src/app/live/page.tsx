@@ -49,6 +49,22 @@ interface Synthesis {
   recommendations: string[];
 }
 
+interface Contradiction {
+  id: string;
+  actor: string;
+  actorRole: string;
+  currentStatement: string;
+  currentDate: string;
+  pastStatement: string;
+  pastDate: string;
+  pastSource: string;
+  contradictionType: string;
+  severity: number;
+  explanation: string;
+  sourceUrl?: string | null;
+  searchQuery?: string | null;
+}
+
 interface AnalysisResult {
   claims: Claim[];
   evidence: IndependentEvidence[];
@@ -59,6 +75,8 @@ interface AnalysisResult {
     verdict: BayesianVerdict;
   };
   synthesis: Synthesis | null;
+  contradictions: Contradiction[];
+  webSearchUsed?: boolean;
   pipeline: string;
 }
 
@@ -465,6 +483,14 @@ export default function LivePage() {
             </span>
             <span>{result.claims.length} claims extracted</span>
             <span>{result.evidence.length} independent evidence items</span>
+            {result.contradictions?.length > 0 && (
+              <span>{result.contradictions.length} contradictions found</span>
+            )}
+            {result.webSearchUsed && (
+              <span className="px-2 py-0.5 rounded" style={{ background: '#4a8fa810', color: '#4a8fa8', border: '1px solid #4a8fa830' }}>
+                web search
+              </span>
+            )}
           </div>
 
           {/* Overall Assessment */}
@@ -574,6 +600,95 @@ export default function LivePage() {
               })}
             </div>
           </div>
+
+          {/* Contradictions / Hypocrisy */}
+          {result.contradictions && result.contradictions.length > 0 && (
+            <div>
+              <h3 className="text-lg font-bold mb-1" style={{ color: '#c44536' }}>
+                Contradictions &amp; Past Statements ({result.contradictions.length})
+              </h3>
+              <p className="text-xs mb-4" style={{ color: '#999999' }}>
+                Cases where people in this article have previously said or done things that
+                contradict their current statements or actions.
+              </p>
+              <div className="space-y-3">
+                {result.contradictions
+                  .sort((a, b) => b.severity - a.severity)
+                  .map(x => {
+                    const severityColor = x.severity >= 4 ? '#c44536' : x.severity >= 3 ? '#e87b35' : '#d06a2a';
+                    const typeLabel: Record<string, string> = {
+                      direct_reversal: 'DIRECT REVERSAL',
+                      selective_memory: 'SELECTIVE MEMORY',
+                      double_standard: 'DOUBLE STANDARD',
+                      changed_position: 'CHANGED POSITION',
+                      hypocrisy: 'HYPOCRISY',
+                    };
+                    return (
+                      <div key={x.id} className="rounded-lg p-4" style={{
+                        background: '#ffffff',
+                        border: '1px solid #e5e5e5',
+                        borderLeftColor: severityColor,
+                        borderLeftWidth: '3px',
+                        boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+                      }}>
+                        <div className="flex items-start justify-between gap-3 mb-3">
+                          <div className="font-bold text-sm" style={{ color: '#1a1a1a' }}>
+                            {x.actor}
+                            <span className="font-normal ml-1" style={{ color: '#999999' }}>({x.actorRole})</span>
+                          </div>
+                          <span className="text-xs font-mono px-2 py-0.5 rounded flex-shrink-0"
+                            style={{ background: `${severityColor}10`, color: severityColor }}>
+                            {typeLabel[x.contradictionType] || x.contradictionType.replace(/_/g, ' ').toUpperCase()}
+                          </span>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-3 mb-3">
+                          <div className="rounded p-3" style={{ background: '#f7f7f7' }}>
+                            <div className="text-xs font-mono mb-1" style={{ color: '#e87b35' }}>
+                              NOW ({x.currentDate})
+                            </div>
+                            <p className="text-xs leading-relaxed" style={{ color: '#1a1a1a' }}>
+                              &ldquo;{x.currentStatement}&rdquo;
+                            </p>
+                          </div>
+                          <div className="rounded p-3" style={{ background: '#c4453608' }}>
+                            <div className="text-xs font-mono mb-1" style={{ color: '#c44536' }}>
+                              PREVIOUSLY ({x.pastDate})
+                            </div>
+                            <p className="text-xs leading-relaxed" style={{ color: '#1a1a1a' }}>
+                              &ldquo;{x.pastStatement}&rdquo;
+                            </p>
+                            <div className="text-xs mt-1 font-mono" style={{ color: '#999999' }}>
+                              Source: {x.pastSource}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="text-xs leading-relaxed" style={{ color: '#6b6b6b' }}>
+                          {x.explanation}
+                          {(x.sourceUrl || x.searchQuery) && (
+                            <span className="ml-2">
+                              {x.sourceUrl && (
+                                <a href={x.sourceUrl} target="_blank" rel="noopener noreferrer"
+                                  className="font-mono hover:underline" style={{ color: '#e87b35' }}>
+                                  [source]
+                                </a>
+                              )}
+                              {x.searchQuery && (
+                                <a href={searchUrl(x.searchQuery)} target="_blank" rel="noopener noreferrer"
+                                  className="font-mono hover:underline ml-1" style={{ color: '#999999' }}>
+                                  [verify]
+                                </a>
+                              )}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+          )}
 
           {/* Independent Evidence */}
           <div>

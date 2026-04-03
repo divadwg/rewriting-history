@@ -27,10 +27,11 @@ export default function HelpPage() {
           <div className="rounded-lg p-6" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
             <h3 className="font-bold text-lg mb-2" style={{ color: '#e87b35' }}>Live Analysis</h3>
             <p className="leading-relaxed" style={{ color: '#6b6b6b' }}>
-              You paste a news article. The system pulls out every verifiable claim the article makes,
-              then tries to find independent evidence for or against each one. It runs the same probability
-              math and gives you a claim-by-claim verdict: supported, contradicted, or unverifiable. Each
-              claim gets a link so you can check the sources yourself.
+              Enter an article URL (or paste text). The system pulls out every verifiable claim the article makes,
+              searches the web for independent evidence, runs probability math, and gives you a claim-by-claim
+              verdict: supported, contradicted, or unverifiable. It also searches for <strong>contradictions</strong> &mdash;
+              cases where people in the article have previously said or done things that conflict with their
+              current statements. Each finding gets source links so you can check yourself.
             </p>
           </div>
 
@@ -343,9 +344,11 @@ export default function HelpPage() {
               <div>
                 <div className="font-bold" style={{ color: '#1a1a1a' }}>Gather evidence</div>
                 <p className="text-xs" style={{ color: '#6b6b6b' }}>
-                  An AI research assistant finds primary sources: documents, statistics, archaeological
-                  findings, declassified records. It is instructed to cast a wide net and include
-                  contradictory evidence. It does not interpret or draw conclusions.
+                  The system searches the web for relevant sources, then an AI research assistant
+                  analyses them alongside its training data to compile primary source evidence: documents,
+                  statistics, archaeological findings, declassified records. Where available, provider-native
+                  web search is used (Gemini&apos;s Google Search, Grok&apos;s live search, OpenAI&apos;s web search).
+                  It is instructed to cast a wide net and include contradictory evidence.
                 </p>
               </div>
             </div>
@@ -397,10 +400,11 @@ export default function HelpPage() {
         <h2 className="text-2xl font-bold mb-4" style={{ color: '#1a1a1a' }}>Limitations</h2>
         <div className="space-y-3 text-sm" style={{ color: '#6b6b6b' }}>
           <div className="rounded-lg p-4" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-            <strong style={{ color: '#1a1a1a' }}>The AI can only access its training data.</strong> It
-            cannot browse the web in real time. For recent events (past its knowledge cutoff), it may
-            not have independent evidence. In these cases, evidence is marked &ldquo;unverifiable&rdquo; rather
-            than falsely confirming or denying claims.
+            <strong style={{ color: '#1a1a1a' }}>Web search supplements but doesn&apos;t replace training data.</strong> The
+            system uses web search (DuckDuckGo, plus Gemini&apos;s Google Search grounding, OpenAI&apos;s web search,
+            and Grok&apos;s live search where available) to find real sources for verification. However, web
+            search results are not exhaustive, and for some topics the AI may still rely on its training data.
+            Evidence from web search is cited with URLs when found.
           </div>
           <div className="rounded-lg p-4" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
             <strong style={{ color: '#1a1a1a' }}>Likelihood ratios are estimated by the AI.</strong> The
