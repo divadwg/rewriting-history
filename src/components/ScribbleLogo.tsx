@@ -3,30 +3,35 @@ export function ScribbleLogo({ size = 24 }: { size?: number }) {
     <svg
       width={size}
       height={size}
-      viewBox="0 0 32 32"
+      viewBox="0 0 36 36"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{ display: 'inline-block', verticalAlign: 'middle' }}
     >
-      {/* Scribbled-out text lines (the "rewriting") */}
-      <line x1="4" y1="10" x2="28" y2="10" stroke="#cccccc" strokeWidth="2" strokeLinecap="round" />
-      <line x1="4" y1="16" x2="24" y2="16" stroke="#cccccc" strokeWidth="2" strokeLinecap="round" />
-      <line x1="4" y1="22" x2="20" y2="22" stroke="#cccccc" strokeWidth="2" strokeLinecap="round" />
-
-      {/* The scribble / strikethrough — hand-drawn feel */}
+      {/* Chaotic scribble-out — overlapping loops like aggressive crossing out */}
       <path
-        d="M2 8 C6 20, 10 6, 14 18 C18 6, 22 22, 26 10 C28 6, 30 14, 30 14"
-        stroke="#c44536"
-        strokeWidth="2.5"
+        d="M6 10 C10 4, 18 6, 26 8 C32 10, 28 18, 22 16 C16 14, 10 20, 8 14 C6 8, 14 4, 20 10 C26 16, 30 12, 28 20 C26 28, 18 22, 12 26 C6 30, 4 22, 10 18 C16 14, 24 22, 30 18"
+        stroke="#1a1a1a"
+        strokeWidth="2.2"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
       />
-
-      {/* Pen nib / writing tip at the end */}
       <path
-        d="M27 11 L30 14 L28 15 Z"
-        fill="#c44536"
+        d="M8 20 C14 12, 22 28, 28 14 C30 10, 20 8, 14 16 C8 24, 20 30, 26 22 C30 16, 24 10, 16 14"
+        stroke="#1a1a1a"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <path
+        d="M10 12 C16 24, 24 8, 28 20 C30 26, 22 28, 14 22 C8 18, 12 8, 22 12"
+        stroke="#1a1a1a"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
       />
     </svg>
   );
