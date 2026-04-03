@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import "./globals.css";
 import { ApiKeyProvider, ApiKeyBanner, ApiKeySettings } from "@/components/ApiKeyProvider";
 import { ScribbleLogo } from "@/components/ScribbleLogo";
@@ -27,25 +26,25 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col" style={{ background: '#ffffff', color: '#1a1a1a' }}>
         <ApiKeyProvider>
           <nav className="border-b px-6 py-3 flex items-center gap-8" style={{ borderColor: '#e5e5e5', background: '#ffffff' }}>
-            <Link href="/" className="flex items-center gap-2">
+            <a href="/" className="flex items-center gap-2">
               <ScribbleLogo size={30} />
               <span className="text-sm font-medium tracking-widest uppercase" style={{ color: '#1a1a1a', fontFamily: "'DM Mono', monospace" }}>
                 REWRITING HISTORY
               </span>
-            </Link>
+            </a>
             <div className="flex gap-6 text-sm flex-1">
-              <Link href="/cases" className="hover:opacity-80 transition-opacity" style={{ color: '#6b6b6b' }}>
+              <a href="/cases" className="hover:opacity-80 transition-opacity" style={{ color: '#6b6b6b' }}>
                 Case Studies
-              </Link>
-              <Link href="/live" className="hover:opacity-80 transition-opacity" style={{ color: '#6b6b6b' }}>
+              </a>
+              <a href="/live" className="hover:opacity-80 transition-opacity" style={{ color: '#6b6b6b' }}>
                 Live Analysis
-              </Link>
-              <Link href="/challenge" className="hover:opacity-80 transition-opacity font-bold" style={{ color: '#e87b35' }}>
+              </a>
+              <a href="/challenge" className="hover:opacity-80 transition-opacity font-bold" style={{ color: '#e87b35' }}>
                 Evidence Discovery
-              </Link>
-              <Link href="/help" className="hover:opacity-80 transition-opacity" style={{ color: '#6b6b6b' }}>
+              </a>
+              <a href="/help" className="hover:opacity-80 transition-opacity" style={{ color: '#6b6b6b' }}>
                 Help
-              </Link>
+              </a>
             </div>
             <NavSettingsButton />
           </nav>
