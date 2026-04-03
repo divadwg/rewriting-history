@@ -28,7 +28,7 @@ export default function RootLayout({
         <ApiKeyProvider>
           <nav className="border-b px-6 py-3 flex items-center gap-8" style={{ borderColor: '#e5e5e5', background: '#ffffff' }}>
             <Link href="/" className="flex items-center gap-2">
-              <ScribbleLogo size={26} />
+              <ScribbleLogo size={30} />
               <span className="text-sm font-medium tracking-widest uppercase" style={{ color: '#1a1a1a', fontFamily: "'DM Mono', monospace" }}>
                 REWRITING HISTORY
               </span>
