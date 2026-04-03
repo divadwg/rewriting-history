@@ -52,7 +52,9 @@ For the given topic, return a JSON array of evidence items:
     "wasClassified": false,
     "declassifiedDate": null,
     "quantitative": true/false,
-    "dataPoint": "The specific number/measurement if quantitative, null otherwise"
+    "dataPoint": "The specific number/measurement if quantitative, null otherwise",
+    "sourceUrl": "Direct URL to the source if you are CONFIDENT it exists (e.g. a specific archive page, .gov database, JSTOR article, Wikipedia article). Use null if uncertain — do NOT guess URLs.",
+    "searchQuery": "Google search query a reader could use to find and verify this evidence"
   }
 ]
 
@@ -246,6 +248,8 @@ export interface RawEvidence {
   declassifiedDate: string | null;
   quantitative: boolean;
   dataPoint: string | null;
+  sourceUrl?: string | null;
+  searchQuery?: string | null;
 }
 
 export interface HypothesisGeneration {

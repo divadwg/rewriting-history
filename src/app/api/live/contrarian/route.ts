@@ -163,6 +163,7 @@ export async function POST(request: Request) {
       bayesian: { posteriors, sensitivity, verdict },
       discoveredBelief: !belief ? topic : undefined,
       synthesis,
+      rawEvidence: rawEvidence.map(e => ({ id: e.id, sourceUrl: e.sourceUrl || null, searchQuery: e.searchQuery || null })),
       rawEvidenceCount: rawEvidence.length,
       hypothesisCount: hypotheses.length,
       pipeline: 'evidence-first',

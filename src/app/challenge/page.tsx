@@ -6,6 +6,12 @@ import { ContrarianResult } from '@/lib/engine/live/contrarian-engine';
 import { BayesianVerdict } from '@/lib/types/graph';
 import { useApiKey } from '@/components/ApiKeyProvider';
 
+interface RawEvidenceLink {
+  id: string;
+  sourceUrl: string | null;
+  searchQuery: string | null;
+}
+
 interface AnalysisResponse {
   result: ContrarianResult;
   bayesian: {
@@ -15,9 +21,14 @@ interface AnalysisResponse {
   };
   discoveredBelief?: string;
   synthesis?: SynthesisResult;
+  rawEvidence?: RawEvidenceLink[];
   rawEvidenceCount?: number;
   hypothesisCount?: number;
   pipeline?: string;
+}
+
+function searchUrl(query: string): string {
+  return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
 }
 
 function formatProb(v: number): string {
@@ -441,7 +452,7 @@ export default function ChallengePage() {
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1">
                           <div className="text-sm leading-relaxed mb-2" style={{ color: '#1a1a1a' }}>{e.description}</div>
-                          <div className="flex flex-wrap gap-3 text-xs font-mono" style={{ color: '#999999' }}>
+                          <div className="flex flex-wrap gap-3 text-xs font-mono items-center" style={{ color: '#999999' }}>
                             <span>{e.date}</span>
                             <span>reliability: {(e.sourceReliability * 100).toFixed(0)}%</span>
                             {e.wasClassified && <span style={{ color: '#c44536' }}>DECLASSIFIED</span>}
@@ -450,6 +461,25 @@ export default function ChallengePage() {
                                 strongest for: {bestHyp.label.slice(0, 50)}
                               </span>
                             )}
+                            {(() => {
+                              const links = response.rawEvidence?.find(r => r.id === e.id);
+                              return links ? (
+                                <>
+                                  {links.sourceUrl && (
+                                    <a href={links.sourceUrl} target="_blank" rel="noopener noreferrer"
+                                      className="hover:underline" style={{ color: '#e87b35' }}>
+                                      [source]
+                                    </a>
+                                  )}
+                                  {links.searchQuery && (
+                                    <a href={searchUrl(links.searchQuery)} target="_blank" rel="noopener noreferrer"
+                                      className="hover:underline" style={{ color: '#999999' }}>
+                                      [verify]
+                                    </a>
+                                  )}
+                                </>
+                              ) : null;
+                            })()}
                           </div>
                         </div>
                         {sens && (
