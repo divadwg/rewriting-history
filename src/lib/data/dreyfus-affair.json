@@ -35,7 +35,7 @@
       "likelihoodRatios": { "h1-dreyfus-guilty": 0.3, "h2-dreyfus-framed": 0.7 },
       "sourceReliability": 0.8,
       "wasClassified": true,
-      "declassifiedDate": "1898",
+      "declassifiedDate": "1897-11-15",
       "linkedNodeIds": ["n1-bordereau", "n5-actor-schwartzkoppen", "n3-actor-dreyfus"]
     },
     {
@@ -76,7 +76,7 @@
       "likelihoodRatios": { "h1-dreyfus-guilty": 0.2, "h2-dreyfus-framed": 0.9 },
       "sourceReliability": 0.95,
       "wasClassified": true,
-      "declassifiedDate": "1898",
+      "declassifiedDate": "1897-11-07",
       "linkedNodeIds": ["n2-event-courtmartial", "n8-actor-mercier", "n11-secret-dossier"]
     },
     {
@@ -87,7 +87,7 @@
       "likelihoodRatios": { "h1-dreyfus-guilty": 0.02, "h2-dreyfus-framed": 0.99 },
       "sourceReliability": 0.99,
       "wasClassified": true,
-      "declassifiedDate": "1898",
+      "declassifiedDate": "1898-08-30",
       "linkedNodeIds": ["n12-actor-henry", "n11-secret-dossier", "n13-event-henry-forgery"]
     },
     {
@@ -98,7 +98,7 @@
       "likelihoodRatios": { "h1-dreyfus-guilty": 0.05, "h2-dreyfus-framed": 0.95 },
       "sourceReliability": 0.95,
       "wasClassified": true,
-      "declassifiedDate": "1898",
+      "declassifiedDate": "1897-11-07",
       "linkedNodeIds": ["n7-actor-picquart", "n4-actor-esterhazy", "n14-event-petit-bleu"]
     },
     {

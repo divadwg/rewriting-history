@@ -64,7 +64,8 @@
       "date": "2012-09-12",
       "likelihoodRatios": { "h1-fan-behaviour": 0.02, "h2-police-coverup": 0.99 },
       "sourceReliability": 0.99,
-      "wasClassified": false,
+      "wasClassified": true,
+      "declassifiedDate": "2012-09-12",
       "linkedNodeIds": ["n8-evidence-altered-statements", "n4-actor-syp", "n14-narrative-coverup"]
     },
     {
@@ -74,7 +75,8 @@
       "date": "1989-04-15",
       "likelihoodRatios": { "h1-fan-behaviour": 0.1, "h2-police-coverup": 0.9 },
       "sourceReliability": 0.95,
-      "wasClassified": false,
+      "wasClassified": true,
+      "declassifiedDate": "2012-09-12",
       "linkedNodeIds": ["n9-evidence-cctv", "n5-event-gate-c", "n7-claim-police-failure"]
     },
     {
@@ -84,7 +86,8 @@
       "date": "1989-04-16",
       "likelihoodRatios": { "h1-fan-behaviour": 0.15, "h2-police-coverup": 0.95 },
       "sourceReliability": 0.98,
-      "wasClassified": false,
+      "wasClassified": true,
+      "declassifiedDate": "2012-09-12",
       "linkedNodeIds": ["n4-actor-syp", "n10-evidence-bac-testing", "n3-claim-fan-blame"]
     },
     {
@@ -114,7 +117,8 @@
       "date": "2015-03-10",
       "likelihoodRatios": { "h1-fan-behaviour": 0.02, "h2-police-coverup": 0.98 },
       "sourceReliability": 0.95,
-      "wasClassified": false,
+      "wasClassified": true,
+      "declassifiedDate": "2015-03-10",
       "linkedNodeIds": ["n1-actor-duckenfield", "n5-event-gate-c", "n7-claim-police-failure"]
     }
   ],

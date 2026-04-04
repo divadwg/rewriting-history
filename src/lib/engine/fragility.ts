@@ -330,49 +330,117 @@ function interpretScore(structural: number, certainty: number): string {
 }
 
 /**
- * Pre-revelation analysis: compute fragility using only evidence
- * available before the narrative was overturned.
+ * Compute effective reliability of evidence as of a given date.
  *
- * Uses STRICT < (not <=) so revelation-day evidence is excluded.
+ * Classified evidence that hasn't been declassified yet is effectively
+ * inaccessible — an observer at that time couldn't use it. Its effective
+ * reliability drops to near zero. This is how we eliminate hindsight bias:
+ * the Bayesian engine uses reliability-weighted likelihoods, so inaccessible
+ * evidence has almost no impact on the verdict.
  */
-export function preRevelationFragility(caseStudy: CaseStudy): FragilityScore | null {
-  if (!caseStudy.revelationDate) return null;
+function temporalReliability(e: EvidenceItem, asOfDate: string): number {
+  if (!e.wasClassified) return e.sourceReliability;
 
-  const cutoff = caseStudy.revelationDate;
+  // Classified — check if declassified by asOfDate
+  if (e.declassifiedDate && e.declassifiedDate <= asOfDate) {
+    // Declassified by this date — use full reliability
+    return e.sourceReliability;
+  }
 
-  // Strict < : exclude evidence on revelation day
-  const preEvidence = caseStudy.evidence.filter(e => e.date < cutoff);
-  if (preEvidence.length === 0) return null;
+  // Still classified at this date — effectively inaccessible
+  // Not zero (rumors leak, insiders know) but very low
+  return 0.05;
+}
 
-  const preNodes = caseStudy.nodes.filter(n => {
+/**
+ * Compute fragility at an arbitrary point in time.
+ *
+ * Filters evidence by date AND applies temporal reliability:
+ * classified evidence not yet declassified gets near-zero reliability.
+ */
+export function fragilityAtDate(caseStudy: CaseStudy, asOfDate: string): FragilityScore | null {
+  const evidence = caseStudy.evidence
+    .filter(e => e.date <= asOfDate)
+    .map(e => ({
+      ...e,
+      sourceReliability: temporalReliability(e, asOfDate),
+    }));
+  if (evidence.length === 0) return null;
+
+  const nodes = caseStudy.nodes.filter(n => {
     if (n.type === 'actor' || n.type === 'source') return true;
-    return n.date < cutoff;
+    return n.date <= asOfDate;
   });
-  const preNodeIds = new Set(preNodes.map(n => n.id));
+  const nodeIds = new Set(nodes.map(n => n.id));
 
-  const preEdges = caseStudy.edges.filter(e => {
-    if (e.date && e.date >= cutoff) return false;
-    return preNodeIds.has(e.source) && preNodeIds.has(e.target);
+  const edges = caseStudy.edges.filter(e => {
+    if (e.date && e.date > asOfDate) return false;
+    return nodeIds.has(e.source) && nodeIds.has(e.target);
   });
 
-  const preCausalFactors = caseStudy.causalFactors.filter(cf => cf.date < cutoff);
-  const preCausalFactorIds = new Set(preCausalFactors.map(cf => cf.id));
-
-  const preCausalLinks = caseStudy.causalLinks.filter(
-    cl => preCausalFactorIds.has(cl.from) && preCausalFactorIds.has(cl.to)
+  const causalFactors = caseStudy.causalFactors.filter(cf => cf.date <= asOfDate);
+  const cfIds = new Set(causalFactors.map(cf => cf.id));
+  const causalLinks = caseStudy.causalLinks.filter(
+    cl => cfIds.has(cl.from) && cfIds.has(cl.to)
   );
 
-  const preCaseStudy: CaseStudy = {
+  return narrativeFragilityScore({
     ...caseStudy,
-    evidence: preEvidence,
-    nodes: preNodes,
-    edges: preEdges,
-    causalFactors: preCausalFactors,
-    causalLinks: preCausalLinks,
-    timeSlices: caseStudy.timeSlices.filter(ts => ts.date < cutoff),
-  };
+    evidence,
+    nodes,
+    edges,
+    causalFactors,
+    causalLinks,
+    timeSlices: caseStudy.timeSlices.filter(ts => ts.date <= asOfDate),
+  });
+}
 
-  return narrativeFragilityScore(preCaseStudy);
+/**
+ * Compute the "peak suppression" date — when the official narrative was
+ * strongest and the most evidence was still hidden.
+ *
+ * This is the earliest declassification date minus 1 day. At this point,
+ * ALL classified evidence is still inaccessible to outside observers.
+ */
+export function peakSuppressionDate(caseStudy: CaseStudy): string | null {
+  const declassDates = caseStudy.evidence
+    .filter(e => e.wasClassified && e.declassifiedDate)
+    .map(e => e.declassifiedDate as string)
+    .sort();
+
+  if (declassDates.length === 0) return null;
+
+  // One day before the first leak
+  const earliest = declassDates[0];
+  const d = new Date(earliest);
+  d.setDate(d.getDate() - 1);
+  return d.toISOString().split('T')[0];
+}
+
+/**
+ * Pre-revelation analysis: what the framework would have shown during
+ * active suppression, using only publicly available evidence and
+ * temporal reliability (classified = inaccessible).
+ *
+ * Uses the "peak suppression" date — just before the first evidence leak.
+ */
+export function preRevelationFragility(caseStudy: CaseStudy): FragilityScore | null {
+  // Use peak suppression date for the analysis
+  const peakDate = peakSuppressionDate(caseStudy);
+  if (!peakDate) {
+    // No classified evidence — use revelation date as fallback
+    if (!caseStudy.revelationDate) return null;
+    return fragilityAtDate(caseStudy, caseStudy.revelationDate);
+  }
+
+  return fragilityAtDate(caseStudy, peakDate);
+}
+
+/**
+ * Get the date used for pre-revelation analysis (for display).
+ */
+export function getAnalysisDate(caseStudy: CaseStudy): string | null {
+  return peakSuppressionDate(caseStudy) ?? caseStudy.revelationDate ?? null;
 }
 
 export interface ValidationResult {
@@ -381,6 +449,7 @@ export interface ValidationResult {
   status: string;
   postRevelation: FragilityScore;
   preRevelation: FragilityScore | null;
+  analysisDate: string | null; // The "peak suppression" date used for pre-analysis
   structuralDelta: number | null;
   certaintyDelta: number | null;
   preRevelationDetected: boolean | null;
@@ -401,6 +470,7 @@ export function runValidation(cases: CaseStudy[]): ValidationResult[] {
       status: cs.status ?? (cs.wasOverturned ? 'overturned' : 'unknown'),
       postRevelation: post,
       preRevelation: pre,
+      analysisDate: getAnalysisDate(cs),
       structuralDelta: pre ? post.structural - pre.structural : null,
       certaintyDelta: pre ? post.evidentialCertainty - pre.evidentialCertainty : null,
       preRevelationDetected: pre ? pre.structural >= threshold : null,

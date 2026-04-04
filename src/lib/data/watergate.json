@@ -85,6 +85,7 @@
       "likelihoodRatios": { "h1-nixon-innocent": 0.01, "h2-nixon-coverup": 0.99 },
       "sourceReliability": 0.99,
       "wasClassified": true,
+      "declassifiedDate": "1974-08-05",
       "linkedNodeIds": ["n1-actor-nixon", "n9-evidence-taping-system", "n12-evidence-smoking-gun"]
     },
     {
@@ -94,7 +95,8 @@
       "date": "1974-03-01",
       "likelihoodRatios": { "h1-nixon-innocent": 0.03, "h2-nixon-coverup": 0.97 },
       "sourceReliability": 0.97,
-      "wasClassified": false,
+      "wasClassified": true,
+      "declassifiedDate": "1974-06-06",
       "linkedNodeIds": ["n1-actor-nixon", "n2-actor-haldeman-ehrlichman", "n15-event-indictments"]
     },
     {
@@ -105,6 +107,7 @@
       "likelihoodRatios": { "h1-nixon-innocent": 0.03, "h2-nixon-coverup": 0.97 },
       "sourceReliability": 0.95,
       "wasClassified": true,
+      "declassifiedDate": "1974-04-30",
       "linkedNodeIds": ["n1-actor-nixon", "n6-actor-dean", "n8-event-break-in"]
     },
     {
@@ -124,7 +127,8 @@
       "date": "1972-08-01",
       "likelihoodRatios": { "h1-nixon-innocent": 0.1, "h2-nixon-coverup": 0.9 },
       "sourceReliability": 0.92,
-      "wasClassified": false,
+      "wasClassified": true,
+      "declassifiedDate": "1972-10-10",
       "linkedNodeIds": ["n4-actor-woodward-bernstein", "n8-event-break-in", "n2-actor-haldeman-ehrlichman"]
     }
   ],

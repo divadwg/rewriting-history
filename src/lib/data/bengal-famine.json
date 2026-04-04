@@ -59,11 +59,12 @@
     {
       "id": "e3",
       "label": "Rice export data during famine period",
-      "description": "Despite worsening food scarcity, rice continued to be exported from India through early 1943. Between January and July 1943, as famine conditions spread, the colonial government maintained export commitments. A ban on rice exports from Bengal was not implemented until late, and interprovincial trade barriers worsened regional shortages.",
+      "description": "Despite worsening food scarcity, rice continued to be exported from India through early 1943. Between January and July 1943, as famine conditions spread, the colonial government maintained export commitments. A ban on rice exports from Bengal was not implemented until late, and interprovincial trade barriers worsened regional shortages. The internal Colonial Office memos documenting these decisions were not publicly available until declassification in the 1970s.",
       "date": "1943-03-01",
       "likelihoodRatios": { "h1": 0.2, "h2": 2.5, "h3": 1.8 },
       "sourceReliability": 0.85,
-      "wasClassified": false,
+      "wasClassified": true,
+      "declassifiedDate": "1976-01-01",
       "linkedNodeIds": ["n3-rice-exports", "n8-actor-colonial-govt", "n6-narrative-policy"]
     },
     {
@@ -74,7 +75,7 @@
       "likelihoodRatios": { "h1": 0.15, "h2": 1.8, "h3": 2.8 },
       "sourceReliability": 0.95,
       "wasClassified": true,
-      "declassifiedDate": "2006",
+      "declassifiedDate": "2006-01-01",
       "linkedNodeIds": ["n9-actor-churchill", "n10-actor-amery", "n11-actor-wavell", "n7-narrative-neglect", "n14-war-cabinet"]
     },
     {
@@ -95,7 +96,7 @@
       "likelihoodRatios": { "h1": 0.2, "h2": 2.8, "h3": 2.2 },
       "sourceReliability": 0.9,
       "wasClassified": true,
-      "declassifiedDate": "1970",
+      "declassifiedDate": "1972-01-01",
       "linkedNodeIds": ["n4-denial-policy", "n6-narrative-policy", "n8-actor-colonial-govt"]
     },
     {
@@ -106,7 +107,7 @@
       "likelihoodRatios": { "h1": 0.15, "h2": 2.0, "h3": 2.8 },
       "sourceReliability": 0.92,
       "wasClassified": true,
-      "declassifiedDate": "1973",
+      "declassifiedDate": "1974-01-01",
       "linkedNodeIds": ["n11-actor-wavell", "n9-actor-churchill", "n7-narrative-neglect"]
     },
     {
@@ -117,7 +118,7 @@
       "likelihoodRatios": { "h1": 0.1, "h2": 2.0, "h3": 3.0 },
       "sourceReliability": 0.88,
       "wasClassified": true,
-      "declassifiedDate": "2006",
+      "declassifiedDate": "2010-01-01",
       "linkedNodeIds": ["n9-actor-churchill", "n14-war-cabinet", "n15-australian-offer", "n7-narrative-neglect"]
     },
     {
@@ -137,8 +138,8 @@
       "date": "1944-09-01",
       "likelihoodRatios": { "h1": 0.1, "h2": 1.5, "h3": 3.5 },
       "sourceReliability": 0.9,
-      "wasClassified": false,
-      "declassifiedDate": "1988",
+      "wasClassified": true,
+      "declassifiedDate": "1988-01-01",
       "linkedNodeIds": ["n10-actor-amery", "n9-actor-churchill", "n7-narrative-neglect", "n17-racial-attitudes"]
     }
   ],

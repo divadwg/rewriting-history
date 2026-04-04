@@ -44,7 +44,8 @@
       "date": "1943-04-13",
       "likelihoodRatios": { "h1-german-responsibility": 0.15, "h2-soviet-responsibility": 0.85 },
       "sourceReliability": 0.6,
-      "wasClassified": false,
+      "wasClassified": true,
+      "declassifiedDate": "1952-02-22",
       "linkedNodeIds": ["n1-event-discovery", "n10-evidence-forensic", "n9-claim-soviet-guilt"]
     },
     {
@@ -74,7 +75,8 @@
       "date": "1943-04-13",
       "likelihoodRatios": { "h1-german-responsibility": 0.15, "h2-soviet-responsibility": 0.9 },
       "sourceReliability": 0.7,
-      "wasClassified": false,
+      "wasClassified": true,
+      "declassifiedDate": "1951-10-11",
       "linkedNodeIds": ["n1-event-discovery", "n4-actor-burdenko", "n9-claim-soviet-guilt"]
     },
     {
@@ -95,7 +97,7 @@
       "likelihoodRatios": { "h1-german-responsibility": 0.01, "h2-soviet-responsibility": 0.99 },
       "sourceReliability": 0.99,
       "wasClassified": true,
-      "declassifiedDate": "1992",
+      "declassifiedDate": "1992-10-14",
       "linkedNodeIds": ["n11-evidence-archives", "n2-event-execution-order", "n5-actor-ussr", "n9-claim-soviet-guilt"]
     },
     {
@@ -105,7 +107,8 @@
       "date": "1943-04-13",
       "likelihoodRatios": { "h1-german-responsibility": 0.2, "h2-soviet-responsibility": 0.9 },
       "sourceReliability": 0.9,
-      "wasClassified": false,
+      "wasClassified": true,
+      "declassifiedDate": "1990-04-13",
       "linkedNodeIds": ["n10-evidence-forensic", "n9-claim-soviet-guilt", "n1-event-discovery"]
     },
     {

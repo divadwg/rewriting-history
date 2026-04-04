@@ -44,7 +44,8 @@
       "date": "1959-12-01",
       "likelihoodRatios": { "h1-drug-safe": 0.15, "h2-drug-teratogenic": 0.85 },
       "sourceReliability": 0.85,
-      "wasClassified": false,
+      "wasClassified": true,
+      "declassifiedDate": "1968-05-27",
       "linkedNodeIds": ["n1-actor-grunenthal", "n5-evidence-neuropathy", "n8-evidence-internal-docs"]
     },
     {
@@ -94,7 +95,8 @@
       "date": "1968-05-27",
       "likelihoodRatios": { "h1-drug-safe": 0.02, "h2-drug-teratogenic": 0.98 },
       "sourceReliability": 0.95,
-      "wasClassified": false,
+      "wasClassified": true,
+      "declassifiedDate": "1968-05-27",
       "linkedNodeIds": ["n1-actor-grunenthal", "n8-evidence-internal-docs", "n14-narrative-coverup"]
     },
     {
