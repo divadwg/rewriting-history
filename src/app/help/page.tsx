@@ -3,9 +3,12 @@ export default function HelpPage() {
     <div className="max-w-4xl mx-auto px-6 py-12">
       <h1 className="text-4xl font-bold mb-2" style={{ color: '#1a1a1a' }}>How It Works</h1>
       <p className="text-lg mb-12 leading-relaxed" style={{ color: '#6b6b6b' }}>
-        Rewriting History is a tool that tests claims against evidence using mathematics,
-        not opinions. It collects evidence first, then lets the math tell you what the
-        evidence actually supports.
+        Rewriting History tests official narratives against evidence using mathematics,
+        not opinions. It combines a knowledge graph, causal model, and Bayesian inference
+        engine to compute a <strong style={{ color: '#1a1a1a' }}>narrative fragility score</strong> &mdash;
+        a quantitative measure of how structurally vulnerable a story is to being overturned.
+        The aim is a predictive framework: can we identify fragile narratives <em>before</em> they
+        collapse?
       </p>
 
       {/* ── PLAIN ENGLISH OVERVIEW ──────────────────────────────────────── */}
@@ -38,10 +41,16 @@ export default function HelpPage() {
           <div className="rounded-lg p-6" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
             <h3 className="font-bold text-lg mb-2" style={{ color: '#e87b35' }}>Case Studies</h3>
             <p className="leading-relaxed" style={{ color: '#6b6b6b' }}>
-              Pre-built analyses of historical events with full knowledge graphs, causal models, and
-              Bayesian inference. You can toggle individual evidence items on and off to see how each
-              piece of evidence shifts the probability of different explanations. The interactive graph
-              shows how claims, sources, and actors connect.
+              The case studies are the validation corpus. Each one is a historical event where the official
+              narrative was later overturned or substantially revised &mdash; the Gulf of Tonkin fabrication,
+              Iraqi WMD intelligence failure, the Katyn massacre cover-up, the Hillsborough disaster blame-shift,
+              the Dreyfus affair forgery, and the Bengal famine framing as natural disaster. The cases span
+              different centuries, cultures, and types of narrative manipulation. Each has a full knowledge graph,
+              causal model, and Bayesian analysis with a <strong style={{ color: '#1a1a1a' }}>narrative fragility
+              score</strong>. The hypothesis: cases that were later overturned should score high on fragility
+              even when the analysis only uses pre-revelation evidence. If the framework reliably detects
+              known cases of narrative manipulation, it can be applied to open questions where the answer
+              is not yet settled.
             </p>
           </div>
         </div>
@@ -108,8 +117,13 @@ export default function HelpPage() {
       <section className="mb-16">
         <h2 className="text-2xl font-bold mb-2" style={{ color: '#1a1a1a' }}>Under the hood</h2>
         <p className="text-sm mb-8" style={{ color: '#6b6b6b' }}>
-          Three systems work together. The AI gathers evidence and estimates relationships. The math
-          computes what the evidence means. The graph shows how everything connects.
+          Three systems feed into each other. The <strong style={{ color: '#1a1a1a' }}>knowledge graph</strong> maps
+          who said what, who benefits, and who suppressed evidence. The <strong style={{ color: '#1a1a1a' }}>causal
+          model</strong> traces why the narrative took the shape it did. The <strong style={{ color: '#1a1a1a' }}>Bayesian
+          engine</strong> computes what the evidence actually supports. Graph edges adjust evidence reliability;
+          causal factors modify evidence weight; Bayesian posteriors feed back to update graph confidence.
+          The <strong style={{ color: '#1a1a1a' }}>narrative fragility score</strong> synthesises all three into
+          a single measure of structural vulnerability.
         </p>
 
         {/* ── BAYESIAN INFERENCE ─────────────────────────────────────────── */}
@@ -379,6 +393,130 @@ export default function HelpPage() {
                   actually supports, not just the initial hand-coded confidence.
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── FRAGILITY SCORE ────────────────────────────────────────────── */}
+        <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+          <div className="flex items-baseline gap-3 mb-3">
+            <span className="text-xl font-mono" style={{ color: '#e87b35' }}>F</span>
+            <h3 className="text-lg font-bold" style={{ color: '#1a1a1a' }}>Narrative Fragility Score</h3>
+          </div>
+
+          <div className="rounded p-4 mb-4" style={{ background: '#f7f7f7' }}>
+            <p className="leading-relaxed" style={{ color: '#6b6b6b' }}>
+              <strong style={{ color: '#1a1a1a' }}>In plain English:</strong> The fragility score (0&ndash;100) measures
+              how structurally vulnerable an official narrative is to being overturned. It does not ask
+              &ldquo;is this story true?&rdquo; &mdash; it asks &ldquo;does this story have the structural hallmarks of
+              narratives that were later proven wrong?&rdquo; A high score means the narrative shares
+              features with known historical cover-ups: evidence suppression, self-serving claims,
+              concentrated sourcing, classified evidence. A low score means the narrative is structurally
+              robust &mdash; diverse independent sources, no suppression patterns, stable across assumptions.
+            </p>
+          </div>
+
+          <div className="space-y-4 text-sm" style={{ color: '#6b6b6b' }}>
+            <div>
+              <div className="font-bold font-mono mb-2" style={{ color: '#1a1a1a' }}>14 components across 4 categories</div>
+              <div className="space-y-3">
+                <div>
+                  <div className="text-xs font-bold mb-1" style={{ color: '#1a1a1a' }}>Graph topology</div>
+                  <div className="grid grid-cols-2 gap-1.5 text-xs">
+                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                      <strong>Suppression density</strong> &mdash; ratio of suppresses/fabricates edges
+                    </div>
+                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                      <strong>Benefit conflict</strong> &mdash; claimants who benefit from their own claims
+                    </div>
+                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                      <strong>Source concentration</strong> &mdash; few independent sources = fragile
+                    </div>
+                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                      <strong>Contradiction load</strong> &mdash; density of contradicts edges
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs font-bold mb-1" style={{ color: '#1a1a1a' }}>Evidence ecosystem</div>
+                  <div className="grid grid-cols-2 gap-1.5 text-xs">
+                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                      <strong>Classification rate</strong> &mdash; fraction of evidence that was classified
+                    </div>
+                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                      <strong>Reliability variance</strong> &mdash; wide spread in how trusted sources are
+                    </div>
+                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                      <strong>Single-point failure</strong> &mdash; removing one item would flip the verdict
+                    </div>
+                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                      <strong>Dissenter suppression</strong> &mdash; suppression targeting evidence/sources
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs font-bold mb-1" style={{ color: '#1a1a1a' }}>Causal patterns</div>
+                  <div className="grid grid-cols-3 gap-1.5 text-xs">
+                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                      <strong>Evidence action density</strong> &mdash; ratio of classification/suppression factors
+                    </div>
+                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                      <strong>Narrative change rate</strong> &mdash; how often the official story shifted
+                    </div>
+                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                      <strong>Power&rarr;evidence pressure</strong> &mdash; power changes driving evidence actions
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs font-bold mb-1" style={{ color: '#1a1a1a' }}>Bayesian sensitivity</div>
+                  <div className="grid grid-cols-3 gap-1.5 text-xs">
+                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                      <strong>Prior sensitivity</strong> &mdash; does the verdict change across different priors?
+                    </div>
+                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                      <strong>Evidence fragility</strong> &mdash; how close is the verdict to flipping?
+                    </div>
+                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                      <strong>Verdict margin</strong> &mdash; gap between official and best alternative posterior
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="font-bold font-mono mb-1" style={{ color: '#1a1a1a' }}>Score thresholds</div>
+              <div className="text-xs grid grid-cols-2 gap-2 mt-2">
+                <div className="p-2 rounded" style={{ background: '#c4453610', border: '1px solid #c4453630' }}>
+                  <span className="font-mono font-bold" style={{ color: '#c44536' }}>HIGHLY FRAGILE</span>
+                  <span className="ml-2">70&ndash;100</span>
+                </div>
+                <div className="p-2 rounded" style={{ background: '#e87b3510', border: '1px solid #e87b3530' }}>
+                  <span className="font-mono font-bold" style={{ color: '#e87b35' }}>MODERATELY FRAGILE</span>
+                  <span className="ml-2">50&ndash;69</span>
+                </div>
+                <div className="p-2 rounded" style={{ background: '#d06a2a10', border: '1px solid #d06a2a30' }}>
+                  <span className="font-mono font-bold" style={{ color: '#d06a2a' }}>LOW FRAGILITY</span>
+                  <span className="ml-2">30&ndash;49</span>
+                </div>
+                <div className="p-2 rounded" style={{ background: '#2a9d5c10', border: '1px solid #2a9d5c30' }}>
+                  <span className="font-mono font-bold" style={{ color: '#2a9d5c' }}>ROBUST</span>
+                  <span className="ml-2">0&ndash;29</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="font-bold font-mono mb-1" style={{ color: '#1a1a1a' }}>The validation method</div>
+              <p className="text-xs leading-relaxed">
+                The case studies serve as ground truth. Each is a historical event where the official
+                narrative was definitively overturned. If the fragility score reliably identifies these
+                as fragile, the framework has discriminating power. The next step is to run the analysis
+                using only evidence available <em>before</em> the revelation &mdash; if the score still flags
+                them as fragile, the framework is predictive, not just retrospective. It can then be
+                applied to currently contested narratives to produce genuinely new findings.
+              </p>
             </div>
           </div>
         </div>

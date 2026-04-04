@@ -1,0 +1,213 @@
+{
+  "id": "watergate",
+  "title": "Watergate Scandal and Nixon Cover-Up",
+  "period": "1972-1974",
+  "revelationDate": "1974-08-05",
+  "wasOverturned": true,
+  "status": "overturned",
+  "summary": "On June 17, 1972, five men were arrested breaking into the Democratic National Committee headquarters at the Watergate complex in Washington, D.C. The burglars were connected to President Nixon's Committee to Re-elect the President (CRP). Nixon and the White House denied any involvement, with Nixon famously declaring 'I am not a crook.' Washington Post reporters Bob Woodward and Carl Bernstein, aided by FBI Associate Director Mark Felt ('Deep Throat'), methodically exposed connections between the burglars and the White House. The Senate Watergate Committee hearings, the Saturday Night Massacre, and ultimately the White House tapes — particularly the 'smoking gun' tape of June 23, 1972 — proved Nixon had directed the cover-up from the beginning. Facing certain impeachment, Nixon resigned on August 9, 1974. This is a case where investigative journalism and institutional checks correctly identified and proved official wrongdoing.",
+  "hypotheses": [
+    {
+      "id": "h1-nixon-innocent",
+      "caseStudyId": "watergate",
+      "label": "Nixon had no knowledge of the break-in or cover-up",
+      "description": "The official White House position maintained from June 1972 through August 1974: President Nixon had no prior knowledge of the Watergate break-in, no involvement in any subsequent cover-up, and the matter was a 'third-rate burglary' carried out by overzealous campaign operatives acting without authorization. Press Secretary Ron Ziegler dismissed the story, and Nixon publicly denied involvement on multiple occasions.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": true
+    },
+    {
+      "id": "h2-nixon-coverup",
+      "caseStudyId": "watergate",
+      "label": "Nixon directed the cover-up from early on",
+      "description": "The investigative narrative developed by Woodward, Bernstein, Senate investigators, and federal prosecutors: Nixon was informed of the cover-up within days of the break-in and actively directed it, including ordering the CIA to obstruct the FBI investigation, approving hush money payments to the burglars, and attempting to use executive power to block congressional and judicial inquiries. The White House tapes conclusively proved this narrative correct.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": false
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1-white-house-denials",
+      "label": "White House denials and 'third-rate burglary' dismissal (1972)",
+      "description": "Press Secretary Ron Ziegler called the break-in a 'third-rate burglary attempt' and dismissed any White House connection. Nixon stated publicly on August 29, 1972, that White House Counsel John Dean had conducted a thorough investigation and found no one in the White House was involved. Nixon won re-election in November 1972 in a historic landslide.",
+      "date": "1972-06-20",
+      "likelihoodRatios": { "h1-nixon-innocent": 0.6, "h2-nixon-coverup": 0.4 },
+      "sourceReliability": 0.1,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-actor-nixon", "n3-actor-ziegler", "n13-narrative-denial"]
+    },
+    {
+      "id": "e2-woodward-bernstein",
+      "label": "Woodward and Bernstein Washington Post reporting (1972-1973)",
+      "description": "Beginning in June 1972, reporters Bob Woodward and Carl Bernstein traced the money found on the burglars to CRP, linked CRP counsel G. Gordon Liddy and intelligence operative E. Howard Hunt to the break-in, revealed a secret fund controlled by former Attorney General John Mitchell for political espionage, and exposed a broader campaign of 'dirty tricks.' Their reporting was independently corroborated by a confidential FBI source, later revealed as Associate Director Mark Felt.",
+      "date": "1972-06-19",
+      "likelihoodRatios": { "h1-nixon-innocent": 0.2, "h2-nixon-coverup": 0.85 },
+      "sourceReliability": 0.85,
+      "wasClassified": false,
+      "linkedNodeIds": ["n4-actor-woodward-bernstein", "n5-actor-deep-throat", "n8-event-break-in", "n14-narrative-coverup"]
+    },
+    {
+      "id": "e3-senate-testimony",
+      "label": "Senate Watergate Committee testimony (1973)",
+      "description": "The Senate Select Committee on Presidential Campaign Activities, chaired by Senator Sam Ervin, held televised hearings from May to August 1973. Former White House Counsel John Dean testified that Nixon had been directly involved in the cover-up, discussing it on at least 35 occasions. Deputy campaign director Jeb Magruder confirmed the break-in was authorized by senior officials. Former Nixon aide Alexander Butterfield revealed the existence of the White House taping system on July 16, 1973.",
+      "date": "1973-05-17",
+      "likelihoodRatios": { "h1-nixon-innocent": 0.08, "h2-nixon-coverup": 0.95 },
+      "sourceReliability": 0.9,
+      "wasClassified": false,
+      "linkedNodeIds": ["n6-actor-dean", "n7-event-senate-hearings", "n9-evidence-taping-system"]
+    },
+    {
+      "id": "e4-deep-throat",
+      "label": "Deep Throat source corroboration",
+      "description": "Mark Felt, Associate Director of the FBI and the second-highest ranking official in the Bureau, served as Woodward's confidential source 'Deep Throat.' Felt confirmed White House involvement in the cover-up, guided reporters toward the money trail, and warned that the conspiracy reached into the highest levels of government. His position gave him direct access to FBI investigative findings, making his corroboration exceptionally reliable. Felt's identity was revealed publicly in 2005.",
+      "date": "1972-06-19",
+      "likelihoodRatios": { "h1-nixon-innocent": 0.15, "h2-nixon-coverup": 0.9 },
+      "sourceReliability": 0.9,
+      "wasClassified": false,
+      "linkedNodeIds": ["n5-actor-deep-throat", "n4-actor-woodward-bernstein", "n14-narrative-coverup"]
+    },
+    {
+      "id": "e5-saturday-night-massacre",
+      "label": "Saturday Night Massacre (Oct 20, 1973)",
+      "description": "When Special Prosecutor Archibald Cox refused to accept a compromise on the White House tapes and insisted on their release, Nixon ordered Attorney General Elliot Richardson to fire Cox. Richardson refused and resigned. Deputy AG William Ruckelshaus also refused and was fired. Solicitor General Robert Bork, as acting AG, finally carried out the order. The firings provoked a constitutional crisis and massive public backlash, with calls for impeachment surging.",
+      "date": "1973-10-20",
+      "likelihoodRatios": { "h1-nixon-innocent": 0.05, "h2-nixon-coverup": 0.95 },
+      "sourceReliability": 0.98,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-actor-nixon", "n10-event-saturday-massacre", "n11-actor-cox"]
+    },
+    {
+      "id": "e6-smoking-gun-tape",
+      "label": "Smoking gun tape: June 23, 1972 conversation released (Aug 5, 1974)",
+      "description": "The Supreme Court ruled unanimously in United States v. Nixon (July 24, 1974) that Nixon must release the tapes. The 'smoking gun' tape from June 23, 1972 — just six days after the break-in — recorded Nixon ordering chief of staff H.R. Haldeman to have the CIA tell the FBI to halt its investigation of Watergate, using national security as a pretext. This proved Nixon had personally directed the cover-up from the very beginning, directly contradicting all his public denials.",
+      "date": "1974-08-05",
+      "likelihoodRatios": { "h1-nixon-innocent": 0.01, "h2-nixon-coverup": 0.99 },
+      "sourceReliability": 0.99,
+      "wasClassified": true,
+      "linkedNodeIds": ["n1-actor-nixon", "n9-evidence-taping-system", "n12-evidence-smoking-gun"]
+    },
+    {
+      "id": "e7-grand-jury-indictments",
+      "label": "Grand jury indictments of senior White House officials (Mar 1, 1974)",
+      "description": "A federal grand jury indicted seven former Nixon aides, including H.R. Haldeman (Chief of Staff), John Ehrlichman (Domestic Affairs Adviser), John Mitchell (Attorney General and CRP chairman), Charles Colson (Special Counsel), and others for conspiracy, obstruction of justice, and perjury. The grand jury secretly named Nixon as an 'unindicted co-conspirator,' a fact revealed in June 1974.",
+      "date": "1974-03-01",
+      "likelihoodRatios": { "h1-nixon-innocent": 0.03, "h2-nixon-coverup": 0.97 },
+      "sourceReliability": 0.97,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-actor-nixon", "n2-actor-haldeman-ehrlichman", "n15-event-indictments"]
+    },
+    {
+      "id": "e8-hush-money",
+      "label": "Hush money payments to Watergate burglars",
+      "description": "Evidence established that approximately $500,000 in CRP funds was paid to the Watergate burglars and their attorneys to buy their silence. The March 21, 1973 tape recorded John Dean warning Nixon of a 'cancer on the presidency' and Nixon responding that he could get $1 million in hush money, stating 'I know where it could be gotten.' Payments were made shortly thereafter.",
+      "date": "1973-03-21",
+      "likelihoodRatios": { "h1-nixon-innocent": 0.03, "h2-nixon-coverup": 0.97 },
+      "sourceReliability": 0.95,
+      "wasClassified": true,
+      "linkedNodeIds": ["n1-actor-nixon", "n6-actor-dean", "n8-event-break-in"]
+    },
+    {
+      "id": "e9-nixon-resignation",
+      "label": "Nixon's resignation (Aug 9, 1974)",
+      "description": "After the smoking gun tape destroyed his remaining support in Congress — with even stalwart Republican defenders announcing they would vote for impeachment — Nixon announced his resignation on August 8, 1974, effective the following day. He became the only U.S. president to resign from office. The House Judiciary Committee had already approved three articles of impeachment: obstruction of justice, abuse of power, and contempt of Congress.",
+      "date": "1974-08-09",
+      "likelihoodRatios": { "h1-nixon-innocent": 0.01, "h2-nixon-coverup": 0.99 },
+      "sourceReliability": 0.99,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-actor-nixon", "n12-evidence-smoking-gun", "n16-event-resignation"]
+    },
+    {
+      "id": "e10-money-trail",
+      "label": "CRP money trail to Watergate burglars",
+      "description": "FBI investigators and Woodward and Bernstein independently traced a $25,000 cashier's check from Nixon campaign donor Kenneth Dahlberg and four checks totaling $89,000 from a Mexican bank through the account of burglar Bernard Barker, directly linking CRP to the break-in. CRP finance chairman Maurice Stans and campaign director John Mitchell were implicated in authorizing payments from a secret slush fund.",
+      "date": "1972-08-01",
+      "likelihoodRatios": { "h1-nixon-innocent": 0.1, "h2-nixon-coverup": 0.9 },
+      "sourceReliability": 0.92,
+      "wasClassified": false,
+      "linkedNodeIds": ["n4-actor-woodward-bernstein", "n8-event-break-in", "n2-actor-haldeman-ehrlichman"]
+    }
+  ],
+  "nodes": [
+    { "id": "n1-actor-nixon", "type": "actor", "label": "Richard Nixon", "description": "37th President of the United States. Denied knowledge of the Watergate break-in and cover-up. The White House tapes proved he directed the cover-up from six days after the break-in.", "date": "1972-06-17", "confidence": 1.0, "metadata": { "role": "President of the United States" }, "caseStudyId": "watergate" },
+    { "id": "n2-actor-haldeman-ehrlichman", "type": "actor", "label": "H.R. Haldeman and John Ehrlichman", "description": "White House Chief of Staff and Domestic Affairs Adviser, respectively. Nixon's top aides who carried out cover-up operations, including ordering the CIA to obstruct the FBI investigation. Both convicted of conspiracy and obstruction of justice.", "date": "1972-06-23", "confidence": 1.0, "metadata": { "role": "Senior White House aides" }, "caseStudyId": "watergate" },
+    { "id": "n3-actor-ziegler", "type": "actor", "label": "Ron Ziegler", "description": "White House Press Secretary who dismissed the Watergate break-in as a 'third-rate burglary attempt' and maintained the administration's denial of involvement.", "date": "1972-06-17", "confidence": 1.0, "metadata": { "role": "White House Press Secretary" }, "caseStudyId": "watergate" },
+    { "id": "n4-actor-woodward-bernstein", "type": "actor", "label": "Bob Woodward and Carl Bernstein", "description": "Washington Post reporters whose investigative journalism traced the Watergate break-in to the White House and exposed the broader cover-up. Their reporting was a model of source-verified investigative journalism.", "date": "1972-06-19", "confidence": 1.0, "metadata": { "role": "Washington Post reporters" }, "caseStudyId": "watergate" },
+    { "id": "n5-actor-deep-throat", "type": "actor", "label": "Mark Felt ('Deep Throat')", "description": "FBI Associate Director who served as Woodward's confidential source, confirming White House involvement and guiding investigative reporting. His identity was publicly revealed in 2005.", "date": "1972-06-19", "confidence": 1.0, "metadata": { "role": "FBI Associate Director" }, "caseStudyId": "watergate" },
+    { "id": "n6-actor-dean", "type": "actor", "label": "John Dean", "description": "White House Counsel who participated in the cover-up, then cooperated with prosecutors. Testified before the Senate committee that Nixon had discussed the cover-up on at least 35 occasions.", "date": "1973-06-25", "confidence": 0.95, "metadata": { "role": "White House Counsel" }, "caseStudyId": "watergate" },
+    { "id": "n7-event-senate-hearings", "type": "event", "label": "Senate Watergate Committee hearings (1973)", "description": "Televised hearings by the Senate Select Committee chaired by Sen. Sam Ervin that brought the scandal into public view, including Dean's testimony and Butterfield's revelation of the taping system.", "date": "1973-05-17", "confidence": 1.0, "metadata": {}, "caseStudyId": "watergate" },
+    { "id": "n8-event-break-in", "type": "event", "label": "Watergate break-in (Jun 17, 1972)", "description": "Five men were arrested breaking into the DNC headquarters at the Watergate complex. They carried wiretapping equipment and were linked to CRP through money and organizational ties.", "date": "1972-06-17", "confidence": 1.0, "metadata": {}, "caseStudyId": "watergate" },
+    { "id": "n9-evidence-taping-system", "type": "evidence", "label": "White House taping system", "description": "Secret voice-activated recording system installed in the Oval Office and other locations. Its existence was revealed by Alexander Butterfield during Senate hearings on July 16, 1973. Nixon fought for over a year to prevent release of the tapes.", "date": "1973-07-16", "confidence": 1.0, "metadata": {}, "caseStudyId": "watergate" },
+    { "id": "n10-event-saturday-massacre", "type": "event", "label": "Saturday Night Massacre (Oct 20, 1973)", "description": "Nixon's firing of Special Prosecutor Archibald Cox after AG Richardson and Deputy AG Ruckelshaus refused to carry out the order and resigned. Triggered a constitutional crisis and accelerated impeachment momentum.", "date": "1973-10-20", "confidence": 1.0, "metadata": {}, "caseStudyId": "watergate" },
+    { "id": "n11-actor-cox", "type": "actor", "label": "Archibald Cox", "description": "First Watergate Special Prosecutor, fired by Nixon on October 20, 1973, for insisting on the release of the White House tapes. His firing backfired, generating massive public outrage.", "date": "1973-05-18", "confidence": 1.0, "metadata": { "role": "Special Prosecutor" }, "caseStudyId": "watergate" },
+    { "id": "n12-evidence-smoking-gun", "type": "evidence", "label": "Smoking gun tape (June 23, 1972 recording)", "description": "Recording of Nixon ordering Haldeman to have the CIA block the FBI's Watergate investigation, six days after the break-in. Released August 5, 1974, it proved Nixon directed the cover-up from the start.", "date": "1974-08-05", "confidence": 0.99, "metadata": {}, "caseStudyId": "watergate" },
+    { "id": "n13-narrative-denial", "type": "narrative", "label": "Official narrative: Nixon had no involvement", "description": "The White House position that Nixon knew nothing about the break-in or cover-up, that it was a minor campaign operation by overzealous subordinates, and that the press was conducting a witch hunt.", "date": "1972-06-17", "confidence": 0.01, "metadata": {}, "caseStudyId": "watergate" },
+    { "id": "n14-narrative-coverup", "type": "narrative", "label": "Investigative narrative: Nixon directed the cover-up", "description": "The narrative established by investigative journalism, congressional inquiry, and judicial proceedings that Nixon personally directed the cover-up from its earliest days, conclusively proven by the White House tapes.", "date": "1974-08-05", "confidence": 0.99, "metadata": {}, "caseStudyId": "watergate" },
+    { "id": "n15-event-indictments", "type": "event", "label": "Grand jury indictments of Nixon aides (Mar 1974)", "description": "Federal grand jury indicted seven senior Nixon aides and secretly named Nixon an unindicted co-conspirator.", "date": "1974-03-01", "confidence": 1.0, "metadata": {}, "caseStudyId": "watergate" },
+    { "id": "n16-event-resignation", "type": "event", "label": "Nixon's resignation (Aug 9, 1974)", "description": "Facing certain impeachment and removal, Nixon became the only U.S. president to resign. The House Judiciary Committee had approved three articles of impeachment.", "date": "1974-08-09", "confidence": 1.0, "metadata": {}, "caseStudyId": "watergate" }
+  ],
+  "edges": [
+    { "id": "e-1", "source": "n1-actor-nixon", "target": "n8-event-break-in", "type": "derived_from", "weight": 0.85, "date": "1972-06-17", "metadata": { "detail": "Break-in authorized by Nixon campaign operatives under CRP" } },
+    { "id": "e-2", "source": "n1-actor-nixon", "target": "n2-actor-haldeman-ehrlichman", "type": "causes", "weight": 0.99, "date": "1972-06-23", "metadata": { "detail": "Nixon directed Haldeman to have CIA obstruct FBI investigation" } },
+    { "id": "e-3", "source": "n1-actor-nixon", "target": "n13-narrative-denial", "type": "fabricates", "weight": 0.99, "date": "1972-06-20", "metadata": { "detail": "Nixon constructed the denial narrative while privately directing the cover-up" } },
+    { "id": "e-4", "source": "n3-actor-ziegler", "target": "n13-narrative-denial", "type": "claims", "weight": 0.9, "date": "1972-06-17", "metadata": { "detail": "Dismissed break-in as 'third-rate burglary'" } },
+    { "id": "e-5", "source": "n4-actor-woodward-bernstein", "target": "n14-narrative-coverup", "type": "derived_from", "weight": 0.9, "date": "1972-06-19", "metadata": { "detail": "Investigative reporting traced money and connections to the White House" } },
+    { "id": "e-6", "source": "n5-actor-deep-throat", "target": "n4-actor-woodward-bernstein", "type": "cites", "weight": 0.9, "date": "1972-06-19", "metadata": { "detail": "Felt confirmed White House involvement and guided the investigation" } },
+    { "id": "e-7", "source": "n6-actor-dean", "target": "n7-event-senate-hearings", "type": "cites", "weight": 0.95, "date": "1973-06-25", "metadata": { "detail": "Dean testified Nixon discussed cover-up on at least 35 occasions" } },
+    { "id": "e-8", "source": "n1-actor-nixon", "target": "n10-event-saturday-massacre", "type": "causes", "weight": 0.99, "date": "1973-10-20", "metadata": { "detail": "Nixon ordered Cox fired to prevent tape disclosure" } },
+    { "id": "e-9", "source": "n9-evidence-taping-system", "target": "n12-evidence-smoking-gun", "type": "derived_from", "weight": 1.0, "date": "1974-08-05", "metadata": { "detail": "Taping system recorded the smoking gun conversation" } },
+    { "id": "e-10", "source": "n12-evidence-smoking-gun", "target": "n13-narrative-denial", "type": "contradicts", "weight": 0.99, "date": "1974-08-05", "metadata": { "detail": "Tape proved Nixon directed cover-up six days after break-in" } },
+    { "id": "e-11", "source": "n12-evidence-smoking-gun", "target": "n16-event-resignation", "type": "causes", "weight": 0.98, "date": "1974-08-05", "metadata": { "detail": "Release of the tape destroyed remaining congressional support" } },
+    { "id": "e-12", "source": "n15-event-indictments", "target": "n14-narrative-coverup", "type": "cites", "weight": 0.95, "date": "1974-03-01", "metadata": { "detail": "Grand jury named Nixon unindicted co-conspirator" } },
+    { "id": "e-13", "source": "n13-narrative-denial", "target": "n14-narrative-coverup", "type": "contradicts", "weight": 0.99, "metadata": {} }
+  ],
+  "causalFactors": [
+    { "id": "cf1", "type": "institutional", "label": "Watergate break-in linked to Nixon re-election campaign", "date": "1972-06-17" },
+    { "id": "cf2", "type": "narrative_change", "label": "White House constructs denial narrative and dismisses investigation", "date": "1972-06-20" },
+    { "id": "cf3", "type": "evidence_action", "label": "Woodward and Bernstein trace money trail to CRP", "date": "1972-08-01" },
+    { "id": "cf4", "type": "institutional", "label": "Senate Watergate Committee hearings expose cover-up and taping system", "date": "1973-05-17" },
+    { "id": "cf5", "type": "evidence_action", "label": "Saturday Night Massacre triggers constitutional crisis", "date": "1973-10-20" },
+    { "id": "cf6", "type": "evidence_action", "label": "Supreme Court orders release of White House tapes", "date": "1974-07-24" }
+  ],
+  "causalLinks": [
+    { "from": "cf1", "to": "cf2", "mechanism": "Once the burglars were linked to CRP, the White House needed a denial strategy to insulate Nixon from the conspiracy", "strength": 0.95 },
+    { "from": "cf2", "to": "cf3", "mechanism": "White House denials prompted investigative reporters to follow the money trail, which contradicted the official narrative", "strength": 0.9 },
+    { "from": "cf3", "to": "cf4", "mechanism": "Cumulative reporting created enough political pressure for Congress to establish the Senate Select Committee and hold public hearings", "strength": 0.9 },
+    { "from": "cf4", "to": "cf5", "mechanism": "The revelation of the taping system led to subpoenas for the tapes, and Nixon's attempt to block disclosure triggered the Saturday Night Massacre", "strength": 0.95 },
+    { "from": "cf5", "to": "cf6", "mechanism": "The constitutional crisis accelerated legal proceedings, culminating in the unanimous Supreme Court ruling in United States v. Nixon ordering tape release", "strength": 0.9, "timelag": "9 months" }
+  ],
+  "timeSlices": [
+    {
+      "date": "1972-06-17",
+      "label": "The break-in and White House denial",
+      "description": "Five burglars arrested at the Watergate. White House dismisses it as a 'third-rate burglary.' Nixon privately begins directing the cover-up within days, ordering the CIA to block the FBI investigation.",
+      "activeNodeIds": ["n1-actor-nixon", "n2-actor-haldeman-ehrlichman", "n3-actor-ziegler", "n8-event-break-in", "n13-narrative-denial"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4"],
+      "narrativeShift": "White House denial narrative takes hold; the break-in is treated as a minor campaign incident"
+    },
+    {
+      "date": "1972-10-10",
+      "label": "Investigative journalism exposes the connections",
+      "description": "Woodward and Bernstein report that the break-in was part of a massive campaign of political spying and sabotage directed by the White House. Deep Throat confirms the scope of the conspiracy. The money trail links CRP directly to the burglars.",
+      "activeNodeIds": ["n1-actor-nixon", "n2-actor-haldeman-ehrlichman", "n3-actor-ziegler", "n4-actor-woodward-bernstein", "n5-actor-deep-throat", "n8-event-break-in", "n13-narrative-denial", "n14-narrative-coverup"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6"],
+      "narrativeShift": "Two competing narratives emerge: official denials vs. investigative findings. Nixon wins re-election despite growing evidence."
+    },
+    {
+      "date": "1973-06-25",
+      "label": "Senate hearings and the taping system revelation",
+      "description": "John Dean testifies that Nixon was directly involved in the cover-up. Alexander Butterfield reveals the White House taping system, creating the possibility of definitive proof. The battle for the tapes begins.",
+      "activeNodeIds": ["n1-actor-nixon", "n2-actor-haldeman-ehrlichman", "n4-actor-woodward-bernstein", "n5-actor-deep-throat", "n6-actor-dean", "n7-event-senate-hearings", "n8-event-break-in", "n9-evidence-taping-system", "n13-narrative-denial", "n14-narrative-coverup"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-5", "e-6", "e-7", "e-13"],
+      "narrativeShift": "The denial narrative begins cracking as insiders testify. The tapes become the decisive evidence everyone is seeking."
+    },
+    {
+      "date": "1974-08-05",
+      "label": "The smoking gun tape and Nixon's fall",
+      "description": "The Supreme Court orders Nixon to release the tapes. The smoking gun tape of June 23, 1972 proves Nixon directed the cover-up from the very beginning. His remaining congressional support collapses. Articles of impeachment are approved. Nixon resigns August 9, 1974.",
+      "activeNodeIds": ["n1-actor-nixon", "n2-actor-haldeman-ehrlichman", "n4-actor-woodward-bernstein", "n5-actor-deep-throat", "n6-actor-dean", "n7-event-senate-hearings", "n8-event-break-in", "n9-evidence-taping-system", "n10-event-saturday-massacre", "n11-actor-cox", "n12-evidence-smoking-gun", "n13-narrative-denial", "n14-narrative-coverup", "n15-event-indictments", "n16-event-resignation"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13"],
+      "narrativeShift": "The denial narrative is definitively destroyed by Nixon's own recorded words. The investigative narrative is proven correct in every material respect."
+    }
+  ]
+}

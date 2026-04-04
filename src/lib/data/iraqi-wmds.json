@@ -2,6 +2,9 @@
   "id": "iraqi-wmds",
   "title": "Iraqi Weapons of Mass Destruction",
   "period": "2001-2005",
+  "revelationDate": "2004-09-30",
+  "wasOverturned": true,
+  "status": "overturned",
   "summary": "In the lead-up to the 2003 Iraq War, the US and UK governments claimed Iraq possessed weapons of mass destruction and active WMD programs. The primary intelligence source ('Curveball') later admitted fabrication. The Duelfer Report (2004) found Iraq had no WMD stockpiles and no active programs. Multiple intelligence agencies had dissented from key claims before the invasion.",
   "hypotheses": [
     {

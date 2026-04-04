@@ -1,0 +1,225 @@
+{
+  "id": "mh17",
+  "title": "Downing of Malaysia Airlines Flight MH17",
+  "period": "2014-2022",
+  "wasOverturned": false,
+  "status": "confirmed",
+  "revelationDate": "2016-09-28",
+  "summary": "On July 17, 2014, Malaysia Airlines Flight MH17 was shot down over eastern Ukraine, killing all 298 people on board. The Dutch Safety Board (DSB) determined the aircraft was struck by a 9N314M warhead carried on a Buk surface-to-air missile. The Joint Investigation Team (JIT), comprising investigators from the Netherlands, Australia, Belgium, Malaysia, and Ukraine, traced the specific Buk missile system to Russia's 53rd Anti-Aircraft Missile Brigade based in Kursk. Bellingcat's open-source investigation independently corroborated this using social media posts, satellite imagery, and intercepted communications. Russia promoted multiple contradictory alternative theories — a Ukrainian fighter jet, a Ukrainian Buk, a CIA plot — none of which withstood scrutiny. In November 2022, a Dutch court convicted three men in absentia of murder for their roles in the downing.",
+  "hypotheses": [
+    {
+      "id": "h1-russian-buk",
+      "caseStudyId": "mh17",
+      "label": "Shot down by a Russian Buk missile from the 53rd Anti-Aircraft Brigade",
+      "description": "The official finding of the Dutch Safety Board, the Joint Investigation Team, and the 2022 Dutch court: MH17 was destroyed by a 9M38 Buk missile fired from a field near Pervomaisk in eastern Ukraine. The Buk TELAR was transported from Russia's 53rd Anti-Aircraft Missile Brigade in Kursk, moved into Ukraine on July 17, fired that afternoon, and returned to Russia the same night missing one missile.",
+      "prior": 0.5,
+      "posterior": 0.99,
+      "isOfficial": true
+    },
+    {
+      "id": "h2-ukraine-responsible",
+      "caseStudyId": "mh17",
+      "label": "Ukrainian forces shot down MH17",
+      "description": "The Russian government's primary counter-narrative, which shifted between multiple incompatible versions: (1) a Ukrainian Su-25 fighter jet shot it down (Russian MOD, July 2014); (2) a Ukrainian Buk missile from Ukrainian-controlled territory (Russian MOD, 2016); (3) the specific Buk missile belonged to Ukraine, not Russia (Russian MOD, 2018). Each version was abandoned when debunked, replaced by another.",
+      "prior": 0.5,
+      "posterior": 0.01,
+      "isOfficial": false
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1-buk-fragments",
+      "label": "Buk missile fragments recovered from crash site and victims' bodies",
+      "description": "Dutch investigators recovered distinctive bow-tie shaped shrapnel fragments from the crash site and from victims' bodies. These fragments were conclusively identified as originating from a 9N314M warhead, a type exclusively carried by the Buk missile system. The fragmentation pattern matched a detonation point above and to the left of the cockpit.",
+      "date": "2014-07-18",
+      "likelihoodRatios": { "h1-russian-buk": 0.95, "h2-ukraine-responsible": 0.3 },
+      "sourceReliability": 0.98,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-actor-dsb", "n5-evidence-buk-fragments", "n12-event-shootdown"]
+    },
+    {
+      "id": "e2-dsb-report",
+      "label": "Dutch Safety Board final report (Oct 2015)",
+      "description": "The DSB's final report, based on forensic reconstruction of the aircraft, radar data, cockpit voice recorder analysis, and metallurgical examination, concluded MH17 was struck by a 9N314M warhead detonated above the left side of the cockpit. The report reconstructed the missile's approach trajectory from the east, consistent with launch from separatist-controlled territory.",
+      "date": "2015-10-13",
+      "likelihoodRatios": { "h1-russian-buk": 0.95, "h2-ukraine-responsible": 0.1 },
+      "sourceReliability": 0.97,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-actor-dsb", "n5-evidence-buk-fragments", "n6-source-dsb-report"]
+    },
+    {
+      "id": "e3-jit-findings",
+      "label": "JIT criminal investigation identifies 53rd Brigade Buk (Sep 2016)",
+      "description": "The Joint Investigation Team presented intercepted phone calls, witness statements, forensic evidence, and digital evidence tracing the specific Buk TELAR (serial number 332) to Russia's 53rd Anti-Aircraft Missile Brigade based in Kursk. The JIT documented the Buk's transport route from Russia into Ukraine on July 17, its positioning near Pervomaisk, and its return to Russia that night missing one missile.",
+      "date": "2016-09-28",
+      "likelihoodRatios": { "h1-russian-buk": 0.99, "h2-ukraine-responsible": 0.01 },
+      "sourceReliability": 0.97,
+      "wasClassified": false,
+      "linkedNodeIds": ["n2-actor-jit", "n7-source-jit-report", "n8-actor-53rd-brigade"]
+    },
+    {
+      "id": "e4-bellingcat-osint",
+      "label": "Bellingcat open-source tracking of Buk launcher convoy",
+      "description": "Bellingcat investigators collected and verified social media photographs, videos, and satellite imagery documenting the Buk TELAR's journey from Russia into eastern Ukraine on July 17, 2014, and its return to Russia on July 18 with one missile visibly missing. They identified the specific vehicle by matching unique features and serial number markings, tracing it to a Russian military convoy from the 53rd Brigade.",
+      "date": "2014-11-08",
+      "likelihoodRatios": { "h1-russian-buk": 0.97, "h2-ukraine-responsible": 0.01 },
+      "sourceReliability": 0.92,
+      "wasClassified": false,
+      "linkedNodeIds": ["n3-actor-bellingcat", "n9-evidence-social-media", "n8-actor-53rd-brigade"]
+    },
+    {
+      "id": "e5-intercepted-calls",
+      "label": "Intercepted phone calls between separatist commanders and Russian officials",
+      "description": "Ukrainian intelligence and the JIT obtained intercepted phone calls from July 17, 2014, in which separatist commanders discussed the arrival of a Buk system from Russia, celebrated shooting down what they initially believed was a Ukrainian military transport, and then expressed alarm upon realising it was a civilian aircraft. Calls included communications with Russian intelligence officials.",
+      "date": "2014-07-17",
+      "likelihoodRatios": { "h1-russian-buk": 0.93, "h2-ukraine-responsible": 0.02 },
+      "sourceReliability": 0.9,
+      "wasClassified": true,
+      "linkedNodeIds": ["n2-actor-jit", "n10-evidence-intercepts", "n11-actor-separatists"]
+    },
+    {
+      "id": "e6-russian-mod-changing-stories",
+      "label": "Russian Ministry of Defense presented multiple contradictory explanations",
+      "description": "The Russian MOD publicly presented at least four mutually exclusive theories: (1) July 2014: a Ukrainian Su-25 fighter jet shot down MH17, supported by fabricated radar data; (2) 2015: radar data supposedly showing a missile launch from Ukrainian-held territory; (3) 2016: the specific Buk missile was manufactured for and delivered to Ukraine; (4) 2018: the Buk missile's serial number showed it belonged to a Ukrainian unit. Each claim was debunked, and the shifting narratives demonstrated a disinformation strategy rather than genuine investigation.",
+      "date": "2014-07-21",
+      "likelihoodRatios": { "h1-russian-buk": 0.85, "h2-ukraine-responsible": 0.05 },
+      "sourceReliability": 0.1,
+      "wasClassified": false,
+      "linkedNodeIds": ["n4-actor-russian-mod", "n13-narrative-russian-disinfo", "n14-claim-su25"]
+    },
+    {
+      "id": "e7-satellite-imagery",
+      "label": "Satellite imagery of Buk launch site and transport route",
+      "description": "Satellite imagery obtained by investigators showed a Buk missile system in a field near Pervomaisk on July 17, 2014, hours before the shootdown. Post-launch imagery showed scorch marks consistent with a missile launch from that position. Additional imagery corroborated the transport route identified by Bellingcat through social media evidence.",
+      "date": "2014-07-20",
+      "likelihoodRatios": { "h1-russian-buk": 0.92, "h2-ukraine-responsible": 0.05 },
+      "sourceReliability": 0.93,
+      "wasClassified": true,
+      "linkedNodeIds": ["n2-actor-jit", "n15-evidence-satellite", "n8-actor-53rd-brigade"]
+    },
+    {
+      "id": "e8-court-verdict",
+      "label": "Dutch court convicts three men in absentia (Nov 2022)",
+      "description": "On November 17, 2022, the District Court of The Hague convicted Igor Girkin, Sergei Dubinsky, and Leonid Kharchenko of the murder of all 298 people on board MH17. The court found beyond reasonable doubt that MH17 was shot down by a Buk missile from the 53rd Brigade, that the defendants arranged the transport of the Buk system into Ukraine, and sentenced them to life imprisonment. A fourth defendant, Oleg Pulatov, was acquitted.",
+      "date": "2022-11-17",
+      "likelihoodRatios": { "h1-russian-buk": 0.99, "h2-ukraine-responsible": 0.01 },
+      "sourceReliability": 0.98,
+      "wasClassified": false,
+      "linkedNodeIds": ["n16-event-court-verdict", "n11-actor-separatists", "n8-actor-53rd-brigade"]
+    },
+    {
+      "id": "e9-su25-debunking",
+      "label": "Su-25 fighter jet theory debunked by technical analysis",
+      "description": "Russia's initial claim that a Ukrainian Su-25 shot down MH17 was debunked on multiple grounds: the Su-25 has a service ceiling of approximately 7,000m while MH17 was at 10,000m; the Su-25 carries air-to-ground weapons incompatible with the damage pattern; no radar evidence supported a second aircraft in the vicinity; and the shrapnel pattern was conclusively from a Buk warhead, not an air-to-air missile or cannon.",
+      "date": "2015-10-13",
+      "likelihoodRatios": { "h1-russian-buk": 0.8, "h2-ukraine-responsible": 0.03 },
+      "sourceReliability": 0.95,
+      "wasClassified": false,
+      "linkedNodeIds": ["n14-claim-su25", "n1-actor-dsb", "n4-actor-russian-mod"]
+    },
+    {
+      "id": "e10-buk-serial-number",
+      "label": "Buk missile serial number traced to Russian military inventory",
+      "description": "Investigators identified the specific Buk missile's serial number from recovered engine components. Russia claimed the missile had been delivered to a Ukrainian military unit in 1986. However, the JIT and Bellingcat established through military records and photographic evidence that the missile and its TELAR had been transferred to the 53rd Anti-Aircraft Missile Brigade and were in active Russian service in 2014.",
+      "date": "2018-05-24",
+      "likelihoodRatios": { "h1-russian-buk": 0.96, "h2-ukraine-responsible": 0.03 },
+      "sourceReliability": 0.95,
+      "wasClassified": false,
+      "linkedNodeIds": ["n2-actor-jit", "n3-actor-bellingcat", "n8-actor-53rd-brigade"]
+    }
+  ],
+  "nodes": [
+    { "id": "n1-actor-dsb", "type": "actor", "label": "Dutch Safety Board (DSB)", "description": "Independent Dutch investigation body that conducted the air safety investigation into the MH17 crash, publishing its final report in October 2015.", "date": "2014-07-17", "confidence": 0.98, "metadata": { "role": "Air safety investigation authority" }, "caseStudyId": "mh17" },
+    { "id": "n2-actor-jit", "type": "actor", "label": "Joint Investigation Team (JIT)", "description": "International criminal investigation team comprising the Netherlands, Australia, Belgium, Malaysia, and Ukraine, tasked with identifying those responsible for the downing of MH17.", "date": "2014-08-07", "confidence": 0.98, "metadata": { "role": "International criminal investigation body" }, "caseStudyId": "mh17" },
+    { "id": "n3-actor-bellingcat", "type": "actor", "label": "Bellingcat", "description": "Open-source intelligence investigative collective that independently tracked the Buk missile system from Russia into Ukraine and back using social media, satellite imagery, and public records.", "date": "2014-07-18", "confidence": 0.93, "metadata": { "role": "Open-source intelligence investigators" }, "caseStudyId": "mh17" },
+    { "id": "n4-actor-russian-mod", "type": "actor", "label": "Russian Ministry of Defense", "description": "Russian military institution that conducted press conferences presenting multiple contradictory alternative theories for MH17's destruction, including fabricated radar imagery and false claims about missile serial numbers.", "date": "2014-07-21", "confidence": 0.15, "metadata": { "role": "State military institution (disinformation source)" }, "caseStudyId": "mh17" },
+    { "id": "n5-evidence-buk-fragments", "type": "evidence", "label": "Buk 9N314M warhead fragments", "description": "Bow-tie shaped shrapnel and missile components recovered from the crash site and victims' bodies, conclusively identified as originating from a Buk surface-to-air missile's 9N314M warhead.", "date": "2014-07-18", "confidence": 0.99, "metadata": {}, "caseStudyId": "mh17" },
+    { "id": "n6-source-dsb-report", "type": "source", "label": "DSB Final Report (Oct 2015)", "description": "Comprehensive air safety investigation report determining MH17 was struck by a 9N314M warhead from a Buk missile, with detailed forensic reconstruction of the detonation point and missile approach trajectory.", "date": "2015-10-13", "confidence": 0.97, "metadata": { "actor": "Dutch Safety Board" }, "caseStudyId": "mh17" },
+    { "id": "n7-source-jit-report", "type": "source", "label": "JIT Criminal Investigation Findings", "description": "Multi-year criminal investigation identifying the specific Buk TELAR (number 332) from Russia's 53rd Anti-Aircraft Missile Brigade, its transport route, and the individuals responsible.", "date": "2016-09-28", "confidence": 0.97, "metadata": { "actor": "Joint Investigation Team" }, "caseStudyId": "mh17" },
+    { "id": "n8-actor-53rd-brigade", "type": "actor", "label": "53rd Anti-Aircraft Missile Brigade (Russian Armed Forces)", "description": "Russian military unit based in Kursk from which the Buk missile system that destroyed MH17 was deployed. Identified through serial numbers, photographic evidence, and intercepted communications.", "date": "2014-07-17", "confidence": 0.97, "metadata": { "role": "Russian military unit (source of murder weapon)" }, "caseStudyId": "mh17" },
+    { "id": "n9-evidence-social-media", "type": "evidence", "label": "Social media photographs and videos of Buk transport", "description": "Dozens of photographs and videos posted to social media by local residents documenting the Buk TELAR's journey through eastern Ukraine on July 17-18, 2014, including images showing it returning to Russia with one missile missing.", "date": "2014-07-17", "confidence": 0.93, "metadata": {}, "caseStudyId": "mh17" },
+    { "id": "n10-evidence-intercepts", "type": "evidence", "label": "Intercepted phone calls (July 17, 2014)", "description": "Phone intercepts capturing separatist commanders discussing the Buk's arrival from Russia, the shootdown, initial triumphant claims of hitting a military aircraft, and subsequent panic upon discovering it was a civilian airliner.", "date": "2014-07-17", "confidence": 0.92, "metadata": {}, "caseStudyId": "mh17" },
+    { "id": "n11-actor-separatists", "type": "actor", "label": "Donetsk separatist leaders (Girkin, Dubinsky, Kharchenko)", "description": "Igor Girkin (Strelkov), Sergei Dubinsky, and Leonid Kharchenko — separatist military commanders who arranged the transport and deployment of the Buk system. Convicted of murder by the Dutch court in 2022.", "date": "2014-07-17", "confidence": 0.97, "metadata": { "role": "Separatist military commanders (convicted)" }, "caseStudyId": "mh17" },
+    { "id": "n12-event-shootdown", "type": "event", "label": "MH17 shot down over eastern Ukraine (Jul 17, 2014)", "description": "Malaysia Airlines Flight MH17 (Amsterdam to Kuala Lumpur) was destroyed at approximately 33,000 feet over Hrabove, eastern Ukraine, at 16:20 local time, killing all 283 passengers and 15 crew.", "date": "2014-07-17", "confidence": 1.0, "metadata": {}, "caseStudyId": "mh17" },
+    { "id": "n13-narrative-russian-disinfo", "type": "narrative", "label": "Russian disinformation campaign: multiple shifting counter-narratives", "description": "Coordinated Russian state effort to deflect blame through a series of contradictory theories — Ukrainian fighter jet, Ukrainian Buk, fabricated radar data, false serial number claims — designed to create confusion rather than establish any single alternative explanation.", "date": "2014-07-21", "confidence": 0.05, "metadata": {}, "caseStudyId": "mh17" },
+    { "id": "n14-claim-su25", "type": "claim", "label": "Ukrainian Su-25 fighter jet shot down MH17", "description": "Russia's initial counter-narrative, presented at a July 21, 2014 press conference with doctored radar imagery allegedly showing a Ukrainian fighter near MH17. Debunked by the Su-25's flight ceiling limitations, incompatible weapons, and the physical evidence of a Buk warhead.", "date": "2014-07-21", "confidence": 0.01, "metadata": {}, "caseStudyId": "mh17" },
+    { "id": "n15-evidence-satellite", "type": "evidence", "label": "Satellite imagery of Buk launch site", "description": "Satellite photographs showing a Buk system near Pervomaisk on July 17, 2014, and post-launch scorch marks consistent with a missile firing from that location.", "date": "2014-07-20", "confidence": 0.93, "metadata": {}, "caseStudyId": "mh17" },
+    { "id": "n16-event-court-verdict", "type": "event", "label": "Dutch court conviction (Nov 17, 2022)", "description": "The District Court of The Hague convicted Girkin, Dubinsky, and Kharchenko of murder in absentia, sentencing them to life imprisonment. The court found the Buk missile was from Russia's 53rd Brigade and that the defendants arranged its deployment.", "date": "2022-11-17", "confidence": 0.99, "metadata": {}, "caseStudyId": "mh17" }
+  ],
+  "edges": [
+    { "id": "e-1", "source": "n8-actor-53rd-brigade", "target": "n12-event-shootdown", "type": "causes", "weight": 0.97, "date": "2014-07-17", "metadata": { "detail": "Buk TELAR from 53rd Brigade fired the missile that destroyed MH17" } },
+    { "id": "e-2", "source": "n11-actor-separatists", "target": "n12-event-shootdown", "type": "causes", "weight": 0.95, "date": "2014-07-17", "metadata": { "detail": "Separatist commanders arranged transport and deployment of the Buk system" } },
+    { "id": "e-3", "source": "n6-source-dsb-report", "target": "n5-evidence-buk-fragments", "type": "cites", "weight": 0.97, "date": "2015-10-13", "metadata": { "detail": "DSB forensic analysis identified 9N314M warhead fragments" } },
+    { "id": "e-4", "source": "n7-source-jit-report", "target": "n8-actor-53rd-brigade", "type": "derived_from", "weight": 0.97, "date": "2016-09-28", "metadata": { "detail": "JIT traced specific Buk TELAR to 53rd Brigade through serial numbers and transport evidence" } },
+    { "id": "e-5", "source": "n3-actor-bellingcat", "target": "n9-evidence-social-media", "type": "cites", "weight": 0.93, "date": "2014-11-08", "metadata": { "detail": "Bellingcat collected and verified social media documentation of Buk transport route" } },
+    { "id": "e-6", "source": "n7-source-jit-report", "target": "n10-evidence-intercepts", "type": "cites", "weight": 0.92, "date": "2016-09-28", "metadata": { "detail": "JIT presented intercepted calls as key evidence of separatist involvement" } },
+    { "id": "e-7", "source": "n4-actor-russian-mod", "target": "n14-claim-su25", "type": "fabricates", "weight": 0.95, "date": "2014-07-21", "metadata": { "detail": "Russian MOD presented doctored radar data to support Su-25 theory" } },
+    { "id": "e-8", "source": "n4-actor-russian-mod", "target": "n13-narrative-russian-disinfo", "type": "fabricates", "weight": 0.95, "date": "2014-07-21", "metadata": { "detail": "Russian MOD produced multiple contradictory theories to create confusion" } },
+    { "id": "e-9", "source": "n14-claim-su25", "target": "n5-evidence-buk-fragments", "type": "contradicts", "weight": 0.99, "date": "2015-10-13", "metadata": { "detail": "Physical Buk fragments are incompatible with an air-to-air engagement" } },
+    { "id": "e-10", "source": "n13-narrative-russian-disinfo", "target": "n7-source-jit-report", "type": "contradicts", "weight": 0.97, "date": "2016-09-28", "metadata": { "detail": "Every Russian counter-narrative was contradicted by JIT findings" } },
+    { "id": "e-11", "source": "n16-event-court-verdict", "target": "n7-source-jit-report", "type": "derived_from", "weight": 0.98, "date": "2022-11-17", "metadata": { "detail": "Court conviction relied on JIT's criminal investigation evidence" } },
+    { "id": "e-12", "source": "n3-actor-bellingcat", "target": "n7-source-jit-report", "type": "cites", "weight": 0.9, "date": "2016-09-28", "metadata": { "detail": "Bellingcat's open-source findings independently corroborated JIT conclusions" } },
+    { "id": "e-13", "source": "n12-event-shootdown", "target": "n16-event-court-verdict", "type": "precedes", "weight": 1.0, "date": "2014-07-17", "metadata": {} }
+  ],
+  "causalFactors": [
+    { "id": "cf1", "type": "institutional", "label": "Russian military deploys Buk missile system into eastern Ukraine", "date": "2014-07-17" },
+    { "id": "cf2", "type": "institutional", "label": "Separatist commanders arrange Buk transport and firing position", "date": "2014-07-17" },
+    { "id": "cf3", "type": "narrative_change", "label": "Russia launches disinformation campaign with Su-25 fighter jet theory", "date": "2014-07-21" },
+    { "id": "cf4", "type": "evidence_action", "label": "Bellingcat open-source investigation tracks Buk convoy", "date": "2014-11-08" },
+    { "id": "cf5", "type": "evidence_action", "label": "DSB forensic report confirms Buk 9N314M warhead", "date": "2015-10-13" },
+    { "id": "cf6", "type": "evidence_action", "label": "JIT identifies 53rd Brigade as source of Buk system", "date": "2016-09-28" },
+    { "id": "cf7", "type": "narrative_change", "label": "Russia shifts to Ukrainian-Buk theory after Su-25 debunked", "date": "2016-09-28" },
+    { "id": "cf8", "type": "institutional", "label": "Dutch court convicts three separatist commanders of murder", "date": "2022-11-17" }
+  ],
+  "causalLinks": [
+    { "from": "cf1", "to": "cf2", "mechanism": "The 53rd Brigade Buk system was transferred to separatist forces, who positioned it in a field near Pervomaisk under the direction of commanders coordinating with Russian military intelligence", "strength": 0.95 },
+    { "from": "cf2", "to": "cf3", "mechanism": "After the shootdown, Russia immediately launched a disinformation campaign to deflect blame, initially claiming a Ukrainian Su-25 fighter jet was responsible", "strength": 0.9 },
+    { "from": "cf3", "to": "cf4", "mechanism": "Russian disinformation spurred open-source investigators at Bellingcat to systematically document the Buk system's transport route using publicly available social media evidence", "strength": 0.85 },
+    { "from": "cf4", "to": "cf5", "mechanism": "Bellingcat's open-source findings complemented the DSB's forensic investigation, which independently confirmed the weapon type through physical evidence", "strength": 0.8 },
+    { "from": "cf5", "to": "cf6", "mechanism": "The DSB's warhead identification narrowed the weapon to a Buk system, enabling the JIT's criminal investigation to trace the specific unit to the 53rd Brigade", "strength": 0.9 },
+    { "from": "cf6", "to": "cf7", "mechanism": "Once the JIT identified the 53rd Brigade, Russia abandoned the Su-25 theory and shifted to claiming the specific Buk missile belonged to Ukraine, not Russia", "strength": 0.85 },
+    { "from": "cf6", "to": "cf8", "mechanism": "The JIT's criminal investigation provided the evidentiary basis for the Dutch court prosecution and conviction of three separatist commanders", "strength": 0.95, "timelag": "6 years" }
+  ],
+  "timeSlices": [
+    {
+      "date": "2014-07-17",
+      "label": "The shootdown and immediate aftermath",
+      "description": "MH17 is shot down at 16:20 local time over Hrabove, eastern Ukraine, killing all 298 on board. Intercepted phone calls capture separatist commanders initially celebrating what they believe is a Ukrainian military transport, then realizing it was a civilian airliner. Separatist social media accounts post and then delete claims of shooting down an aircraft.",
+      "activeNodeIds": ["n8-actor-53rd-brigade", "n10-evidence-intercepts", "n11-actor-separatists", "n12-event-shootdown"],
+      "activeEdgeIds": ["e-1", "e-2"],
+      "narrativeShift": "Initial confusion; separatists briefly claim credit before deleting posts"
+    },
+    {
+      "date": "2014-07-21",
+      "label": "Russia launches disinformation campaign",
+      "description": "The Russian MOD holds a press conference presenting fabricated radar data claiming a Ukrainian Su-25 fighter jet was near MH17. This becomes Russia's initial counter-narrative. Meanwhile, local residents begin posting social media photographs of a Buk launcher being transported through eastern Ukraine.",
+      "activeNodeIds": ["n4-actor-russian-mod", "n9-evidence-social-media", "n12-event-shootdown", "n14-claim-su25", "n13-narrative-russian-disinfo"],
+      "activeEdgeIds": ["e-1", "e-2", "e-7", "e-8"],
+      "narrativeShift": "Russia introduces Su-25 theory; open-source evidence begins accumulating"
+    },
+    {
+      "date": "2015-10-13",
+      "label": "DSB report confirms Buk missile",
+      "description": "The Dutch Safety Board publishes its final report confirming MH17 was destroyed by a 9N314M warhead from a Buk missile. The forensic evidence — bow-tie shrapnel, detonation point, approach trajectory — definitively rules out the Su-25 theory. Bellingcat has by now published extensive open-source documentation of the Buk's transport route.",
+      "activeNodeIds": ["n1-actor-dsb", "n3-actor-bellingcat", "n4-actor-russian-mod", "n5-evidence-buk-fragments", "n6-source-dsb-report", "n9-evidence-social-media", "n12-event-shootdown", "n14-claim-su25", "n13-narrative-russian-disinfo"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-5", "e-7", "e-8", "e-9"],
+      "narrativeShift": "Physical evidence eliminates Russian Su-25 theory; investigation converges on Buk from separatist territory"
+    },
+    {
+      "date": "2016-09-28",
+      "label": "JIT identifies 53rd Brigade as source",
+      "description": "The JIT presents its criminal investigation findings: the specific Buk TELAR came from Russia's 53rd Anti-Aircraft Missile Brigade. Evidence includes intercepted calls, witness testimony, satellite imagery, and social media tracking. Russia shifts its narrative, now claiming the missile serial number points to Ukrainian ownership — a claim subsequently debunked.",
+      "activeNodeIds": ["n1-actor-dsb", "n2-actor-jit", "n3-actor-bellingcat", "n4-actor-russian-mod", "n5-evidence-buk-fragments", "n6-source-dsb-report", "n7-source-jit-report", "n8-actor-53rd-brigade", "n9-evidence-social-media", "n10-evidence-intercepts", "n11-actor-separatists", "n12-event-shootdown", "n13-narrative-russian-disinfo", "n15-evidence-satellite"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-12"],
+      "narrativeShift": "Criminal investigation identifies the specific Russian military unit; Russia's narrative shifts again"
+    },
+    {
+      "date": "2022-11-17",
+      "label": "Dutch court convicts three men of murder",
+      "description": "The District Court of The Hague convicts Igor Girkin, Sergei Dubinsky, and Leonid Kharchenko in absentia of the murder of 298 people. The court accepts the evidence that a Buk missile from the 53rd Brigade destroyed MH17 and that the defendants arranged its deployment. Russia refuses to cooperate or extradite the convicted men.",
+      "activeNodeIds": ["n1-actor-dsb", "n2-actor-jit", "n3-actor-bellingcat", "n4-actor-russian-mod", "n5-evidence-buk-fragments", "n6-source-dsb-report", "n7-source-jit-report", "n8-actor-53rd-brigade", "n9-evidence-social-media", "n10-evidence-intercepts", "n11-actor-separatists", "n12-event-shootdown", "n13-narrative-russian-disinfo", "n14-claim-su25", "n15-evidence-satellite", "n16-event-court-verdict"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13"],
+      "narrativeShift": "Legal system delivers definitive verdict; Russian disinformation narrative fully discredited by courts"
+    }
+  ]
+}

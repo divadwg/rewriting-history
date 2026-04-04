@@ -52,11 +52,11 @@ export default function Home() {
             Evidence Discovery
           </Link>
           <Link
-            href="/live"
+            href="/validation"
             className="px-6 py-3 rounded-lg font-medium border transition-opacity hover:opacity-90"
             style={{ borderColor: '#e5e5e5', color: '#6b6b6b' }}
           >
-            Live Analysis
+            Validation Experiment
           </Link>
         </div>
       </div>

@@ -1,0 +1,195 @@
+{
+  "id": "gleiwitz-incident",
+  "title": "Gleiwitz Incident",
+  "period": "1939-1945",
+  "revelationDate": "1945-11-20",
+  "wasOverturned": true,
+  "status": "overturned",
+  "summary": "On the evening of August 31, 1939, a team of SS operatives led by Alfred Naujocks seized the German radio station at Gleiwitz (now Gliwice, Poland) and broadcast a short anti-German message in Polish, staging the appearance of a Polish attack on German soil. Concentration camp prisoners — drugged and dressed in Polish uniforms — were shot and left at the scene as fabricated evidence. The Gleiwitz operation was one of several coordinated false-flag actions under Operation Himmler, designed to manufacture a pretext for the German invasion of Poland, which began the following morning on September 1, 1939, triggering World War II. The deception was exposed at the Nuremberg Trials through the sworn affidavit of Naujocks himself, along with captured German documents detailing the operation.",
+  "hypotheses": [
+    {
+      "id": "h1-polish-attack",
+      "caseStudyId": "gleiwitz-incident",
+      "label": "Polish partisans attacked the German radio station at Gleiwitz",
+      "description": "The official Nazi propaganda claim broadcast on September 1, 1939: irregular Polish forces attacked the Gleiwitz radio transmitter, demonstrating Polish aggression against Germany. This narrative was used by Hitler in his Reichstag speech to justify the invasion of Poland as a defensive response.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": true
+    },
+    {
+      "id": "h2-ss-false-flag",
+      "caseStudyId": "gleiwitz-incident",
+      "label": "The SS staged a false-flag operation as a pretext for the invasion of Poland",
+      "description": "SS-Sturmbannführer Alfred Naujocks led a team of SD operatives who seized the Gleiwitz radio station, broadcast a fabricated anti-German message in Polish, and left drugged concentration camp prisoners in Polish uniforms as planted evidence. The operation was ordered by Reinhard Heydrich and Heinrich Himmler as part of the broader Operation Himmler false-flag campaign.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": false
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1-nazi-press-reports",
+      "label": "Nazi press and radio reports of 'Polish attack' (Sep 1, 1939)",
+      "description": "German state media immediately broadcast reports of an unprovoked Polish attack on the Gleiwitz radio station. The Völkischer Beobachter and other Nazi-controlled newspapers published accounts of Polish irregulars storming the station, presenting fabricated details as fact. Hitler cited the attack in his Reichstag speech declaring war.",
+      "date": "1939-09-01",
+      "likelihoodRatios": { "h1-polish-attack": 0.3, "h2-ss-false-flag": 0.8 },
+      "sourceReliability": 0.05,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-event-broadcast", "n4-actor-nazi-press", "n8-claim-polish-attack"]
+    },
+    {
+      "id": "e2-naujocks-affidavit",
+      "label": "Alfred Naujocks sworn affidavit at Nuremberg (Nov 1945)",
+      "description": "SS-Sturmbannführer Alfred Naujocks surrendered to U.S. forces in October 1944 and provided a detailed sworn affidavit at the Nuremberg Trials. He testified that Heydrich personally ordered him to stage the attack, that he led a team of SD operatives who seized the station, and that concentration camp prisoners (referred to by the codename 'Konserve' — canned goods) were provided as fabricated casualties.",
+      "date": "1945-11-20",
+      "likelihoodRatios": { "h1-polish-attack": 0.03, "h2-ss-false-flag": 0.97 },
+      "sourceReliability": 0.85,
+      "wasClassified": false,
+      "linkedNodeIds": ["n3-event-nuremberg", "n5-actor-naujocks", "n9-claim-ss-operation", "n6-actor-heydrich"]
+    },
+    {
+      "id": "e3-operation-himmler-documents",
+      "label": "Captured Operation Himmler planning documents",
+      "description": "Allied forces captured German military and intelligence documents outlining Operation Himmler — a coordinated series of false-flag operations along the German-Polish border. The documents detailed plans for staged attacks on German customs posts, a forestry station, and the Gleiwitz radio transmitter, all designed to create the appearance of Polish aggression. The plans were authorized at the highest levels of the SS.",
+      "date": "1945-06-01",
+      "likelihoodRatios": { "h1-polish-attack": 0.02, "h2-ss-false-flag": 0.98 },
+      "sourceReliability": 0.95,
+      "wasClassified": true,
+      "declassifiedDate": "1945",
+      "linkedNodeIds": ["n7-actor-himmler", "n6-actor-heydrich", "n10-evidence-documents", "n2-event-operation-himmler"]
+    },
+    {
+      "id": "e4-concentration-camp-victims",
+      "label": "Forensic evidence of concentration camp prisoners used as 'props'",
+      "description": "The bodies left at the Gleiwitz station and other Operation Himmler sites were concentration camp inmates, referred to in SS communications by the codename 'Konserve' (canned goods). The victims were administered lethal injections, dressed in Polish uniforms, and shot to simulate combat casualties. Post-war forensic examination and testimony confirmed these individuals were not Polish soldiers but prisoners procured from camps by the SS.",
+      "date": "1945-11-20",
+      "likelihoodRatios": { "h1-polish-attack": 0.02, "h2-ss-false-flag": 0.95 },
+      "sourceReliability": 0.9,
+      "wasClassified": false,
+      "linkedNodeIds": ["n5-actor-naujocks", "n11-evidence-forensic", "n9-claim-ss-operation"]
+    },
+    {
+      "id": "e5-international-press-skepticism",
+      "label": "International press skepticism about German claims (Sep 1939)",
+      "description": "Foreign correspondents and neutral press outlets expressed immediate skepticism about the German account. British, French, and American newspapers noted the suspicious timing — the 'attack' occurring mere hours before a full-scale German invasion — and the lack of independent verification. The Associated Press and Reuters reported the German claims with qualifications, and several editorials openly questioned whether the incidents were staged.",
+      "date": "1939-09-02",
+      "likelihoodRatios": { "h1-polish-attack": 0.25, "h2-ss-false-flag": 0.75 },
+      "sourceReliability": 0.7,
+      "wasClassified": false,
+      "linkedNodeIds": ["n4-actor-nazi-press", "n8-claim-polish-attack", "n12-actor-intl-press"]
+    },
+    {
+      "id": "e6-british-intelligence-intercepts",
+      "label": "British intelligence intercepts of German communications",
+      "description": "British signals intelligence had been monitoring German military communications in the days before the invasion. Intercepts revealed the mobilization of SS units near the Polish border in patterns inconsistent with defensive postures. Post-war declassification showed that British intelligence assessed the border incidents as likely fabricated within days of their occurrence, though this assessment was not made public at the time.",
+      "date": "1939-09-03",
+      "likelihoodRatios": { "h1-polish-attack": 0.1, "h2-ss-false-flag": 0.9 },
+      "sourceReliability": 0.8,
+      "wasClassified": true,
+      "declassifiedDate": "1970",
+      "linkedNodeIds": ["n13-actor-british-intel", "n2-event-operation-himmler", "n9-claim-ss-operation"]
+    },
+    {
+      "id": "e7-german-confessions",
+      "label": "Post-war confessions and testimony from additional SS participants",
+      "description": "Beyond Naujocks, several other participants and witnesses provided testimony during denazification proceedings and war crimes trials. SS-Obersturmbannführer Otto Rasch and other SD officers confirmed the existence of Operation Himmler. Gestapo chief Heinrich Müller had been responsible for procuring the concentration camp prisoners used as 'Konserve.' These corroborating testimonies from multiple independent sources reinforced the false-flag account.",
+      "date": "1946-03-01",
+      "likelihoodRatios": { "h1-polish-attack": 0.03, "h2-ss-false-flag": 0.95 },
+      "sourceReliability": 0.85,
+      "wasClassified": false,
+      "linkedNodeIds": ["n3-event-nuremberg", "n9-claim-ss-operation", "n5-actor-naujocks"]
+    },
+    {
+      "id": "e8-hitler-reichstag-speech",
+      "label": "Hitler's Reichstag speech citing border attacks (Sep 1, 1939)",
+      "description": "In his address to the Reichstag on the morning of September 1, 1939, Hitler declared that Germany had been attacked by Poland, citing the Gleiwitz incident and other staged border provocations. He stated 'since 5:45 AM we have been returning fire' — framing the full-scale invasion as a defensive response. The speech reveals the premeditated function of the false-flag: to manufacture casus belli for public and international consumption.",
+      "date": "1939-09-01",
+      "likelihoodRatios": { "h1-polish-attack": 0.2, "h2-ss-false-flag": 0.85 },
+      "sourceReliability": 0.6,
+      "wasClassified": false,
+      "linkedNodeIds": ["n14-actor-hitler", "n8-claim-polish-attack", "n1-event-broadcast"]
+    },
+    {
+      "id": "e9-polish-government-denial",
+      "label": "Polish government categorical denial of involvement",
+      "description": "The Polish government immediately and categorically denied any involvement in attacks on German border installations. Polish military records showed no orders for cross-border operations, and the Polish Army was in defensive positions preparing for the anticipated German invasion. No Polish military unit was stationed near Gleiwitz or had any operational reason to attack a radio station.",
+      "date": "1939-09-01",
+      "likelihoodRatios": { "h1-polish-attack": 0.15, "h2-ss-false-flag": 0.85 },
+      "sourceReliability": 0.8,
+      "wasClassified": false,
+      "linkedNodeIds": ["n15-actor-polish-gov", "n8-claim-polish-attack", "n9-claim-ss-operation"]
+    }
+  ],
+  "nodes": [
+    { "id": "n1-event-broadcast", "type": "event", "label": "SS operatives seize Gleiwitz radio station and broadcast fabricated message (Aug 31, 1939)", "description": "Naujocks and his SD team stormed the Gleiwitz radio station at approximately 8:00 PM, overpowered the staff, and broadcast a short anti-German message in Polish to simulate a Polish attack.", "date": "1939-08-31", "confidence": 0.99, "metadata": {}, "caseStudyId": "gleiwitz-incident" },
+    { "id": "n2-event-operation-himmler", "type": "event", "label": "Operation Himmler — coordinated false-flag attacks along Polish border", "description": "A series of staged incidents at German border posts, including Gleiwitz, Hochlinden customs post, and the Pitschen forestry station, all executed on August 31, 1939 to fabricate evidence of Polish aggression.", "date": "1939-08-31", "confidence": 0.99, "metadata": {}, "caseStudyId": "gleiwitz-incident" },
+    { "id": "n3-event-nuremberg", "type": "event", "label": "Nuremberg Trials — Naujocks testifies about Gleiwitz (1945-1946)", "description": "Alfred Naujocks provides a sworn affidavit detailing the false-flag operation at Gleiwitz, exposing the Nazi fabrication before the International Military Tribunal.", "date": "1945-11-20", "confidence": 1.0, "metadata": {}, "caseStudyId": "gleiwitz-incident" },
+    { "id": "n4-actor-nazi-press", "type": "actor", "label": "Nazi state media (DNB, Völkischer Beobachter)", "description": "The Nazi propaganda apparatus that broadcast and published fabricated accounts of Polish aggression at Gleiwitz and other border sites.", "date": "1939-09-01", "confidence": 1.0, "metadata": { "role": "State propaganda apparatus" }, "caseStudyId": "gleiwitz-incident" },
+    { "id": "n5-actor-naujocks", "type": "actor", "label": "Alfred Naujocks (SS-Sturmbannführer)", "description": "The SD operative who led the assault team at Gleiwitz. He later surrendered to U.S. forces and provided key testimony at Nuremberg.", "date": "1939-08-31", "confidence": 1.0, "metadata": { "role": "Operation leader and post-war witness" }, "caseStudyId": "gleiwitz-incident" },
+    { "id": "n6-actor-heydrich", "type": "actor", "label": "Reinhard Heydrich (Chief of RSHA)", "description": "Head of the Reich Main Security Office who directly ordered Naujocks to carry out the Gleiwitz operation and coordinated the broader Operation Himmler false-flag campaign.", "date": "1939-08-31", "confidence": 0.99, "metadata": { "role": "Operation commander" }, "caseStudyId": "gleiwitz-incident" },
+    { "id": "n7-actor-himmler", "type": "actor", "label": "Heinrich Himmler (Reichsführer-SS)", "description": "Head of the SS who authorized Operation Himmler — the umbrella plan for coordinated false-flag border provocations.", "date": "1939-08-31", "confidence": 0.99, "metadata": { "role": "Operation authorizer" }, "caseStudyId": "gleiwitz-incident" },
+    { "id": "n8-claim-polish-attack", "type": "claim", "label": "Polish partisans attacked the Gleiwitz radio station", "description": "The fabricated Nazi claim that irregular Polish forces stormed the German radio transmitter at Gleiwitz, used to justify the invasion of Poland.", "date": "1939-09-01", "confidence": 0.01, "metadata": {}, "caseStudyId": "gleiwitz-incident" },
+    { "id": "n9-claim-ss-operation", "type": "claim", "label": "The SS staged the Gleiwitz attack as a false-flag operation", "description": "The established historical truth that the entire Gleiwitz incident was an SS operation designed to fabricate a casus belli for invading Poland.", "date": "1945-11-20", "confidence": 0.99, "metadata": {}, "caseStudyId": "gleiwitz-incident" },
+    { "id": "n10-evidence-documents", "type": "evidence", "label": "Captured Operation Himmler planning documents", "description": "German military and SD documents captured by Allied forces outlining the false-flag operations along the Polish border.", "date": "1945-06-01", "confidence": 0.98, "metadata": {}, "caseStudyId": "gleiwitz-incident" },
+    { "id": "n11-evidence-forensic", "type": "evidence", "label": "Forensic evidence — concentration camp victims in Polish uniforms", "description": "Physical evidence that the bodies left at the scene were concentration camp prisoners, not Polish soldiers, identified through post-war testimony and forensic analysis.", "date": "1945-11-20", "confidence": 0.95, "metadata": {}, "caseStudyId": "gleiwitz-incident" },
+    { "id": "n12-actor-intl-press", "type": "actor", "label": "International press (AP, Reuters, foreign correspondents)", "description": "Neutral and Allied press outlets that expressed skepticism about the German claims from the outset.", "date": "1939-09-02", "confidence": 1.0, "metadata": { "role": "Independent press" }, "caseStudyId": "gleiwitz-incident" },
+    { "id": "n13-actor-british-intel", "type": "actor", "label": "British signals intelligence", "description": "British intelligence services that intercepted German communications revealing the staged nature of the border incidents.", "date": "1939-09-03", "confidence": 0.85, "metadata": { "role": "Allied intelligence" }, "caseStudyId": "gleiwitz-incident" },
+    { "id": "n14-actor-hitler", "type": "actor", "label": "Adolf Hitler", "description": "Führer who cited the fabricated border incidents in his Reichstag speech to justify the invasion of Poland as a defensive action.", "date": "1939-09-01", "confidence": 1.0, "metadata": { "role": "Head of state, invasion authorizer" }, "caseStudyId": "gleiwitz-incident" },
+    { "id": "n15-actor-polish-gov", "type": "actor", "label": "Polish government", "description": "The government of Poland which categorically denied any involvement in attacks on German territory and was the target of the false-flag provocation.", "date": "1939-09-01", "confidence": 1.0, "metadata": { "role": "Target of false-flag operation" }, "caseStudyId": "gleiwitz-incident" }
+  ],
+  "edges": [
+    { "id": "e-1", "source": "n6-actor-heydrich", "target": "n1-event-broadcast", "type": "fabricates", "weight": 0.95, "date": "1939-08-31", "metadata": { "detail": "Heydrich ordered Naujocks to stage the attack on the Gleiwitz radio station" } },
+    { "id": "e-2", "source": "n4-actor-nazi-press", "target": "n8-claim-polish-attack", "type": "claims", "weight": 0.9, "date": "1939-09-01", "metadata": { "detail": "Nazi state media broadcast fabricated reports of a Polish attack" } },
+    { "id": "e-3", "source": "n8-claim-polish-attack", "target": "n9-claim-ss-operation", "type": "contradicts", "weight": 1.0, "metadata": {} },
+    { "id": "e-4", "source": "n7-actor-himmler", "target": "n2-event-operation-himmler", "type": "fabricates", "weight": 0.95, "date": "1939-08-31", "metadata": { "detail": "Himmler authorized the coordinated false-flag border provocations" } },
+    { "id": "e-5", "source": "n14-actor-hitler", "target": "n8-claim-polish-attack", "type": "benefits", "weight": 0.95, "date": "1939-09-01", "metadata": { "detail": "Hitler exploited the fabricated incidents in his Reichstag speech to justify invasion" } },
+    { "id": "e-6", "source": "n5-actor-naujocks", "target": "n9-claim-ss-operation", "type": "claims", "weight": 0.95, "date": "1945-11-20", "metadata": { "detail": "Naujocks testified at Nuremberg that he led the false-flag operation on Heydrich's orders" } },
+    { "id": "e-7", "source": "n10-evidence-documents", "target": "n9-claim-ss-operation", "type": "cites", "weight": 0.98, "date": "1945-06-01", "metadata": {} },
+    { "id": "e-8", "source": "n11-evidence-forensic", "target": "n8-claim-polish-attack", "type": "contradicts", "weight": 0.95, "date": "1945-11-20", "metadata": { "detail": "Forensic evidence proved the 'Polish attackers' were concentration camp prisoners" } },
+    { "id": "e-9", "source": "n7-actor-himmler", "target": "n11-evidence-forensic", "type": "suppresses", "weight": 0.9, "date": "1939-08-31", "metadata": { "detail": "SS procured concentration camp prisoners and disguised them as Polish soldiers to fabricate physical evidence" } },
+    { "id": "e-10", "source": "n12-actor-intl-press", "target": "n8-claim-polish-attack", "type": "contradicts", "weight": 0.7, "date": "1939-09-02", "metadata": { "detail": "International press expressed skepticism about the timing and circumstances of the alleged Polish attacks" } },
+    { "id": "e-11", "source": "n13-actor-british-intel", "target": "n2-event-operation-himmler", "type": "cites", "weight": 0.8, "date": "1939-09-03", "metadata": { "detail": "British signals intelligence intercepted communications revealing the staged nature of border incidents" } },
+    { "id": "e-12", "source": "n1-event-broadcast", "target": "n3-event-nuremberg", "type": "precedes", "weight": 1.0, "date": "1939-08-31", "metadata": {} },
+    { "id": "e-13", "source": "n4-actor-nazi-press", "target": "n15-actor-polish-gov", "type": "suppresses", "weight": 0.85, "date": "1939-09-01", "metadata": { "detail": "Nazi propaganda drowned out Polish denials and prevented neutral assessment of the border incidents" } }
+  ],
+  "causalFactors": [
+    { "id": "cf1", "type": "power_change", "label": "Hitler's decision to invade Poland requires a manufactured casus belli", "date": "1939-08-31" },
+    { "id": "cf2", "type": "institutional", "label": "SS/SD apparatus capable of executing coordinated covert false-flag operations", "date": "1939-08-31" },
+    { "id": "cf3", "type": "evidence_action", "label": "Concentration camp prisoners used as fabricated physical evidence ('Konserve')", "date": "1939-08-31" },
+    { "id": "cf4", "type": "narrative_change", "label": "Nazi propaganda monopoly controls domestic narrative; international skepticism has no effect", "date": "1939-09-01" },
+    { "id": "cf5", "type": "power_change", "label": "Allied victory and capture of German documents and personnel enables exposure", "date": "1945-05-08" },
+    { "id": "cf6", "type": "evidence_action", "label": "Naujocks testimony and captured documents expose the operation at Nuremberg", "date": "1945-11-20" }
+  ],
+  "causalLinks": [
+    { "from": "cf1", "to": "cf2", "mechanism": "Hitler's war plans required a pretext for aggression; Heydrich and the SD were tasked with fabricating border incidents to justify the invasion as a defensive response", "strength": 0.95 },
+    { "from": "cf2", "to": "cf3", "mechanism": "The SS apparatus procured concentration camp prisoners through Gestapo chief Heinrich Müller and staged them as Polish casualties to create convincing physical evidence", "strength": 0.9 },
+    { "from": "cf3", "to": "cf4", "mechanism": "The staged evidence and Nazi media monopoly allowed the regime to control the domestic narrative completely, while the rapid onset of war prevented independent investigation", "strength": 0.85 },
+    { "from": "cf4", "to": "cf5", "mechanism": "The wartime propaganda narrative persisted unchallenged in Germany until the Allied military victory brought access to captured documents and surviving perpetrators", "strength": 0.9, "timelag": "6 years" },
+    { "from": "cf5", "to": "cf6", "mechanism": "Naujocks's surrender and the capture of Operation Himmler documents provided the evidentiary basis for exposing the false-flag at Nuremberg", "strength": 0.95 }
+  ],
+  "timeSlices": [
+    {
+      "date": "1939-08-31",
+      "label": "The operation is executed",
+      "description": "On the evening of August 31, Naujocks and his SD team seize the Gleiwitz radio station, broadcast a fabricated Polish-language message, and leave drugged concentration camp prisoners in Polish uniforms as 'evidence.' Simultaneous false-flag attacks occur at other border sites under Operation Himmler.",
+      "activeNodeIds": ["n1-event-broadcast", "n2-event-operation-himmler", "n5-actor-naujocks", "n6-actor-heydrich", "n7-actor-himmler"],
+      "activeEdgeIds": ["e-1", "e-4", "e-9"]
+    },
+    {
+      "date": "1939-09-02",
+      "label": "Nazi propaganda narrative established; invasion begins",
+      "description": "Hitler cites the border incidents in his Reichstag speech. Nazi media broadcasts the fabricated Polish attack narrative. Germany invades Poland. International press expresses skepticism but the war overtakes the story. Poland categorically denies involvement.",
+      "activeNodeIds": ["n1-event-broadcast", "n2-event-operation-himmler", "n4-actor-nazi-press", "n5-actor-naujocks", "n6-actor-heydrich", "n7-actor-himmler", "n8-claim-polish-attack", "n12-actor-intl-press", "n14-actor-hitler", "n15-actor-polish-gov"],
+      "activeEdgeIds": ["e-1", "e-2", "e-4", "e-5", "e-9", "e-10", "e-13"],
+      "narrativeShift": "The Nazi propaganda narrative dominates domestically. International skepticism exists but is overtaken by the reality of full-scale war."
+    },
+    {
+      "date": "1945-11-21",
+      "label": "Nuremberg Trials expose the false-flag operation",
+      "description": "Naujocks provides his sworn affidavit. Captured Operation Himmler documents are entered into evidence. The full scope of the fabrication is revealed — the staged broadcast, the 'Konserve' victims, the coordinated border provocations. The Nazi casus belli is definitively exposed as a manufactured lie.",
+      "activeNodeIds": ["n1-event-broadcast", "n2-event-operation-himmler", "n3-event-nuremberg", "n4-actor-nazi-press", "n5-actor-naujocks", "n6-actor-heydrich", "n7-actor-himmler", "n8-claim-polish-attack", "n9-claim-ss-operation", "n10-evidence-documents", "n11-evidence-forensic", "n13-actor-british-intel", "n14-actor-hitler", "n15-actor-polish-gov"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13"],
+      "narrativeShift": "The false-flag is fully exposed. Naujocks's testimony and captured documents establish the Gleiwitz incident as one of history's most consequential fabrications — a manufactured pretext for a war that killed tens of millions."
+    }
+  ]
+}

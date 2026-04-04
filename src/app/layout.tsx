@@ -42,6 +42,9 @@ export default function RootLayout({
               <a href="/challenge" className="hover:opacity-80 transition-opacity font-bold" style={{ color: '#e87b35' }}>
                 Evidence Discovery
               </a>
+              <a href="/validation" className="hover:opacity-80 transition-opacity" style={{ color: '#6b6b6b' }}>
+                Validation
+              </a>
               <a href="/help" className="hover:opacity-80 transition-opacity" style={{ color: '#6b6b6b' }}>
                 Help
               </a>

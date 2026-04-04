@@ -2,6 +2,9 @@
   "id": "dreyfus-affair",
   "title": "The Dreyfus Affair",
   "period": "1894-1906",
+  "revelationDate": "1898-01-13",
+  "wasOverturned": true,
+  "status": "overturned",
   "summary": "In 1894, French Army Captain Alfred Dreyfus, a Jewish artillery officer, was wrongly convicted of treason for allegedly passing military secrets to Germany. The real spy was Major Ferdinand Walsin Esterhazy. The French military fabricated evidence, suppressed exculpatory findings, and forged documents to maintain the conviction. Emile Zola's open letter 'J'accuse...!' (1898) brought massive public attention. After years of political turmoil that split France, Dreyfus was fully exonerated by the Court of Cassation in 1906. The affair exposed deep antisemitism in French military and political institutions.",
   "hypotheses": [
     {

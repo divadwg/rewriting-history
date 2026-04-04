@@ -2,6 +2,9 @@
   "id": "bengal-famine",
   "title": "Bengal Famine of 1943",
   "period": "1943-1981",
+  "revelationDate": "1981-01-01",
+  "wasOverturned": true,
+  "status": "overturned",
   "summary": "The Bengal famine of 1943 killed an estimated 2-3 million people in British India. The official colonial narrative attributed the catastrophe to natural causes — a cyclone, flooding, and rice crop disease. Decades of scholarship, most notably Amartya Sen's 1981 entitlement analysis, demonstrated that the famine was primarily caused by policy failures: wartime inflation, speculative hoarding, rice export policies, the military 'denial policy' that destroyed food stocks and boats in coastal Bengal, and the British War Cabinet's repeated rejection of relief shipments. Declassified documents reveal Churchill was informed of mass starvation and dismissed requests for aid.",
   "hypotheses": [
     {

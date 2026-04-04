@@ -1,0 +1,212 @@
+{
+  "id": "uyghur-camps",
+  "title": "Xinjiang Uyghur Detention Camps",
+  "period": "2017-2024",
+  "wasOverturned": false,
+  "status": "contested",
+  "summary": "Since 2017, China has operated a vast network of detention facilities across the Xinjiang Uyghur Autonomous Region, holding an estimated 1 to 1.8 million Uyghurs and other Turkic Muslims. China's official position characterizes these as voluntary 'vocational education and training centers' established for counter-terrorism and de-radicalization. Extensive independent evidence — including satellite imagery analysis by ASPI, leaked internal documents (the 'China Cables' and 'Xinjiang Police Files'), survivor testimonies, demographic research showing steep birth rate declines, forced labor documentation in global supply chains, and the 2022 UN OHCHR assessment — documents a system of mass arbitrary detention, cultural suppression, forced labor, surveillance, forced sterilization, and torture. The US, UK, Canada, Netherlands, and other governments have formally declared the situation a genocide. China denies all allegations, has blocked independent investigation, and claimed the facilities were closed by 2019, though satellite evidence shows continued construction and operation.",
+  "hypotheses": [
+    {
+      "id": "h1-vocational-training",
+      "caseStudyId": "uyghur-camps",
+      "label": "Voluntary vocational training centers for counter-terrorism and de-radicalization",
+      "description": "The official Chinese government position: the facilities are voluntary vocational education and training centers established after a series of terrorist incidents, designed to provide job skills and Chinese language instruction, and combat religious extremism. Participants attend voluntarily and have since 'graduated.'",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": true
+    },
+    {
+      "id": "h2-mass-detention",
+      "caseStudyId": "uyghur-camps",
+      "label": "Systematic mass detention, forced labor, and cultural genocide of Uyghurs",
+      "description": "China has constructed and operated a network of extrajudicial internment camps to detain Uyghurs and other Turkic Muslims en masse without trial, subjecting detainees to political indoctrination, forced labor, torture, forced sterilization, family separation, and systematic erasure of Uyghur cultural and religious identity.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": false
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1-aspi-satellite",
+      "label": "ASPI satellite imagery identifies 380+ detention facilities",
+      "description": "The Australian Strategic Policy Institute's Xinjiang Data Project used satellite imagery to identify and document over 380 suspected detention facilities across Xinjiang, many newly constructed or massively expanded between 2017 and 2020. Facilities exhibit prison-like features: high walls, watchtowers, razor wire, internal barriers, and security infrastructure inconsistent with schools or vocational centers.",
+      "date": "2020-09-24",
+      "likelihoodRatios": { "h1-vocational-training": 0.05, "h2-mass-detention": 0.95 },
+      "sourceReliability": 0.92,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-claim-vocational", "n3-evidence-satellite", "n5-actor-aspi"]
+    },
+    {
+      "id": "e2-china-cables",
+      "label": "China Cables leaked internal directives (2019)",
+      "description": "In November 2019, the International Consortium of Investigative Journalists published leaked Chinese government documents including a nine-page operations manual for running the camps. The documents instruct staff to prevent escapes, maintain total secrecy, implement a points-based behavior system, enforce Mandarin-only rules, and prescribe 'double-lock' security. They directly contradict the 'voluntary training' narrative by detailing forced confinement protocols.",
+      "date": "2019-11-24",
+      "likelihoodRatios": { "h1-vocational-training": 0.03, "h2-mass-detention": 0.97 },
+      "sourceReliability": 0.93,
+      "wasClassified": true,
+      "declassifiedDate": "2019",
+      "linkedNodeIds": ["n2-evidence-cables", "n1-claim-vocational", "n6-actor-ccp"]
+    },
+    {
+      "id": "e3-xinjiang-police-files",
+      "label": "Xinjiang Police Files (2022)",
+      "description": "In May 2022, a massive cache of hacked files from Xinjiang police computer systems was published, containing thousands of photographs of detained Uyghurs (including elderly people and children as young as 15), internal speeches by senior officials ordering guards to shoot escapees, and documentation of systematic protocols for mass detention. The files provided the first photographic evidence from inside the facilities and showed officials explicitly discussing the detention campaign's scope.",
+      "date": "2022-05-24",
+      "likelihoodRatios": { "h1-vocational-training": 0.02, "h2-mass-detention": 0.98 },
+      "sourceReliability": 0.90,
+      "wasClassified": true,
+      "declassifiedDate": "2022",
+      "linkedNodeIds": ["n4-evidence-police-files", "n1-claim-vocational", "n7-narrative-voluntary"]
+    },
+    {
+      "id": "e4-survivor-testimony",
+      "label": "Consistent survivor and witness testimony from former detainees",
+      "description": "Hundreds of former detainees who escaped China have provided testimony to journalists, researchers, tribunals (including the Uyghur Tribunal in London, 2021), and governments. Accounts consistently describe arbitrary detention without charges, political indoctrination sessions, forced renunciation of Islamic faith, physical and sexual abuse, forced medication, and extended confinement. The consistency across independently obtained testimonies from different facilities strengthens their collective reliability.",
+      "date": "2018-06-01",
+      "likelihoodRatios": { "h1-vocational-training": 0.05, "h2-mass-detention": 0.95 },
+      "sourceReliability": 0.80,
+      "wasClassified": false,
+      "linkedNodeIds": ["n8-source-survivors", "n9-event-uyghur-tribunal"]
+    },
+    {
+      "id": "e5-zenz-demographic",
+      "label": "Adrian Zenz's demographic and sterilization research",
+      "description": "Researcher Adrian Zenz at the Victims of Communism Memorial Foundation analyzed Chinese government statistics, procurement documents, and policy papers to document a campaign of birth suppression among Uyghurs. His research showed massive increases in IUD insertions and sterilization procedures in Xinjiang, government targets for reducing minority birth rates, and punitive enforcement of birth control policies. While China has attacked Zenz's credibility and affiliations, his core findings are derived from official Chinese data sources.",
+      "date": "2020-06-29",
+      "likelihoodRatios": { "h1-vocational-training": 0.05, "h2-mass-detention": 0.95 },
+      "sourceReliability": 0.78,
+      "wasClassified": false,
+      "linkedNodeIds": ["n10-source-zenz", "n11-evidence-birth-decline"]
+    },
+    {
+      "id": "e6-ohchr-report",
+      "label": "UN OHCHR Assessment of human rights concerns in Xinjiang (2022)",
+      "description": "In August 2022, outgoing UN High Commissioner for Human Rights Michelle Bachelet published the long-delayed OHCHR assessment, concluding that China's actions in Xinjiang 'may constitute international crimes, in particular crimes against humanity.' The report documented arbitrary detention, torture, forced medical treatment, sexual violence, forced labor, and severe restrictions on religious and cultural identity. China had exerted enormous diplomatic pressure to suppress the report.",
+      "date": "2022-08-31",
+      "likelihoodRatios": { "h1-vocational-training": 0.04, "h2-mass-detention": 0.96 },
+      "sourceReliability": 0.91,
+      "wasClassified": false,
+      "linkedNodeIds": ["n12-evidence-ohchr", "n6-actor-ccp", "n13-narrative-genocide"]
+    },
+    {
+      "id": "e7-state-media-counter",
+      "label": "Chinese state media counter-narrative and curated facility tours",
+      "description": "Chinese state media (CGTN, Xinhua, Global Times) produced documentaries and articles portraying the facilities as benign training centers, featuring smiling 'students' learning job skills and Chinese language. Foreign journalists and diplomats were given tightly controlled, scripted tours. The narrative relied entirely on state-controlled sources with no independent verification permitted. Former detainees identified staged elements. The counter-narrative was concentrated through a small number of state-controlled outlets with direct benefit conflicts.",
+      "date": "2019-01-15",
+      "likelihoodRatios": { "h1-vocational-training": 0.55, "h2-mass-detention": 0.45 },
+      "sourceReliability": 0.15,
+      "wasClassified": false,
+      "linkedNodeIds": ["n7-narrative-voluntary", "n6-actor-ccp", "n14-source-state-media"]
+    },
+    {
+      "id": "e8-forced-labor",
+      "label": "Forced labor evidence in global supply chains",
+      "description": "Multiple investigations by ASPI, Sheffield Hallam University, and others documented the transfer of Uyghur workers to factories across China under coercive government programs. Workers were subjected to surveillance, political indoctrination, restricted movement, and separation from families. Supply chain audits linked forced Uyghur labor to major global brands in cotton, polysilicon, tomatoes, and electronics manufacturing. The US enacted the Uyghur Forced Labor Prevention Act (2021) creating a rebuttable presumption that all goods from Xinjiang involve forced labor.",
+      "date": "2020-03-01",
+      "likelihoodRatios": { "h1-vocational-training": 0.08, "h2-mass-detention": 0.92 },
+      "sourceReliability": 0.85,
+      "wasClassified": false,
+      "linkedNodeIds": ["n5-actor-aspi", "n15-evidence-forced-labor"]
+    },
+    {
+      "id": "e9-birth-rate-data",
+      "label": "Uyghur birth rate decline of 50-84% in Xinjiang (2015-2018)",
+      "description": "Official Chinese government statistical yearbooks show birth rates in predominantly Uyghur regions of Xinjiang fell by 50-84% between 2015 and 2018, far exceeding any decline attributable to voluntary family planning. Hotan and Kashgar prefectures saw the most extreme drops. In 2019, Xinjiang accounted for 80% of all new IUD placements in China despite having only 1.8% of the population. These figures come from China's own published data.",
+      "date": "2020-06-29",
+      "likelihoodRatios": { "h1-vocational-training": 0.03, "h2-mass-detention": 0.97 },
+      "sourceReliability": 0.88,
+      "wasClassified": false,
+      "linkedNodeIds": ["n11-evidence-birth-decline", "n10-source-zenz"]
+    },
+    {
+      "id": "e10-investigation-blocked",
+      "label": "China blocks independent investigation and access",
+      "description": "China has systematically prevented independent investigation of conditions in Xinjiang. Foreign journalists are surveilled, harassed, and expelled. Academic researchers face threats and sanctions. China delayed the OHCHR report for years through diplomatic pressure. The UN High Commissioner's 2022 visit was heavily restricted and scripted. China rejected a proposed UN Human Rights Council debate on the OHCHR findings. Uyghur diaspora members report their families in Xinjiang are threatened when they speak publicly. The refusal to permit independent access, combined with active suppression of evidence, is structurally inconsistent with the 'voluntary training' claim.",
+      "date": "2018-01-01",
+      "likelihoodRatios": { "h1-vocational-training": 0.08, "h2-mass-detention": 0.92 },
+      "sourceReliability": 0.88,
+      "wasClassified": false,
+      "linkedNodeIds": ["n6-actor-ccp", "n7-narrative-voluntary", "n12-evidence-ohchr"]
+    }
+  ],
+  "nodes": [
+    { "id": "n1-claim-vocational", "type": "claim", "label": "Facilities are voluntary vocational training centers", "description": "Core Chinese government claim that the detention facilities are benign educational institutions for counter-terrorism", "date": "2018-10-09", "confidence": 0.04, "metadata": {}, "caseStudyId": "uyghur-camps" },
+    { "id": "n2-evidence-cables", "type": "evidence", "label": "China Cables: leaked internal camp directives", "description": "Leaked classified documents detailing forced confinement protocols, escape prevention measures, and political indoctrination requirements", "date": "2019-11-24", "confidence": 0.93, "metadata": {}, "caseStudyId": "uyghur-camps" },
+    { "id": "n3-evidence-satellite", "type": "evidence", "label": "Satellite imagery of 380+ prison-like facilities", "description": "ASPI documentation of purpose-built detention infrastructure with watchtowers, razor wire, and high walls", "date": "2020-09-24", "confidence": 0.92, "metadata": {}, "caseStudyId": "uyghur-camps" },
+    { "id": "n4-evidence-police-files", "type": "evidence", "label": "Xinjiang Police Files: photographs and internal speeches", "description": "Hacked police data containing detainee photographs, shoot-to-kill orders, and operational documentation of mass detention", "date": "2022-05-24", "confidence": 0.90, "metadata": {}, "caseStudyId": "uyghur-camps" },
+    { "id": "n5-actor-aspi", "type": "actor", "label": "Australian Strategic Policy Institute (ASPI)", "description": "Think tank that conducted extensive satellite imagery analysis and supply chain investigations of Xinjiang", "date": "2018-11-01", "confidence": 1.0, "metadata": { "role": "Research institution" }, "caseStudyId": "uyghur-camps" },
+    { "id": "n6-actor-ccp", "type": "actor", "label": "Chinese Communist Party / PRC Government", "description": "State actor operating the detention system and controlling the official counter-narrative", "date": "2017-01-01", "confidence": 1.0, "metadata": { "role": "State authority" }, "caseStudyId": "uyghur-camps" },
+    { "id": "n7-narrative-voluntary", "type": "narrative", "label": "Voluntary de-radicalization narrative", "description": "China's official framing: facilities are voluntary, participants are grateful, program is a counter-terrorism success", "date": "2018-10-09", "confidence": 0.04, "metadata": {}, "caseStudyId": "uyghur-camps" },
+    { "id": "n8-source-survivors", "type": "source", "label": "Former detainee testimonies", "description": "Hundreds of survivor accounts describing arbitrary detention, indoctrination, abuse, and forced labor across multiple facilities", "date": "2018-01-01", "confidence": 0.80, "metadata": {}, "caseStudyId": "uyghur-camps" },
+    { "id": "n9-event-uyghur-tribunal", "type": "event", "label": "Uyghur Tribunal judgment (December 2021)", "description": "Independent London-based tribunal chaired by Sir Geoffrey Nice QC concluded that genocide had been committed against Uyghurs through birth prevention measures", "date": "2021-12-09", "confidence": 1.0, "metadata": {}, "caseStudyId": "uyghur-camps" },
+    { "id": "n10-source-zenz", "type": "source", "label": "Adrian Zenz (researcher)", "description": "Anthropologist whose demographic and policy document analysis documented birth suppression and detention scale, using primarily Chinese government data sources", "date": "2018-01-01", "confidence": 0.78, "metadata": { "actor": "Adrian Zenz" }, "caseStudyId": "uyghur-camps" },
+    { "id": "n11-evidence-birth-decline", "type": "evidence", "label": "50-84% Uyghur birth rate decline (official Chinese statistics)", "description": "China's own published data showing extreme birth rate declines in Uyghur-majority regions and disproportionate IUD/sterilization rates", "date": "2020-06-29", "confidence": 0.90, "metadata": {}, "caseStudyId": "uyghur-camps" },
+    { "id": "n12-evidence-ohchr", "type": "evidence", "label": "OHCHR 2022 assessment: possible crimes against humanity", "description": "UN human rights office report concluding serious human rights violations that may constitute crimes against humanity", "date": "2022-08-31", "confidence": 0.91, "metadata": {}, "caseStudyId": "uyghur-camps" },
+    { "id": "n13-narrative-genocide", "type": "narrative", "label": "Genocide determination by multiple governments", "description": "The US, UK, Canada, Netherlands, and others formally declared China's actions in Xinjiang constitute genocide", "date": "2021-01-19", "confidence": 0.85, "metadata": {}, "caseStudyId": "uyghur-camps" },
+    { "id": "n14-source-state-media", "type": "source", "label": "Chinese state media (CGTN, Xinhua, Global Times)", "description": "State-controlled media outlets that produced the counter-narrative content; concentrated sourcing with direct benefit conflict", "date": "2019-01-01", "confidence": 0.15, "metadata": { "actor": "PRC state media" }, "caseStudyId": "uyghur-camps" },
+    { "id": "n15-evidence-forced-labor", "type": "evidence", "label": "Forced labor in global supply chains", "description": "Documented coercive labor transfer programs moving Uyghurs to factories under surveillance, linked to cotton, polysilicon, and electronics sectors", "date": "2020-03-01", "confidence": 0.85, "metadata": {}, "caseStudyId": "uyghur-camps" }
+  ],
+  "edges": [
+    { "id": "e-1", "source": "n6-actor-ccp", "target": "n1-claim-vocational", "type": "claims", "weight": 0.95, "date": "2018-10-09", "metadata": { "note": "Official state claim, made after international exposure of facilities" } },
+    { "id": "e-2", "source": "n2-evidence-cables", "target": "n1-claim-vocational", "type": "contradicts", "weight": 0.97, "date": "2019-11-24", "metadata": { "note": "Internal directives describe forced confinement, not voluntary education" } },
+    { "id": "e-3", "source": "n3-evidence-satellite", "target": "n1-claim-vocational", "type": "contradicts", "weight": 0.92, "metadata": { "note": "Prison-like architecture inconsistent with schools" } },
+    { "id": "e-4", "source": "n4-evidence-police-files", "target": "n7-narrative-voluntary", "type": "contradicts", "weight": 0.96, "date": "2022-05-24", "metadata": { "note": "Shoot-to-kill orders and detainee photos disprove voluntary attendance" } },
+    { "id": "e-5", "source": "n14-source-state-media", "target": "n7-narrative-voluntary", "type": "cites", "weight": 0.90, "metadata": { "note": "Counter-narrative sourced entirely from state-controlled outlets with direct benefit conflict" } },
+    { "id": "e-6", "source": "n6-actor-ccp", "target": "n8-source-survivors", "type": "suppresses", "weight": 0.85, "metadata": { "detail": "Threatening families of diaspora witnesses, detaining relatives who speak out" } },
+    { "id": "e-7", "source": "n6-actor-ccp", "target": "n12-evidence-ohchr", "type": "suppresses", "weight": 0.88, "date": "2022-08-31", "metadata": { "detail": "Years of diplomatic pressure to delay and suppress OHCHR report publication" } },
+    { "id": "e-8", "source": "n11-evidence-birth-decline", "target": "n1-claim-vocational", "type": "contradicts", "weight": 0.93, "metadata": { "note": "Forced sterilization and birth suppression unrelated to vocational training" } },
+    { "id": "e-9", "source": "n6-actor-ccp", "target": "n1-claim-vocational", "type": "benefits", "weight": 0.95, "metadata": { "note": "CCP is the sole beneficiary of the vocational training narrative being accepted" } },
+    { "id": "e-10", "source": "n15-evidence-forced-labor", "target": "n7-narrative-voluntary", "type": "contradicts", "weight": 0.88, "metadata": { "note": "Coercive labor transfers contradict voluntary participation claim" } },
+    { "id": "e-11", "source": "n10-source-zenz", "target": "n11-evidence-birth-decline", "type": "cites", "weight": 0.78, "metadata": { "note": "Zenz analyzed official Chinese statistical yearbook data" } },
+    { "id": "e-12", "source": "n6-actor-ccp", "target": "n10-source-zenz", "type": "suppresses", "weight": 0.70, "metadata": { "detail": "Sanctions, personal attacks, and disinformation campaign targeting Zenz's credibility" } },
+    { "id": "e-13", "source": "n12-evidence-ohchr", "target": "n13-narrative-genocide", "type": "cites", "weight": 0.85, "date": "2022-08-31", "metadata": { "note": "OHCHR findings supported genocide determinations by multiple governments" } }
+  ],
+  "causalFactors": [
+    { "id": "cf1", "type": "power_change", "label": "Xi Jinping consolidates power and prioritizes 'stability maintenance' in Xinjiang", "date": "2014-04-01" },
+    { "id": "cf2", "type": "institutional", "label": "Chen Quanguo appointed Xinjiang Party Secretary, imports Tibet security model", "date": "2016-08-29" },
+    { "id": "cf3", "type": "evidence_action", "label": "Mass construction of detention facilities accelerates across Xinjiang", "date": "2017-03-01" },
+    { "id": "cf4", "type": "narrative_change", "label": "International exposure forces China to acknowledge facilities, reframes as 'vocational training'", "date": "2018-10-09" },
+    { "id": "cf5", "type": "evidence_action", "label": "Leaked documents (China Cables, Police Files) provide internal evidence contradicting official narrative", "date": "2019-11-24" },
+    { "id": "cf6", "type": "narrative_change", "label": "OHCHR report and genocide declarations shift international consensus against China's position", "date": "2022-08-31" }
+  ],
+  "causalLinks": [
+    { "from": "cf1", "to": "cf2", "mechanism": "Xi's security-first approach to Xinjiang led to appointment of hardliner Chen Quanguo, who had built mass surveillance systems in Tibet", "strength": 0.90 },
+    { "from": "cf2", "to": "cf3", "mechanism": "Chen Quanguo's 'convenience police stations' and detention infrastructure scaled the Tibet model across Xinjiang's larger population", "strength": 0.92 },
+    { "from": "cf3", "to": "cf4", "mechanism": "Satellite imagery and early survivor accounts forced China to publicly acknowledge the facilities' existence, prompting the 'vocational training' reframing", "strength": 0.85 },
+    { "from": "cf4", "to": "cf5", "mechanism": "The gap between China's public narrative and internal operational reality created the conditions for leaks by insiders who saw the contradiction", "strength": 0.70 },
+    { "from": "cf5", "to": "cf6", "mechanism": "Accumulation of leaked internal evidence, survivor testimony, and independent research made the counter-narrative untenable for international bodies", "strength": 0.80, "timelag": "2-3 years" }
+  ],
+  "timeSlices": [
+    {
+      "date": "2018-01-01",
+      "label": "Early exposure and denial",
+      "description": "Satellite imagery and initial survivor accounts reveal the scale of detention. China initially denies the facilities exist. International reporting begins.",
+      "activeNodeIds": ["n1-claim-vocational", "n3-evidence-satellite", "n5-actor-aspi", "n6-actor-ccp", "n8-source-survivors"],
+      "activeEdgeIds": ["e-3", "e-6"]
+    },
+    {
+      "date": "2019-12-01",
+      "label": "China Cables and counter-narrative battle",
+      "description": "China acknowledges facilities but reframes them as vocational training. The China Cables leak exposes internal directives contradicting the official narrative. State media produces curated counter-programming. International pressure mounts.",
+      "activeNodeIds": ["n1-claim-vocational", "n2-evidence-cables", "n3-evidence-satellite", "n5-actor-aspi", "n6-actor-ccp", "n7-narrative-voluntary", "n8-source-survivors", "n10-source-zenz", "n14-source-state-media"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-5", "e-6", "e-9"],
+      "narrativeShift": "China shifts from denial to active counter-narrative. Leaked documents immediately undermine the new framing."
+    },
+    {
+      "date": "2021-06-01",
+      "label": "Genocide declarations and forced labor evidence",
+      "description": "Multiple governments formally declare genocide. Forced labor evidence leads to supply chain legislation. Demographic data confirms birth suppression campaign. China claims camps are closed while evidence shows continued operation.",
+      "activeNodeIds": ["n1-claim-vocational", "n2-evidence-cables", "n3-evidence-satellite", "n5-actor-aspi", "n6-actor-ccp", "n7-narrative-voluntary", "n8-source-survivors", "n9-event-uyghur-tribunal", "n10-source-zenz", "n11-evidence-birth-decline", "n13-narrative-genocide", "n14-source-state-media", "n15-evidence-forced-labor"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-5", "e-6", "e-8", "e-9", "e-10", "e-11", "e-12"],
+      "narrativeShift": "International consensus crystallizes around mass detention and cultural genocide. China's counter-narrative relies on increasingly isolated state media sourcing."
+    },
+    {
+      "date": "2022-09-01",
+      "label": "Xinjiang Police Files and OHCHR report",
+      "description": "The Xinjiang Police Files provide photographic evidence from inside the camps. The OHCHR publishes its assessment concluding possible crimes against humanity despite intense Chinese diplomatic pressure to suppress it. The evidentiary record becomes overwhelming.",
+      "activeNodeIds": ["n1-claim-vocational", "n2-evidence-cables", "n3-evidence-satellite", "n4-evidence-police-files", "n5-actor-aspi", "n6-actor-ccp", "n7-narrative-voluntary", "n8-source-survivors", "n9-event-uyghur-tribunal", "n10-source-zenz", "n11-evidence-birth-decline", "n12-evidence-ohchr", "n13-narrative-genocide", "n14-source-state-media", "n15-evidence-forced-labor"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13"],
+      "narrativeShift": "The OHCHR report and Police Files make the official counter-narrative structurally untenable. China's position is maintained only through diplomatic leverage, not evidentiary weight. The hallmarks of a fragile narrative are fully visible: concentrated sourcing, benefit conflicts, suppression of independent verification."
+    }
+  ]
+}

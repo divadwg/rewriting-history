@@ -310,5 +310,88 @@ function interpretScore(score: number): string {
   return 'Robust — the narrative is structurally sound. Evidence is diverse, independently sourced, and the conclusion is stable across assumptions.';
 }
 
+/**
+ * Pre-revelation analysis: compute fragility using only evidence
+ * available before the narrative was overturned.
+ *
+ * Filters evidence, nodes, edges, and causal factors by date,
+ * then runs the same fragility computation on the reduced case.
+ */
+export function preRevelationFragility(caseStudy: CaseStudy): FragilityScore | null {
+  if (!caseStudy.revelationDate) return null;
+
+  const cutoff = caseStudy.revelationDate;
+
+  // Filter evidence to only items dated before revelation
+  const preEvidence = caseStudy.evidence.filter(e => e.date <= cutoff);
+  if (preEvidence.length === 0) return null;
+
+  // Filter nodes: keep actors/sources (timeless), filter events/claims/evidence/narrative by date
+  const preNodes = caseStudy.nodes.filter(n => {
+    if (n.type === 'actor' || n.type === 'source') return true;
+    return n.date <= cutoff;
+  });
+  const preNodeIds = new Set(preNodes.map(n => n.id));
+
+  // Filter edges: only those where both source and target exist in pre-revelation nodes
+  const preEdges = caseStudy.edges.filter(e => {
+    if (e.date && e.date > cutoff) return false;
+    return preNodeIds.has(e.source) && preNodeIds.has(e.target);
+  });
+
+  // Filter causal factors by date
+  const preCausalFactors = caseStudy.causalFactors.filter(cf => cf.date <= cutoff);
+  const preCausalFactorIds = new Set(preCausalFactors.map(cf => cf.id));
+
+  // Filter causal links: both ends must exist
+  const preCausalLinks = caseStudy.causalLinks.filter(
+    cl => preCausalFactorIds.has(cl.from) && preCausalFactorIds.has(cl.to)
+  );
+
+  const preCaseStudy: CaseStudy = {
+    ...caseStudy,
+    evidence: preEvidence,
+    nodes: preNodes,
+    edges: preEdges,
+    causalFactors: preCausalFactors,
+    causalLinks: preCausalLinks,
+    timeSlices: caseStudy.timeSlices.filter(ts => ts.date <= cutoff),
+  };
+
+  return narrativeFragilityScore(preCaseStudy);
+}
+
+export interface ValidationResult {
+  caseId: string;
+  title: string;
+  status: string;
+  postRevelation: FragilityScore;
+  preRevelation: FragilityScore | null;
+  delta: number | null;
+  preRevelationDetected: boolean | null;
+}
+
+/**
+ * Run the full validation experiment across all case studies.
+ * For each overturned case: does the pre-revelation score still flag it as fragile?
+ */
+export function runValidation(cases: CaseStudy[]): ValidationResult[] {
+  return cases.map(cs => {
+    const post = narrativeFragilityScore(cs);
+    const pre = preRevelationFragility(cs);
+    const threshold = 0.30; // fragility > 30% = detected
+
+    return {
+      caseId: cs.id,
+      title: cs.title,
+      status: cs.status ?? (cs.wasOverturned ? 'overturned' : 'unknown'),
+      postRevelation: post,
+      preRevelation: pre,
+      delta: pre ? post.overall - pre.overall : null,
+      preRevelationDetected: pre ? pre.overall >= threshold : null,
+    };
+  });
+}
+
 // Re-export for convenience
 import type { Hypothesis } from '../types/graph';

@@ -81,6 +81,9 @@ export interface CaseStudy {
   causalFactors: CausalFactor[];
   causalLinks: CausalLink[];
   timeSlices: TimeSlice[];
+  revelationDate?: string;
+  wasOverturned?: boolean;
+  status?: 'overturned' | 'confirmed' | 'contested';
 }
 
 export interface TimeSlice {

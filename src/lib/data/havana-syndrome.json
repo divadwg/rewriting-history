@@ -1,0 +1,227 @@
+{
+  "id": "havana-syndrome",
+  "title": "Havana Syndrome",
+  "period": "2016-2024",
+  "wasOverturned": false,
+  "status": "contested",
+  "summary": "Beginning in late 2016, US diplomats and intelligence officers at the Havana embassy reported sudden, unexplained neurological symptoms: intense ear pressure, vertigo, headaches, cognitive difficulties, and a sensation of directed pressure. Over subsequent years, similar reports emerged from US personnel in China, Russia, Austria, and dozens of other countries, eventually totalling over 1,000 cases. Three competing explanations have been advanced: a covert directed-energy weapon program by a foreign adversary (likely Russia), mass psychogenic illness or functional neurological disorder, and a mix of environmental exposures and pre-existing medical conditions. The US intelligence community's 2023 assessment found no credible foreign adversary explanation for the vast majority of cases. A 2024 NIH study found no objective neurological differences in affected individuals. Investigative journalists found circumstantial links to Russian GRU Unit 29155. No consensus has been reached and the original Havana cohort remains unexplained.",
+  "hypotheses": [
+    {
+      "id": "h1-directed-energy",
+      "caseStudyId": "havana-syndrome",
+      "label": "Foreign adversary directed-energy weapon attack",
+      "description": "A foreign state actor, most likely Russia's GRU, used directed microwave or acoustic energy weapons to target US intelligence personnel, causing genuine neurological injury. This hypothesis is supported by the NAS report's finding that pulsed RF energy was the most plausible mechanism, investigative journalism linking GRU Unit 29155 to incident locations, and Cold War-era evidence of Soviet microwave weapons research.",
+      "prior": 0.33,
+      "posterior": 0.33,
+      "isOfficial": false
+    },
+    {
+      "id": "h2-psychogenic",
+      "caseStudyId": "havana-syndrome",
+      "label": "Mass psychogenic illness / functional neurological disorder",
+      "description": "The symptoms are real but arise from psychological and social mechanisms: anxiety, hypervigilance, stress, and nocebo effects spreading within a close-knit community of high-stress personnel in an adversarial environment. The global spread of cases following media coverage, the expansion far beyond plausible weapon range, and the 2024 NIH finding of no objective brain injury are consistent with this hypothesis.",
+      "prior": 0.33,
+      "posterior": 0.33,
+      "isOfficial": false
+    },
+    {
+      "id": "h3-environmental",
+      "caseStudyId": "havana-syndrome",
+      "label": "Environmental, medical, or mundane causes",
+      "description": "Symptoms reflect a mix of independent medical conditions, environmental exposures (organophosphate pesticides used extensively in Cuba against Zika-carrying mosquitoes), pre-existing conditions exacerbated by stress, and misidentified sounds such as the Indies short-tailed cricket. The 2023 IC assessment concluded most cases had no credible foreign adversary explanation and were attributable to pre-existing conditions or environmental factors.",
+      "prior": 0.34,
+      "posterior": 0.34,
+      "isOfficial": true
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1-initial-havana-cases",
+      "label": "Initial Havana embassy symptom cluster (2016-2017)",
+      "description": "Starting in late 2016, approximately 21 US Embassy personnel in Havana reported sudden onset symptoms including hearing loss, tinnitus, intense pressure in the ears or head, vertigo, and cognitive impairment. Symptoms often began at home or in hotel rooms, sometimes accompanied by a localized directional sound. The cluster's unusual presentation in a high-security diplomatic setting was the origin event of the entire phenomenon.",
+      "date": "2016-12-01",
+      "likelihoodRatios": { "h1-directed-energy": 0.7, "h2-psychogenic": 0.5, "h3-environmental": 0.45 },
+      "sourceReliability": 0.85,
+      "wasClassified": true,
+      "declassifiedDate": "2017",
+      "linkedNodeIds": ["n1-havana-cluster", "n5-actor-embassy-staff", "n13-claim-attack"]
+    },
+    {
+      "id": "e2-upenn-brain-study",
+      "label": "University of Pennsylvania brain imaging study (JAMA, 2018)",
+      "description": "A study of 21 affected Havana personnel published in JAMA found differences in white matter microstructure, brain volume, and functional connectivity compared to healthy controls, described as a 'new syndrome.' However, the study lacked a pre-exposure baseline, had no matched control group from the same environment, and was criticized for small sample size and methodological limitations. Its findings were later directly contradicted by the 2024 NIH study.",
+      "date": "2018-03-20",
+      "likelihoodRatios": { "h1-directed-energy": 0.6, "h2-psychogenic": 0.4, "h3-environmental": 0.45 },
+      "sourceReliability": 0.6,
+      "wasClassified": false,
+      "linkedNodeIds": ["n6-upenn-study", "n13-claim-attack", "n14-claim-brain-injury"]
+    },
+    {
+      "id": "e3-nas-report-2020",
+      "label": "National Academy of Sciences report suggesting pulsed microwave energy (2020)",
+      "description": "An NAS expert panel commissioned by the State Department concluded that 'directed, pulsed radio frequency (RF) energy' was the most plausible mechanism for the cases, citing consistency with the Frey effect (microwave auditory effect). The report stopped short of attributing responsibility and noted other explanations could not be ruled out. This was the most authoritative scientific statement supporting the energy weapon hypothesis.",
+      "date": "2020-12-05",
+      "likelihoodRatios": { "h1-directed-energy": 0.75, "h2-psychogenic": 0.3, "h3-environmental": 0.35 },
+      "sourceReliability": 0.82,
+      "wasClassified": false,
+      "linkedNodeIds": ["n7-nas-report", "n13-claim-attack", "n14-claim-brain-injury"]
+    },
+    {
+      "id": "e4-cricket-audio",
+      "label": "Recorded Havana 'attack' audio identified as Indies short-tailed cricket (2019)",
+      "description": "A recording made by affected personnel of the sound accompanying their symptoms was analyzed by scientists at UC Berkeley and the University of Lincoln, who identified it as the call of the Indies short-tailed cricket (Anurogryllus celerinictus). The sonic signature matched precisely. This raised the possibility that the 'directional sound' reported was a misidentified natural source, undermining a key element of the attack narrative.",
+      "date": "2019-01-04",
+      "likelihoodRatios": { "h1-directed-energy": 0.2, "h2-psychogenic": 0.65, "h3-environmental": 0.85 },
+      "sourceReliability": 0.82,
+      "wasClassified": false,
+      "linkedNodeIds": ["n8-cricket-audio", "n15-claim-no-attack", "n1-havana-cluster"]
+    },
+    {
+      "id": "e5-global-spread",
+      "label": "Cases spread to US personnel in China, Russia, Europe, and beyond (2017-2021)",
+      "description": "By 2021, over 1,000 US government personnel worldwide — including CIA officers, NSC staff in Washington DC, and embassy staff in Vienna, Austria — had reported similar symptoms. The global spread is difficult to explain purely by a localized weapon deployment, though it is consistent with either a wide-ranging adversary program or the spread of psychogenic illness through a networked, high-stress community following intensive media coverage.",
+      "date": "2021-01-01",
+      "likelihoodRatios": { "h1-directed-energy": 0.5, "h2-psychogenic": 0.7, "h3-environmental": 0.35 },
+      "sourceReliability": 0.8,
+      "wasClassified": false,
+      "linkedNodeIds": ["n2-global-spread", "n13-claim-attack", "n15-claim-no-attack", "n12-claim-psychogenic"]
+    },
+    {
+      "id": "e6-insider-60-minutes-gru",
+      "label": "The Insider / 60 Minutes / Der Spiegel investigation linking cases to Russian GRU Unit 29155 (2022-2024)",
+      "description": "Investigative reporting linked Anomalous Health Incident cases to travel patterns of Russian GRU Unit 29155 officers — a unit linked to the Salisbury poisoning and other assassinations. Reporters identified GRU officers present in the same cities as AHI victims around the time of incidents, and one officer was reportedly commended for work on 'non-lethal acoustic weapons.' The reporting relied on travel records and correlation rather than direct evidence of weapon deployment.",
+      "date": "2022-04-10",
+      "likelihoodRatios": { "h1-directed-energy": 0.7, "h2-psychogenic": 0.2, "h3-environmental": 0.2 },
+      "sourceReliability": 0.6,
+      "wasClassified": false,
+      "linkedNodeIds": ["n9-actor-gru", "n13-claim-attack", "n3-gru-investigation"]
+    },
+    {
+      "id": "e7-cia-2023-assessment",
+      "label": "CIA / IC assessment: no credible foreign adversary explanation for most cases (2023)",
+      "description": "In March 2023, the CIA and ODNI released findings from a multi-year task force. For the vast majority of cases, analysts found no credible evidence of foreign adversary use of directed energy or other exotic weapons. Seven of the IC's analytic teams found it 'very unlikely' a foreign adversary was responsible; none found it likely. A small subset of roughly two dozen cases — primarily from the original Havana cohort — remained unexplained. Deep disagreement persisted across agencies.",
+      "date": "2023-03-01",
+      "likelihoodRatios": { "h1-directed-energy": 0.2, "h2-psychogenic": 0.6, "h3-environmental": 0.75 },
+      "sourceReliability": 0.85,
+      "wasClassified": false,
+      "linkedNodeIds": ["n10-cia-assessment", "n15-claim-no-attack", "n16-narrative-official"]
+    },
+    {
+      "id": "e8-nih-study-2024",
+      "label": "NIH longitudinal study finds no evidence of brain injury (JAMA, 2024)",
+      "description": "A comprehensive NIH study published in JAMA examined 81 AHI-affected individuals compared to carefully matched controls. It found no significant differences in neuroimaging, blood biomarkers, cognitive performance, or any other objective measures. Authors concluded they could find no evidence of a specific disease or injury caused by an external source. This directly contradicted the 2018 UPenn findings and strongly undermined the claim of a unique, externally-caused syndrome.",
+      "date": "2024-03-18",
+      "likelihoodRatios": { "h1-directed-energy": 0.15, "h2-psychogenic": 0.65, "h3-environmental": 0.8 },
+      "sourceReliability": 0.92,
+      "wasClassified": false,
+      "linkedNodeIds": ["n11-nih-study", "n15-claim-no-attack", "n14-claim-brain-injury"]
+    },
+    {
+      "id": "e9-conflicting-ic-assessments",
+      "label": "Intelligence community agencies reached conflicting internal assessments",
+      "description": "Throughout 2022-2023, different IC agencies reached divergent conclusions. The CIA and ODNI leaned toward no foreign attack for most cases, while the Defense Intelligence Agency reportedly maintained higher probability of foreign involvement. The NSA and FBI reached different confidence levels. Published ODNI assessments used 'low confidence' qualifiers throughout, reflecting genuine unresolved analytical disagreement rather than a settled consensus.",
+      "date": "2023-03-01",
+      "likelihoodRatios": { "h1-directed-energy": 0.5, "h2-psychogenic": 0.45, "h3-environmental": 0.5 },
+      "sourceReliability": 0.72,
+      "wasClassified": false,
+      "linkedNodeIds": ["n10-cia-assessment", "n13-claim-attack", "n15-claim-no-attack"]
+    },
+    {
+      "id": "e10-pesticide-fumigation",
+      "label": "Intensive organophosphate pesticide fumigation in Havana diplomatic residences (2016)",
+      "description": "Cuba conducted intensive fumigation campaigns against Zika-carrying mosquitoes in 2016-2017 using organophosphate pesticides in and around diplomatic residences. Organophosphate exposure can cause neurological symptoms consistent with those reported: headaches, dizziness, and cognitive impairment. Canadian diplomats' residences were reportedly fumigated extensively, and Canada later settled a lawsuit with affected diplomats without determining a cause.",
+      "date": "2016-10-01",
+      "likelihoodRatios": { "h1-directed-energy": 0.15, "h2-psychogenic": 0.5, "h3-environmental": 0.75 },
+      "sourceReliability": 0.6,
+      "wasClassified": false,
+      "linkedNodeIds": ["n4-pesticide", "n1-havana-cluster", "n15-claim-no-attack"]
+    }
+  ],
+  "nodes": [
+    { "id": "n1-havana-cluster", "type": "event", "label": "Initial Havana embassy symptom cluster (2016-2017)", "description": "21 US Embassy personnel report sudden neurological symptoms in Havana, Cuba. The founding cluster of the entire phenomenon.", "date": "2016-12-01", "confidence": 0.99, "metadata": {}, "caseStudyId": "havana-syndrome" },
+    { "id": "n2-global-spread", "type": "event", "label": "AHI cases spread worldwide (2017-2021)", "description": "Reports of similar symptoms emerge from US personnel in China, Russia, Austria, and Washington DC, reaching over 1,000 total cases.", "date": "2021-01-01", "confidence": 0.9, "metadata": {}, "caseStudyId": "havana-syndrome" },
+    { "id": "n3-gru-investigation", "type": "event", "label": "Investigative reporting links cases to GRU Unit 29155 (2022-2024)", "description": "The Insider, 60 Minutes, and Der Spiegel correlate GRU Unit 29155 officer travel with AHI incident locations and timing.", "date": "2022-04-10", "confidence": 0.5, "metadata": {}, "caseStudyId": "havana-syndrome" },
+    { "id": "n4-pesticide", "type": "event", "label": "Organophosphate fumigation in Havana residences (2016)", "description": "Cuba's anti-Zika pesticide campaigns involved intensive use of organophosphates in and around US and Canadian diplomatic residences.", "date": "2016-10-01", "confidence": 0.8, "metadata": {}, "caseStudyId": "havana-syndrome" },
+    { "id": "n5-actor-embassy-staff", "type": "actor", "label": "Affected US diplomatic and intelligence personnel", "description": "State Department and CIA officers who reported symptoms. Their accounts are consistent and credible; the interpretation of cause remains contested.", "date": "2016-12-01", "confidence": 1.0, "metadata": { "role": "Affected personnel" }, "caseStudyId": "havana-syndrome" },
+    { "id": "n6-upenn-study", "type": "evidence", "label": "University of Pennsylvania JAMA brain imaging study (2018)", "description": "Found neuroimaging differences in 21 affected personnel vs. controls. Described a 'new syndrome.' Methodologically criticized for lack of baseline and matched controls. Later contradicted by NIH 2024.", "date": "2018-03-20", "confidence": 0.5, "metadata": { "journal": "JAMA", "sample_size": 21 }, "caseStudyId": "havana-syndrome" },
+    { "id": "n7-nas-report", "type": "evidence", "label": "National Academy of Sciences expert report (2020)", "description": "Expert panel concluded pulsed radio frequency energy was the most plausible mechanism for symptoms in the original Havana cohort. Did not assign attribution or confirm a weapon existed.", "date": "2020-12-05", "confidence": 0.65, "metadata": { "commissioned_by": "State Department" }, "caseStudyId": "havana-syndrome" },
+    { "id": "n8-cricket-audio", "type": "evidence", "label": "Diplomat recording identified as Indies short-tailed cricket (2019)", "description": "Acoustic scientists identified the sound accompanying Havana incidents as Anurogryllus celerinictus, a common Cuban cricket. Undermines the 'directional sound' component of the attack narrative.", "date": "2019-01-04", "confidence": 0.82, "metadata": { "species": "Anurogryllus celerinictus" }, "caseStudyId": "havana-syndrome" },
+    { "id": "n9-actor-gru", "type": "actor", "label": "Russian GRU Unit 29155", "description": "Russian military intelligence unit linked to the Salisbury poisoning and other covert operations. Investigated as possible perpetrator by journalists who found travel pattern overlaps.", "date": "2022-04-10", "confidence": 0.4, "metadata": { "role": "Alleged perpetrator" }, "caseStudyId": "havana-syndrome" },
+    { "id": "n10-cia-assessment", "type": "evidence", "label": "CIA / ODNI 2023 assessment", "description": "IC multi-year investigation finding no credible foreign adversary explanation for the vast majority of AHI cases. Internal disagreement across agencies persists; small unexplained subset remains.", "date": "2023-03-01", "confidence": 0.72, "metadata": { "agencies": "CIA, ODNI, NSA, FBI, DIA" }, "caseStudyId": "havana-syndrome" },
+    { "id": "n11-nih-study", "type": "evidence", "label": "NIH longitudinal study, no objective neurological differences (JAMA, 2024)", "description": "Comprehensive NIH study of 81 AHI-affected individuals versus matched controls found no significant neuroimaging, biomarker, or cognitive differences. Strongest evidence against a unique externally-caused syndrome.", "date": "2024-03-18", "confidence": 0.88, "metadata": { "journal": "JAMA", "sample_size": 81 }, "caseStudyId": "havana-syndrome" },
+    { "id": "n12-claim-psychogenic", "type": "claim", "label": "Claim: mass psychogenic illness or functional neurological disorder", "description": "The hypothesis that real symptoms arise from psychological and social mechanisms: stress, anxiety, nocebo effects, and social contagion within a close-knit high-stress community.", "date": "2019-06-01", "confidence": 0.55, "metadata": {}, "caseStudyId": "havana-syndrome" },
+    { "id": "n13-claim-attack", "type": "claim", "label": "Claim: foreign adversary conducted directed-energy attacks on US personnel", "description": "The hypothesis that a state actor, likely Russia, deliberately targeted US government personnel with novel directed-energy weapons causing genuine neurological injury.", "date": "2017-08-01", "confidence": 0.35, "metadata": {}, "caseStudyId": "havana-syndrome" },
+    { "id": "n14-claim-brain-injury", "type": "claim", "label": "Claim: affected personnel suffered objective, measurable brain injury", "description": "Supported by the 2018 UPenn data, but directly contradicted by the 2024 NIH study which found no neuroimaging or biomarker differences in a larger, better-controlled sample.", "date": "2018-03-20", "confidence": 0.3, "metadata": {}, "caseStudyId": "havana-syndrome" },
+    { "id": "n15-claim-no-attack", "type": "claim", "label": "Claim: no credible evidence of foreign weapon use for most cases", "description": "The IC and NIH-supported position: symptoms have conventional medical, psychological, or environmental explanations for the vast majority of reported cases.", "date": "2023-03-01", "confidence": 0.6, "metadata": {}, "caseStudyId": "havana-syndrome" },
+    { "id": "n16-narrative-official", "type": "narrative", "label": "Current official IC narrative: no foreign attack for most cases", "description": "The 2023 ODNI/CIA consensus position. Actively contested by some affected personnel, congressional overseers, and investigative journalists.", "date": "2023-03-01", "confidence": 0.55, "metadata": {}, "caseStudyId": "havana-syndrome" },
+    { "id": "n17-narrative-attack", "type": "narrative", "label": "Counter-narrative: covert weapon program targeting US intelligence personnel", "description": "Maintained by some affected personnel, their congressional advocates, The Insider investigation, and a minority of IC analysts. Draws on NAS report, GRU travel data, and Cold War weapons research history.", "date": "2020-12-05", "confidence": 0.38, "metadata": {}, "caseStudyId": "havana-syndrome" }
+  ],
+  "edges": [
+    { "id": "e-1", "source": "n1-havana-cluster", "target": "n2-global-spread", "type": "precedes", "weight": 0.85, "date": "2016-12-01", "metadata": {} },
+    { "id": "e-2", "source": "n1-havana-cluster", "target": "n13-claim-attack", "type": "causes", "weight": 0.6, "date": "2017-08-01", "metadata": { "detail": "Unusual cluster in adversarial diplomatic posting prompted attack hypothesis" } },
+    { "id": "e-3", "source": "n6-upenn-study", "target": "n14-claim-brain-injury", "type": "cites", "weight": 0.65, "date": "2018-03-20", "metadata": {} },
+    { "id": "e-4", "source": "n7-nas-report", "target": "n13-claim-attack", "type": "cites", "weight": 0.6, "date": "2020-12-05", "metadata": {} },
+    { "id": "e-5", "source": "n8-cricket-audio", "target": "n13-claim-attack", "type": "contradicts", "weight": 0.65, "date": "2019-01-04", "metadata": {} },
+    { "id": "e-6", "source": "n4-pesticide", "target": "n1-havana-cluster", "type": "causes", "weight": 0.4, "date": "2016-10-01", "metadata": { "detail": "Pesticide exposure as alternative explanation for initial cluster" } },
+    { "id": "e-7", "source": "n9-actor-gru", "target": "n13-claim-attack", "type": "cites", "weight": 0.5, "date": "2022-04-10", "metadata": { "detail": "GRU travel overlaps support but do not prove directed attack" } },
+    { "id": "e-8", "source": "n3-gru-investigation", "target": "n9-actor-gru", "type": "cites", "weight": 0.6, "date": "2022-04-10", "metadata": {} },
+    { "id": "e-9", "source": "n10-cia-assessment", "target": "n15-claim-no-attack", "type": "cites", "weight": 0.8, "date": "2023-03-01", "metadata": {} },
+    { "id": "e-10", "source": "n11-nih-study", "target": "n14-claim-brain-injury", "type": "contradicts", "weight": 0.85, "date": "2024-03-18", "metadata": {} },
+    { "id": "e-11", "source": "n11-nih-study", "target": "n15-claim-no-attack", "type": "cites", "weight": 0.8, "date": "2024-03-18", "metadata": {} },
+    { "id": "e-12", "source": "n12-claim-psychogenic", "target": "n15-claim-no-attack", "type": "cites", "weight": 0.65, "date": "2022-09-15", "metadata": {} },
+    { "id": "e-13", "source": "n13-claim-attack", "target": "n15-claim-no-attack", "type": "contradicts", "weight": 0.95, "metadata": {} },
+    { "id": "e-14", "source": "n15-claim-no-attack", "target": "n16-narrative-official", "type": "causes", "weight": 0.8, "date": "2023-03-01", "metadata": {} },
+    { "id": "e-15", "source": "n13-claim-attack", "target": "n17-narrative-attack", "type": "causes", "weight": 0.75, "date": "2020-12-05", "metadata": {} },
+    { "id": "e-16", "source": "n16-narrative-official", "target": "n17-narrative-attack", "type": "contradicts", "weight": 0.88, "metadata": {} },
+    { "id": "e-17", "source": "n6-upenn-study", "target": "n11-nih-study", "type": "contradicts", "weight": 0.75, "date": "2024-03-18", "metadata": { "detail": "NIH 2024 directly tested and contradicted the UPenn 2018 findings with a larger, better-controlled study" } },
+    { "id": "e-18", "source": "n2-global-spread", "target": "n12-claim-psychogenic", "type": "cites", "weight": 0.65, "date": "2021-01-01", "metadata": { "detail": "Pattern of global expansion following media coverage is consistent with psychogenic spread" } }
+  ],
+  "causalFactors": [
+    { "id": "cf1", "type": "institutional", "label": "High-stress intelligence posting in adversarial Cuba environment creates attribution bias", "date": "2016-01-01" },
+    { "id": "cf2", "type": "narrative_change", "label": "US government publicly frames incidents as 'attacks,' crystallizing adversarial interpretation", "date": "2017-08-09" },
+    { "id": "cf3", "type": "evidence_action", "label": "UPenn (2018) and NAS (2020) studies lend scientific credibility to attack hypothesis", "date": "2020-12-05" },
+    { "id": "cf4", "type": "institutional", "label": "HAVANA Act (2021) formalizes government recognition and compensation, institutionalizing victim identity", "date": "2021-10-08" },
+    { "id": "cf5", "type": "evidence_action", "label": "CIA 2023 assessment and NIH 2024 study shift official consensus toward conventional explanations", "date": "2023-03-01" },
+    { "id": "cf6", "type": "narrative_change", "label": "GRU journalism resurfaces attack hypothesis with specific actor attribution, fracturing consensus", "date": "2024-04-01" }
+  ],
+  "causalLinks": [
+    { "from": "cf1", "to": "cf2", "mechanism": "Personnel primed by adversarial environment interpreted ambiguous symptoms as deliberate attack; national security officials adopted that framing publicly", "strength": 0.75 },
+    { "from": "cf2", "to": "cf3", "mechanism": "Attack framing motivated government-sponsored medical research; researchers approached cases assuming a novel externally-caused syndrome", "strength": 0.65 },
+    { "from": "cf3", "to": "cf4", "mechanism": "Scientific validation of the attack hypothesis created political pressure from affected personnel and their advocates, leading Congress to legislate compensation", "strength": 0.7 },
+    { "from": "cf4", "to": "cf5", "mechanism": "HAVANA Act obligations forced sustained IC investigation; eventual findings contradicted the initial framing that had motivated the Act", "strength": 0.6 },
+    { "from": "cf5", "to": "cf6", "mechanism": "IC's dismissal of most cases left the original unexplained Havana cohort as an unresolved anomaly; investigative journalists pursued it independently and found GRU connections", "strength": 0.55, "timelag": "1 year" }
+  ],
+  "timeSlices": [
+    {
+      "date": "2017-08-10",
+      "label": "Initial cases disclosed; attack narrative takes hold",
+      "description": "The State Department publicly acknowledges US Embassy personnel in Havana suffered unexplained health incidents. Officials describe 'attacks.' The US reduces embassy staff and expels Cuban diplomats. Cuba denies all knowledge.",
+      "activeNodeIds": ["n1-havana-cluster", "n4-pesticide", "n5-actor-embassy-staff", "n13-claim-attack"],
+      "activeEdgeIds": ["e-2", "e-6"]
+    },
+    {
+      "date": "2020-12-06",
+      "label": "Scientific credibility peaks for attack hypothesis",
+      "description": "The UPenn brain imaging study (2018) and NAS pulsed-RF energy report (2020) have now been published. Cases have spread globally. The attack hypothesis has both scientific backing and widespread public salience.",
+      "activeNodeIds": ["n1-havana-cluster", "n2-global-spread", "n4-pesticide", "n5-actor-embassy-staff", "n6-upenn-study", "n7-nas-report", "n8-cricket-audio", "n13-claim-attack", "n14-claim-brain-injury", "n17-narrative-attack"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-15"],
+      "narrativeShift": "NAS report puts pulsed microwave energy on the table as the most plausible mechanism. The attack narrative is at its highest institutional credibility. But cricket audio and case expansion have already introduced competing evidence."
+    },
+    {
+      "date": "2023-03-02",
+      "label": "IC assessment pivots: no foreign attack for most cases",
+      "description": "The CIA and ODNI release findings concluding it is 'very unlikely' a foreign adversary caused most cases. The psychogenic and environmental hypotheses gain official standing. GRU journalism (2022) has introduced the specific Unit 29155 theory, which the IC contest. Two narratives now compete openly.",
+      "activeNodeIds": ["n1-havana-cluster", "n2-global-spread", "n3-gru-investigation", "n5-actor-embassy-staff", "n6-upenn-study", "n7-nas-report", "n8-cricket-audio", "n9-actor-gru", "n10-cia-assessment", "n12-claim-psychogenic", "n13-claim-attack", "n14-claim-brain-injury", "n15-claim-no-attack", "n16-narrative-official", "n17-narrative-attack"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-7", "e-8", "e-9", "e-12", "e-13", "e-14", "e-15", "e-16", "e-18"],
+      "narrativeShift": "Official US intelligence consensus moves away from foreign attack for most cases. Affected personnel, their advocates, and journalists strongly contest this. The case has split into two irreconcilable narratives backed by different institutional authorities."
+    },
+    {
+      "date": "2024-06-01",
+      "label": "NIH study reinforces no-injury finding — case remains unresolved",
+      "description": "The NIH publishes the most rigorous study yet, finding no objective neurological differences in 81 AHI-affected individuals. The GRU investigation has published its most specific findings. The scientific evidence now strongly supports conventional explanations; the investigative journalism evidence points toward a specific foreign actor. The original Havana cohort — roughly two dozen cases — remains genuinely unexplained. No consensus exists.",
+      "activeNodeIds": ["n1-havana-cluster", "n2-global-spread", "n3-gru-investigation", "n4-pesticide", "n5-actor-embassy-staff", "n6-upenn-study", "n7-nas-report", "n8-cricket-audio", "n9-actor-gru", "n10-cia-assessment", "n11-nih-study", "n12-claim-psychogenic", "n13-claim-attack", "n14-claim-brain-injury", "n15-claim-no-attack", "n16-narrative-official", "n17-narrative-attack"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13", "e-14", "e-15", "e-16", "e-17", "e-18"],
+      "narrativeShift": "The NIH 2024 study is the strongest evidence yet against a unique externally-caused syndrome. Yet investigative journalism simultaneously offers the most specific perpetrator theory yet. Evidence authentically pulls in opposite directions. This case remains genuinely contested."
+    }
+  ]
+}

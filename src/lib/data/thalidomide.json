@@ -1,0 +1,212 @@
+{
+  "id": "thalidomide",
+  "title": "Thalidomide Scandal",
+  "period": "1957-1962",
+  "revelationDate": "1961-11-18",
+  "wasOverturned": true,
+  "status": "overturned",
+  "summary": "Thalidomide was marketed by Chemie Grunenthal from 1957 as a safe sedative and anti-nausea drug, widely prescribed to pregnant women. The company claimed extensive safety testing and dismissed early reports of peripheral neuropathy. By late 1961, Australian obstetrician William McBride and German pediatrician Widukind Lenz independently linked thalidomide to severe birth defects, particularly phocomelia (limb malformations), affecting an estimated 10,000 children worldwide. Internal documents later revealed that Grunenthal had received reports of nerve damage before the drug was even approved and had suppressed adverse event data. Frances Kelsey at the US FDA blocked American approval, preventing a far larger disaster. The drug was withdrawn from most markets by 1962, but legal battles and revelations of corporate malfeasance continued for decades.",
+  "hypotheses": [
+    {
+      "id": "h1-drug-safe",
+      "caseStudyId": "thalidomide",
+      "label": "Thalidomide is safe; birth defects are unrelated",
+      "description": "The position maintained by Chemie Grunenthal from 1957 through late 1961: thalidomide had been thoroughly tested and was safe for all patients including pregnant women. Any reports of adverse effects were coincidental, anecdotal, or caused by other factors. The company aggressively promoted this position to doctors, regulators, and the public.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": true
+    },
+    {
+      "id": "h2-drug-teratogenic",
+      "caseStudyId": "thalidomide",
+      "label": "Thalidomide causes birth defects; company suppressed evidence of harm",
+      "description": "Thalidomide is a potent teratogen that causes phocomelia and other severe birth defects when taken during early pregnancy. Chemie Grunenthal received early warnings of neurotoxicity and other adverse effects but suppressed reports, pressured critical doctors, and delayed withdrawal to protect sales. The company prioritised profits over patient safety.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": false
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1-grunenthal-marketing",
+      "label": "Grunenthal marketing materials claiming 'completely safe' (1957-1961)",
+      "description": "Chemie Grunenthal marketed thalidomide under the brand name Contergan as 'completely safe' and 'non-toxic,' claiming it could be given to pregnant women and children without risk. Marketing materials stated it was impossible to take a lethal dose. The company had not conducted adequate teratogenicity testing before launch.",
+      "date": "1957-10-01",
+      "likelihoodRatios": { "h1-drug-safe": 0.5, "h2-drug-teratogenic": 0.3 },
+      "sourceReliability": 0.1,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-actor-grunenthal", "n3-claim-drug-safe", "n13-narrative-safe-drug"]
+    },
+    {
+      "id": "e2-neuropathy-reports",
+      "label": "Reports of peripheral neuropathy from physicians (1959-1960)",
+      "description": "By 1959, multiple physicians in Germany reported cases of peripheral neuropathy (nerve damage in extremities) in patients taking thalidomide. Neurologist Ralf Voss reported cases directly to Grunenthal. Internal company memos show these reports were received, documented, and deliberately not shared with regulators or the medical community.",
+      "date": "1959-12-01",
+      "likelihoodRatios": { "h1-drug-safe": 0.15, "h2-drug-teratogenic": 0.85 },
+      "sourceReliability": 0.85,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-actor-grunenthal", "n5-evidence-neuropathy", "n8-evidence-internal-docs"]
+    },
+    {
+      "id": "e3-kelsey-fda-rejection",
+      "label": "Frances Kelsey blocks FDA approval (1960-1961)",
+      "description": "FDA medical officer Frances Kelsey refused to approve thalidomide for the US market despite intense pressure from distributor Richardson-Merrell. Kelsey found the safety data insufficient, particularly regarding neurotoxicity and effects on the fetus. Her insistence on proper testing prevented an American disaster. She was later awarded the President's Award for Distinguished Federal Civilian Service by President Kennedy.",
+      "date": "1960-09-12",
+      "likelihoodRatios": { "h1-drug-safe": 0.2, "h2-drug-teratogenic": 0.85 },
+      "sourceReliability": 0.95,
+      "wasClassified": false,
+      "linkedNodeIds": ["n2-actor-kelsey", "n6-event-fda-rejection", "n3-claim-drug-safe"]
+    },
+    {
+      "id": "e4-mcbride-letter",
+      "label": "William McBride's letter to The Lancet (Dec 1961)",
+      "description": "Australian obstetrician William McBride published a letter in The Lancet on December 16, 1961, reporting a 20% incidence of severe congenital abnormalities in babies born to mothers who had taken thalidomide during pregnancy. He had first noticed the pattern in mid-1961 at Crown Street Women's Hospital in Sydney.",
+      "date": "1961-12-16",
+      "likelihoodRatios": { "h1-drug-safe": 0.05, "h2-drug-teratogenic": 0.95 },
+      "sourceReliability": 0.9,
+      "wasClassified": false,
+      "linkedNodeIds": ["n4-actor-mcbride", "n7-claim-teratogenic", "n10-source-lancet"]
+    },
+    {
+      "id": "e5-lenz-warning",
+      "label": "Widukind Lenz warns Grunenthal directly (Nov 1961)",
+      "description": "German pediatrician and geneticist Widukind Lenz contacted Chemie Grunenthal on November 15, 1961, informing them he had identified thalidomide as the cause of a dramatic increase in phocomelia cases in Germany. He presented data on 150 cases. Grunenthal initially resisted withdrawal but removed the drug from the German market on November 27, 1961.",
+      "date": "1961-11-15",
+      "likelihoodRatios": { "h1-drug-safe": 0.03, "h2-drug-teratogenic": 0.97 },
+      "sourceReliability": 0.92,
+      "wasClassified": false,
+      "linkedNodeIds": ["n9-actor-lenz", "n1-actor-grunenthal", "n7-claim-teratogenic"]
+    },
+    {
+      "id": "e6-phocomelia-epidemic",
+      "label": "Epidemic of phocomelia cases across 46 countries (1959-1962)",
+      "description": "An estimated 10,000 children were born with severe birth defects linked to thalidomide across 46 countries. The most characteristic defect was phocomelia, where limbs failed to develop properly. Many children also suffered damage to ears, eyes, and internal organs. Approximately 40% of affected infants died within their first year.",
+      "date": "1961-11-18",
+      "likelihoodRatios": { "h1-drug-safe": 0.01, "h2-drug-teratogenic": 0.99 },
+      "sourceReliability": 0.98,
+      "wasClassified": false,
+      "linkedNodeIds": ["n11-event-phocomelia", "n7-claim-teratogenic", "n14-narrative-coverup"]
+    },
+    {
+      "id": "e7-internal-documents",
+      "label": "Grunenthal internal documents showing knowledge of harm",
+      "description": "Internal company documents revealed during the 1968 criminal trial and subsequent litigation showed that Grunenthal scientists had received adverse event reports as early as 1959, including cases of peripheral neuropathy. Memos showed executives discussed suppressing these reports and pressuring doctors who raised concerns. The company's head of research, Heinrich Mueckter, had conducted chemical weapons research during WWII and had no pharmacological training.",
+      "date": "1968-05-27",
+      "likelihoodRatios": { "h1-drug-safe": 0.02, "h2-drug-teratogenic": 0.98 },
+      "sourceReliability": 0.95,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-actor-grunenthal", "n8-evidence-internal-docs", "n14-narrative-coverup"]
+    },
+    {
+      "id": "e8-delayed-withdrawal",
+      "label": "Grunenthal delayed withdrawal despite mounting evidence (1961)",
+      "description": "Even after Lenz's direct warning on November 15, 1961, Grunenthal resisted immediate withdrawal. The company continued selling thalidomide in some markets into early 1962. In the UK, Distillers Company (licensee) did not withdraw until December 2, 1961. In some countries the drug remained available into 1962. Each day of delay exposed more pregnant women to the teratogen.",
+      "date": "1961-11-27",
+      "likelihoodRatios": { "h1-drug-safe": 0.05, "h2-drug-teratogenic": 0.95 },
+      "sourceReliability": 0.9,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-actor-grunenthal", "n12-actor-distillers", "n11-event-phocomelia"]
+    },
+    {
+      "id": "e9-criminal-trial",
+      "label": "Grunenthal criminal trial in Aachen (1968-1970)",
+      "description": "In 1968, nine Grunenthal employees including Heinrich Mueckter were put on trial in Aachen for causing bodily harm through negligence and intent. The trial lasted until 1970 when it was settled out of court with Grunenthal paying 100 million DM to a compensation fund. No executive was convicted. The trial exposed the full extent of the company's knowledge of adverse effects and its suppression of evidence.",
+      "date": "1968-05-27",
+      "likelihoodRatios": { "h1-drug-safe": 0.02, "h2-drug-teratogenic": 0.98 },
+      "sourceReliability": 0.9,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-actor-grunenthal", "n8-evidence-internal-docs", "n15-event-trial"]
+    },
+    {
+      "id": "e10-sunday-times-investigation",
+      "label": "Sunday Times investigation and Distillers campaign (1972)",
+      "description": "The Sunday Times Insight team, led by Harold Evans, investigated the thalidomide scandal and the inadequacy of compensation offered by Distillers Company in the UK. Their reporting was initially blocked by legal injunctions citing contempt of court. The case went to the European Court of Human Rights, which ruled in 1979 that the injunction violated press freedom. The campaign ultimately forced Distillers to increase compensation.",
+      "date": "1972-09-24",
+      "likelihoodRatios": { "h1-drug-safe": 0.02, "h2-drug-teratogenic": 0.98 },
+      "sourceReliability": 0.92,
+      "wasClassified": false,
+      "linkedNodeIds": ["n12-actor-distillers", "n14-narrative-coverup", "n10-source-lancet"]
+    }
+  ],
+  "nodes": [
+    { "id": "n1-actor-grunenthal", "type": "actor", "label": "Chemie Grunenthal", "description": "German pharmaceutical company that developed and marketed thalidomide (Contergan). Suppressed adverse event reports and delayed withdrawal.", "date": "1957-10-01", "confidence": 1.0, "metadata": { "role": "Drug manufacturer" }, "caseStudyId": "thalidomide" },
+    { "id": "n2-actor-kelsey", "type": "actor", "label": "Frances Kelsey", "description": "FDA medical officer who refused to approve thalidomide for the US market despite intense pressure, insisting on proper safety data.", "date": "1960-09-12", "confidence": 1.0, "metadata": { "role": "FDA Medical Officer" }, "caseStudyId": "thalidomide" },
+    { "id": "n3-claim-drug-safe", "type": "claim", "label": "Thalidomide is completely safe for all patients", "description": "Grunenthal's official marketing position that the drug was non-toxic, could not cause lethal overdose, and was safe for pregnant women and children.", "date": "1957-10-01", "confidence": 0.01, "metadata": {}, "caseStudyId": "thalidomide" },
+    { "id": "n4-actor-mcbride", "type": "actor", "label": "William McBride", "description": "Australian obstetrician at Crown Street Women's Hospital, Sydney, who first linked thalidomide to birth defects and published findings in The Lancet.", "date": "1961-06-01", "confidence": 1.0, "metadata": { "role": "Obstetrician" }, "caseStudyId": "thalidomide" },
+    { "id": "n5-evidence-neuropathy", "type": "evidence", "label": "Peripheral neuropathy case reports (1959-1960)", "description": "Multiple physician reports of nerve damage in patients taking thalidomide, reported to Grunenthal but suppressed.", "date": "1959-12-01", "confidence": 0.95, "metadata": {}, "caseStudyId": "thalidomide" },
+    { "id": "n6-event-fda-rejection", "type": "event", "label": "FDA blocks US thalidomide approval", "description": "Frances Kelsey repeatedly rejected thalidomide applications from Richardson-Merrell, demanding adequate safety data.", "date": "1960-09-12", "confidence": 1.0, "metadata": {}, "caseStudyId": "thalidomide" },
+    { "id": "n7-claim-teratogenic", "type": "claim", "label": "Thalidomide is a teratogen causing phocomelia", "description": "The independently established finding by McBride and Lenz that thalidomide causes severe limb and organ malformations when taken during early pregnancy.", "date": "1961-11-15", "confidence": 0.99, "metadata": {}, "caseStudyId": "thalidomide" },
+    { "id": "n8-evidence-internal-docs", "type": "evidence", "label": "Grunenthal internal memos documenting adverse reports", "description": "Company documents showing executives knew of neuropathy reports before approval and discussed suppressing evidence of harm.", "date": "1959-01-01", "confidence": 0.95, "metadata": {}, "caseStudyId": "thalidomide" },
+    { "id": "n9-actor-lenz", "type": "actor", "label": "Widukind Lenz", "description": "German pediatrician and geneticist at Hamburg University who independently identified thalidomide as the cause of the phocomelia epidemic and confronted Grunenthal directly.", "date": "1961-11-15", "confidence": 1.0, "metadata": { "role": "Pediatrician and geneticist" }, "caseStudyId": "thalidomide" },
+    { "id": "n10-source-lancet", "type": "source", "label": "The Lancet (McBride letter, Dec 1961)", "description": "McBride's published letter reporting congenital abnormalities in babies of mothers who took thalidomide during pregnancy.", "date": "1961-12-16", "confidence": 0.95, "metadata": { "actor": "William McBride" }, "caseStudyId": "thalidomide" },
+    { "id": "n11-event-phocomelia", "type": "event", "label": "Phocomelia epidemic (~10,000 affected children)", "description": "Worldwide epidemic of severe birth defects including limb malformations, affecting an estimated 10,000 children across 46 countries, with approximately 40% mortality in the first year.", "date": "1961-11-18", "confidence": 0.99, "metadata": {}, "caseStudyId": "thalidomide" },
+    { "id": "n12-actor-distillers", "type": "actor", "label": "Distillers Company (Biochemicals) Ltd", "description": "British licensee that manufactured and distributed thalidomide in the UK under the brand name Distaval. Delayed withdrawal and fought compensation claims.", "date": "1958-04-01", "confidence": 1.0, "metadata": { "role": "UK drug licensee/distributor" }, "caseStudyId": "thalidomide" },
+    { "id": "n13-narrative-safe-drug", "type": "narrative", "label": "Official narrative: thalidomide is a safe wonder drug", "description": "The marketing-driven narrative that thalidomide was non-toxic, completely safe, and ideal for pregnant women suffering from morning sickness.", "date": "1957-10-01", "confidence": 0.01, "metadata": {}, "caseStudyId": "thalidomide" },
+    { "id": "n14-narrative-coverup", "type": "narrative", "label": "Revised narrative: corporate suppression of evidence caused mass harm", "description": "The established historical consensus: Grunenthal knew of adverse effects, suppressed evidence, pressured critics, delayed withdrawal, and caused one of the worst pharmaceutical disasters in history.", "date": "1968-05-27", "confidence": 0.98, "metadata": {}, "caseStudyId": "thalidomide" },
+    { "id": "n15-event-trial", "type": "event", "label": "Grunenthal criminal trial (Aachen, 1968-1970)", "description": "Criminal trial of nine Grunenthal employees that exposed the full scope of corporate knowledge and suppression, ending in an out-of-court settlement with no convictions.", "date": "1968-05-27", "confidence": 1.0, "metadata": {}, "caseStudyId": "thalidomide" }
+  ],
+  "edges": [
+    { "id": "e-1", "source": "n1-actor-grunenthal", "target": "n3-claim-drug-safe", "type": "claims", "weight": 0.9, "date": "1957-10-01", "metadata": { "detail": "Grunenthal marketed thalidomide as completely safe and non-toxic" } },
+    { "id": "e-2", "source": "n1-actor-grunenthal", "target": "n5-evidence-neuropathy", "type": "suppresses", "weight": 0.95, "date": "1959-12-01", "metadata": { "detail": "Company received neuropathy reports from physicians but did not disclose them to regulators" } },
+    { "id": "e-3", "source": "n1-actor-grunenthal", "target": "n13-narrative-safe-drug", "type": "claims", "weight": 0.9, "date": "1957-10-01", "metadata": { "detail": "Created marketing narrative of safety without adequate teratogenicity testing" } },
+    { "id": "e-4", "source": "n2-actor-kelsey", "target": "n3-claim-drug-safe", "type": "contradicts", "weight": 0.85, "date": "1960-09-12", "metadata": { "detail": "Kelsey found safety data insufficient and refused approval six times" } },
+    { "id": "e-5", "source": "n1-actor-grunenthal", "target": "n8-evidence-internal-docs", "type": "suppresses", "weight": 0.95, "date": "1959-01-01", "metadata": { "detail": "Internal memos discussing adverse reports were hidden from regulators and public" } },
+    { "id": "e-6", "source": "n9-actor-lenz", "target": "n7-claim-teratogenic", "type": "cites", "weight": 0.95, "date": "1961-11-15", "metadata": { "detail": "Lenz presented epidemiological data on 150 phocomelia cases linked to thalidomide" } },
+    { "id": "e-7", "source": "n4-actor-mcbride", "target": "n7-claim-teratogenic", "type": "cites", "weight": 0.92, "date": "1961-12-16", "metadata": { "detail": "McBride published clinical findings linking thalidomide to congenital abnormalities" } },
+    { "id": "e-8", "source": "n3-claim-drug-safe", "target": "n7-claim-teratogenic", "type": "contradicts", "weight": 1.0, "metadata": {} },
+    { "id": "e-9", "source": "n1-actor-grunenthal", "target": "n13-narrative-safe-drug", "type": "benefits", "weight": 0.95, "metadata": { "detail": "Safe drug narrative drove massive global sales and profits for Grunenthal" } },
+    { "id": "e-10", "source": "n12-actor-distillers", "target": "n3-claim-drug-safe", "type": "claims", "weight": 0.85, "date": "1958-04-01", "metadata": { "detail": "Distillers marketed Distaval in the UK as safe for pregnant women" } },
+    { "id": "e-11", "source": "n10-source-lancet", "target": "n7-claim-teratogenic", "type": "cites", "weight": 0.9, "date": "1961-12-16", "metadata": { "detail": "McBride's Lancet letter provided first published clinical evidence" } },
+    { "id": "e-12", "source": "n13-narrative-safe-drug", "target": "n14-narrative-coverup", "type": "contradicts", "weight": 0.98, "metadata": {} },
+    { "id": "e-13", "source": "n8-evidence-internal-docs", "target": "n14-narrative-coverup", "type": "cites", "weight": 0.95, "date": "1968-05-27", "metadata": { "detail": "Trial documents proved corporate knowledge and suppression of evidence" } }
+  ],
+  "causalFactors": [
+    { "id": "cf1", "type": "institutional", "label": "Grunenthal markets thalidomide without adequate teratogenicity testing", "date": "1957-10-01" },
+    { "id": "cf2", "type": "evidence_action", "label": "Adverse neuropathy reports received and suppressed by Grunenthal", "date": "1959-12-01" },
+    { "id": "cf3", "type": "institutional", "label": "Weak pre-market drug regulation in Germany and most countries", "date": "1957-10-01" },
+    { "id": "cf4", "type": "narrative_change", "label": "McBride and Lenz independently identify thalidomide as teratogen", "date": "1961-11-15" },
+    { "id": "cf5", "type": "evidence_action", "label": "Drug withdrawal delayed by Grunenthal and licensees", "date": "1961-11-27" },
+    { "id": "cf6", "type": "institutional", "label": "Criminal trial exposes corporate knowledge; ends without convictions", "date": "1968-05-27" }
+  ],
+  "causalLinks": [
+    { "from": "cf1", "to": "cf2", "mechanism": "Without proper pre-market testing, adverse effects only emerged through post-market physician reports, which the company then suppressed to protect the product", "strength": 0.9 },
+    { "from": "cf3", "to": "cf1", "mechanism": "Weak regulatory frameworks in Germany and most countries allowed Grunenthal to launch without rigorous safety testing, particularly for teratogenicity", "strength": 0.85 },
+    { "from": "cf2", "to": "cf4", "mechanism": "Suppression of early warnings allowed continued prescribing, causing thousands more birth defects until independent physicians identified the link", "strength": 0.95, "timelag": "2 years" },
+    { "from": "cf4", "to": "cf5", "mechanism": "Even after the causal link was identified and communicated to the company, Grunenthal and its licensees delayed withdrawal to protect commercial interests", "strength": 0.9 },
+    { "from": "cf5", "to": "cf6", "mechanism": "The scale of harm and evidence of corporate foreknowledge led to criminal prosecution, though the trial ended in settlement without convictions", "strength": 0.85, "timelag": "7 years" }
+  ],
+  "timeSlices": [
+    {
+      "date": "1957-10-01",
+      "label": "Thalidomide launched as 'completely safe'",
+      "description": "Chemie Grunenthal launches thalidomide (Contergan) in Germany, marketing it as a non-toxic sedative safe for pregnant women. The drug is licensed to companies in 46 countries. No teratogenicity testing has been performed.",
+      "activeNodeIds": ["n1-actor-grunenthal", "n3-claim-drug-safe", "n12-actor-distillers", "n13-narrative-safe-drug"],
+      "activeEdgeIds": ["e-1", "e-3", "e-9", "e-10"],
+      "narrativeShift": "Grunenthal's safe drug narrative dominates; thalidomide becomes a blockbuster sedative"
+    },
+    {
+      "date": "1960-09-12",
+      "label": "Early warnings suppressed; FDA blocks US approval",
+      "description": "Physicians have reported peripheral neuropathy to Grunenthal since 1959, but the company suppresses these reports. Frances Kelsey at the FDA refuses to approve thalidomide for the US market, finding safety data inadequate. Meanwhile, thousands of pregnant women continue taking the drug worldwide.",
+      "activeNodeIds": ["n1-actor-grunenthal", "n2-actor-kelsey", "n3-claim-drug-safe", "n5-evidence-neuropathy", "n6-event-fda-rejection", "n8-evidence-internal-docs", "n12-actor-distillers", "n13-narrative-safe-drug"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-9", "e-10"],
+      "narrativeShift": "First cracks appear: Kelsey's skepticism and suppressed neuropathy reports challenge the safety narrative"
+    },
+    {
+      "date": "1961-11-27",
+      "label": "Thalidomide identified as teratogen and withdrawn",
+      "description": "Lenz confronts Grunenthal on November 15 with evidence linking thalidomide to phocomelia. McBride reaches the same conclusion in Australia. Grunenthal withdraws Contergan from the German market on November 27, but withdrawal in other countries is delayed. The phocomelia epidemic becomes undeniable.",
+      "activeNodeIds": ["n1-actor-grunenthal", "n2-actor-kelsey", "n3-claim-drug-safe", "n4-actor-mcbride", "n5-evidence-neuropathy", "n6-event-fda-rejection", "n7-claim-teratogenic", "n8-evidence-internal-docs", "n9-actor-lenz", "n10-source-lancet", "n11-event-phocomelia", "n12-actor-distillers", "n13-narrative-safe-drug"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11"],
+      "narrativeShift": "The safe drug narrative collapses as scientific evidence overwhelms corporate claims"
+    },
+    {
+      "date": "1968-05-27",
+      "label": "Criminal trial exposes corporate cover-up",
+      "description": "Nine Grunenthal employees face criminal trial in Aachen. Internal documents reveal the company knew of adverse effects before approval, suppressed physician reports, and prioritised profits over safety. The trial ends in 1970 with a financial settlement and no convictions, but the full scope of corporate malfeasance is exposed.",
+      "activeNodeIds": ["n1-actor-grunenthal", "n2-actor-kelsey", "n3-claim-drug-safe", "n4-actor-mcbride", "n5-evidence-neuropathy", "n7-claim-teratogenic", "n8-evidence-internal-docs", "n9-actor-lenz", "n10-source-lancet", "n11-event-phocomelia", "n12-actor-distillers", "n13-narrative-safe-drug", "n14-narrative-coverup", "n15-event-trial"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13"],
+      "narrativeShift": "The corporate cover-up narrative is established. Thalidomide becomes a byword for pharmaceutical negligence and the catalyst for modern drug regulation."
+    }
+  ]
+}
