@@ -172,7 +172,7 @@ export default function CaseStudyClient({ caseStudy }: Props) {
               style={{
                 background: '#ffffff',
                 outline: '1px solid rgba(196,203,204,0.15)',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+                
               }}
             >
               <div className="flex items-center justify-between mb-2">
@@ -221,7 +221,7 @@ export default function CaseStudyClient({ caseStudy }: Props) {
             style={{
               background: '#ffffff',
               outline: '1px solid rgba(196,203,204,0.15)',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+              
             }}
           >
             <h3
@@ -348,7 +348,7 @@ export default function CaseStudyClient({ caseStudy }: Props) {
             style={{
               background: '#ffffff',
               outline: '1px solid rgba(196,203,204,0.15)',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+              
             }}
           >
             <h3
@@ -410,7 +410,7 @@ export default function CaseStudyClient({ caseStudy }: Props) {
               style={{
                 background: '#ffffff',
                 outline: '1px solid rgba(196,203,204,0.15)',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+                
               }}
             >
               <h3

@@ -319,13 +319,13 @@ export default function ChallengePage() {
               return (
                 <div key={step} className="flex items-center gap-2">
                   <div className="text-xs px-2 py-1 rounded font-mono" style={{
-                    background: isActive ? '#e87b35' : isDone ? '#2a9d5c10' : '#f7f7f7',
-                    color: isActive ? '#ffffff' : isDone ? '#2a9d5c' : '#999999',
-                    border: `1px solid ${isActive ? '#e87b35' : isDone ? '#2a9d5c30' : '#e5e5e5'}`,
+                    background: isActive ? '#a23f00' : isDone ? 'rgba(42,125,76,0.06)' : '#f2f4f4',
+                    color: isActive ? '#ffffff' : isDone ? '#2a7d4c' : '#9ba2a3',
+                    border: `1px solid ${isActive ? '#a23f00' : isDone ? 'rgba(42,125,76,0.18)' : 'rgba(196,203,204,0.15)'}`,
                   }}>
                     {step}
                   </div>
-                  {i < 3 && <span style={{ color: '#e5e5e5' }}>→</span>}
+                  {i < 3 && <span style={{ color: 'rgba(196,203,204,0.15)' }}>→</span>}
                 </div>
               );
             })}
@@ -338,8 +338,8 @@ export default function ChallengePage() {
         <div className="space-y-8">
           {/* Pipeline badge */}
           {response.pipeline === 'evidence-first' && (
-            <div className="flex items-center gap-3 text-xs font-mono" style={{ color: '#999999' }}>
-              <span className="px-2 py-1 rounded" style={{ background: '#2a9d5c10', color: '#2a9d5c', border: '1px solid #2a9d5c30' }}>
+            <div className="flex items-center gap-3 text-xs font-mono" style={{ color: '#9ba2a3' }}>
+              <span className="px-2 py-1 rounded" style={{ background: 'rgba(42,125,76,0.06)', color: '#2a7d4c', border: '1px solid rgba(42,125,76,0.18)' }}>
                 Evidence-first pipeline
               </span>
               <span>{response.rawEvidenceCount} primary sources gathered</span>
@@ -349,21 +349,21 @@ export default function ChallengePage() {
           )}
 
           {/* Research Question */}
-          <div className="rounded-lg p-6" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-            <div className="text-xs font-mono mb-2" style={{ color: '#999999' }}>RESEARCH QUESTION</div>
-            <h2 className="text-xl font-bold mb-4" style={{ color: '#1a1a1a' }}>
+          <div className="rounded-lg p-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
+            <div className="text-xs font-mono mb-2" style={{ color: '#9ba2a3' }}>RESEARCH QUESTION</div>
+            <h2 className="text-xl font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>
               {response.result.belief}
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <div className="text-xs font-bold mb-1" style={{ color: '#999999' }}>Popular understanding</div>
-                <p className="text-sm leading-relaxed" style={{ color: '#6b6b6b' }}>
+                <div className="text-xs font-bold mb-1" style={{ color: '#9ba2a3' }}>Popular understanding</div>
+                <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>
                   {response.result.standardNarrative}
                 </p>
               </div>
               <div>
-                <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>What the evidence shows</div>
-                <p className="text-sm leading-relaxed" style={{ color: '#6b6b6b' }}>
+                <div className="text-xs font-bold mb-1" style={{ color: '#a23f00' }}>What the evidence shows</div>
+                <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>
                   {response.result.contrarianCase}
                 </p>
               </div>
@@ -371,18 +371,18 @@ export default function ChallengePage() {
           </div>
 
           {/* Key Insight */}
-          <div className="rounded-lg p-5" style={{ background: '#fdf0e6', border: '1px solid rgba(232,123,53,0.2)' }}>
-            <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>KEY FINDING</div>
-            <p className="text-base leading-relaxed" style={{ color: '#1a1a1a' }}>
+          <div className="rounded-lg p-5" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.15)' }}>
+            <div className="text-xs font-bold mb-1" style={{ color: '#a23f00' }}>KEY FINDING</div>
+            <p className="text-base leading-relaxed" style={{ color: '#2d3435' }}>
               {response.result.keyInsight}
             </p>
           </div>
 
           {/* Novel Finding */}
           {response.synthesis?.novelFinding && (
-            <div className="rounded-lg p-5" style={{ background: '#2a9d5c08', border: '1px solid #2a9d5c30' }}>
-              <div className="text-xs font-bold mb-1" style={{ color: '#2a9d5c' }}>NOVEL FINDING — possibly not widely known</div>
-              <p className="text-base leading-relaxed" style={{ color: '#1a1a1a' }}>
+            <div className="rounded-lg p-5" style={{ background: 'rgba(42,125,76,0.06)', border: '1px solid rgba(42,125,76,0.18)' }}>
+              <div className="text-xs font-bold mb-1" style={{ color: '#2a7d4c' }}>NOVEL FINDING — possibly not widely known</div>
+              <p className="text-base leading-relaxed" style={{ color: '#2d3435' }}>
                 {response.synthesis.novelFinding}
               </p>
             </div>
@@ -390,9 +390,9 @@ export default function ChallengePage() {
 
           {/* Missing Evidence */}
           {response.synthesis?.missingEvidence && (
-            <div className="rounded-lg p-4" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-              <div className="text-xs font-bold mb-1" style={{ color: '#999999' }}>WHAT WOULD RESOLVE THE UNCERTAINTY</div>
-              <p className="text-sm leading-relaxed" style={{ color: '#6b6b6b' }}>
+            <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+              <div className="text-xs font-bold mb-1" style={{ color: '#9ba2a3' }}>WHAT WOULD RESOLVE THE UNCERTAINTY</div>
+              <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>
                 {response.synthesis.missingEvidence}
               </p>
             </div>
@@ -400,8 +400,8 @@ export default function ChallengePage() {
 
           {/* Bayesian Results */}
           <div>
-            <h3 className="text-lg font-bold mb-1" style={{ color: '#1a1a1a' }}>Bayesian Posteriors</h3>
-            <p className="text-xs mb-4" style={{ color: '#999999' }}>
+            <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Bayesian Posteriors</h3>
+            <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
               Computed mathematically from {response.rawEvidenceCount || '?'} evidence items.
               These are not opinions — they follow from P(H|E) = P(E|H)P(H)/P(E).
             </p>
@@ -409,14 +409,14 @@ export default function ChallengePage() {
               {response.bayesian.posteriors.map(h => {
                 const maxPosterior = Math.max(...response.bayesian.posteriors.map(p => p.posterior));
                 const isWinner = h.posterior === maxPosterior;
-                const color = isWinner ? '#2a9d5c' : '#999999';
+                const color = isWinner ? '#2a7d4c' : '#9ba2a3';
                 const width = Math.max(h.posterior * 100, 2);
                 return (
                   <div key={h.id}>
                     <div className="flex justify-between text-xs mb-1">
-                      <span style={{ color: '#6b6b6b' }}>
-                        {isWinner && <span className="font-mono mr-1" style={{ color: '#2a9d5c' }}>[BEST FIT]</span>}
-                        {h.isOfficial && <span className="font-mono mr-1" style={{ color: '#999999' }}>[STANDARD]</span>}
+                      <span style={{ color: '#6b7374' }}>
+                        {isWinner && <span className="font-mono mr-1" style={{ color: '#2a7d4c' }}>[BEST FIT]</span>}
+                        {h.isOfficial && <span className="font-mono mr-1" style={{ color: '#9ba2a3' }}>[STANDARD]</span>}
                         {h.label}
                       </span>
                       <span className="font-mono font-bold" style={{ color }}>{formatProb(h.posterior)}</span>
@@ -424,7 +424,7 @@ export default function ChallengePage() {
                     <div className="w-full h-4 rounded-full" style={{ background: '#eeeeee' }}>
                       <div className="h-full rounded-full transition-all duration-700" style={{
                         width: `${width}%`,
-                        background: isWinner ? '#2a9d5c' : h.isOfficial ? '#c44536' : '#999999',
+                        background: isWinner ? '#2a7d4c' : h.isOfficial ? '#a23f00' : '#9ba2a3',
                       }} />
                     </div>
                   </div>
@@ -435,10 +435,10 @@ export default function ChallengePage() {
             {(() => {
               const v = response.bayesian.verdict;
               const config = {
-                official_refuted: { color: '#c44536', label: 'STANDARD NARRATIVE NOT SUPPORTED BY EVIDENCE' },
-                official_unlikely: { color: '#e87b35', label: 'STANDARD NARRATIVE UNLIKELY GIVEN EVIDENCE' },
-                official_questionable: { color: '#d06a2a', label: 'STANDARD NARRATIVE QUESTIONABLE' },
-                official_supported: { color: '#2a9d5c', label: 'STANDARD NARRATIVE SUPPORTED BY EVIDENCE' },
+                official_refuted: { color: '#a23f00', label: 'STANDARD NARRATIVE NOT SUPPORTED BY EVIDENCE' },
+                official_unlikely: { color: '#a23f00', label: 'STANDARD NARRATIVE UNLIKELY GIVEN EVIDENCE' },
+                official_questionable: { color: '#8f3600', label: 'STANDARD NARRATIVE QUESTIONABLE' },
+                official_supported: { color: '#2a7d4c', label: 'STANDARD NARRATIVE SUPPORTED BY EVIDENCE' },
               }[v.verdict];
               return (
                 <div className="mt-4 rounded-lg p-4" style={{ background: `${config.color}08`, border: `1px solid ${config.color}30` }}>
@@ -452,8 +452,8 @@ export default function ChallengePage() {
 
           {/* Evidence — now showing as primary source items */}
           <div>
-            <h3 className="text-lg font-bold mb-1" style={{ color: '#1a1a1a' }}>Primary Source Evidence</h3>
-            <p className="text-xs mb-4" style={{ color: '#999999' }}>
+            <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Primary Source Evidence</h3>
+            <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
               {response.result.evidence.length} items gathered. Sorted by Bayesian impact.
             </p>
             <div className="space-y-3">
@@ -476,20 +476,19 @@ export default function ChallengePage() {
                   return (
                     <div key={e.id} className="rounded-lg p-4" style={{
                       background: '#ffffff',
-                      border: '1px solid #e5e5e5',
-                      borderLeftColor: supportsWinner ? '#2a9d5c' : '#e87b35',
+                      border: '1px solid rgba(196,203,204,0.15)',
+                      borderLeftColor: supportsWinner ? '#2a7d4c' : '#a23f00',
                       borderLeftWidth: '3px',
-                      boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
                     }}>
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1">
-                          <div className="text-sm leading-relaxed mb-2" style={{ color: '#1a1a1a' }}>{e.description}</div>
-                          <div className="flex flex-wrap gap-3 text-xs font-mono items-center" style={{ color: '#999999' }}>
+                          <div className="text-sm leading-relaxed mb-2" style={{ color: '#2d3435' }}>{e.description}</div>
+                          <div className="flex flex-wrap gap-3 text-xs font-mono items-center" style={{ color: '#9ba2a3' }}>
                             <span>{e.date}</span>
                             <span>reliability: {(e.sourceReliability * 100).toFixed(0)}%</span>
-                            {e.wasClassified && <span style={{ color: '#c44536' }}>DECLASSIFIED</span>}
+                            {e.wasClassified && <span style={{ color: '#a23f00' }}>DECLASSIFIED</span>}
                             {bestHyp && (
-                              <span style={{ color: supportsWinner ? '#2a9d5c' : '#e87b35' }}>
+                              <span style={{ color: supportsWinner ? '#2a7d4c' : '#a23f00' }}>
                                 strongest for: {bestHyp.label.slice(0, 50)}
                               </span>
                             )}
@@ -499,13 +498,13 @@ export default function ChallengePage() {
                                 <>
                                   {links.sourceUrl && (
                                     <a href={links.sourceUrl} target="_blank" rel="noopener noreferrer"
-                                      className="hover:underline" style={{ color: '#e87b35' }}>
+                                      className="hover:underline" style={{ color: '#a23f00' }}>
                                       [source]
                                     </a>
                                   )}
                                   {links.searchQuery && (
                                     <a href={searchUrl(links.searchQuery)} target="_blank" rel="noopener noreferrer"
-                                      className="hover:underline" style={{ color: '#999999' }}>
+                                      className="hover:underline" style={{ color: '#9ba2a3' }}>
                                       [verify]
                                     </a>
                                   )}
@@ -516,7 +515,7 @@ export default function ChallengePage() {
                         </div>
                         {sens && (
                           <div className="text-xs font-mono text-right flex-shrink-0" style={{
-                            color: impact > 0.3 ? '#e87b35' : '#999999'
+                            color: impact > 0.3 ? '#a23f00' : '#9ba2a3'
                           }}>
                             impact<br />{(impact * 100).toFixed(0)}%
                           </div>
@@ -531,28 +530,28 @@ export default function ChallengePage() {
           {/* Causal Chain */}
           {response.result.causalFactors.length > 0 && (
             <div>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#1a1a1a' }}>
+              <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>
                 Causal Structure
               </h3>
-              <div className="rounded-lg p-5" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+              <div className="rounded-lg p-5" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
                 {response.result.causalFactors.map((cf, i) => (
                   <div key={cf.id}>
                     <div className="flex items-start gap-2">
                       <div className="w-2.5 h-2.5 rounded-full mt-1.5 flex-shrink-0" style={{
-                        background: cf.type === 'power_change' ? '#c44536' :
-                          cf.type === 'narrative_change' ? '#e87b35' :
-                          cf.type === 'evidence_action' ? '#d06a2a' :
+                        background: cf.type === 'power_change' ? '#a23f00' :
+                          cf.type === 'narrative_change' ? '#a23f00' :
+                          cf.type === 'evidence_action' ? '#8f3600' :
                           cf.type === 'economic' ? '#b07030' :
-                          cf.type === 'demographic' ? '#4a8fa8' : '#999999'
+                          cf.type === 'demographic' ? '#4a8fa8' : '#9ba2a3'
                       }} />
                       <div>
-                        <div className="text-sm" style={{ color: '#1a1a1a' }}>{cf.label}</div>
-                        <div className="text-xs font-mono" style={{ color: '#999999' }}>{cf.date}</div>
+                        <div className="text-sm" style={{ color: '#2d3435' }}>{cf.label}</div>
+                        <div className="text-xs font-mono" style={{ color: '#9ba2a3' }}>{cf.date}</div>
                       </div>
                     </div>
                     {i < response.result.causalLinks.length && response.result.causalLinks[i] && (
-                      <div className="ml-1.5 pl-3 py-2" style={{ borderLeft: '1px solid #e5e5e5' }}>
-                        <div className="text-xs italic" style={{ color: '#bbbbbb' }}>
+                      <div className="ml-1.5 pl-3 py-2" style={{ borderLeft: '1px solid rgba(196,203,204,0.15)' }}>
+                        <div className="text-xs italic" style={{ color: '#9ba2a3' }}>
                           {response.result.causalLinks[i].mechanism}
                         </div>
                       </div>
@@ -565,18 +564,18 @@ export default function ChallengePage() {
 
           {/* Confidence + Further Reading */}
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="rounded-lg p-4" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-              <div className="text-xs font-bold mb-1" style={{ color: '#999999' }}>CONFIDENCE ASSESSMENT</div>
-              <p className="text-sm leading-relaxed" style={{ color: '#6b6b6b' }}>
+            <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+              <div className="text-xs font-bold mb-1" style={{ color: '#9ba2a3' }}>CONFIDENCE ASSESSMENT</div>
+              <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>
                 {response.result.confidenceNote}
               </p>
             </div>
             {response.result.furtherReading.length > 0 && (
-              <div className="rounded-lg p-4" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-                <div className="text-xs font-bold mb-2" style={{ color: '#999999' }}>PRIMARY SOURCES / FURTHER READING</div>
+              <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+                <div className="text-xs font-bold mb-2" style={{ color: '#9ba2a3' }}>PRIMARY SOURCES / FURTHER READING</div>
                 <ul className="space-y-1.5">
                   {response.result.furtherReading.map((ref, i) => (
-                    <li key={i} className="text-xs pl-3 leading-relaxed" style={{ color: '#6b6b6b', borderLeft: '2px solid #e87b35' }}>
+                    <li key={i} className="text-xs pl-3 leading-relaxed" style={{ color: '#6b7374', borderLeft: '2px solid #a23f00' }}>
                       {ref}
                     </li>
                   ))}
@@ -587,12 +586,12 @@ export default function ChallengePage() {
 
           {/* Share bar */}
           {shareUrl && (
-            <div className="rounded-lg p-3 flex items-center gap-3" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-              <div className="text-xs font-mono truncate flex-1" style={{ color: '#999999' }}>{shareUrl}</div>
+            <div className="rounded-lg p-3 flex items-center gap-3" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+              <div className="text-xs font-mono truncate flex-1" style={{ color: '#9ba2a3' }}>{shareUrl}</div>
               <button
                 onClick={() => { navigator.clipboard.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
                 className="text-xs font-bold px-3 py-1 rounded flex-shrink-0"
-                style={{ background: copied ? '#2a9d5c' : '#e87b35', color: 'white' }}
+                style={{ background: copied ? '#2a7d4c' : '#a23f00', color: 'white' }}
               >
                 {copied ? 'Copied' : 'Copy'}
               </button>
@@ -600,13 +599,13 @@ export default function ChallengePage() {
           )}
 
           {/* Actions */}
-          <div className="flex gap-3 justify-center pt-4">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4">
             <button
               onClick={saveAndShare}
               disabled={saving || !!shareUrl}
               className="text-sm px-6 py-2.5 rounded-lg font-bold transition-opacity hover:opacity-90"
               style={{
-                background: shareUrl ? '#2a9d5c' : '#e87b35',
+                background: shareUrl ? '#2a7d4c' : '#a23f00',
                 color: 'white',
                 opacity: saving ? 0.5 : 1,
               }}
@@ -616,7 +615,7 @@ export default function ChallengePage() {
             <button
               onClick={reset}
               className="text-sm px-6 py-2.5 rounded-lg font-medium transition-opacity hover:opacity-90"
-              style={{ border: '1px solid #e5e5e5', color: '#6b6b6b' }}
+              style={{ border: '1px solid rgba(196,203,204,0.15)', color: '#6b7374' }}
             >
               New Question
             </button>
@@ -624,7 +623,7 @@ export default function ChallengePage() {
               onClick={() => discoverByCategory('surprise')}
               disabled={loading}
               className="text-sm px-6 py-2.5 rounded-lg font-medium transition-opacity hover:opacity-90"
-              style={{ border: '1px solid #e5e5e5', color: '#6b6b6b' }}
+              style={{ border: '1px solid rgba(196,203,204,0.15)', color: '#6b7374' }}
             >
               Discover Another
             </button>
@@ -634,7 +633,7 @@ export default function ChallengePage() {
 
       {/* History count */}
       {history.length > 0 && !loading && (
-        <div className="text-center mt-8 text-xs" style={{ color: '#999999' }}>
+        <div className="text-center mt-8 text-xs" style={{ color: '#9ba2a3' }}>
           {history.length} question{history.length !== 1 ? 's' : ''} analyzed this session
         </div>
       )}

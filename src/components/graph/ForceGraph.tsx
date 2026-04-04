@@ -229,7 +229,7 @@ export default function ForceGraph({ nodes, edges, width = 800, height = 500, on
             background: '#ffffff',
             border: '1px solid #e5e5e5',
             color: '#1a1a1a',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+            
           }}
         >
           <div className="font-bold mb-1" style={{ color: NODE_COLORS[tooltip.node.type] }}>

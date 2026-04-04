@@ -386,7 +386,7 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
   const rawEvidenceCount = (data.rawEvidenceCount ?? result?.evidence?.length ?? 0) as number;
   const hypothesisCount = (data.hypothesisCount ?? bayesian?.posteriors?.length ?? 0) as number;
 
-  if (!result) return <div className="text-sm" style={{ color: '#999999' }}>No result data found.</div>;
+  if (!result) return <div className="text-sm" style={{ color: '#9ba2a3' }}>No result data found.</div>;
 
   return (
     <div className="space-y-8">
@@ -478,7 +478,7 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
               official_questionable: { color: '#8f3600', label: 'STANDARD NARRATIVE QUESTIONABLE' },
               official_supported: { color: '#2a7d4c', label: 'STANDARD NARRATIVE SUPPORTED BY EVIDENCE' },
             };
-            const c = config[v.verdict] || { color: '#999999', label: v.verdict };
+            const c = config[v.verdict] || { color: '#9ba2a3', label: v.verdict };
             return (
               <div className="mt-4 rounded-lg p-4" style={{ background: `${c.color}08`, border: `1px solid ${c.color}30` }}>
                 <span className="text-sm font-mono font-bold" style={{ color: c.color }}>{c.label}</span>

@@ -66,7 +66,7 @@ export default function HelpPage() {
               style={{ background: '#a23f00', color: 'white' }}>1</div>
             <div>
               <div className="font-bold mb-1" style={{ color: '#2d3435' }}>Set your API key</div>
-              <p className="text-sm" style={{ color: '#6b6b6b' }}>
+              <p className="text-sm" style={{ color: '#6b7374' }}>
                 Click the Settings button in the top nav. Choose your AI provider (Claude, OpenAI, Gemini, or Grok)
                 and enter your API key. The key is stored in your browser only &mdash; it never touches our servers.
               </p>
@@ -78,7 +78,7 @@ export default function HelpPage() {
               style={{ background: '#a23f00', color: 'white' }}>2</div>
             <div>
               <div className="font-bold mb-1" style={{ color: '#2d3435' }}>Ask a question or paste an article</div>
-              <p className="text-sm" style={{ color: '#6b6b6b' }}>
+              <p className="text-sm" style={{ color: '#6b7374' }}>
                 On <strong>Evidence Discovery</strong>, type a specific research question or click a topic
                 category to auto-discover one. On <strong>Live Analysis</strong>, paste the text of a news article.
               </p>
@@ -90,7 +90,7 @@ export default function HelpPage() {
               style={{ background: '#a23f00', color: 'white' }}>3</div>
             <div>
               <div className="font-bold mb-1" style={{ color: '#2d3435' }}>Wait for the pipeline (30&ndash;60 seconds)</div>
-              <p className="text-sm" style={{ color: '#6b6b6b' }}>
+              <p className="text-sm" style={{ color: '#6b7374' }}>
                 The system runs a multi-step pipeline: gather evidence, generate hypotheses, run Bayesian
                 inference, then synthesize the results. You&apos;ll see the progress as it works.
               </p>
@@ -102,9 +102,9 @@ export default function HelpPage() {
               style={{ background: '#a23f00', color: 'white' }}>4</div>
             <div>
               <div className="font-bold mb-1" style={{ color: '#2d3435' }}>Read the results and check the sources</div>
-              <p className="text-sm" style={{ color: '#6b6b6b' }}>
-                Every evidence item has a <span className="font-mono" style={{ color: '#e87b35' }}>[source]</span> link
-                (when a direct URL is known) and a <span className="font-mono" style={{ color: '#999999' }}>[verify]</span> link
+              <p className="text-sm" style={{ color: '#6b7374' }}>
+                Every evidence item has a <span className="font-mono" style={{ color: '#a23f00' }}>[source]</span> link
+                (when a direct URL is known) and a <span className="font-mono" style={{ color: '#9ba2a3' }}>[verify]</span> link
                 (a Google search you can run yourself). The percentages are computed mathematically &mdash; they&apos;re
                 not the AI&apos;s opinion.
               </p>
@@ -115,27 +115,27 @@ export default function HelpPage() {
 
       {/* ── TECHNICAL DETAILS ───────────────────────────────────────────── */}
       <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-2" style={{ color: '#1a1a1a' }}>Under the hood</h2>
-        <p className="text-sm mb-8" style={{ color: '#6b6b6b' }}>
-          Three systems feed into each other. The <strong style={{ color: '#1a1a1a' }}>knowledge graph</strong> maps
-          who said what, who benefits, and who suppressed evidence. The <strong style={{ color: '#1a1a1a' }}>causal
-          model</strong> traces why the narrative took the shape it did. The <strong style={{ color: '#1a1a1a' }}>Bayesian
+        <h2 className="text-2xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Under the hood</h2>
+        <p className="text-sm mb-8" style={{ color: '#6b7374' }}>
+          Three systems feed into each other. The <strong style={{ color: '#2d3435' }}>knowledge graph</strong> maps
+          who said what, who benefits, and who suppressed evidence. The <strong style={{ color: '#2d3435' }}>causal
+          model</strong> traces why the narrative took the shape it did. The <strong style={{ color: '#2d3435' }}>Bayesian
           engine</strong> computes what the evidence actually supports. Graph edges adjust evidence reliability;
           causal factors modify evidence weight; Bayesian posteriors feed back to update graph confidence.
-          The <strong style={{ color: '#1a1a1a' }}>narrative fragility score</strong> synthesises all three into
+          The <strong style={{ color: '#2d3435' }}>narrative fragility score</strong> synthesises all three into
           a single measure of structural vulnerability.
         </p>
 
         {/* ── BAYESIAN INFERENCE ─────────────────────────────────────────── */}
-        <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+        <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-xl font-mono" style={{ color: '#e87b35' }}>P(H|E)</span>
-            <h3 className="text-lg font-bold" style={{ color: '#1a1a1a' }}>Bayesian Inference</h3>
+            <span className="text-xl font-mono" style={{ color: '#a23f00' }}>P(H|E)</span>
+            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Bayesian Inference</h3>
           </div>
 
-          <div className="rounded p-4 mb-4" style={{ background: '#f7f7f7' }}>
-            <p className="leading-relaxed" style={{ color: '#6b6b6b' }}>
-              <strong style={{ color: '#1a1a1a' }}>In plain English:</strong> You start with a set of possible
+          <div className="rounded p-4 mb-4" style={{ background: '#f2f4f4' }}>
+            <p className="leading-relaxed" style={{ color: '#6b7374' }}>
+              <strong style={{ color: '#2d3435' }}>In plain English:</strong> You start with a set of possible
               explanations, each with an initial probability. Then you feed in evidence, one piece at a time.
               Each piece of evidence makes some explanations more likely and others less likely. After all the
               evidence is processed, the explanation with the highest probability is the one best supported
@@ -144,13 +144,13 @@ export default function HelpPage() {
             </p>
           </div>
 
-          <div className="space-y-4 text-sm" style={{ color: '#6b6b6b' }}>
+          <div className="space-y-4 text-sm" style={{ color: '#6b7374' }}>
             <div>
-              <div className="font-bold font-mono mb-1" style={{ color: '#1a1a1a' }}>Bayes&apos; Theorem</div>
-              <div className="font-mono text-xs p-3 rounded mb-2" style={{ background: '#f7f7f7', color: '#e87b35' }}>
+              <div className="font-bold font-mono mb-1" style={{ color: '#2d3435' }}>Bayes&apos; Theorem</div>
+              <div className="font-mono text-xs p-3 rounded mb-2" style={{ background: '#f2f4f4', color: '#a23f00' }}>
                 P(H|E) = P(E|H) &times; P(H) / P(E)
               </div>
-              <ul className="space-y-1 text-xs" style={{ color: '#6b6b6b' }}>
+              <ul className="space-y-1 text-xs" style={{ color: '#6b7374' }}>
                 <li><strong>P(H|E)</strong> &mdash; the <em>posterior</em>: how likely is this explanation after seeing the evidence?</li>
                 <li><strong>P(E|H)</strong> &mdash; the <em>likelihood</em>: if this explanation were true, how likely would we see this evidence?</li>
                 <li><strong>P(H)</strong> &mdash; the <em>prior</em>: how likely was this explanation before seeing the evidence?</li>
@@ -159,20 +159,20 @@ export default function HelpPage() {
             </div>
 
             <div>
-              <div className="font-bold font-mono mb-1" style={{ color: '#1a1a1a' }}>Source reliability weighting</div>
+              <div className="font-bold font-mono mb-1" style={{ color: '#2d3435' }}>Source reliability weighting</div>
               <p className="text-xs leading-relaxed">
                 Not all evidence is equally trustworthy. Each source gets a reliability score (0&ndash;100%).
                 Less reliable sources have their likelihood values pulled toward 0.5 (neutral), so they
                 have less influence on the final result. A government census record at 95% reliability shifts
                 the probabilities much more than an anonymous claim at 30%.
               </p>
-              <div className="font-mono text-xs p-3 rounded mt-2" style={{ background: '#f7f7f7', color: '#e87b35' }}>
+              <div className="font-mono text-xs p-3 rounded mt-2" style={{ background: '#f2f4f4', color: '#a23f00' }}>
                 adjusted = reliability &times; raw_likelihood + (1 - reliability) &times; 0.5
               </div>
             </div>
 
             <div>
-              <div className="font-bold font-mono mb-1" style={{ color: '#1a1a1a' }}>Evidence sensitivity (impact scores)</div>
+              <div className="font-bold font-mono mb-1" style={{ color: '#2d3435' }}>Evidence sensitivity (impact scores)</div>
               <p className="text-xs leading-relaxed">
                 Each evidence item gets an &ldquo;impact&rdquo; score showing how much it shifts the result on its own.
                 This uses log-odds: at extreme probabilities (like 0.1% vs 0.3%), raw percentage differences
@@ -182,22 +182,22 @@ export default function HelpPage() {
             </div>
 
             <div>
-              <div className="font-bold font-mono mb-1" style={{ color: '#1a1a1a' }}>Verdict thresholds</div>
-              <div className="text-xs grid grid-cols-2 gap-2 mt-2">
-                <div className="p-2 rounded" style={{ background: '#2a9d5c10', border: '1px solid #2a9d5c30' }}>
-                  <span className="font-mono font-bold" style={{ color: '#2a9d5c' }}>SUPPORTED</span>
+              <div className="font-bold font-mono mb-1" style={{ color: '#2d3435' }}>Verdict thresholds</div>
+              <div className="text-xs grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+                <div className="p-2 rounded" style={{ background: 'rgba(42,125,76,0.06)', border: '1px solid rgba(42,125,76,0.18)' }}>
+                  <span className="font-mono font-bold" style={{ color: '#2a7d4c' }}>SUPPORTED</span>
                   <span className="ml-2">posterior &ge; 70%</span>
                 </div>
-                <div className="p-2 rounded" style={{ background: '#d06a2a10', border: '1px solid #d06a2a30' }}>
-                  <span className="font-mono font-bold" style={{ color: '#d06a2a' }}>QUESTIONABLE</span>
+                <div className="p-2 rounded" style={{ background: 'rgba(143,54,0,0.06)', border: '1px solid rgba(143,54,0,0.18)' }}>
+                  <span className="font-mono font-bold" style={{ color: '#8f3600' }}>QUESTIONABLE</span>
                   <span className="ml-2">40&ndash;70%</span>
                 </div>
-                <div className="p-2 rounded" style={{ background: '#e87b3510', border: '1px solid #e87b3530' }}>
-                  <span className="font-mono font-bold" style={{ color: '#e87b35' }}>UNLIKELY</span>
+                <div className="p-2 rounded" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.18)' }}>
+                  <span className="font-mono font-bold" style={{ color: '#a23f00' }}>UNLIKELY</span>
                   <span className="ml-2">20&ndash;40%</span>
                 </div>
-                <div className="p-2 rounded" style={{ background: '#c4453610', border: '1px solid #c4453630' }}>
-                  <span className="font-mono font-bold" style={{ color: '#c44536' }}>REFUTED</span>
+                <div className="p-2 rounded" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.18)' }}>
+                  <span className="font-mono font-bold" style={{ color: '#a23f00' }}>REFUTED</span>
                   <span className="ml-2">posterior &lt; 20%</span>
                 </div>
               </div>
@@ -206,15 +206,15 @@ export default function HelpPage() {
         </div>
 
         {/* ── KNOWLEDGE GRAPH ────────────────────────────────────────────── */}
-        <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+        <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-xl font-mono" style={{ color: '#e87b35' }}>G</span>
-            <h3 className="text-lg font-bold" style={{ color: '#1a1a1a' }}>Knowledge Graph</h3>
+            <span className="text-xl font-mono" style={{ color: '#a23f00' }}>G</span>
+            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Knowledge Graph</h3>
           </div>
 
-          <div className="rounded p-4 mb-4" style={{ background: '#f7f7f7' }}>
-            <p className="leading-relaxed" style={{ color: '#6b6b6b' }}>
-              <strong style={{ color: '#1a1a1a' }}>In plain English:</strong> A map of who said what, what
+          <div className="rounded p-4 mb-4" style={{ background: '#f2f4f4' }}>
+            <p className="leading-relaxed" style={{ color: '#6b7374' }}>
+              <strong style={{ color: '#2d3435' }}>In plain English:</strong> A map of who said what, what
               evidence exists, and how things connect. People, documents, events, and claims are dots (nodes).
               Lines between them (edges) show relationships: &ldquo;this person made this claim,&rdquo; &ldquo;this document
               contradicts that claim,&rdquo; &ldquo;this event preceded that event.&rdquo; When you see the interactive
@@ -223,10 +223,10 @@ export default function HelpPage() {
             </p>
           </div>
 
-          <div className="space-y-4 text-sm" style={{ color: '#6b6b6b' }}>
+          <div className="space-y-4 text-sm" style={{ color: '#6b7374' }}>
             <div>
-              <div className="font-bold font-mono mb-1" style={{ color: '#1a1a1a' }}>Node types</div>
-              <div className="grid grid-cols-3 gap-2 text-xs mt-2">
+              <div className="font-bold font-mono mb-1" style={{ color: '#2d3435' }}>Node types</div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-xs mt-2">
                 {[
                   { type: 'claim', desc: 'A specific assertion someone made' },
                   { type: 'source', desc: 'A document, database, or record' },
@@ -235,17 +235,17 @@ export default function HelpPage() {
                   { type: 'evidence', desc: 'A verifiable fact with a source' },
                   { type: 'narrative', desc: 'A broader story or explanation' },
                 ].map(n => (
-                  <div key={n.type} className="p-2 rounded" style={{ background: '#f7f7f7' }}>
-                    <span className="font-mono font-bold" style={{ color: '#e87b35' }}>{n.type}</span>
-                    <div className="mt-1" style={{ color: '#999999' }}>{n.desc}</div>
+                  <div key={n.type} className="p-2 rounded" style={{ background: '#f2f4f4' }}>
+                    <span className="font-mono font-bold" style={{ color: '#a23f00' }}>{n.type}</span>
+                    <div className="mt-1" style={{ color: '#9ba2a3' }}>{n.desc}</div>
                   </div>
                 ))}
               </div>
             </div>
 
             <div>
-              <div className="font-bold font-mono mb-1" style={{ color: '#1a1a1a' }}>Edge types (relationships)</div>
-              <div className="grid grid-cols-3 gap-2 text-xs mt-2">
+              <div className="font-bold font-mono mb-1" style={{ color: '#2d3435' }}>Edge types (relationships)</div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-xs mt-2">
                 {[
                   { type: 'claims', desc: 'Actor makes a claim' },
                   { type: 'cites', desc: 'Claim references a source' },
@@ -257,16 +257,16 @@ export default function HelpPage() {
                   { type: 'derived_from', desc: 'Claim built on another' },
                   { type: 'fabricates', desc: 'Actor creates false evidence' },
                 ].map(e => (
-                  <div key={e.type} className="p-2 rounded" style={{ background: '#f7f7f7' }}>
-                    <span className="font-mono font-bold" style={{ color: '#e87b35' }}>{e.type}</span>
-                    <div className="mt-1" style={{ color: '#999999' }}>{e.desc}</div>
+                  <div key={e.type} className="p-2 rounded" style={{ background: '#f2f4f4' }}>
+                    <span className="font-mono font-bold" style={{ color: '#a23f00' }}>{e.type}</span>
+                    <div className="mt-1" style={{ color: '#9ba2a3' }}>{e.desc}</div>
                   </div>
                 ))}
               </div>
             </div>
 
             <div>
-              <div className="font-bold font-mono mb-1" style={{ color: '#1a1a1a' }}>What the graph reveals</div>
+              <div className="font-bold font-mono mb-1" style={{ color: '#2d3435' }}>What the graph reveals</div>
               <p className="text-xs leading-relaxed">
                 The graph makes structural patterns visible. If many claims trace back to a single source, that&apos;s
                 a <strong>source clustering</strong> risk &mdash; one bad source could invalidate multiple claims. If an actor
@@ -279,15 +279,15 @@ export default function HelpPage() {
         </div>
 
         {/* ── CAUSAL MODEL ───────────────────────────────────────────────── */}
-        <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+        <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-xl font-mono" style={{ color: '#e87b35' }}>C</span>
-            <h3 className="text-lg font-bold" style={{ color: '#1a1a1a' }}>Causal Model</h3>
+            <span className="text-xl font-mono" style={{ color: '#a23f00' }}>C</span>
+            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Causal Model</h3>
           </div>
 
-          <div className="rounded p-4 mb-4" style={{ background: '#f7f7f7' }}>
-            <p className="leading-relaxed" style={{ color: '#6b6b6b' }}>
-              <strong style={{ color: '#1a1a1a' }}>In plain English:</strong> The causal model answers
+          <div className="rounded p-4 mb-4" style={{ background: '#f2f4f4' }}>
+            <p className="leading-relaxed" style={{ color: '#6b7374' }}>
+              <strong style={{ color: '#2d3435' }}>In plain English:</strong> The causal model answers
               &ldquo;why&rdquo; &mdash; why did the story change, why was evidence hidden, why did one version
               of events win out? It traces chains of cause and effect: a change in political power leads
               to a change in the official narrative, which leads to certain evidence being suppressed or
@@ -296,24 +296,24 @@ export default function HelpPage() {
             </p>
           </div>
 
-          <div className="space-y-4 text-sm" style={{ color: '#6b6b6b' }}>
+          <div className="space-y-4 text-sm" style={{ color: '#6b7374' }}>
             <div>
-              <div className="font-bold font-mono mb-1" style={{ color: '#1a1a1a' }}>Causal factor types</div>
-              <div className="grid grid-cols-2 gap-2 text-xs mt-2">
+              <div className="font-bold font-mono mb-1" style={{ color: '#2d3435' }}>Causal factor types</div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs mt-2">
                 {[
-                  { type: 'power_change', color: '#c44536', desc: 'A shift in who holds power (election, coup, conquest)' },
-                  { type: 'narrative_change', color: '#e87b35', desc: 'The official story about an event changes' },
-                  { type: 'evidence_action', color: '#d06a2a', desc: 'Evidence is created, destroyed, classified, or released' },
-                  { type: 'institutional', color: '#999999', desc: 'An organisation changes rules or structure' },
+                  { type: 'power_change', color: '#a23f00', desc: 'A shift in who holds power (election, coup, conquest)' },
+                  { type: 'narrative_change', color: '#a23f00', desc: 'The official story about an event changes' },
+                  { type: 'evidence_action', color: '#8f3600', desc: 'Evidence is created, destroyed, classified, or released' },
+                  { type: 'institutional', color: '#9ba2a3', desc: 'An organisation changes rules or structure' },
                   { type: 'economic', color: '#b07030', desc: 'Economic forces that shape incentives' },
                   { type: 'demographic', color: '#4a8fa8', desc: 'Population changes that shift the context' },
-                  { type: 'technological', color: '#999999', desc: 'New technology changes what is possible or detectable' },
+                  { type: 'technological', color: '#9ba2a3', desc: 'New technology changes what is possible or detectable' },
                 ].map(f => (
-                  <div key={f.type} className="p-2 rounded flex gap-2 items-start" style={{ background: '#f7f7f7' }}>
+                  <div key={f.type} className="p-2 rounded flex gap-2 items-start" style={{ background: '#f2f4f4' }}>
                     <div className="w-2.5 h-2.5 rounded-full mt-1 flex-shrink-0" style={{ background: f.color }} />
                     <div>
-                      <span className="font-mono font-bold" style={{ color: '#1a1a1a' }}>{f.type}</span>
-                      <div className="mt-0.5" style={{ color: '#999999' }}>{f.desc}</div>
+                      <span className="font-mono font-bold" style={{ color: '#2d3435' }}>{f.type}</span>
+                      <div className="mt-0.5" style={{ color: '#9ba2a3' }}>{f.desc}</div>
                     </div>
                   </div>
                 ))}
@@ -321,7 +321,7 @@ export default function HelpPage() {
             </div>
 
             <div>
-              <div className="font-bold font-mono mb-1" style={{ color: '#1a1a1a' }}>Causal links</div>
+              <div className="font-bold font-mono mb-1" style={{ color: '#2d3435' }}>Causal links</div>
               <p className="text-xs leading-relaxed">
                 Each link connects two causal factors with a <strong>mechanism</strong> (how one caused the other)
                 and a <strong>strength</strong> (0&ndash;1, how strong the causal relationship is). For example:
@@ -334,15 +334,15 @@ export default function HelpPage() {
         </div>
 
         {/* ── INTEGRATION ───────────────────────────────────────────────── */}
-        <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+        <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-xl font-mono" style={{ color: '#e87b35' }}>&harr;</span>
-            <h3 className="text-lg font-bold" style={{ color: '#1a1a1a' }}>How the Three Systems Connect</h3>
+            <span className="text-xl font-mono" style={{ color: '#a23f00' }}>&harr;</span>
+            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>How the Three Systems Connect</h3>
           </div>
 
-          <div className="rounded p-4 mb-4" style={{ background: '#f7f7f7' }}>
-            <p className="leading-relaxed" style={{ color: '#6b6b6b' }}>
-              <strong style={{ color: '#1a1a1a' }}>In plain English:</strong> The knowledge graph, causal model,
+          <div className="rounded p-4 mb-4" style={{ background: '#f2f4f4' }}>
+            <p className="leading-relaxed" style={{ color: '#6b7374' }}>
+              <strong style={{ color: '#2d3435' }}>In plain English:</strong> The knowledge graph, causal model,
               and Bayesian engine are not separate tools &mdash; they feed into each other. If the graph shows an
               actor suppressing evidence, the Bayesian engine automatically trusts that actor&apos;s claims less. If
               a causal factor describes evidence being classified, evidence that was classified during that period
@@ -354,10 +354,10 @@ export default function HelpPage() {
           <div className="space-y-3 text-sm">
             <div className="flex gap-3 items-start">
               <div className="font-mono text-xs px-2 py-1 rounded flex-shrink-0"
-                style={{ background: '#1a1a1a', color: 'white' }}>Graph &rarr; Bayes</div>
+                style={{ background: '#2d3435', color: 'white' }}>Graph &rarr; Bayes</div>
               <div>
-                <div className="font-bold" style={{ color: '#1a1a1a' }}>Edge types adjust evidence reliability</div>
-                <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                <div className="font-bold" style={{ color: '#2d3435' }}>Edge types adjust evidence reliability</div>
+                <p className="text-xs" style={{ color: '#6b7374' }}>
                   A <strong>suppresses</strong> edge reduces the reliability of evidence from that actor.
                   A <strong>fabricates</strong> edge drastically reduces source reliability (&times;0.2).
                   A <strong>benefits</strong> edge discounts self-serving evidence (&minus;10%).
@@ -369,10 +369,10 @@ export default function HelpPage() {
 
             <div className="flex gap-3 items-start">
               <div className="font-mono text-xs px-2 py-1 rounded flex-shrink-0"
-                style={{ background: '#1a1a1a', color: 'white' }}>Causal &rarr; Bayes</div>
+                style={{ background: '#2d3435', color: 'white' }}>Causal &rarr; Bayes</div>
               <div>
-                <div className="font-bold" style={{ color: '#1a1a1a' }}>Evidence actions modify weight</div>
-                <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                <div className="font-bold" style={{ color: '#2d3435' }}>Evidence actions modify weight</div>
+                <p className="text-xs" style={{ color: '#6b7374' }}>
                   Causal factors of type <strong>evidence_action</strong> (classification, suppression,
                   declassification) adjust the reliability of evidence from the same period. Classified
                   evidence that supported the official narrative during active suppression gets penalised;
@@ -383,10 +383,10 @@ export default function HelpPage() {
 
             <div className="flex gap-3 items-start">
               <div className="font-mono text-xs px-2 py-1 rounded flex-shrink-0"
-                style={{ background: '#1a1a1a', color: 'white' }}>Bayes &rarr; Graph</div>
+                style={{ background: '#2d3435', color: 'white' }}>Bayes &rarr; Graph</div>
               <div>
-                <div className="font-bold" style={{ color: '#1a1a1a' }}>Posteriors update claim confidence</div>
-                <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                <div className="font-bold" style={{ color: '#2d3435' }}>Posteriors update claim confidence</div>
+                <p className="text-xs" style={{ color: '#6b7374' }}>
                   After Bayesian inference runs, claim nodes in the knowledge graph have their confidence
                   scores blended toward the posterior of their aligned hypothesis (70% original, 30%
                   posterior-derived). This means the graph visualisation reflects what the evidence
@@ -398,15 +398,15 @@ export default function HelpPage() {
         </div>
 
         {/* ── FRAGILITY SCORE ────────────────────────────────────────────── */}
-        <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+        <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-xl font-mono" style={{ color: '#e87b35' }}>F</span>
-            <h3 className="text-lg font-bold" style={{ color: '#1a1a1a' }}>Narrative Fragility Score</h3>
+            <span className="text-xl font-mono" style={{ color: '#a23f00' }}>F</span>
+            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Narrative Fragility Score</h3>
           </div>
 
-          <div className="rounded p-4 mb-4" style={{ background: '#f7f7f7' }}>
-            <p className="leading-relaxed" style={{ color: '#6b6b6b' }}>
-              <strong style={{ color: '#1a1a1a' }}>In plain English:</strong> The fragility score (0&ndash;100) measures
+          <div className="rounded p-4 mb-4" style={{ background: '#f2f4f4' }}>
+            <p className="leading-relaxed" style={{ color: '#6b7374' }}>
+              <strong style={{ color: '#2d3435' }}>In plain English:</strong> The fragility score (0&ndash;100) measures
               how structurally vulnerable an official narrative is to being overturned. It does not ask
               &ldquo;is this story true?&rdquo; &mdash; it asks &ldquo;does this story have the structural hallmarks of
               narratives that were later proven wrong?&rdquo; A high score means the narrative shares
@@ -416,68 +416,68 @@ export default function HelpPage() {
             </p>
           </div>
 
-          <div className="space-y-4 text-sm" style={{ color: '#6b6b6b' }}>
+          <div className="space-y-4 text-sm" style={{ color: '#6b7374' }}>
             <div>
-              <div className="font-bold font-mono mb-2" style={{ color: '#1a1a1a' }}>14 components across 4 categories</div>
+              <div className="font-bold font-mono mb-2" style={{ color: '#2d3435' }}>14 components across 4 categories</div>
               <div className="space-y-3">
                 <div>
-                  <div className="text-xs font-bold mb-1" style={{ color: '#1a1a1a' }}>Graph topology</div>
-                  <div className="grid grid-cols-2 gap-1.5 text-xs">
-                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                  <div className="text-xs font-bold mb-1" style={{ color: '#2d3435' }}>Graph topology</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs">
+                    <div className="p-2 rounded" style={{ background: '#f2f4f4' }}>
                       <strong>Suppression density</strong> &mdash; ratio of suppresses/fabricates edges
                     </div>
-                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                    <div className="p-2 rounded" style={{ background: '#f2f4f4' }}>
                       <strong>Benefit conflict</strong> &mdash; claimants who benefit from their own claims
                     </div>
-                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                    <div className="p-2 rounded" style={{ background: '#f2f4f4' }}>
                       <strong>Source concentration</strong> &mdash; few independent sources = fragile
                     </div>
-                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                    <div className="p-2 rounded" style={{ background: '#f2f4f4' }}>
                       <strong>Contradiction load</strong> &mdash; density of contradicts edges
                     </div>
                   </div>
                 </div>
                 <div>
-                  <div className="text-xs font-bold mb-1" style={{ color: '#1a1a1a' }}>Evidence ecosystem</div>
-                  <div className="grid grid-cols-2 gap-1.5 text-xs">
-                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                  <div className="text-xs font-bold mb-1" style={{ color: '#2d3435' }}>Evidence ecosystem</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs">
+                    <div className="p-2 rounded" style={{ background: '#f2f4f4' }}>
                       <strong>Classification rate</strong> &mdash; fraction of evidence that was classified
                     </div>
-                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                    <div className="p-2 rounded" style={{ background: '#f2f4f4' }}>
                       <strong>Reliability variance</strong> &mdash; wide spread in how trusted sources are
                     </div>
-                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                    <div className="p-2 rounded" style={{ background: '#f2f4f4' }}>
                       <strong>Single-point failure</strong> &mdash; removing one item would flip the verdict
                     </div>
-                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                    <div className="p-2 rounded" style={{ background: '#f2f4f4' }}>
                       <strong>Dissenter suppression</strong> &mdash; suppression targeting evidence/sources
                     </div>
                   </div>
                 </div>
                 <div>
-                  <div className="text-xs font-bold mb-1" style={{ color: '#1a1a1a' }}>Causal patterns</div>
-                  <div className="grid grid-cols-3 gap-1.5 text-xs">
-                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                  <div className="text-xs font-bold mb-1" style={{ color: '#2d3435' }}>Causal patterns</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1.5 text-xs">
+                    <div className="p-2 rounded" style={{ background: '#f2f4f4' }}>
                       <strong>Evidence action density</strong> &mdash; ratio of classification/suppression factors
                     </div>
-                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                    <div className="p-2 rounded" style={{ background: '#f2f4f4' }}>
                       <strong>Narrative change rate</strong> &mdash; how often the official story shifted
                     </div>
-                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                    <div className="p-2 rounded" style={{ background: '#f2f4f4' }}>
                       <strong>Power&rarr;evidence pressure</strong> &mdash; power changes driving evidence actions
                     </div>
                   </div>
                 </div>
                 <div>
-                  <div className="text-xs font-bold mb-1" style={{ color: '#1a1a1a' }}>Bayesian sensitivity</div>
-                  <div className="grid grid-cols-3 gap-1.5 text-xs">
-                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                  <div className="text-xs font-bold mb-1" style={{ color: '#2d3435' }}>Bayesian sensitivity</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1.5 text-xs">
+                    <div className="p-2 rounded" style={{ background: '#f2f4f4' }}>
                       <strong>Prior sensitivity</strong> &mdash; does the verdict change across different priors?
                     </div>
-                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                    <div className="p-2 rounded" style={{ background: '#f2f4f4' }}>
                       <strong>Evidence fragility</strong> &mdash; how close is the verdict to flipping?
                     </div>
-                    <div className="p-2 rounded" style={{ background: '#f7f7f7' }}>
+                    <div className="p-2 rounded" style={{ background: '#f2f4f4' }}>
                       <strong>Verdict margin</strong> &mdash; gap between official and best alternative posterior
                     </div>
                   </div>
@@ -486,29 +486,29 @@ export default function HelpPage() {
             </div>
 
             <div>
-              <div className="font-bold font-mono mb-1" style={{ color: '#1a1a1a' }}>Score thresholds</div>
-              <div className="text-xs grid grid-cols-2 gap-2 mt-2">
-                <div className="p-2 rounded" style={{ background: '#c4453610', border: '1px solid #c4453630' }}>
-                  <span className="font-mono font-bold" style={{ color: '#c44536' }}>HIGHLY FRAGILE</span>
+              <div className="font-bold font-mono mb-1" style={{ color: '#2d3435' }}>Score thresholds</div>
+              <div className="text-xs grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+                <div className="p-2 rounded" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.18)' }}>
+                  <span className="font-mono font-bold" style={{ color: '#a23f00' }}>HIGHLY FRAGILE</span>
                   <span className="ml-2">70&ndash;100</span>
                 </div>
-                <div className="p-2 rounded" style={{ background: '#e87b3510', border: '1px solid #e87b3530' }}>
-                  <span className="font-mono font-bold" style={{ color: '#e87b35' }}>MODERATELY FRAGILE</span>
+                <div className="p-2 rounded" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.18)' }}>
+                  <span className="font-mono font-bold" style={{ color: '#a23f00' }}>MODERATELY FRAGILE</span>
                   <span className="ml-2">50&ndash;69</span>
                 </div>
-                <div className="p-2 rounded" style={{ background: '#d06a2a10', border: '1px solid #d06a2a30' }}>
-                  <span className="font-mono font-bold" style={{ color: '#d06a2a' }}>LOW FRAGILITY</span>
+                <div className="p-2 rounded" style={{ background: 'rgba(143,54,0,0.06)', border: '1px solid rgba(143,54,0,0.18)' }}>
+                  <span className="font-mono font-bold" style={{ color: '#8f3600' }}>LOW FRAGILITY</span>
                   <span className="ml-2">30&ndash;49</span>
                 </div>
-                <div className="p-2 rounded" style={{ background: '#2a9d5c10', border: '1px solid #2a9d5c30' }}>
-                  <span className="font-mono font-bold" style={{ color: '#2a9d5c' }}>ROBUST</span>
+                <div className="p-2 rounded" style={{ background: 'rgba(42,125,76,0.06)', border: '1px solid rgba(42,125,76,0.18)' }}>
+                  <span className="font-mono font-bold" style={{ color: '#2a7d4c' }}>ROBUST</span>
                   <span className="ml-2">0&ndash;29</span>
                 </div>
               </div>
             </div>
 
             <div>
-              <div className="font-bold font-mono mb-1" style={{ color: '#1a1a1a' }}>The validation method</div>
+              <div className="font-bold font-mono mb-1" style={{ color: '#2d3435' }}>The validation method</div>
               <p className="text-xs leading-relaxed">
                 The case studies serve as ground truth. Each is a historical event where the official
                 narrative was definitively overturned. If the fragility score reliably identifies these
@@ -522,15 +522,15 @@ export default function HelpPage() {
         </div>
 
         {/* ── THE PIPELINE ───────────────────────────────────────────────── */}
-        <div className="rounded-lg p-6" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+        <div className="rounded-lg p-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-xl font-mono" style={{ color: '#e87b35' }}>1 &rarr; 4</span>
-            <h3 className="text-lg font-bold" style={{ color: '#1a1a1a' }}>The Evidence-First Pipeline</h3>
+            <span className="text-xl font-mono" style={{ color: '#a23f00' }}>1 &rarr; 4</span>
+            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>The Evidence-First Pipeline</h3>
           </div>
 
-          <div className="rounded p-4 mb-4" style={{ background: '#f7f7f7' }}>
-            <p className="leading-relaxed" style={{ color: '#6b6b6b' }}>
-              <strong style={{ color: '#1a1a1a' }}>In plain English:</strong> The key design decision is that
+          <div className="rounded p-4 mb-4" style={{ background: '#f2f4f4' }}>
+            <p className="leading-relaxed" style={{ color: '#6b7374' }}>
+              <strong style={{ color: '#2d3435' }}>In plain English:</strong> The key design decision is that
               evidence comes <em>before</em> hypotheses. Most fact-checking asks &ldquo;is this claim true?&rdquo; and then
               looks for confirmation. This system gathers raw evidence first, with no conclusion in mind,
               then generates every possible explanation that fits the evidence, then uses mathematics to
@@ -542,10 +542,10 @@ export default function HelpPage() {
           <div className="space-y-3 text-sm">
             <div className="flex gap-3 items-start">
               <div className="font-mono text-xs px-2 py-1 rounded flex-shrink-0"
-                style={{ background: '#e87b35', color: 'white' }}>Step 1</div>
+                style={{ background: '#a23f00', color: 'white' }}>Step 1</div>
               <div>
-                <div className="font-bold" style={{ color: '#1a1a1a' }}>Gather evidence</div>
-                <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                <div className="font-bold" style={{ color: '#2d3435' }}>Gather evidence</div>
+                <p className="text-xs" style={{ color: '#6b7374' }}>
                   The system searches the web for relevant sources, then an AI research assistant
                   analyses them alongside its training data to compile primary source evidence: documents,
                   statistics, archaeological findings, declassified records. Where available, provider-native
@@ -557,10 +557,10 @@ export default function HelpPage() {
 
             <div className="flex gap-3 items-start">
               <div className="font-mono text-xs px-2 py-1 rounded flex-shrink-0"
-                style={{ background: '#e87b35', color: 'white' }}>Step 2</div>
+                style={{ background: '#a23f00', color: 'white' }}>Step 2</div>
               <div>
-                <div className="font-bold" style={{ color: '#1a1a1a' }}>Generate hypotheses</div>
-                <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                <div className="font-bold" style={{ color: '#2d3435' }}>Generate hypotheses</div>
+                <p className="text-xs" style={{ color: '#6b7374' }}>
                   A separate AI call examines only the evidence (not popular beliefs) and generates 3&ndash;5
                   possible explanations. For each hypothesis, it estimates likelihood ratios: &ldquo;if this
                   explanation were true, how likely is each piece of evidence?&rdquo;
@@ -570,10 +570,10 @@ export default function HelpPage() {
 
             <div className="flex gap-3 items-start">
               <div className="font-mono text-xs px-2 py-1 rounded flex-shrink-0"
-                style={{ background: '#e87b35', color: 'white' }}>Step 3</div>
+                style={{ background: '#a23f00', color: 'white' }}>Step 3</div>
               <div>
-                <div className="font-bold" style={{ color: '#1a1a1a' }}>Bayesian inference (pure math)</div>
-                <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                <div className="font-bold" style={{ color: '#2d3435' }}>Bayesian inference (pure math)</div>
+                <p className="text-xs" style={{ color: '#6b7374' }}>
                   No AI involved in this step. The system applies Bayes&apos; theorem to compute posterior
                   probabilities for each hypothesis. It also computes evidence sensitivity (which evidence
                   items had the biggest impact) and a verdict. This is deterministic mathematics.
@@ -583,10 +583,10 @@ export default function HelpPage() {
 
             <div className="flex gap-3 items-start">
               <div className="font-mono text-xs px-2 py-1 rounded flex-shrink-0"
-                style={{ background: '#e87b35', color: 'white' }}>Step 4</div>
+                style={{ background: '#a23f00', color: 'white' }}>Step 4</div>
               <div>
-                <div className="font-bold" style={{ color: '#1a1a1a' }}>Synthesis</div>
-                <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                <div className="font-bold" style={{ color: '#2d3435' }}>Synthesis</div>
+                <p className="text-xs" style={{ color: '#6b7374' }}>
                   A final AI call reports what the <em>math</em> revealed, not what the AI thinks. It
                   identifies the key finding, any novel discoveries, and what further evidence would
                   resolve remaining uncertainty.
@@ -599,29 +599,29 @@ export default function HelpPage() {
 
       {/* ── LIMITATIONS ─────────────────────────────────────────────────── */}
       <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-4" style={{ color: '#1a1a1a' }}>Limitations</h2>
-        <div className="space-y-3 text-sm" style={{ color: '#6b6b6b' }}>
-          <div className="rounded-lg p-4" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-            <strong style={{ color: '#1a1a1a' }}>Web search supplements but doesn&apos;t replace training data.</strong> The
+        <h2 className="text-2xl font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Limitations</h2>
+        <div className="space-y-3 text-sm" style={{ color: '#6b7374' }}>
+          <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+            <strong style={{ color: '#2d3435' }}>Web search supplements but doesn&apos;t replace training data.</strong> The
             system uses web search (DuckDuckGo, plus Gemini&apos;s Google Search grounding, OpenAI&apos;s web search,
             and Grok&apos;s live search where available) to find real sources for verification. However, web
             search results are not exhaustive, and for some topics the AI may still rely on its training data.
             Evidence from web search is cited with URLs when found.
           </div>
-          <div className="rounded-lg p-4" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-            <strong style={{ color: '#1a1a1a' }}>Likelihood ratios are estimated by the AI.</strong> The
+          <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+            <strong style={{ color: '#2d3435' }}>Likelihood ratios are estimated by the AI.</strong> The
             Bayesian math is exact, but the inputs (how likely is this evidence under each hypothesis)
             are estimated by the AI, not measured experimentally. Different AI models may produce
-            different estimates. Always check the <span className="font-mono" style={{ color: '#999999' }}>[verify]</span> links.
+            different estimates. Always check the <span className="font-mono" style={{ color: '#9ba2a3' }}>[verify]</span> links.
           </div>
-          <div className="rounded-lg p-4" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-            <strong style={{ color: '#1a1a1a' }}>Source URLs may not always be accurate.</strong> Direct
+          <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+            <strong style={{ color: '#2d3435' }}>Source URLs may not always be accurate.</strong> Direct
             source links are only provided when the AI is confident the URL exists. The Google search
-            <span className="font-mono" style={{ color: '#999999' }}> [verify]</span> links are always reliable
+            <span className="font-mono" style={{ color: '#9ba2a3' }}> [verify]</span> links are always reliable
             as a fallback.
           </div>
-          <div className="rounded-lg p-4" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-            <strong style={{ color: '#1a1a1a' }}>This is a reasoning tool, not an oracle.</strong> The
+          <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+            <strong style={{ color: '#2d3435' }}>This is a reasoning tool, not an oracle.</strong> The
             system shows what the available evidence supports. It can be wrong. Use it as a starting
             point for your own research, not as a final answer.
           </div>

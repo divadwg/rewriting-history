@@ -14,7 +14,7 @@ export default function TimeSlider({ timeSlices, currentIndex, onChange }: TimeS
   const current = timeSlices[currentIndex];
 
   return (
-    <div className="rounded-lg p-4" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+    <div className="rounded-lg p-4" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
       <div className="flex items-center justify-between mb-2">
         <h3 className="text-sm font-bold" style={{ color: '#1a1a1a' }}>Timeline</h3>
         <span className="text-xs font-mono" style={{ color: '#e87b35' }}>{current.date}</span>
