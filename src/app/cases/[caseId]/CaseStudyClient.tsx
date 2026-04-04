@@ -43,15 +43,26 @@ export default function CaseStudyClient({ caseStudy }: Props) {
           <h1 className="text-2xl font-bold" style={{ color: '#1a1a1a' }}>{caseStudy.title}</h1>
           <p className="text-sm mt-1" style={{ color: '#6b6b6b' }}>{caseStudy.period}</p>
         </div>
-        <div className="text-right flex-shrink-0">
-          <div className="text-3xl font-mono font-bold" style={{
-            color: fragility.overall >= 0.7 ? '#c44536' :
-              fragility.overall >= 0.5 ? '#e87b35' :
-              fragility.overall >= 0.3 ? '#d06a2a' : '#2a9d5c'
-          }}>
-            {(fragility.overall * 100).toFixed(0)}
+        <div className="flex gap-4 flex-shrink-0">
+          <div className="text-right">
+            <div className="text-3xl font-mono font-bold" style={{
+              color: fragility.structural >= 0.7 ? '#c44536' :
+                fragility.structural >= 0.5 ? '#e87b35' :
+                fragility.structural >= 0.3 ? '#d06a2a' : '#2a9d5c'
+            }}>
+              {(fragility.structural * 100).toFixed(0)}
+            </div>
+            <div className="text-xs font-mono" style={{ color: '#999999' }}>STRUCTURAL</div>
           </div>
-          <div className="text-xs font-mono" style={{ color: '#999999' }}>FRAGILITY</div>
+          <div className="text-right">
+            <div className="text-3xl font-mono font-bold" style={{
+              color: fragility.evidentialCertainty >= 0.7 ? '#2a9d5c' :
+                fragility.evidentialCertainty >= 0.4 ? '#e87b35' : '#c44536'
+            }}>
+              {(fragility.evidentialCertainty * 100).toFixed(0)}
+            </div>
+            <div className="text-xs font-mono" style={{ color: '#999999' }}>CERTAINTY</div>
+          </div>
         </div>
       </div>
 
@@ -144,20 +155,21 @@ export default function CaseStudyClient({ caseStudy }: Props) {
 
           {/* Narrative Fragility */}
           <div className="rounded-lg p-4 mb-4" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-            <h3 className="text-sm font-bold mb-1" style={{ color: '#1a1a1a' }}>Narrative Fragility Score</h3>
+            <h3 className="text-sm font-bold mb-1" style={{ color: '#1a1a1a' }}>Narrative Fragility</h3>
             <p className="text-xs mb-3" style={{ color: '#999999' }}>
               {fragility.interpretation}
             </p>
-            <div className="space-y-1.5">
+
+            <div className="text-xs font-bold mb-1.5" style={{ color: '#6b6b6b' }}>Structural Fragility</div>
+            <div className="space-y-1.5 mb-3">
               {([
                 ['Suppression', fragility.components.suppressionDensity],
                 ['Benefit conflict', fragility.components.benefitConflict],
                 ['Source concentration', fragility.components.sourceConcentration],
                 ['Classification rate', fragility.components.classificationRate],
                 ['Dissenter suppression', fragility.components.dissenterSuppression],
-                ['Single-point failure', fragility.components.singlePointFailure],
-                ['Verdict margin', fragility.components.verdictMargin],
-                ['Prior sensitivity', fragility.components.priorSensitivity],
+                ['Evidence actions', fragility.components.evidenceActionDensity],
+                ['Power pressure', fragility.components.powerChangePressure],
               ] as [string, number][]).map(([label, value]) => (
                 <div key={label} className="flex items-center gap-2 text-xs">
                   <span className="w-32 flex-shrink-0" style={{ color: '#6b6b6b' }}>{label}</span>
@@ -173,6 +185,30 @@ export default function CaseStudyClient({ caseStudy }: Props) {
                 </div>
               ))}
             </div>
+
+            <div className="text-xs font-bold mb-1.5" style={{ color: '#6b6b6b' }}>Evidential Certainty</div>
+            <div className="space-y-1.5">
+              {([
+                ['Verdict margin', fragility.components.verdictMargin],
+                ['Evidence weight', fragility.components.evidenceWeight],
+                ['Source agreement', fragility.components.sourceAgreement],
+                ['Prior independence', fragility.components.priorIndependence],
+              ] as [string, number][]).map(([label, value]) => (
+                <div key={label} className="flex items-center gap-2 text-xs">
+                  <span className="w-32 flex-shrink-0" style={{ color: '#6b6b6b' }}>{label}</span>
+                  <div className="flex-1 h-1.5 rounded-full" style={{ background: '#eeeeee' }}>
+                    <div className="h-full rounded-full" style={{
+                      width: `${Math.min(value * 100, 100)}%`,
+                      background: value >= 0.7 ? '#2a9d5c' : value >= 0.4 ? '#e87b35' : '#c44536',
+                    }} />
+                  </div>
+                  <span className="font-mono w-8 text-right" style={{ color: '#999999' }}>
+                    {(value * 100).toFixed(0)}
+                  </span>
+                </div>
+              ))}
+            </div>
+
             {fragility.riskFactors.length > 0 && (
               <div className="mt-3 pt-3" style={{ borderTop: '1px solid #f0f0f0' }}>
                 <div className="text-xs font-bold mb-1" style={{ color: '#1a1a1a' }}>Risk factors</div>

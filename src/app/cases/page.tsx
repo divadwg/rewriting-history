@@ -79,7 +79,7 @@ export default function CasesPage() {
               const verdict = generateVerdict(c.hypotheses, c.evidence);
               const fragility = narrativeFragilityScore(c);
               const pre = preRevelationFragility(c);
-              const fColor = fragilityColor(fragility.overall);
+              const fColor = fragilityColor(fragility.structural);
               const sColor = statusColor(c.status ?? '');
               return (
                 <Link
@@ -99,18 +99,26 @@ export default function CasesPage() {
                       </div>
                       <div className="text-xs mb-2" style={{ color: '#999999' }}>{c.period}</div>
                     </div>
-                    <div className="text-right flex-shrink-0">
-                      <div className="text-2xl font-mono font-bold" style={{ color: fColor }}>
-                        {(fragility.overall * 100).toFixed(0)}
-                      </div>
-                      <div className="text-[10px] font-mono" style={{ color: fColor }}>
-                        {fragilityLabel(fragility.overall)}
-                      </div>
-                      {pre && (
-                        <div className="text-[10px] font-mono mt-0.5" style={{ color: '#999999' }}>
-                          pre: {(pre.overall * 100).toFixed(0)}
+                    <div className="flex gap-3 flex-shrink-0">
+                      <div className="text-right">
+                        <div className="text-2xl font-mono font-bold" style={{ color: fColor }}>
+                          {(fragility.structural * 100).toFixed(0)}
                         </div>
-                      )}
+                        <div className="text-[10px] font-mono" style={{ color: fColor }}>
+                          {fragilityLabel(fragility.structural)}
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-2xl font-mono font-bold" style={{
+                          color: fragility.evidentialCertainty >= 0.7 ? '#2a9d5c' :
+                            fragility.evidentialCertainty >= 0.4 ? '#e87b35' : '#c44536'
+                        }}>
+                          {(fragility.evidentialCertainty * 100).toFixed(0)}
+                        </div>
+                        <div className="text-[10px] font-mono" style={{ color: '#999999' }}>
+                          CERTAINTY
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <p className="text-sm leading-relaxed mb-3" style={{ color: '#6b6b6b' }}>{c.summary.slice(0, 180)}...</p>

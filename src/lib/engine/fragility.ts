@@ -2,46 +2,52 @@ import { CaseStudy, EvidenceItem, GraphEdge } from '../types/graph';
 import { updatePosteriors, evidenceSensitivity, priorSensitivity } from './bayesian';
 
 /**
- * Narrative Fragility Score
+ * Narrative Fragility Score — v2
  *
- * A composite 0-1 score measuring how structurally vulnerable an official
- * narrative is to revision. Based on graph topology, evidence properties,
- * causal chain patterns, and Bayesian sensitivity analysis.
+ * Two distinct measurements:
  *
- * The hypothesis: cases that were later overturned should score high on
- * fragility even when analyzed using only pre-overturning evidence.
- * If validated across diverse cases, this becomes a predictive tool.
+ * 1. STRUCTURAL FRAGILITY (0-1): Does this narrative have the hallmarks of
+ *    manipulation? Suppression, classification, benefit conflicts, source
+ *    concentration. This is inherent to how the narrative was constructed and
+ *    should be HIGH for overturned cases, LOW for confirmed cases, regardless
+ *    of when you measure.
+ *
+ * 2. EVIDENTIAL CERTAINTY (0-1): How resolved is the question? 0 = deeply
+ *    uncertain/contested, 1 = decisively resolved. For overturned cases this
+ *    should be LOW pre-revelation (uncertain) and HIGH post-revelation (resolved).
+ *    For confirmed cases, HIGH throughout.
+ *
+ * The OVERALL fragility = structural fragility. Evidential certainty is shown
+ * separately to make the pre/post comparison meaningful.
  */
 
 export interface FragilityScore {
-  overall: number; // 0-1 composite
+  overall: number; // 0-1 composite (structural fragility)
+  structural: number; // 0-1: manipulation hallmarks
+  evidentialCertainty: number; // 0-1: how resolved/certain (NOT fragility — higher = more resolved)
   components: FragilityComponents;
   interpretation: string;
   riskFactors: string[];
 }
 
 export interface FragilityComponents {
-  // Graph topology signals (0-1 each)
-  suppressionDensity: number;     // Ratio of suppresses/fabricates edges to total edges
-  benefitConflict: number;        // How much claimants benefit from what they claim
-  sourceConcentration: number;    // How clustered the evidence sourcing is (few sources = fragile)
-  contradictionLoad: number;      // Density of contradicts edges relative to graph size
+  // Structural signals — inherent to narrative construction (0-1 each)
+  suppressionDensity: number;
+  benefitConflict: number;
+  sourceConcentration: number;
+  contradictionLoad: number;
+  classificationRate: number;
+  reliabilityVariance: number;
+  dissenterSuppression: number;
+  evidenceActionDensity: number;
+  narrativeChangeRate: number;
+  powerChangePressure: number;
 
-  // Evidence ecosystem signals (0-1 each)
-  classificationRate: number;     // What fraction of evidence was classified
-  reliabilityVariance: number;    // High variance = some sources much less trusted
-  singlePointFailure: number;     // How much the verdict depends on one piece of evidence
-  dissenterSuppression: number;   // Evidence of dissenting views being suppressed
-
-  // Causal pattern signals (0-1 each)
-  evidenceActionDensity: number;  // Ratio of evidence_action causal factors
-  narrativeChangeRate: number;    // How many narrative_change factors exist
-  powerChangePressure: number;    // Power changes that precede evidence actions
-
-  // Bayesian sensitivity signals (0-1 each)
-  priorSensitivity: number;       // How much the verdict changes across prior assumptions
-  evidenceFragility: number;      // Would removing 1 evidence item flip the verdict?
-  verdictMargin: number;          // How close is official posterior to tipping point
+  // Evidential certainty signals — change as evidence accumulates
+  verdictMargin: number;        // 0 = neck and neck, 1 = one hypothesis dominates
+  evidenceWeight: number;       // Total log-odds shift from evidence (normalized)
+  sourceAgreement: number;      // Do independent sources agree? 0 = conflicting, 1 = consensus
+  priorIndependence: number;    // 1 = verdict same regardless of prior, 0 = prior-dependent
 }
 
 /**
@@ -49,26 +55,27 @@ export interface FragilityComponents {
  */
 export function narrativeFragilityScore(caseStudy: CaseStudy): FragilityScore {
   const components = computeComponents(caseStudy);
-  const overall = weightedComposite(components);
+  const structural = computeStructural(components);
+  const evidentialCertainty = computeEvidentialCertainty(components);
+  const overall = structural; // Overall = structural fragility
   const riskFactors = identifyRiskFactors(components);
-  const interpretation = interpretScore(overall);
+  const interpretation = interpretScore(structural, evidentialCertainty);
 
-  return { overall, components, interpretation, riskFactors };
+  return { overall, structural, evidentialCertainty, components, interpretation, riskFactors };
 }
 
 function computeComponents(cs: CaseStudy): FragilityComponents {
   const { edges, nodes, evidence, hypotheses, causalFactors, causalLinks } = cs;
 
-  // ── Graph topology ──────────────────────────────────────────────
+  // ── Structural signals ────────────────────────────────────────
 
   const suppressionEdges = edges.filter(e => e.type === 'suppresses' || e.type === 'fabricates');
   const suppressionDensity = edges.length > 0
-    ? Math.min(suppressionEdges.length / edges.length * 5, 1) // scaled: even 20% suppression edges is extreme
+    ? Math.min(suppressionEdges.length / edges.length * 5, 1)
     : 0;
 
   const benefitEdges = edges.filter(e => e.type === 'benefits');
   const claimsEdges = edges.filter(e => e.type === 'claims');
-  // How many actors both claim something AND benefit from it?
   const claimants = new Set(claimsEdges.map(e => e.source));
   const benefitActors = new Set(benefitEdges.map(e => e.source));
   const conflicted = [...claimants].filter(a => benefitActors.has(a));
@@ -76,7 +83,6 @@ function computeComponents(cs: CaseStudy): FragilityComponents {
     ? conflicted.length / claimants.size
     : 0;
 
-  // Source concentration: how many distinct actors/sources provide evidence
   const evidenceSources = new Set<string>();
   for (const e of evidence) {
     for (const nodeId of e.linkedNodeIds ?? []) {
@@ -86,7 +92,6 @@ function computeComponents(cs: CaseStudy): FragilityComponents {
       }
     }
   }
-  // Fewer distinct sources relative to evidence count = higher concentration
   const sourceConcentration = evidence.length > 0
     ? Math.max(0, 1 - (evidenceSources.size / evidence.length))
     : 0;
@@ -96,28 +101,20 @@ function computeComponents(cs: CaseStudy): FragilityComponents {
     ? Math.min(contradictEdges.length / nodes.length, 1)
     : 0;
 
-  // ── Evidence ecosystem ──────────────────────────────────────────
-
   const classifiedCount = evidence.filter(e => e.wasClassified).length;
   const classificationRate = evidence.length > 0 ? classifiedCount / evidence.length : 0;
 
   const reliabilities = evidence.map(e => e.sourceReliability);
   const meanReliability = reliabilities.reduce((s, r) => s + r, 0) / Math.max(reliabilities.length, 1);
   const variance = reliabilities.reduce((s, r) => s + (r - meanReliability) ** 2, 0) / Math.max(reliabilities.length, 1);
-  const reliabilityVariance = Math.min(Math.sqrt(variance) * 3, 1); // normalized
+  const reliabilityVariance = Math.min(Math.sqrt(variance) * 3, 1);
 
-  // Single point of failure: does removing any one evidence item flip the verdict?
-  const singlePointFailure = computeSinglePointFailure(hypotheses, evidence);
-
-  // Dissenter suppression: are there suppresses edges targeting evidence or source nodes?
   const suppressedTargets = suppressionEdges.map(e => e.target);
   const evidenceNodeIds = new Set(nodes.filter(n => n.type === 'evidence' || n.type === 'source').map(n => n.id));
   const suppressedEvidence = suppressedTargets.filter(t => evidenceNodeIds.has(t));
   const dissenterSuppression = evidenceNodeIds.size > 0
     ? Math.min(suppressedEvidence.length / evidenceNodeIds.size * 3, 1)
     : 0;
-
-  // ── Causal patterns ─────────────────────────────────────────────
 
   const evidenceActions = causalFactors.filter(cf => cf.type === 'evidence_action');
   const evidenceActionDensity = causalFactors.length > 0
@@ -129,7 +126,6 @@ function computeComponents(cs: CaseStudy): FragilityComponents {
     ? Math.min(narrativeChanges.length / causalFactors.length * 2, 1)
     : 0;
 
-  // Do power changes precede or link to evidence actions?
   const powerChanges = causalFactors.filter(cf => cf.type === 'power_change');
   const powerToEvidence = causalLinks.filter(link => {
     const fromFactor = causalFactors.find(cf => cf.id === link.from);
@@ -141,137 +137,36 @@ function computeComponents(cs: CaseStudy): FragilityComponents {
     ? Math.min(powerToEvidence.length / powerChanges.length, 1)
     : 0;
 
-  // ── Bayesian sensitivity ────────────────────────────────────────
+  // ── Evidential certainty signals ──────────────────────────────
 
-  const priorSens = computePriorSensitivity(hypotheses, evidence);
-  const evidenceFragility = singlePointFailure; // reuse — it's the same concept
   const verdictMargin = computeVerdictMargin(hypotheses, evidence);
+  const evidenceWeight = computeEvidenceWeight(hypotheses, evidence);
+  const sourceAgreement = computeSourceAgreement(hypotheses, evidence);
+  const priorIndependence = computePriorIndependence(hypotheses, evidence);
 
   return {
-    suppressionDensity,
-    benefitConflict,
-    sourceConcentration,
-    contradictionLoad,
-    classificationRate,
-    reliabilityVariance,
-    singlePointFailure,
-    dissenterSuppression,
-    evidenceActionDensity,
-    narrativeChangeRate,
-    powerChangePressure,
-    priorSensitivity: priorSens,
-    evidenceFragility,
-    verdictMargin,
+    suppressionDensity, benefitConflict, sourceConcentration, contradictionLoad,
+    classificationRate, reliabilityVariance, dissenterSuppression,
+    evidenceActionDensity, narrativeChangeRate, powerChangePressure,
+    verdictMargin, evidenceWeight, sourceAgreement, priorIndependence,
   };
 }
 
 /**
- * Does removing any single evidence item flip the verdict?
- * Returns 0-1: 0 = robust, 1 = verdict flips when one item removed.
+ * Structural fragility: weighted composite of manipulation hallmarks.
  */
-function computeSinglePointFailure(hypotheses: Hypothesis[], evidence: EvidenceItem[]): number {
-  if (evidence.length === 0 || hypotheses.length === 0) return 0;
-
-  const fullResult = updatePosteriors(hypotheses, evidence);
-  const official = fullResult.find(h => h.isOfficial) ?? fullResult[0];
-  if (!official) return 0;
-
-  const fullOfficialWins = official.posterior >= Math.max(...fullResult.filter(h => h.id !== official.id).map(h => h.posterior), 0);
-
-  let maxImpact = 0;
-  for (const e of evidence) {
-    const without = new Set(evidence.filter(ev => ev.id !== e.id).map(ev => ev.id));
-    const result = updatePosteriors(hypotheses, evidence, without);
-    const officialAfter = result.find(h => h.id === official.id)?.posterior ?? 0;
-    const bestAltAfter = Math.max(...result.filter(h => h.id !== official.id).map(h => h.posterior), 0);
-
-    const wouldFlip = fullOfficialWins && officialAfter < bestAltAfter;
-    if (wouldFlip) return 1;
-
-    // Even if it doesn't flip, measure how close it gets
-    const margin = officialAfter - bestAltAfter;
-    const fullMargin = official.posterior - Math.max(...fullResult.filter(h => h.id !== official.id).map(h => h.posterior), 0);
-    if (fullMargin > 0) {
-      const impactRatio = 1 - (margin / fullMargin);
-      maxImpact = Math.max(maxImpact, Math.max(0, impactRatio));
-    }
-  }
-
-  return Math.min(maxImpact, 1);
-}
-
-/**
- * How sensitive is the verdict to prior assumptions?
- * Returns 0-1: 0 = verdict holds across all priors, 1 = verdict flips easily.
- */
-function computePriorSensitivity(hypotheses: Hypothesis[], evidence: EvidenceItem[]): number {
-  const official = hypotheses.find(h => h.isOfficial);
-  if (!official) return 0;
-
-  const results = priorSensitivity(hypotheses, evidence, [0.1, 0.3, 0.5, 0.7, 0.9]);
-  if (results.length === 0) return 0;
-
-  // Check if the verdict changes direction across the range
-  const posteriors = results.map(r => r.posterior);
-  const verdicts = posteriors.map(p => p >= 0.5);
-  const flips = verdicts.slice(1).filter((v, i) => v !== verdicts[i]).length;
-
-  // Also measure the spread
-  const range = Math.max(...posteriors) - Math.min(...posteriors);
-
-  return Math.min(flips * 0.3 + range * 0.7, 1);
-}
-
-/**
- * How close is the official posterior to being overturned?
- * Returns 0-1: 0 = official dominates, 1 = verdict is razor-thin.
- */
-function computeVerdictMargin(hypotheses: Hypothesis[], evidence: EvidenceItem[]): number {
-  const result = updatePosteriors(hypotheses, evidence);
-  const official = result.find(h => h.isOfficial) ?? result[0];
-  if (!official) return 0;
-
-  const alternatives = result.filter(h => h.id !== official.id);
-  if (alternatives.length === 0) return 0;
-
-  const bestAlt = Math.max(...alternatives.map(h => h.posterior));
-
-  // If official has lower posterior than best alt, it's already overturned → max fragility
-  if (official.posterior <= bestAlt) return 1;
-
-  // Margin: how much larger is official vs best alt
-  const margin = official.posterior - bestAlt;
-  // Invert: small margin = high fragility
-  return Math.max(0, 1 - margin);
-}
-
-/**
- * Weighted composite of all components.
- * Weights reflect how diagnostic each signal is for narrative manipulation.
- */
-function weightedComposite(c: FragilityComponents): number {
-  const weights = {
-    // Graph topology — strongest signals
-    suppressionDensity: 0.12,
-    benefitConflict: 0.08,
-    sourceConcentration: 0.06,
-    contradictionLoad: 0.04,
-
-    // Evidence ecosystem
-    classificationRate: 0.08,
-    reliabilityVariance: 0.06,
-    singlePointFailure: 0.10,
-    dissenterSuppression: 0.10,
-
-    // Causal patterns
-    evidenceActionDensity: 0.06,
-    narrativeChangeRate: 0.04,
-    powerChangePressure: 0.06,
-
-    // Bayesian sensitivity
-    priorSensitivity: 0.06,
-    evidenceFragility: 0.06,
-    verdictMargin: 0.08,
+function computeStructural(c: FragilityComponents): number {
+  const weights: Record<string, number> = {
+    suppressionDensity: 0.15,
+    benefitConflict: 0.10,
+    sourceConcentration: 0.08,
+    contradictionLoad: 0.05,
+    classificationRate: 0.12,
+    reliabilityVariance: 0.08,
+    dissenterSuppression: 0.14,
+    evidenceActionDensity: 0.10,
+    narrativeChangeRate: 0.06,
+    powerChangePressure: 0.12,
   };
 
   let sum = 0;
@@ -284,6 +179,121 @@ function weightedComposite(c: FragilityComponents): number {
   return Math.round((sum / weightSum) * 100) / 100;
 }
 
+/**
+ * Evidential certainty: how decisively resolved is the question?
+ * 0 = deeply uncertain, 1 = decisive.
+ */
+function computeEvidentialCertainty(c: FragilityComponents): number {
+  const weights: Record<string, number> = {
+    verdictMargin: 0.35,
+    evidenceWeight: 0.25,
+    sourceAgreement: 0.20,
+    priorIndependence: 0.20,
+  };
+
+  let sum = 0;
+  let weightSum = 0;
+  for (const [key, weight] of Object.entries(weights)) {
+    sum += (c[key as keyof FragilityComponents] ?? 0) * weight;
+    weightSum += weight;
+  }
+
+  return Math.round((sum / weightSum) * 100) / 100;
+}
+
+/**
+ * How wide is the gap between official and best alternative?
+ * Returns 0-1: 0 = neck-and-neck, 1 = one hypothesis dominates.
+ */
+function computeVerdictMargin(hypotheses: Hypothesis[], evidence: EvidenceItem[]): number {
+  if (hypotheses.length === 0 || evidence.length === 0) return 0;
+  const result = updatePosteriors(hypotheses, evidence);
+  const posteriors = result.map(h => h.posterior).sort((a, b) => b - a);
+  if (posteriors.length < 2) return 1;
+  // Gap between top two
+  const gap = posteriors[0] - posteriors[1];
+  // Scale: a gap of 0.8+ is essentially decisive
+  return Math.min(gap / 0.8, 1);
+}
+
+/**
+ * Total evidence weight: how much did evidence shift from priors?
+ * Measures the cumulative log-odds shift across all evidence.
+ * Higher = more evidence bearing on the question = more certain.
+ */
+function computeEvidenceWeight(hypotheses: Hypothesis[], evidence: EvidenceItem[]): number {
+  if (hypotheses.length === 0 || evidence.length === 0) return 0;
+
+  const official = hypotheses.find(h => h.isOfficial) ?? hypotheses[0];
+  if (!official) return 0;
+
+  // Compute total log-odds shift
+  let totalShift = 0;
+  for (const e of evidence) {
+    const lr = e.likelihoodRatios[official.id] ?? 1;
+    const effectiveLr = lr * e.sourceReliability + (1 - e.sourceReliability) * 1;
+    if (effectiveLr > 0) {
+      totalShift += Math.abs(Math.log(effectiveLr));
+    }
+  }
+
+  // Normalize: 5 log-odds shift is very strong evidence
+  return Math.min(totalShift / 5, 1);
+}
+
+/**
+ * Do independent sources point the same direction?
+ * 0 = sources conflict, 1 = sources agree.
+ */
+function computeSourceAgreement(hypotheses: Hypothesis[], evidence: EvidenceItem[]): number {
+  if (hypotheses.length < 2 || evidence.length < 2) return 0;
+
+  const official = hypotheses.find(h => h.isOfficial) ?? hypotheses[0];
+  if (!official) return 0;
+
+  // For each evidence item, does it favor official (LR > 1) or not (LR < 1)?
+  let favorsOfficial = 0;
+  let favorsAlt = 0;
+  for (const e of evidence) {
+    const lr = e.likelihoodRatios[official.id] ?? 1;
+    if (lr > 1) favorsOfficial++;
+    else if (lr < 1) favorsAlt++;
+  }
+
+  const total = favorsOfficial + favorsAlt;
+  if (total === 0) return 0;
+
+  // Agreement = how lopsided the split is
+  const majority = Math.max(favorsOfficial, favorsAlt);
+  return (majority / total - 0.5) * 2; // 0 = 50/50 split, 1 = unanimous
+}
+
+/**
+ * Is the verdict independent of prior assumptions?
+ * 1 = verdict holds across all priors, 0 = verdict depends on priors.
+ */
+function computePriorIndependence(hypotheses: Hypothesis[], evidence: EvidenceItem[]): number {
+  const official = hypotheses.find(h => h.isOfficial);
+  if (!official) return 0;
+
+  const results = priorSensitivity(hypotheses, evidence, [0.1, 0.2, 0.3, 0.5, 0.7, 0.8, 0.9]);
+  if (results.length === 0) return 0;
+
+  const posteriors = results.map(r => r.posterior);
+
+  // Check: does the direction (official wins or loses) stay consistent?
+  const winsCount = posteriors.filter(p => p >= 0.5).length;
+  const allSameDirection = winsCount === 0 || winsCount === posteriors.length;
+
+  // Also measure spread (small spread = independent of prior)
+  const range = Math.max(...posteriors) - Math.min(...posteriors);
+
+  if (allSameDirection && range < 0.3) return 1;
+  if (allSameDirection) return 0.7;
+  // Verdict flips depending on prior — low independence
+  return Math.max(0, 0.3 - range);
+}
+
 function identifyRiskFactors(c: FragilityComponents): string[] {
   const factors: string[] = [];
 
@@ -291,59 +301,63 @@ function identifyRiskFactors(c: FragilityComponents): string[] {
   if (c.benefitConflict > 0.5) factors.push('Key claimants directly benefit from their own claims');
   if (c.sourceConcentration > 0.6) factors.push('Evidence sourcing is highly concentrated (few independent sources)');
   if (c.classificationRate > 0.5) factors.push('Majority of evidence was classified at time of events');
-  if (c.singlePointFailure > 0.7) factors.push('Verdict depends critically on a single piece of evidence');
   if (c.dissenterSuppression > 0.3) factors.push('Dissenting evidence or sources were actively suppressed');
   if (c.evidenceActionDensity > 0.3) factors.push('Causal chain includes active evidence manipulation');
   if (c.powerChangePressure > 0.5) factors.push('Power changes drove evidence actions (political pressure on record)');
-  if (c.priorSensitivity > 0.5) factors.push('Conclusion sensitive to prior assumptions — not robust');
-  if (c.verdictMargin < 0.3) factors.push('Verdict margin is thin — close to tipping');
   if (c.contradictionLoad > 0.3) factors.push('High density of contradictions in the knowledge graph');
   if (c.reliabilityVariance > 0.5) factors.push('Wide variance in source reliability — some sources much less trusted');
 
   return factors;
 }
 
-function interpretScore(score: number): string {
-  if (score >= 0.7) return 'Highly fragile — structural indicators strongly suggest this narrative is vulnerable to revision. Multiple red flags in sourcing, suppression, and sensitivity.';
-  if (score >= 0.5) return 'Moderately fragile — several structural indicators of potential narrative vulnerability. Further evidence could shift the conclusion significantly.';
-  if (score >= 0.3) return 'Low fragility — some structural concerns but the narrative is reasonably well-supported by diverse, independent evidence.';
-  return 'Robust — the narrative is structurally sound. Evidence is diverse, independently sourced, and the conclusion is stable across assumptions.';
+function interpretScore(structural: number, certainty: number): string {
+  if (structural >= 0.5 && certainty < 0.5) {
+    return 'High structural fragility with low evidential certainty — this narrative has manipulation hallmarks and the evidence is contested. Strong candidate for future revision.';
+  }
+  if (structural >= 0.5 && certainty >= 0.5) {
+    return 'High structural fragility but the evidence has largely resolved the question. Manipulation hallmarks are present but the truth has emerged.';
+  }
+  if (structural < 0.3 && certainty >= 0.5) {
+    return 'Robust narrative with strong evidential support. Low manipulation hallmarks and strong consensus across independent sources.';
+  }
+  if (structural < 0.3 && certainty < 0.5) {
+    return 'Low manipulation hallmarks but the evidence is inconclusive. The narrative may be honest but the question is genuinely uncertain.';
+  }
+  if (structural >= 0.3) {
+    return 'Moderate structural fragility — some manipulation hallmarks present. Further evidence could shift the picture.';
+  }
+  return 'Low structural fragility. The narrative appears well-supported.';
 }
 
 /**
  * Pre-revelation analysis: compute fragility using only evidence
  * available before the narrative was overturned.
  *
- * Filters evidence, nodes, edges, and causal factors by date,
- * then runs the same fragility computation on the reduced case.
+ * Uses STRICT < (not <=) so revelation-day evidence is excluded.
  */
 export function preRevelationFragility(caseStudy: CaseStudy): FragilityScore | null {
   if (!caseStudy.revelationDate) return null;
 
   const cutoff = caseStudy.revelationDate;
 
-  // Filter evidence to only items dated before revelation
-  const preEvidence = caseStudy.evidence.filter(e => e.date <= cutoff);
+  // Strict < : exclude evidence on revelation day
+  const preEvidence = caseStudy.evidence.filter(e => e.date < cutoff);
   if (preEvidence.length === 0) return null;
 
-  // Filter nodes: keep actors/sources (timeless), filter events/claims/evidence/narrative by date
   const preNodes = caseStudy.nodes.filter(n => {
     if (n.type === 'actor' || n.type === 'source') return true;
-    return n.date <= cutoff;
+    return n.date < cutoff;
   });
   const preNodeIds = new Set(preNodes.map(n => n.id));
 
-  // Filter edges: only those where both source and target exist in pre-revelation nodes
   const preEdges = caseStudy.edges.filter(e => {
-    if (e.date && e.date > cutoff) return false;
+    if (e.date && e.date >= cutoff) return false;
     return preNodeIds.has(e.source) && preNodeIds.has(e.target);
   });
 
-  // Filter causal factors by date
-  const preCausalFactors = caseStudy.causalFactors.filter(cf => cf.date <= cutoff);
+  const preCausalFactors = caseStudy.causalFactors.filter(cf => cf.date < cutoff);
   const preCausalFactorIds = new Set(preCausalFactors.map(cf => cf.id));
 
-  // Filter causal links: both ends must exist
   const preCausalLinks = caseStudy.causalLinks.filter(
     cl => preCausalFactorIds.has(cl.from) && preCausalFactorIds.has(cl.to)
   );
@@ -355,7 +369,7 @@ export function preRevelationFragility(caseStudy: CaseStudy): FragilityScore | n
     edges: preEdges,
     causalFactors: preCausalFactors,
     causalLinks: preCausalLinks,
-    timeSlices: caseStudy.timeSlices.filter(ts => ts.date <= cutoff),
+    timeSlices: caseStudy.timeSlices.filter(ts => ts.date < cutoff),
   };
 
   return narrativeFragilityScore(preCaseStudy);
@@ -367,19 +381,19 @@ export interface ValidationResult {
   status: string;
   postRevelation: FragilityScore;
   preRevelation: FragilityScore | null;
-  delta: number | null;
+  structuralDelta: number | null;
+  certaintyDelta: number | null;
   preRevelationDetected: boolean | null;
 }
 
 /**
  * Run the full validation experiment across all case studies.
- * For each overturned case: does the pre-revelation score still flag it as fragile?
  */
 export function runValidation(cases: CaseStudy[]): ValidationResult[] {
   return cases.map(cs => {
     const post = narrativeFragilityScore(cs);
     const pre = preRevelationFragility(cs);
-    const threshold = 0.30; // fragility > 30% = detected
+    const threshold = 0.30;
 
     return {
       caseId: cs.id,
@@ -387,8 +401,9 @@ export function runValidation(cases: CaseStudy[]): ValidationResult[] {
       status: cs.status ?? (cs.wasOverturned ? 'overturned' : 'unknown'),
       postRevelation: post,
       preRevelation: pre,
-      delta: pre ? post.overall - pre.overall : null,
-      preRevelationDetected: pre ? pre.overall >= threshold : null,
+      structuralDelta: pre ? post.structural - pre.structural : null,
+      certaintyDelta: pre ? post.evidentialCertainty - pre.evidentialCertainty : null,
+      preRevelationDetected: pre ? pre.structural >= threshold : null,
     };
   });
 }
