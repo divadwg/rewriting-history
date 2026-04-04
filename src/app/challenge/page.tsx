@@ -19,6 +19,7 @@ interface AnalysisResponse {
     sensitivity: Array<{ evidenceId: string; label: string; impact: number }>;
     verdict: BayesianVerdict;
   };
+  stability?: number;
   discoveredBelief?: string;
   synthesis?: SynthesisResult;
   rawEvidence?: RawEvidenceLink[];
@@ -440,11 +441,23 @@ export default function ChallengePage() {
                 official_questionable: { color: '#8f3600', label: 'STANDARD NARRATIVE QUESTIONABLE' },
                 official_supported: { color: '#2a7d4c', label: 'STANDARD NARRATIVE SUPPORTED BY EVIDENCE' },
               }[v.verdict];
+              const stability = response.stability;
+              const stabLabel = stability !== undefined
+                ? stability >= 0.9 ? 'HIGH STABILITY' : stability >= 0.7 ? 'MODERATE STABILITY' : 'LOW STABILITY'
+                : null;
+              const stabColor = stability !== undefined
+                ? stability >= 0.9 ? '#2a7d4c' : stability >= 0.7 ? '#c47a20' : '#a23f00'
+                : '#9ba2a3';
               return (
-                <div className="mt-4 rounded-lg p-4" style={{ background: `${config.color}08`, border: `1px solid ${config.color}30` }}>
+                <div className="mt-4 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center gap-3" style={{ background: `${config.color}08`, border: `1px solid ${config.color}30` }}>
                   <span className="text-sm font-mono font-bold" style={{ color: config.color }}>
                     {config.label}
                   </span>
+                  {stabLabel && (
+                    <span className="text-xs font-mono px-2 py-0.5 rounded" style={{ background: `${stabColor}10`, color: stabColor }}>
+                      {stabLabel} — verdict held in {((stability ?? 0) * 100).toFixed(0)}% of perturbation tests
+                    </span>
+                  )}
                 </div>
               );
             })()}

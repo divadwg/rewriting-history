@@ -27,24 +27,33 @@ const MODELS: Record<LLMProvider, string> = {
 
 export interface CallOptions {
   webSearch?: boolean;
+  temperature?: number;
 }
 
 export async function callLLM(config: LLMConfig, prompt: string, maxTokens = 4096, options?: CallOptions): Promise<string | null> {
+  const temp = options?.temperature;
   switch (config.provider) {
     case 'claude':
-      return callClaude(config.apiKey, prompt, maxTokens);
+      return callClaude(config.apiKey, prompt, maxTokens, temp);
     case 'openai':
-      return callOpenAI(config.apiKey, prompt, maxTokens, options?.webSearch);
+      return callOpenAI(config.apiKey, prompt, maxTokens, options?.webSearch, temp);
     case 'gemini':
-      return callGemini(config.apiKey, prompt, maxTokens, options?.webSearch);
+      return callGemini(config.apiKey, prompt, maxTokens, options?.webSearch, temp);
     case 'grok':
-      return callGrok(config.apiKey, prompt, maxTokens, options?.webSearch);
+      return callGrok(config.apiKey, prompt, maxTokens, options?.webSearch, temp);
     default:
       return null;
   }
 }
 
-async function callClaude(apiKey: string, prompt: string, maxTokens: number): Promise<string | null> {
+async function callClaude(apiKey: string, prompt: string, maxTokens: number, temperature?: number): Promise<string | null> {
+  const body: Record<string, unknown> = {
+    model: MODELS.claude,
+    max_tokens: maxTokens,
+    messages: [{ role: 'user', content: prompt }],
+  };
+  if (temperature !== undefined) body.temperature = temperature;
+
   const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
@@ -52,11 +61,7 @@ async function callClaude(apiKey: string, prompt: string, maxTokens: number): Pr
       'x-api-key': apiKey,
       'anthropic-version': '2023-06-01',
     },
-    body: JSON.stringify({
-      model: MODELS.claude,
-      max_tokens: maxTokens,
-      messages: [{ role: 'user', content: prompt }],
-    }),
+    body: JSON.stringify(body),
   });
 
   if (!response.ok) {
@@ -68,7 +73,7 @@ async function callClaude(apiKey: string, prompt: string, maxTokens: number): Pr
   return data.content?.[0]?.text ?? null;
 }
 
-async function callOpenAI(apiKey: string, prompt: string, maxTokens: number, webSearch?: boolean): Promise<string | null> {
+async function callOpenAI(apiKey: string, prompt: string, maxTokens: number, webSearch?: boolean, temperature?: number): Promise<string | null> {
   // Use Responses API with web search when requested
   if (webSearch) {
     try {
@@ -78,17 +83,20 @@ async function callOpenAI(apiKey: string, prompt: string, maxTokens: number, web
     }
   }
 
+  const body: Record<string, unknown> = {
+    model: MODELS.openai,
+    max_tokens: maxTokens,
+    messages: [{ role: 'user', content: prompt }],
+  };
+  if (temperature !== undefined) body.temperature = temperature;
+
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${apiKey}`,
     },
-    body: JSON.stringify({
-      model: MODELS.openai,
-      max_tokens: maxTokens,
-      messages: [{ role: 'user', content: prompt }],
-    }),
+    body: JSON.stringify(body),
   });
 
   if (!response.ok) {
@@ -123,11 +131,13 @@ async function callOpenAIWithSearch(apiKey: string, prompt: string, maxTokens: n
   return textOutput?.content?.[0]?.text ?? null;
 }
 
-async function callGemini(apiKey: string, prompt: string, maxTokens: number, webSearch?: boolean): Promise<string | null> {
+async function callGemini(apiKey: string, prompt: string, maxTokens: number, webSearch?: boolean, temperature?: number): Promise<string | null> {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODELS.gemini}:generateContent?key=${apiKey}`;
+  const genConfig: Record<string, unknown> = { maxOutputTokens: maxTokens };
+  if (temperature !== undefined) genConfig.temperature = temperature;
   const body: Record<string, unknown> = {
     contents: [{ parts: [{ text: prompt }] }],
-    generationConfig: { maxOutputTokens: maxTokens },
+    generationConfig: genConfig,
   };
 
   // Enable Google Search grounding when web search is requested
@@ -150,13 +160,14 @@ async function callGemini(apiKey: string, prompt: string, maxTokens: number, web
   return data.candidates?.[0]?.content?.parts?.[0]?.text ?? null;
 }
 
-async function callGrok(apiKey: string, prompt: string, maxTokens: number, webSearch?: boolean): Promise<string | null> {
+async function callGrok(apiKey: string, prompt: string, maxTokens: number, webSearch?: boolean, temperature?: number): Promise<string | null> {
   // xAI Grok uses OpenAI-compatible API with optional live search
   const body: Record<string, unknown> = {
     model: MODELS.grok,
     max_tokens: maxTokens,
     messages: [{ role: 'user', content: prompt }],
   };
+  if (temperature !== undefined) body.temperature = temperature;
 
   // Enable Grok's live web search
   if (webSearch) {

@@ -63,8 +63,9 @@ export async function POST(request: Request) {
     }
 
     // ── STEP 1: GATHER RAW EVIDENCE ─────────────────────────────────────
+    // temperature=0 for reproducibility — same query should yield same evidence
     const evidencePrompt = buildEvidencePrompt(topic);
-    const evidenceText = await callLLM(config, evidencePrompt, 8192);
+    const evidenceText = await callLLM(config, evidencePrompt, 8192, { temperature: 0 });
 
     if (!evidenceText) {
       return NextResponse.json({ error: 'Failed to gather evidence' }, { status: 500 });
@@ -76,9 +77,10 @@ export async function POST(request: Request) {
     }
 
     // ── STEP 2: GENERATE HYPOTHESES FROM EVIDENCE ───────────────────────
+    // temperature=0 for reproducibility — same evidence should yield same hypotheses
     const evidenceJson = JSON.stringify(rawEvidence, null, 2);
     const hypothesisPrompt = buildHypothesisPrompt(topic, evidenceJson);
-    const hypothesisText = await callLLM(config, hypothesisPrompt, 8192);
+    const hypothesisText = await callLLM(config, hypothesisPrompt, 8192, { temperature: 0 });
 
     if (!hypothesisText) {
       return NextResponse.json({ error: 'Failed to generate hypotheses' }, { status: 500 });
@@ -129,6 +131,24 @@ export async function POST(request: Request) {
     const sensitivity = evidenceSensitivity(hypotheses, evidence);
     const verdict = generateVerdict(hypotheses, evidence);
 
+    // ── STABILITY CHECK: perturb likelihood ratios ±10% and see if verdict holds
+    const PERTURBATION_TRIALS = 20;
+    let verdictMatches = 0;
+    for (let t = 0; t < PERTURBATION_TRIALS; t++) {
+      const perturbed: EvidenceItem[] = evidence.map(e => {
+        const ratios: Record<string, number> = {};
+        for (const [hid, val] of Object.entries(e.likelihoodRatios)) {
+          // Random perturbation ±10%
+          const noise = 1 + (Math.random() * 0.2 - 0.1);
+          ratios[hid] = Math.max(0.01, Math.min(0.99, val * noise));
+        }
+        return { ...e, likelihoodRatios: ratios };
+      });
+      const pVerdict = generateVerdict(hypotheses, perturbed);
+      if (pVerdict.verdict === verdict.verdict) verdictMatches++;
+    }
+    const stabilityScore = verdictMatches / PERTURBATION_TRIALS;
+
     // ── STEP 4: SYNTHESIS — what did the math reveal? ───────────────────
     const posteriorsJson = JSON.stringify(posteriors, null, 2);
     const sensitivityJson = JSON.stringify(sensitivity.slice(0, 8), null, 2);
@@ -161,6 +181,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       result,
       bayesian: { posteriors, sensitivity, verdict },
+      stability: stabilityScore,
       discoveredBelief: !belief ? topic : undefined,
       synthesis,
       rawEvidence: rawEvidence.map(e => ({ id: e.id, sourceUrl: e.sourceUrl || null, searchQuery: e.searchQuery || null })),

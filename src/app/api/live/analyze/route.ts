@@ -235,7 +235,8 @@ export async function POST(request: Request) {
 
   try {
     // ── STEP 1: Extract verifiable claims ────────────────────────────────
-    const claimsText = await callLLM(config, `${datePreamble}\n\n${EXTRACT_CLAIMS_PROMPT}\n\nTOPIC: ${topic}\n\nARTICLE TEXT:\n${articleText}\n\nReturn ONLY the JSON array:`, 4096);
+    // temperature=0 for reproducibility
+    const claimsText = await callLLM(config, `${datePreamble}\n\n${EXTRACT_CLAIMS_PROMPT}\n\nTOPIC: ${topic}\n\nARTICLE TEXT:\n${articleText}\n\nReturn ONLY the JSON array:`, 4096, { temperature: 0 });
     if (!claimsText) {
       return NextResponse.json({ error: 'Failed to extract claims' }, { status: 500 });
     }
@@ -269,7 +270,7 @@ export async function POST(request: Request) {
       config,
       `${datePreamble}\n\n${VERIFY_EVIDENCE_PROMPT}${webContext}\n\nTOPIC: ${topic}\n\nCLAIMS TO VERIFY:\n${claimsJson}\n\nReturn ONLY the JSON object:`,
       8192,
-      { webSearch: true }
+      { webSearch: true, temperature: 0 }
     );
 
     if (!evidenceText) {
@@ -291,7 +292,7 @@ export async function POST(request: Request) {
 
     // ── STEP 3: Generate hypotheses + likelihood ratios ──────────────────
     const evidenceJson = JSON.stringify(evidenceResult.evidence, null, 2);
-    const hypothesisText = await callLLM(config, `${datePreamble}\n\n${HYPOTHESIS_PROMPT}\n\nTOPIC: ${topic}\n\nCLAIMS:\n${claimsJson}\n\nINDEPENDENT EVIDENCE:\n${evidenceJson}\n\nReturn ONLY the JSON object:`, 8192);
+    const hypothesisText = await callLLM(config, `${datePreamble}\n\n${HYPOTHESIS_PROMPT}\n\nTOPIC: ${topic}\n\nCLAIMS:\n${claimsJson}\n\nINDEPENDENT EVIDENCE:\n${evidenceJson}\n\nReturn ONLY the JSON object:`, 8192, { temperature: 0 });
 
     if (!hypothesisText) {
       return NextResponse.json({ error: 'Failed to generate hypotheses' }, { status: 500 });
