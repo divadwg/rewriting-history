@@ -187,25 +187,25 @@ export default function ChallengePage() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-12">
-      <h1 className="text-3xl font-bold mb-2" style={{ color: '#1a1a1a' }}>Evidence-First Discovery</h1>
-      <p className="text-sm mb-2" style={{ color: '#6b6b6b' }}>
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <h1 className="text-3xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Evidence-First Discovery</h1>
+      <p className="text-sm mb-2" style={{ color: '#6b7374' }}>
         This system gathers <strong>raw primary source evidence first</strong>, then generates hypotheses
         from the evidence, runs Bayesian inference, and surfaces what the data actually shows —
         including things nobody may have noticed.
       </p>
-      <div className="text-xs mb-8 font-mono flex gap-4" style={{ color: '#999999' }}>
+      <div className="text-xs mb-8 font-mono flex flex-wrap gap-4" style={{ color: '#9ba2a3' }}>
         <span>1. Evidence</span>
-        <span style={{ color: '#e5e5e5' }}>→</span>
+        <span style={{ color: 'rgba(196,203,204,0.15)' }}>→</span>
         <span>2. Hypotheses</span>
-        <span style={{ color: '#e5e5e5' }}>→</span>
+        <span style={{ color: 'rgba(196,203,204,0.15)' }}>→</span>
         <span>3. Bayesian Math</span>
-        <span style={{ color: '#e5e5e5' }}>→</span>
+        <span style={{ color: 'rgba(196,203,204,0.15)' }}>→</span>
         <span>4. Discovery</span>
       </div>
 
       {/* Search bar */}
-      <div className="flex gap-3 mb-8">
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-8">
         <input
           type="text"
           value={belief}
@@ -213,15 +213,15 @@ export default function ChallengePage() {
           onKeyDown={e => e.key === 'Enter' && analyzeByBelief(belief)}
           placeholder="Enter a specific research question, e.g. 'What do casualty records reveal about...'"
           className="flex-1 rounded-lg px-4 py-3 text-sm"
-          style={{ background: '#ffffff', border: '1px solid #e5e5e5', color: '#1a1a1a' }}
+          style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)', color: '#2d3435' }}
           disabled={loading}
         />
         <button
           onClick={() => analyzeByBelief(belief)}
           disabled={loading || belief.trim().length < 10}
-          className="px-6 py-3 rounded-lg font-bold text-sm transition-opacity whitespace-nowrap"
+          className="px-6 py-3 rounded-lg font-bold text-sm transition-opacity"
           style={{
-            background: loading ? '#d06a2a' : '#e87b35',
+            background: loading ? '#8f3600' : '#a23f00',
             color: 'white',
             opacity: loading || belief.trim().length < 10 ? 0.5 : 1,
           }}
@@ -231,7 +231,7 @@ export default function ChallengePage() {
       </div>
 
       {error && (
-        <div className="text-xs rounded-lg p-3 mb-6" style={{ background: 'rgba(196,69,54,0.08)', color: '#c44536' }}>
+        <div className="text-xs rounded-lg p-3 mb-6" style={{ background: 'rgba(162,63,0,0.06)', color: '#a23f00' }}>
           {error}
         </div>
       )}
@@ -239,10 +239,10 @@ export default function ChallengePage() {
       {/* Topic category buttons */}
       {!response && !loading && (
         <>
-          <h2 className="text-lg font-bold mb-4" style={{ color: '#1a1a1a' }}>
+          <h2 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>
             Auto-discover by topic — the system finds an underexplored question:
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mb-10">
             {TOPIC_CATEGORIES.map(cat => (
               <button
                 key={cat.id}
@@ -251,21 +251,20 @@ export default function ChallengePage() {
                 className="rounded-lg p-4 text-left transition-all hover:scale-[1.03] active:scale-[0.98]"
                 style={{
                   background: '#ffffff',
-                  border: `1px solid ${cat.id === 'surprise' ? '#e87b3540' : '#e5e5e5'}`,
-                  boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+                  border: `1px solid ${cat.id === 'surprise' ? 'rgba(162,63,0,0.25)' : 'rgba(196,203,204,0.15)'}`,
                 }}
               >
-                <div className="text-2xl font-mono mb-1" style={{ color: cat.id === 'surprise' ? '#e87b35' : '#d06a2a' }}>
+                <div className="text-2xl font-mono mb-1" style={{ color: cat.id === 'surprise' ? '#a23f00' : '#8f3600' }}>
                   {cat.icon}
                 </div>
-                <div className="text-sm font-bold mb-0.5" style={{ color: '#1a1a1a' }}>{cat.label}</div>
-                <div className="text-xs" style={{ color: '#999999' }}>{cat.description}</div>
+                <div className="text-sm font-bold mb-0.5" style={{ color: '#2d3435' }}>{cat.label}</div>
+                <div className="text-xs" style={{ color: '#9ba2a3' }}>{cat.description}</div>
               </button>
             ))}
           </div>
 
           {/* Suggested research questions */}
-          <h2 className="text-lg font-bold mb-4" style={{ color: '#1a1a1a' }}>
+          <h2 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>
             Or try a specific research question:
           </h2>
           <div className="grid md:grid-cols-2 gap-3">
@@ -274,17 +273,17 @@ export default function ChallengePage() {
                 key={i}
                 onClick={() => analyzeByBelief(s.belief)}
                 className="text-left rounded-lg p-4 transition-all hover:scale-[1.01]"
-                style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}
+                style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}
               >
-                <div className="text-sm font-medium mb-1" style={{ color: '#1a1a1a' }}>
+                <div className="text-sm font-medium mb-1" style={{ color: '#2d3435' }}>
                   {s.belief}
                 </div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs px-2 py-0.5 rounded" style={{ background: '#fdf0e6', color: '#d06a2a' }}>
+                  <span className="text-xs px-2 py-0.5 rounded" style={{ background: 'rgba(162,63,0,0.06)', color: '#8f3600' }}>
                     {s.category}
                   </span>
                 </div>
-                <div className="text-xs italic" style={{ color: '#999999' }}>
+                <div className="text-xs italic" style={{ color: '#9ba2a3' }}>
                   Evidence: {s.hint}
                 </div>
               </button>
@@ -297,16 +296,16 @@ export default function ChallengePage() {
       {loading && (
         <div className="text-center py-20">
           <div className="inline-block w-10 h-10 rounded-full border-2 animate-spin mb-4"
-            style={{ borderColor: '#e5e5e5', borderTopColor: '#e87b35' }} />
-          <div className="text-sm font-medium" style={{ color: '#1a1a1a' }}>
+            style={{ borderColor: 'rgba(196,203,204,0.15)', borderTopColor: '#a23f00' }} />
+          <div className="text-sm font-medium" style={{ color: '#2d3435' }}>
             {loadingStep}
           </div>
           {loadingCategory && (
-            <div className="text-xs mt-1" style={{ color: '#6b6b6b' }}>
+            <div className="text-xs mt-1" style={{ color: '#6b7374' }}>
               Topic: {TOPIC_CATEGORIES.find(c => c.id === loadingCategory)?.label || loadingCategory}
             </div>
           )}
-          <div className="text-xs mt-3 max-w-lg mx-auto" style={{ color: '#999999' }}>
+          <div className="text-xs mt-3 max-w-lg mx-auto" style={{ color: '#9ba2a3' }}>
             The system gathers primary sources first, then builds hypotheses from the evidence,
             runs Bayesian inference, and synthesizes what the math reveals. This takes 30-60 seconds.
           </div>

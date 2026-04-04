@@ -15,11 +15,11 @@ function searchUrl(query: string): string {
 }
 
 const STATUS_COLORS: Record<string, string> = {
-  supported: '#2a9d5c',
-  partially_supported: '#e87b35',
-  unsupported: '#c44536',
-  contradicted: '#c44536',
-  unverifiable: '#999999',
+  supported: '#2a7d4c',
+  partially_supported: '#a23f00',
+  unsupported: '#a23f00',
+  contradicted: '#a23f00',
+  unverifiable: '#9ba2a3',
 };
 
 function ShareBar({ id, title }: { id: string; title: string }) {
@@ -33,16 +33,16 @@ function ShareBar({ id, title }: { id: string; title: string }) {
   };
 
   return (
-    <div className="flex items-center gap-3 rounded-lg p-3 mb-8"
-      style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-      <div className="flex-1 min-w-0">
-        <div className="text-xs font-mono truncate" style={{ color: '#999999' }}>{url}</div>
+    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 rounded-lg p-3 mb-8"
+      style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+      <div className="flex-1 min-w-0 w-full sm:w-auto">
+        <div className="text-xs font-mono truncate" style={{ color: '#9ba2a3' }}>{url}</div>
       </div>
       <button
         onClick={copy}
         className="text-xs font-bold px-4 py-1.5 rounded transition-colors flex-shrink-0"
         style={{
-          background: copied ? '#2a9d5c' : '#e87b35',
+          background: copied ? '#2a7d4c' : '#a23f00',
           color: 'white',
         }}
       >
@@ -56,20 +56,20 @@ export default function ResultClient({ result }: { result: StoredResult }) {
   const d = result.data as Record<string, unknown>;
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
       <div className="flex items-start justify-between gap-4 mb-2">
         <div>
-          <div className="text-xs font-mono mb-1" style={{ color: '#999999' }}>
+          <div className="text-xs font-mono mb-1" style={{ color: '#9ba2a3' }}>
             {result.type === 'live' ? 'Article Verification' : 'Evidence-First Discovery'}
             {' '}&middot;{' '}
             {new Date(result.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
           </div>
-          <h1 className="text-2xl font-bold" style={{ color: '#1a1a1a' }}>{result.title}</h1>
+          <h1 className="text-2xl font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>{result.title}</h1>
         </div>
         <Link
           href={result.type === 'live' ? '/live' : '/challenge'}
           className="text-xs px-3 py-1.5 rounded flex-shrink-0"
-          style={{ border: '1px solid #e5e5e5', color: '#999999' }}
+          style={{ border: '1px solid rgba(196,203,204,0.15)', color: '#9ba2a3' }}
         >
           New Analysis
         </Link>
@@ -124,12 +124,12 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
     <div className="space-y-8">
       {/* Article header */}
       {articleTitle && (
-        <div className="rounded-lg p-4" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-          <h3 className="font-bold" style={{ color: '#1a1a1a' }}>{articleTitle}</h3>
-          <div className="flex flex-wrap gap-3 text-xs font-mono mt-1" style={{ color: '#999999' }}>
+        <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+          <h3 className="font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>{articleTitle}</h3>
+          <div className="flex flex-wrap gap-3 text-xs font-mono mt-1" style={{ color: '#9ba2a3' }}>
             {articleUrl && (
               <a href={articleUrl} target="_blank" rel="noopener noreferrer"
-                className="hover:underline" style={{ color: '#e87b35' }}>
+                className="hover:underline" style={{ color: '#a23f00' }}>
                 {(() => { try { return new URL(articleUrl).hostname; } catch { return articleUrl; } })()}
               </a>
             )}
@@ -139,8 +139,8 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
       )}
 
       {/* Pipeline badge */}
-      <div className="flex items-center gap-3 text-xs font-mono" style={{ color: '#999999' }}>
-        <span className="px-2 py-1 rounded" style={{ background: '#2a9d5c10', color: '#2a9d5c', border: '1px solid #2a9d5c30' }}>
+      <div className="flex items-center gap-3 text-xs font-mono" style={{ color: '#9ba2a3' }}>
+        <span className="px-2 py-1 rounded" style={{ background: 'rgba(42,125,76,0.06)', color: '#2a7d4c', border: '1px solid rgba(42,125,76,0.18)' }}>
           Evidence-first verification
         </span>
         <span>{claims.length} claims extracted</span>
@@ -150,9 +150,9 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
 
       {/* Overall Assessment */}
       {synthesis?.overallAssessment && (
-        <div className="rounded-lg p-5" style={{ background: '#fdf0e6', border: '1px solid rgba(232,123,53,0.2)' }}>
-          <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>OVERALL ASSESSMENT</div>
-          <p className="text-base leading-relaxed" style={{ color: '#1a1a1a' }}>
+        <div className="rounded-lg p-5" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.2)' }}>
+          <div className="text-xs font-bold mb-1" style={{ color: '#a23f00' }}>OVERALL ASSESSMENT</div>
+          <p className="text-base leading-relaxed" style={{ color: '#2d3435' }}>
             {synthesis.overallAssessment}
           </p>
         </div>
@@ -161,29 +161,29 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
       {/* Bayesian Posteriors */}
       {bayesian && (
         <div>
-          <h3 className="text-lg font-bold mb-1" style={{ color: '#1a1a1a' }}>Article Reliability — Bayesian Posteriors</h3>
-          <p className="text-xs mb-4" style={{ color: '#999999' }}>
+          <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Article Reliability — Bayesian Posteriors</h3>
+          <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
             Computed from {evidence.length} independent evidence items.
           </p>
           <div className="space-y-4">
             {bayesian.posteriors.map(h => {
               const maxP = Math.max(...bayesian.posteriors.map(p => p.posterior));
               const isWinner = h.posterior === maxP;
-              const color = isWinner ? '#2a9d5c' : '#999999';
+              const color = isWinner ? '#2a7d4c' : '#9ba2a3';
               return (
                 <div key={h.id}>
                   <div className="flex justify-between text-xs mb-1">
-                    <span style={{ color: '#6b6b6b' }}>
-                      {isWinner && <span className="font-mono mr-1" style={{ color: '#2a9d5c' }}>[BEST FIT]</span>}
-                      {h.isOfficial && <span className="font-mono mr-1" style={{ color: '#999999' }}>[ARTICLE&apos;S FRAMING]</span>}
+                    <span style={{ color: '#6b7374' }}>
+                      {isWinner && <span className="font-mono mr-1" style={{ color: '#2a7d4c' }}>[BEST FIT]</span>}
+                      {h.isOfficial && <span className="font-mono mr-1" style={{ color: '#9ba2a3' }}>[ARTICLE&apos;S FRAMING]</span>}
                       {h.label}
                     </span>
                     <span className="font-mono font-bold" style={{ color }}>{formatProb(h.posterior)}</span>
                   </div>
-                  <div className="w-full h-4 rounded-full" style={{ background: '#eeeeee' }}>
+                  <div className="w-full h-4 rounded-full" style={{ background: '#e4e9ea' }}>
                     <div className="h-full rounded-full" style={{
                       width: `${Math.max(h.posterior * 100, 2)}%`,
-                      background: isWinner ? '#2a9d5c' : h.isOfficial ? '#c44536' : '#999999',
+                      background: isWinner ? '#2a7d4c' : h.isOfficial ? '#a23f00' : '#9ba2a3',
                     }} />
                   </div>
                 </div>
@@ -195,21 +195,20 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
 
       {/* Claim-by-Claim Verification */}
       <div>
-        <h3 className="text-lg font-bold mb-4" style={{ color: '#1a1a1a' }}>
+        <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>
           Claim-by-Claim Verification ({claims.length} claims)
         </h3>
         <div className="space-y-3">
           {claims.map(claim => {
             const verification = synthesis?.claimVerifications?.find(v => v.claimId === claim.id);
-            const sColor = STATUS_COLORS[verification?.status || 'unverifiable'] || '#999999';
+            const sColor = STATUS_COLORS[verification?.status || 'unverifiable'] || '#9ba2a3';
             return (
               <div key={claim.id} className="rounded-lg p-4" style={{
-                background: '#ffffff', border: '1px solid #e5e5e5',
+                background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)',
                 borderLeftColor: sColor, borderLeftWidth: '3px',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
               }}>
                 <div className="flex items-start justify-between gap-3 mb-2">
-                  <div className="text-sm leading-relaxed" style={{ color: '#1a1a1a' }}>
+                  <div className="text-sm leading-relaxed" style={{ color: '#2d3435' }}>
                     &ldquo;{claim.claim}&rdquo;
                   </div>
                   {verification && (
@@ -219,18 +218,18 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
                     </span>
                   )}
                 </div>
-                <div className="flex flex-wrap gap-3 text-xs mb-2" style={{ color: '#999999' }}>
+                <div className="flex flex-wrap gap-3 text-xs mb-2" style={{ color: '#9ba2a3' }}>
                   <span>By: {claim.claimant} ({claim.claimantRole})</span>
-                  {claim.benefitsClaimant && <span className="font-mono" style={{ color: '#e87b35' }}>SELF-SERVING</span>}
+                  {claim.benefitsClaimant && <span className="font-mono" style={{ color: '#a23f00' }}>SELF-SERVING</span>}
                   <span>Confidence: {claim.confidenceLanguage}</span>
                 </div>
                 {verification?.explanation && (
-                  <div className="text-xs leading-relaxed rounded p-2 mt-2" style={{ background: '#f7f7f7', color: '#6b6b6b' }}>
+                  <div className="text-xs leading-relaxed rounded p-2 mt-2" style={{ background: '#f2f4f4', color: '#6b7374' }}>
                     {verification.explanation}
                     {verification.verifySearchQuery && (
                       <a href={searchUrl(verification.verifySearchQuery)} target="_blank" rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 font-mono hover:underline ml-2"
-                        style={{ color: '#999999' }}>
+                        style={{ color: '#9ba2a3' }}>
                         [verify]
                       </a>
                     )}
@@ -245,21 +244,20 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
       {/* Contradictions */}
       {contradictions.length > 0 && (
         <div>
-          <h3 className="text-lg font-bold mb-1" style={{ color: '#c44536' }}>
+          <h3 className="text-lg font-bold mb-1" style={{ color: '#a23f00', fontFamily: "'Newsreader', serif" }}>
             Contradictions &amp; Past Statements ({contradictions.length})
           </h3>
           <div className="space-y-3 mt-4">
             {contradictions.sort((a, b) => b.severity - a.severity).map(x => {
-              const sevColor = x.severity >= 4 ? '#c44536' : x.severity >= 3 ? '#e87b35' : '#d06a2a';
+              const sevColor = x.severity >= 4 ? '#a23f00' : x.severity >= 3 ? '#a23f00' : '#8f3600';
               return (
                 <div key={x.id} className="rounded-lg p-4" style={{
-                  background: '#ffffff', border: '1px solid #e5e5e5',
+                  background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)',
                   borderLeftColor: sevColor, borderLeftWidth: '3px',
-                  boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
                 }}>
                   <div className="flex items-start justify-between gap-3 mb-3">
-                    <div className="font-bold text-sm" style={{ color: '#1a1a1a' }}>
-                      {x.actor} <span className="font-normal" style={{ color: '#999999' }}>({x.actorRole})</span>
+                    <div className="font-bold text-sm" style={{ color: '#2d3435' }}>
+                      {x.actor} <span className="font-normal" style={{ color: '#9ba2a3' }}>({x.actorRole})</span>
                     </div>
                     <span className="text-xs font-mono px-2 py-0.5 rounded flex-shrink-0"
                       style={{ background: `${sevColor}10`, color: sevColor }}>
@@ -267,21 +265,21 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
                     </span>
                   </div>
                   <div className="grid md:grid-cols-2 gap-3 mb-3">
-                    <div className="rounded p-3" style={{ background: '#f7f7f7' }}>
-                      <div className="text-xs font-mono mb-1" style={{ color: '#e87b35' }}>NOW ({x.currentDate})</div>
-                      <p className="text-xs leading-relaxed" style={{ color: '#1a1a1a' }}>&ldquo;{x.currentStatement}&rdquo;</p>
+                    <div className="rounded p-3" style={{ background: '#f2f4f4' }}>
+                      <div className="text-xs font-mono mb-1" style={{ color: '#a23f00' }}>NOW ({x.currentDate})</div>
+                      <p className="text-xs leading-relaxed" style={{ color: '#2d3435' }}>&ldquo;{x.currentStatement}&rdquo;</p>
                     </div>
-                    <div className="rounded p-3" style={{ background: '#c4453608' }}>
-                      <div className="text-xs font-mono mb-1" style={{ color: '#c44536' }}>PREVIOUSLY ({x.pastDate})</div>
-                      <p className="text-xs leading-relaxed" style={{ color: '#1a1a1a' }}>&ldquo;{x.pastStatement}&rdquo;</p>
-                      <div className="text-xs mt-1 font-mono" style={{ color: '#999999' }}>Source: {x.pastSource}</div>
+                    <div className="rounded p-3" style={{ background: 'rgba(162,63,0,0.04)' }}>
+                      <div className="text-xs font-mono mb-1" style={{ color: '#a23f00' }}>PREVIOUSLY ({x.pastDate})</div>
+                      <p className="text-xs leading-relaxed" style={{ color: '#2d3435' }}>&ldquo;{x.pastStatement}&rdquo;</p>
+                      <div className="text-xs mt-1 font-mono" style={{ color: '#9ba2a3' }}>Source: {x.pastSource}</div>
                     </div>
                   </div>
-                  <div className="text-xs leading-relaxed" style={{ color: '#6b6b6b' }}>
+                  <div className="text-xs leading-relaxed" style={{ color: '#6b7374' }}>
                     {x.explanation}
                     {x.searchQuery && (
                       <a href={searchUrl(x.searchQuery)} target="_blank" rel="noopener noreferrer"
-                        className="font-mono hover:underline ml-2" style={{ color: '#999999' }}>[verify]</a>
+                        className="font-mono hover:underline ml-2" style={{ color: '#9ba2a3' }}>[verify]</a>
                     )}
                   </div>
                 </div>
@@ -293,8 +291,8 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
 
       {/* Independent Evidence */}
       <div>
-        <h3 className="text-lg font-bold mb-1" style={{ color: '#1a1a1a' }}>Independent Evidence Gathered</h3>
-        <p className="text-xs mb-4" style={{ color: '#999999' }}>
+        <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Independent Evidence Gathered</h3>
+        <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
           {evidence.length} items from sources outside the article, sorted by Bayesian impact.
         </p>
         <div className="space-y-3">
@@ -306,25 +304,25 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
             .sort((a, b) => b.impact - a.impact)
             .map(({ e, impact }) => (
               <div key={e.id} className="rounded-lg p-4" style={{
-                background: '#ffffff', border: '1px solid #e5e5e5',
-                borderLeftColor: e.supports === true ? '#2a9d5c' : e.supports === false ? '#c44536' : '#999999',
-                borderLeftWidth: '3px', boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+                background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)',
+                borderLeftColor: e.supports === true ? '#2a7d4c' : e.supports === false ? '#a23f00' : '#9ba2a3',
+                borderLeftWidth: '3px',
               }}>
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
-                    <div className="text-sm leading-relaxed mb-1" style={{ color: '#1a1a1a' }}>{e.fact}</div>
-                    <div className="flex flex-wrap gap-3 text-xs font-mono items-center" style={{ color: '#999999' }}>
+                    <div className="text-sm leading-relaxed mb-1" style={{ color: '#2d3435' }}>{e.fact}</div>
+                    <div className="flex flex-wrap gap-3 text-xs font-mono items-center" style={{ color: '#9ba2a3' }}>
                       <span>{e.source}</span>
                       <span>{e.date}</span>
                       <span>reliability: {(e.sourceReliability * 100).toFixed(0)}%</span>
                       {e.searchQuery && (
                         <a href={searchUrl(e.searchQuery)} target="_blank" rel="noopener noreferrer"
-                          className="hover:underline" style={{ color: '#999999' }}>[verify]</a>
+                          className="hover:underline" style={{ color: '#9ba2a3' }}>[verify]</a>
                       )}
                     </div>
                   </div>
                   <div className="text-xs font-mono text-right flex-shrink-0"
-                    style={{ color: impact > 0.3 ? '#e87b35' : '#999999' }}>
+                    style={{ color: impact > 0.3 ? '#a23f00' : '#9ba2a3' }}>
                     impact<br />{(impact * 100).toFixed(0)}%
                   </div>
                 </div>
@@ -335,22 +333,22 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
 
       {/* Missing Context */}
       {synthesis?.missingContext && (
-        <div className="rounded-lg p-4" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-          <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>CONTEXT THE ARTICLE OMITS</div>
-          <p className="text-sm leading-relaxed" style={{ color: '#6b6b6b' }}>{synthesis.missingContext}</p>
+        <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+          <div className="text-xs font-bold mb-1" style={{ color: '#a23f00' }}>CONTEXT THE ARTICLE OMITS</div>
+          <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>{synthesis.missingContext}</p>
         </div>
       )}
 
       {/* Recommendations */}
       {synthesis?.recommendations && synthesis.recommendations.length > 0 && (
         <div>
-          <h3 className="text-lg font-bold mb-4" style={{ color: '#1a1a1a' }}>How to Verify Further</h3>
+          <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>How to Verify Further</h3>
           <div className="space-y-2">
             {synthesis.recommendations.map((rec, i) => (
               <div key={i} className="flex items-start gap-3 rounded-lg p-4"
-                style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-                <span className="text-sm font-mono font-bold flex-shrink-0" style={{ color: '#e87b35' }}>{i + 1}.</span>
-                <p className="text-sm leading-relaxed" style={{ color: '#6b6b6b' }}>{rec}</p>
+                style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
+                <span className="text-sm font-mono font-bold flex-shrink-0" style={{ color: '#a23f00' }}>{i + 1}.</span>
+                <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>{rec}</p>
               </div>
             ))}
           </div>
@@ -393,8 +391,8 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
   return (
     <div className="space-y-8">
       {/* Pipeline badge */}
-      <div className="flex items-center gap-3 text-xs font-mono" style={{ color: '#999999' }}>
-        <span className="px-2 py-1 rounded" style={{ background: '#2a9d5c10', color: '#2a9d5c', border: '1px solid #2a9d5c30' }}>
+      <div className="flex items-center gap-3 text-xs font-mono" style={{ color: '#9ba2a3' }}>
+        <span className="px-2 py-1 rounded" style={{ background: 'rgba(42,125,76,0.06)', color: '#2a7d4c', border: '1px solid rgba(42,125,76,0.18)' }}>
           Evidence-first pipeline
         </span>
         <span>{rawEvidenceCount} primary sources gathered</span>
@@ -402,69 +400,69 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
       </div>
 
       {/* Research Question */}
-      <div className="rounded-lg p-6" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-        <div className="text-xs font-mono mb-2" style={{ color: '#999999' }}>RESEARCH QUESTION</div>
-        <h2 className="text-xl font-bold mb-4" style={{ color: '#1a1a1a' }}>{result.belief}</h2>
+      <div className="rounded-lg p-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
+        <div className="text-xs font-mono mb-2" style={{ color: '#9ba2a3' }}>RESEARCH QUESTION</div>
+        <h2 className="text-xl font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>{result.belief}</h2>
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <div className="text-xs font-bold mb-1" style={{ color: '#999999' }}>Popular understanding</div>
-            <p className="text-sm leading-relaxed" style={{ color: '#6b6b6b' }}>{result.standardNarrative}</p>
+            <div className="text-xs font-bold mb-1" style={{ color: '#9ba2a3' }}>Popular understanding</div>
+            <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>{result.standardNarrative}</p>
           </div>
           <div>
-            <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>What the evidence shows</div>
-            <p className="text-sm leading-relaxed" style={{ color: '#6b6b6b' }}>{result.contrarianCase}</p>
+            <div className="text-xs font-bold mb-1" style={{ color: '#a23f00' }}>What the evidence shows</div>
+            <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>{result.contrarianCase}</p>
           </div>
         </div>
       </div>
 
       {/* Key Insight */}
-      <div className="rounded-lg p-5" style={{ background: '#fdf0e6', border: '1px solid rgba(232,123,53,0.2)' }}>
-        <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>KEY FINDING</div>
-        <p className="text-base leading-relaxed" style={{ color: '#1a1a1a' }}>{result.keyInsight}</p>
+      <div className="rounded-lg p-5" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.2)' }}>
+        <div className="text-xs font-bold mb-1" style={{ color: '#a23f00' }}>KEY FINDING</div>
+        <p className="text-base leading-relaxed" style={{ color: '#2d3435' }}>{result.keyInsight}</p>
       </div>
 
       {/* Novel Finding */}
       {synthesis?.novelFinding && (
-        <div className="rounded-lg p-5" style={{ background: '#2a9d5c08', border: '1px solid #2a9d5c30' }}>
-          <div className="text-xs font-bold mb-1" style={{ color: '#2a9d5c' }}>NOVEL FINDING</div>
-          <p className="text-base leading-relaxed" style={{ color: '#1a1a1a' }}>{synthesis.novelFinding}</p>
+        <div className="rounded-lg p-5" style={{ background: 'rgba(42,125,76,0.04)', border: '1px solid rgba(42,125,76,0.18)' }}>
+          <div className="text-xs font-bold mb-1" style={{ color: '#2a7d4c' }}>NOVEL FINDING</div>
+          <p className="text-base leading-relaxed" style={{ color: '#2d3435' }}>{synthesis.novelFinding}</p>
         </div>
       )}
 
       {/* Missing Evidence */}
       {synthesis?.missingEvidence && (
-        <div className="rounded-lg p-4" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-          <div className="text-xs font-bold mb-1" style={{ color: '#999999' }}>WHAT WOULD RESOLVE THE UNCERTAINTY</div>
-          <p className="text-sm leading-relaxed" style={{ color: '#6b6b6b' }}>{synthesis.missingEvidence}</p>
+        <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+          <div className="text-xs font-bold mb-1" style={{ color: '#9ba2a3' }}>WHAT WOULD RESOLVE THE UNCERTAINTY</div>
+          <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>{synthesis.missingEvidence}</p>
         </div>
       )}
 
       {/* Bayesian Results */}
       {bayesian && (
         <div>
-          <h3 className="text-lg font-bold mb-1" style={{ color: '#1a1a1a' }}>Bayesian Posteriors</h3>
-          <p className="text-xs mb-4" style={{ color: '#999999' }}>
+          <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Bayesian Posteriors</h3>
+          <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
             Computed mathematically from {rawEvidenceCount} evidence items.
           </p>
           <div className="space-y-4">
             {bayesian.posteriors.map(h => {
               const maxP = Math.max(...bayesian.posteriors.map(p => p.posterior));
               const isWinner = h.posterior === maxP;
-              const color = isWinner ? '#2a9d5c' : '#999999';
+              const color = isWinner ? '#2a7d4c' : '#9ba2a3';
               return (
                 <div key={h.id}>
                   <div className="flex justify-between text-xs mb-1">
-                    <span style={{ color: '#6b6b6b' }}>
-                      {isWinner && <span className="font-mono mr-1" style={{ color: '#2a9d5c' }}>[BEST FIT]</span>}
-                      {h.isOfficial && <span className="font-mono mr-1" style={{ color: '#999999' }}>[STANDARD]</span>}
+                    <span style={{ color: '#6b7374' }}>
+                      {isWinner && <span className="font-mono mr-1" style={{ color: '#2a7d4c' }}>[BEST FIT]</span>}
+                      {h.isOfficial && <span className="font-mono mr-1" style={{ color: '#9ba2a3' }}>[STANDARD]</span>}
                       {h.label}
                     </span>
                     <span className="font-mono font-bold" style={{ color }}>{formatProb(h.posterior)}</span>
                   </div>
-                  <div className="w-full h-4 rounded-full" style={{ background: '#eeeeee' }}>
+                  <div className="w-full h-4 rounded-full" style={{ background: '#e4e9ea' }}>
                     <div className="h-full rounded-full" style={{
                       width: `${Math.max(h.posterior * 100, 2)}%`,
-                      background: isWinner ? '#2a9d5c' : h.isOfficial ? '#c44536' : '#999999',
+                      background: isWinner ? '#2a7d4c' : h.isOfficial ? '#a23f00' : '#9ba2a3',
                     }} />
                   </div>
                 </div>
@@ -475,10 +473,10 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
           {(() => {
             const v = bayesian.verdict;
             const config: Record<string, { color: string; label: string }> = {
-              official_refuted: { color: '#c44536', label: 'STANDARD NARRATIVE NOT SUPPORTED BY EVIDENCE' },
-              official_unlikely: { color: '#e87b35', label: 'STANDARD NARRATIVE UNLIKELY GIVEN EVIDENCE' },
-              official_questionable: { color: '#d06a2a', label: 'STANDARD NARRATIVE QUESTIONABLE' },
-              official_supported: { color: '#2a9d5c', label: 'STANDARD NARRATIVE SUPPORTED BY EVIDENCE' },
+              official_refuted: { color: '#a23f00', label: 'STANDARD NARRATIVE NOT SUPPORTED BY EVIDENCE' },
+              official_unlikely: { color: '#a23f00', label: 'STANDARD NARRATIVE UNLIKELY GIVEN EVIDENCE' },
+              official_questionable: { color: '#8f3600', label: 'STANDARD NARRATIVE QUESTIONABLE' },
+              official_supported: { color: '#2a7d4c', label: 'STANDARD NARRATIVE SUPPORTED BY EVIDENCE' },
             };
             const c = config[v.verdict] || { color: '#999999', label: v.verdict };
             return (
@@ -493,8 +491,8 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
       {/* Evidence */}
       {result.evidence && result.evidence.length > 0 && (
         <div>
-          <h3 className="text-lg font-bold mb-1" style={{ color: '#1a1a1a' }}>Primary Source Evidence</h3>
-          <p className="text-xs mb-4" style={{ color: '#999999' }}>
+          <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Primary Source Evidence</h3>
+          <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
             {result.evidence.length} items gathered. Sorted by Bayesian impact.
           </p>
           <div className="space-y-3">
@@ -514,25 +512,25 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
 
                 return (
                   <div key={e.id} className="rounded-lg p-4" style={{
-                    background: '#ffffff', border: '1px solid #e5e5e5',
-                    borderLeftColor: supportsWinner ? '#2a9d5c' : '#e87b35',
-                    borderLeftWidth: '3px', boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+                    background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)',
+                    borderLeftColor: supportsWinner ? '#2a7d4c' : '#a23f00',
+                    borderLeftWidth: '3px',
                   }}>
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1">
-                        <div className="text-sm leading-relaxed mb-2" style={{ color: '#1a1a1a' }}>{e.description}</div>
-                        <div className="flex flex-wrap gap-3 text-xs font-mono items-center" style={{ color: '#999999' }}>
+                        <div className="text-sm leading-relaxed mb-2" style={{ color: '#2d3435' }}>{e.description}</div>
+                        <div className="flex flex-wrap gap-3 text-xs font-mono items-center" style={{ color: '#9ba2a3' }}>
                           <span>{e.date}</span>
                           <span>reliability: {(e.sourceReliability * 100).toFixed(0)}%</span>
-                          {e.wasClassified && <span style={{ color: '#c44536' }}>DECLASSIFIED</span>}
+                          {e.wasClassified && <span style={{ color: '#a23f00' }}>DECLASSIFIED</span>}
                           {links?.searchQuery && (
                             <a href={searchUrl(links.searchQuery)} target="_blank" rel="noopener noreferrer"
-                              className="hover:underline" style={{ color: '#999999' }}>[verify]</a>
+                              className="hover:underline" style={{ color: '#9ba2a3' }}>[verify]</a>
                           )}
                         </div>
                       </div>
                       <div className="text-xs font-mono text-right flex-shrink-0"
-                        style={{ color: impact > 0.3 ? '#e87b35' : '#999999' }}>
+                        style={{ color: impact > 0.3 ? '#a23f00' : '#9ba2a3' }}>
                         impact<br />{(impact * 100).toFixed(0)}%
                       </div>
                     </div>
@@ -546,24 +544,24 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
       {/* Causal Chain */}
       {result.causalFactors && result.causalFactors.length > 0 && (
         <div>
-          <h3 className="text-lg font-bold mb-4" style={{ color: '#1a1a1a' }}>Causal Structure</h3>
-          <div className="rounded-lg p-5" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+          <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Causal Structure</h3>
+          <div className="rounded-lg p-5" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
             {result.causalFactors.map((cf, i) => (
               <div key={cf.id}>
                 <div className="flex items-start gap-2">
                   <div className="w-2.5 h-2.5 rounded-full mt-1.5 flex-shrink-0" style={{
-                    background: cf.type === 'power_change' ? '#c44536' :
-                      cf.type === 'narrative_change' ? '#e87b35' :
-                      cf.type === 'evidence_action' ? '#d06a2a' : '#999999'
+                    background: cf.type === 'power_change' ? '#a23f00' :
+                      cf.type === 'narrative_change' ? '#a23f00' :
+                      cf.type === 'evidence_action' ? '#8f3600' : '#9ba2a3'
                   }} />
                   <div>
-                    <div className="text-sm" style={{ color: '#1a1a1a' }}>{cf.label}</div>
-                    <div className="text-xs font-mono" style={{ color: '#999999' }}>{cf.date}</div>
+                    <div className="text-sm" style={{ color: '#2d3435' }}>{cf.label}</div>
+                    <div className="text-xs font-mono" style={{ color: '#9ba2a3' }}>{cf.date}</div>
                   </div>
                 </div>
                 {i < (result.causalLinks?.length ?? 0) && result.causalLinks[i] && (
-                  <div className="ml-1.5 pl-3 py-2" style={{ borderLeft: '1px solid #e5e5e5' }}>
-                    <div className="text-xs italic" style={{ color: '#bbbbbb' }}>{result.causalLinks[i].mechanism}</div>
+                  <div className="ml-1.5 pl-3 py-2" style={{ borderLeft: '1px solid rgba(196,203,204,0.15)' }}>
+                    <div className="text-xs italic" style={{ color: '#c4cbcc' }}>{result.causalLinks[i].mechanism}</div>
                   </div>
                 )}
               </div>
@@ -575,17 +573,17 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
       {/* Confidence + Further Reading */}
       <div className="grid md:grid-cols-2 gap-6">
         {result.confidenceNote && (
-          <div className="rounded-lg p-4" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-            <div className="text-xs font-bold mb-1" style={{ color: '#999999' }}>CONFIDENCE ASSESSMENT</div>
-            <p className="text-sm leading-relaxed" style={{ color: '#6b6b6b' }}>{result.confidenceNote}</p>
+          <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+            <div className="text-xs font-bold mb-1" style={{ color: '#9ba2a3' }}>CONFIDENCE ASSESSMENT</div>
+            <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>{result.confidenceNote}</p>
           </div>
         )}
         {result.furtherReading && result.furtherReading.length > 0 && (
-          <div className="rounded-lg p-4" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-            <div className="text-xs font-bold mb-2" style={{ color: '#999999' }}>PRIMARY SOURCES / FURTHER READING</div>
+          <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+            <div className="text-xs font-bold mb-2" style={{ color: '#9ba2a3' }}>PRIMARY SOURCES / FURTHER READING</div>
             <ul className="space-y-1.5">
               {result.furtherReading.map((ref, i) => (
-                <li key={i} className="text-xs pl-3 leading-relaxed" style={{ color: '#6b6b6b', borderLeft: '2px solid #e87b35' }}>
+                <li key={i} className="text-xs pl-3 leading-relaxed" style={{ color: '#6b7374', borderLeft: '2px solid #a23f00' }}>
                   {ref}
                 </li>
               ))}

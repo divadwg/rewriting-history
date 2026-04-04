@@ -1,11 +1,11 @@
 export default function HelpPage() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
-      <h1 className="text-4xl font-bold mb-2" style={{ color: '#1a1a1a' }}>How It Works</h1>
-      <p className="text-lg mb-12 leading-relaxed" style={{ color: '#6b6b6b' }}>
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+      <h1 className="text-4xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>How It Works</h1>
+      <p className="text-lg mb-12 leading-relaxed" style={{ color: '#6b7374' }}>
         Rewriting History tests official narratives against evidence using mathematics,
         not opinions. It combines a knowledge graph, causal model, and Bayesian inference
-        engine to compute a <strong style={{ color: '#1a1a1a' }}>narrative fragility score</strong> &mdash;
+        engine to compute a <strong style={{ color: '#2d3435' }}>narrative fragility score</strong> &mdash;
         a quantitative measure of how structurally vulnerable a story is to being overturned.
         The aim is a predictive framework: can we identify fragile narratives <em>before</em> they
         collapse?
@@ -13,12 +13,12 @@ export default function HelpPage() {
 
       {/* ── PLAIN ENGLISH OVERVIEW ──────────────────────────────────────── */}
       <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-6" style={{ color: '#1a1a1a' }}>What it does</h2>
+        <h2 className="text-2xl font-bold mb-6" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>What it does</h2>
 
         <div className="space-y-6">
-          <div className="rounded-lg p-6" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-            <h3 className="font-bold text-lg mb-2" style={{ color: '#e87b35' }}>Evidence Discovery</h3>
-            <p className="leading-relaxed" style={{ color: '#6b6b6b' }}>
+          <div className="rounded-lg p-6" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+            <h3 className="font-bold text-lg mb-2" style={{ color: '#a23f00', fontFamily: "'Newsreader', serif" }}>Evidence Discovery</h3>
+            <p className="leading-relaxed" style={{ color: '#6b7374' }}>
               You ask a question about history &mdash; for example, &ldquo;What do ship manifests reveal about
               Viking trade vs. raiding?&rdquo; The system goes and finds real primary source evidence: documents,
               statistics, archaeological findings, declassified records. It then figures out what explanations
@@ -27,9 +27,9 @@ export default function HelpPage() {
             </p>
           </div>
 
-          <div className="rounded-lg p-6" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-            <h3 className="font-bold text-lg mb-2" style={{ color: '#e87b35' }}>Live Analysis</h3>
-            <p className="leading-relaxed" style={{ color: '#6b6b6b' }}>
+          <div className="rounded-lg p-6" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+            <h3 className="font-bold text-lg mb-2" style={{ color: '#a23f00', fontFamily: "'Newsreader', serif" }}>Live Analysis</h3>
+            <p className="leading-relaxed" style={{ color: '#6b7374' }}>
               Enter an article URL (or paste text). The system pulls out every verifiable claim the article makes,
               searches the web for independent evidence, runs probability math, and gives you a claim-by-claim
               verdict: supported, contradicted, or unverifiable. It also searches for <strong>contradictions</strong> &mdash;
@@ -38,15 +38,15 @@ export default function HelpPage() {
             </p>
           </div>
 
-          <div className="rounded-lg p-6" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
-            <h3 className="font-bold text-lg mb-2" style={{ color: '#e87b35' }}>Case Studies</h3>
-            <p className="leading-relaxed" style={{ color: '#6b6b6b' }}>
+          <div className="rounded-lg p-6" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+            <h3 className="font-bold text-lg mb-2" style={{ color: '#a23f00', fontFamily: "'Newsreader', serif" }}>Case Studies</h3>
+            <p className="leading-relaxed" style={{ color: '#6b7374' }}>
               The case studies are the validation corpus. Each one is a historical event where the official
               narrative was later overturned or substantially revised &mdash; the Gulf of Tonkin fabrication,
               Iraqi WMD intelligence failure, the Katyn massacre cover-up, the Hillsborough disaster blame-shift,
               the Dreyfus affair forgery, and the Bengal famine framing as natural disaster. The cases span
               different centuries, cultures, and types of narrative manipulation. Each has a full knowledge graph,
-              causal model, and Bayesian analysis with a <strong style={{ color: '#1a1a1a' }}>narrative fragility
+              causal model, and Bayesian analysis with a <strong style={{ color: '#2d3435' }}>narrative fragility
               score</strong>. The hypothesis: cases that were later overturned should score high on fragility
               even when the analysis only uses pre-revelation evidence. If the framework reliably detects
               known cases of narrative manipulation, it can be applied to open questions where the answer
@@ -58,14 +58,14 @@ export default function HelpPage() {
 
       {/* ── HOW TO USE IT ───────────────────────────────────────────────── */}
       <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-6" style={{ color: '#1a1a1a' }}>How to use it</h2>
+        <h2 className="text-2xl font-bold mb-6" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>How to use it</h2>
 
         <div className="space-y-4">
           <div className="flex gap-4 items-start">
             <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
-              style={{ background: '#e87b35', color: 'white' }}>1</div>
+              style={{ background: '#a23f00', color: 'white' }}>1</div>
             <div>
-              <div className="font-bold mb-1" style={{ color: '#1a1a1a' }}>Set your API key</div>
+              <div className="font-bold mb-1" style={{ color: '#2d3435' }}>Set your API key</div>
               <p className="text-sm" style={{ color: '#6b6b6b' }}>
                 Click the Settings button in the top nav. Choose your AI provider (Claude, OpenAI, Gemini, or Grok)
                 and enter your API key. The key is stored in your browser only &mdash; it never touches our servers.
@@ -75,9 +75,9 @@ export default function HelpPage() {
 
           <div className="flex gap-4 items-start">
             <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
-              style={{ background: '#e87b35', color: 'white' }}>2</div>
+              style={{ background: '#a23f00', color: 'white' }}>2</div>
             <div>
-              <div className="font-bold mb-1" style={{ color: '#1a1a1a' }}>Ask a question or paste an article</div>
+              <div className="font-bold mb-1" style={{ color: '#2d3435' }}>Ask a question or paste an article</div>
               <p className="text-sm" style={{ color: '#6b6b6b' }}>
                 On <strong>Evidence Discovery</strong>, type a specific research question or click a topic
                 category to auto-discover one. On <strong>Live Analysis</strong>, paste the text of a news article.
@@ -87,9 +87,9 @@ export default function HelpPage() {
 
           <div className="flex gap-4 items-start">
             <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
-              style={{ background: '#e87b35', color: 'white' }}>3</div>
+              style={{ background: '#a23f00', color: 'white' }}>3</div>
             <div>
-              <div className="font-bold mb-1" style={{ color: '#1a1a1a' }}>Wait for the pipeline (30&ndash;60 seconds)</div>
+              <div className="font-bold mb-1" style={{ color: '#2d3435' }}>Wait for the pipeline (30&ndash;60 seconds)</div>
               <p className="text-sm" style={{ color: '#6b6b6b' }}>
                 The system runs a multi-step pipeline: gather evidence, generate hypotheses, run Bayesian
                 inference, then synthesize the results. You&apos;ll see the progress as it works.
@@ -99,9 +99,9 @@ export default function HelpPage() {
 
           <div className="flex gap-4 items-start">
             <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
-              style={{ background: '#e87b35', color: 'white' }}>4</div>
+              style={{ background: '#a23f00', color: 'white' }}>4</div>
             <div>
-              <div className="font-bold mb-1" style={{ color: '#1a1a1a' }}>Read the results and check the sources</div>
+              <div className="font-bold mb-1" style={{ color: '#2d3435' }}>Read the results and check the sources</div>
               <p className="text-sm" style={{ color: '#6b6b6b' }}>
                 Every evidence item has a <span className="font-mono" style={{ color: '#e87b35' }}>[source]</span> link
                 (when a direct URL is known) and a <span className="font-mono" style={{ color: '#999999' }}>[verify]</span> link
