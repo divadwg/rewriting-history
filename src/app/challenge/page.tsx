@@ -147,10 +147,43 @@ export default function ChallengePage() {
     }
   }, [history, isConfigured, provider, apiKey, setShowSettings]);
 
+  const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const saveAndShare = useCallback(async () => {
+    if (!response) return;
+    setSaving(true);
+    try {
+      const res = await fetch('/api/results', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'challenge',
+          title: response.result?.belief || belief || 'Evidence-First Discovery',
+          data: response,
+        }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        const fullUrl = `${window.location.origin}${data.url}`;
+        setShareUrl(fullUrl);
+        navigator.clipboard.writeText(fullUrl);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
+    } catch {
+      // silently fail
+    } finally {
+      setSaving(false);
+    }
+  }, [response, belief]);
+
   const reset = () => {
     setResponse(null);
     setBelief('');
     setError(null);
+    setShareUrl(null);
   };
 
   return (
@@ -553,8 +586,34 @@ export default function ChallengePage() {
             )}
           </div>
 
+          {/* Share bar */}
+          {shareUrl && (
+            <div className="rounded-lg p-3 flex items-center gap-3" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
+              <div className="text-xs font-mono truncate flex-1" style={{ color: '#999999' }}>{shareUrl}</div>
+              <button
+                onClick={() => { navigator.clipboard.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
+                className="text-xs font-bold px-3 py-1 rounded flex-shrink-0"
+                style={{ background: copied ? '#2a9d5c' : '#e87b35', color: 'white' }}
+              >
+                {copied ? 'Copied' : 'Copy'}
+              </button>
+            </div>
+          )}
+
           {/* Actions */}
           <div className="flex gap-3 justify-center pt-4">
+            <button
+              onClick={saveAndShare}
+              disabled={saving || !!shareUrl}
+              className="text-sm px-6 py-2.5 rounded-lg font-bold transition-opacity hover:opacity-90"
+              style={{
+                background: shareUrl ? '#2a9d5c' : '#e87b35',
+                color: 'white',
+                opacity: saving ? 0.5 : 1,
+              }}
+            >
+              {saving ? 'Saving...' : shareUrl ? 'Saved' : 'Save & Share'}
+            </button>
             <button
               onClick={reset}
               className="text-sm px-6 py-2.5 rounded-lg font-medium transition-opacity hover:opacity-90"
@@ -565,8 +624,8 @@ export default function ChallengePage() {
             <button
               onClick={() => discoverByCategory('surprise')}
               disabled={loading}
-              className="text-sm px-6 py-2.5 rounded-lg font-bold transition-opacity hover:opacity-90"
-              style={{ background: '#e87b35', color: 'white' }}
+              className="text-sm px-6 py-2.5 rounded-lg font-medium transition-opacity hover:opacity-90"
+              style={{ border: '1px solid #e5e5e5', color: '#6b6b6b' }}
             >
               Discover Another
             </button>

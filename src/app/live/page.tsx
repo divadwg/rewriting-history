@@ -108,7 +108,38 @@ export default function LivePage() {
   const [loading, setLoading] = useState(false);
   const [loadingStep, setLoadingStep] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [copied, setCopied] = useState(false);
   const { provider, apiKey, isConfigured, setShowSettings } = useApiKey();
+
+  const saveAndShare = async () => {
+    if (!result) return;
+    setSaving(true);
+    try {
+      const res = await fetch('/api/results', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'live',
+          title: articleTitle || topic || 'Article Verification',
+          data: { ...result, articleTitle, articleUrl, articleDate },
+        }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        const fullUrl = `${window.location.origin}${data.url}`;
+        setShareUrl(fullUrl);
+        navigator.clipboard.writeText(fullUrl);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
+    } catch {
+      // silently fail
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const fetchArticle = async () => {
     const url = urlInput.trim();
@@ -465,14 +496,51 @@ export default function LivePage() {
                     <span>{articleDate}</span>
                   </div>
                 </div>
-                <button
-                  onClick={reset}
-                  className="text-xs px-3 py-1 rounded"
-                  style={{ border: '1px solid #e5e5e5', color: '#999999' }}
-                >
-                  New Analysis
-                </button>
+                <div className="flex gap-2">
+                  <button
+                    onClick={saveAndShare}
+                    disabled={saving || !!shareUrl}
+                    className="text-xs px-3 py-1 rounded font-bold transition-colors"
+                    style={{
+                      background: shareUrl ? '#2a9d5c' : '#e87b35',
+                      color: 'white',
+                      opacity: saving ? 0.5 : 1,
+                    }}
+                  >
+                    {saving ? 'Saving...' : shareUrl ? (copied ? 'Link Copied' : 'Saved') : 'Save & Share'}
+                  </button>
+                  {shareUrl && (
+                    <button
+                      onClick={() => { navigator.clipboard.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
+                      className="text-xs px-3 py-1 rounded"
+                      style={{ border: '1px solid #e5e5e5', color: '#999999' }}
+                    >
+                      {copied ? 'Copied' : 'Copy Link'}
+                    </button>
+                  )}
+                  <button
+                    onClick={reset}
+                    className="text-xs px-3 py-1 rounded"
+                    style={{ border: '1px solid #e5e5e5', color: '#999999' }}
+                  >
+                    New Analysis
+                  </button>
+                </div>
               </div>
+            </div>
+          )}
+
+          {/* Share URL bar */}
+          {shareUrl && (
+            <div className="rounded-lg p-3 flex items-center gap-3" style={{ background: '#f7f7f7', border: '1px solid #e5e5e5' }}>
+              <div className="text-xs font-mono truncate flex-1" style={{ color: '#999999' }}>{shareUrl}</div>
+              <button
+                onClick={() => { navigator.clipboard.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
+                className="text-xs font-bold px-3 py-1 rounded flex-shrink-0"
+                style={{ background: copied ? '#2a9d5c' : '#e87b35', color: 'white' }}
+              >
+                {copied ? 'Copied' : 'Copy'}
+              </button>
             </div>
           )}
 
