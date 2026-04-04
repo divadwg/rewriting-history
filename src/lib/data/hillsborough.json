@@ -1,0 +1,221 @@
+{
+  "id": "hillsborough",
+  "title": "Hillsborough Disaster Cover-Up",
+  "period": "1989-2016",
+  "summary": "On April 15, 1989, 97 Liverpool FC fans were killed in a crush at Hillsborough Stadium in Sheffield during an FA Cup semi-final. South Yorkshire Police, led by match commander Chief Superintendent David Duckenfield, blamed fan behaviour — alleging drunkenness and hooliganism. The Sun newspaper amplified this with its infamous 'THE TRUTH' headline. Over 27 years of campaigning by families, the Hillsborough Independent Panel (2012) revealed that police had altered 164 witness statements to remove criticism of officers. The 2016 inquest jury found the fans were unlawfully killed and that police failures caused the disaster.",
+  "hypotheses": [
+    {
+      "id": "h1-fan-behaviour",
+      "caseStudyId": "hillsborough",
+      "label": "Fan behaviour caused the disaster",
+      "description": "The official South Yorkshire Police narrative from 1989: drunken, ticketless Liverpool fans forced their way into the ground, causing the fatal crush. This was the version presented to the Taylor Inquiry, amplified by The Sun, and maintained by police for over two decades.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": true
+    },
+    {
+      "id": "h2-police-coverup",
+      "caseStudyId": "hillsborough",
+      "label": "Police failures caused the disaster and were covered up institutionally",
+      "description": "Chief Superintendent Duckenfield ordered the opening of Gate C without closing the tunnel, funnelling fans into already-overcrowded central pens. Police then engaged in a systematic cover-up, altering witness statements, smearing victims, and deflecting blame onto fans to avoid accountability.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": false
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1-syp-initial-reports",
+      "label": "South Yorkshire Police initial incident reports (1989)",
+      "description": "SYP's official reports blamed Liverpool fans for arriving late, drunk, and without tickets. Chief Superintendent Duckenfield initially lied to FA officials, claiming fans had forced open Gate C, when he had in fact ordered it opened.",
+      "date": "1989-04-15",
+      "likelihoodRatios": { "h1-fan-behaviour": 0.6, "h2-police-coverup": 0.4 },
+      "sourceReliability": 0.15,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-actor-duckenfield", "n3-claim-fan-blame", "n5-event-gate-c"]
+    },
+    {
+      "id": "e2-the-sun-truth",
+      "label": "The Sun 'THE TRUTH' front page (Apr 19, 1989)",
+      "description": "Four days after the disaster, The Sun published a front page headlined 'THE TRUTH' with three sub-claims sourced from police: fans picked pockets of victims, fans urinated on police, and fans beat up a constable giving CPR. All three claims were false.",
+      "date": "1989-04-19",
+      "likelihoodRatios": { "h1-fan-behaviour": 0.5, "h2-police-coverup": 0.7 },
+      "sourceReliability": 0.05,
+      "wasClassified": false,
+      "linkedNodeIds": ["n2-actor-the-sun", "n3-claim-fan-blame", "n13-narrative-fan-hooliganism"]
+    },
+    {
+      "id": "e3-taylor-interim-report",
+      "label": "Taylor Interim Report (Aug 1989)",
+      "description": "Lord Justice Taylor's interim report found the main cause of the disaster was the failure of police crowd control. It specifically criticised Duckenfield's leadership and rejected the police narrative that fan behaviour was the primary cause. Despite this, SYP continued to blame fans.",
+      "date": "1989-08-01",
+      "likelihoodRatios": { "h1-fan-behaviour": 0.15, "h2-police-coverup": 0.9 },
+      "sourceReliability": 0.9,
+      "wasClassified": false,
+      "linkedNodeIds": ["n6-source-taylor-report", "n1-actor-duckenfield", "n7-claim-police-failure"]
+    },
+    {
+      "id": "e4-altered-statements",
+      "label": "164 witness statements altered by South Yorkshire Police",
+      "description": "The Hillsborough Independent Panel discovered that SYP had amended 164 of 228 police witness statements, systematically removing or altering passages that criticised police actions or the emergency response. The alterations were overseen by SYP's legal team to prepare for anticipated litigation.",
+      "date": "2012-09-12",
+      "likelihoodRatios": { "h1-fan-behaviour": 0.02, "h2-police-coverup": 0.99 },
+      "sourceReliability": 0.99,
+      "wasClassified": false,
+      "linkedNodeIds": ["n8-evidence-altered-statements", "n4-actor-syp", "n14-narrative-coverup"]
+    },
+    {
+      "id": "e5-cctv-evidence",
+      "label": "CCTV footage from Hillsborough Stadium",
+      "description": "CCTV footage showed fans entering the ground in an orderly manner before the crush developed. It contradicted police claims of a rushing mob and showed the central pens becoming dangerously overcrowded while police failed to act. Some CCTV footage went missing from police custody.",
+      "date": "1989-04-15",
+      "likelihoodRatios": { "h1-fan-behaviour": 0.1, "h2-police-coverup": 0.9 },
+      "sourceReliability": 0.95,
+      "wasClassified": false,
+      "linkedNodeIds": ["n9-evidence-cctv", "n5-event-gate-c", "n7-claim-police-failure"]
+    },
+    {
+      "id": "e6-blood-alcohol-testing",
+      "label": "Blood alcohol testing of victims including children",
+      "description": "South Yorkshire Police ordered blood alcohol levels to be tested on all 97 victims, including children as young as 10. This was done to support the narrative of drunken fans. The Hillsborough Independent Panel found this was part of a deliberate strategy to impugn the victims.",
+      "date": "1989-04-16",
+      "likelihoodRatios": { "h1-fan-behaviour": 0.15, "h2-police-coverup": 0.95 },
+      "sourceReliability": 0.98,
+      "wasClassified": false,
+      "linkedNodeIds": ["n4-actor-syp", "n10-evidence-bac-testing", "n3-claim-fan-blame"]
+    },
+    {
+      "id": "e7-hip-report",
+      "label": "Hillsborough Independent Panel Report (Sep 12, 2012)",
+      "description": "After reviewing over 450,000 pages of documents, the Panel found: police altered 164 statements; the emergency response was inadequate and delayed; up to 41 of the 97 victims could potentially have survived with proper medical response; police ran criminal background checks on victims to smear them; and SYP briefed MPs and media with false accounts blaming fans.",
+      "date": "2012-09-12",
+      "likelihoodRatios": { "h1-fan-behaviour": 0.01, "h2-police-coverup": 0.99 },
+      "sourceReliability": 0.99,
+      "wasClassified": false,
+      "linkedNodeIds": ["n11-source-hip-report", "n8-evidence-altered-statements", "n14-narrative-coverup"]
+    },
+    {
+      "id": "e8-inquest-verdict",
+      "label": "2016 inquest verdict: unlawful killing",
+      "description": "On April 26, 2016, after the longest jury case in English legal history, the inquest jury concluded that the 97 fans were unlawfully killed. The jury found that police planning failures and the decision to open Gate C were the direct cause, that fan behaviour did not cause or contribute to the disaster, and that there were errors in the emergency response which caused or contributed to the loss of lives.",
+      "date": "2016-04-26",
+      "likelihoodRatios": { "h1-fan-behaviour": 0.01, "h2-police-coverup": 0.99 },
+      "sourceReliability": 0.99,
+      "wasClassified": false,
+      "linkedNodeIds": ["n12-event-inquest-verdict", "n7-claim-police-failure", "n1-actor-duckenfield"]
+    },
+    {
+      "id": "e9-duckenfield-admission",
+      "label": "Duckenfield's admission of ordering Gate C opened and lying",
+      "description": "At the 2015 fresh inquests, David Duckenfield admitted under oath that he ordered the opening of exit Gate C, allowing 2,000 fans into the ground, and then lied to FA officials by claiming fans had forced the gate open. He admitted this was 'the biggest regret of my life' and acknowledged his failure to close the tunnel leading to the central pens.",
+      "date": "2015-03-10",
+      "likelihoodRatios": { "h1-fan-behaviour": 0.02, "h2-police-coverup": 0.98 },
+      "sourceReliability": 0.95,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-actor-duckenfield", "n5-event-gate-c", "n7-claim-police-failure"]
+    }
+  ],
+  "nodes": [
+    { "id": "n1-actor-duckenfield", "type": "actor", "label": "David Duckenfield", "description": "Chief Superintendent of South Yorkshire Police and match commander at Hillsborough. Ordered Gate C opened, then lied about it.", "date": "1989-04-15", "confidence": 1.0, "metadata": { "role": "Match Commander, South Yorkshire Police" }, "caseStudyId": "hillsborough" },
+    { "id": "n2-actor-the-sun", "type": "actor", "label": "The Sun (Kelvin MacKenzie)", "description": "Tabloid newspaper edited by Kelvin MacKenzie that published the 'THE TRUTH' front page amplifying false police claims about fan behaviour.", "date": "1989-04-19", "confidence": 1.0, "metadata": { "role": "National newspaper" }, "caseStudyId": "hillsborough" },
+    { "id": "n3-claim-fan-blame", "type": "claim", "label": "Fan drunkenness and hooliganism caused the disaster", "description": "Police-originated claim that Liverpool fans arrived drunk, without tickets, and forced their way in, causing the fatal crush.", "date": "1989-04-15", "confidence": 0.02, "metadata": {}, "caseStudyId": "hillsborough" },
+    { "id": "n4-actor-syp", "type": "actor", "label": "South Yorkshire Police", "description": "Police force responsible for crowd control at Hillsborough and the subsequent institutional cover-up including altering witness statements.", "date": "1989-04-15", "confidence": 1.0, "metadata": { "role": "Police force" }, "caseStudyId": "hillsborough" },
+    { "id": "n5-event-gate-c", "type": "event", "label": "Opening of Gate C", "description": "Duckenfield ordered exit Gate C opened to relieve pressure outside the ground, but failed to close the tunnel to the central pens, funnelling 2,000 fans into already overcrowded enclosures.", "date": "1989-04-15", "confidence": 0.99, "metadata": {}, "caseStudyId": "hillsborough" },
+    { "id": "n6-source-taylor-report", "type": "source", "label": "Taylor Interim Report (1989)", "description": "Lord Justice Taylor's official inquiry finding police failure as the main cause of the disaster.", "date": "1989-08-01", "confidence": 0.9, "metadata": { "actor": "Lord Justice Taylor" }, "caseStudyId": "hillsborough" },
+    { "id": "n7-claim-police-failure", "type": "claim", "label": "Police failures caused the disaster", "description": "Claim that the crush was caused by Duckenfield's decision to open Gate C without closing the tunnel, compounded by inadequate crowd management and delayed emergency response.", "date": "1989-08-01", "confidence": 0.98, "metadata": {}, "caseStudyId": "hillsborough" },
+    { "id": "n8-evidence-altered-statements", "type": "evidence", "label": "164 altered police witness statements", "description": "South Yorkshire Police systematically altered 164 of 228 witness statements to remove criticism of police conduct, revealed by the Hillsborough Independent Panel in 2012.", "date": "2012-09-12", "confidence": 0.99, "metadata": {}, "caseStudyId": "hillsborough" },
+    { "id": "n9-evidence-cctv", "type": "evidence", "label": "CCTV footage from Hillsborough", "description": "Stadium camera footage showing orderly fan behaviour and police inaction as pens became overcrowded. Some footage went missing from police custody.", "date": "1989-04-15", "confidence": 0.95, "metadata": {}, "caseStudyId": "hillsborough" },
+    { "id": "n10-evidence-bac-testing", "type": "evidence", "label": "Blood alcohol testing of all 97 victims", "description": "Police tested all victims' blood alcohol levels, including children, as part of a strategy to blame fans for the disaster.", "date": "1989-04-16", "confidence": 0.98, "metadata": {}, "caseStudyId": "hillsborough" },
+    { "id": "n11-source-hip-report", "type": "source", "label": "Hillsborough Independent Panel Report (2012)", "description": "Comprehensive review of 450,000+ pages of documents exposing the full extent of the police cover-up and institutional failures.", "date": "2012-09-12", "confidence": 0.99, "metadata": { "actor": "Bishop James Jones (Chair)" }, "caseStudyId": "hillsborough" },
+    { "id": "n12-event-inquest-verdict", "type": "event", "label": "2016 inquest verdict: unlawful killing", "description": "After the longest jury case in English legal history, the 97 fans were found to have been unlawfully killed. Fan behaviour did not contribute.", "date": "2016-04-26", "confidence": 0.99, "metadata": {}, "caseStudyId": "hillsborough" },
+    { "id": "n13-narrative-fan-hooliganism", "type": "narrative", "label": "Official narrative: drunken hooligans caused the disaster", "description": "The narrative constructed by SYP and amplified by The Sun, blaming Liverpool fans for their own deaths through hooliganism and drunkenness.", "date": "1989-04-15", "confidence": 0.02, "metadata": {}, "caseStudyId": "hillsborough" },
+    { "id": "n14-narrative-coverup", "type": "narrative", "label": "Revised narrative: police failures and institutional cover-up", "description": "The historical consensus established by the Taylor Report, Hillsborough Independent Panel, and 2016 inquest: police caused the disaster and covered up their failures for 27 years.", "date": "2016-04-26", "confidence": 0.98, "metadata": {}, "caseStudyId": "hillsborough" },
+    { "id": "n15-event-disaster", "type": "event", "label": "Hillsborough disaster (Apr 15, 1989)", "description": "Crush in the central pens of the Leppings Lane end at Hillsborough Stadium during the Liverpool vs Nottingham Forest FA Cup semi-final, killing 97 fans.", "date": "1989-04-15", "confidence": 1.0, "metadata": {}, "caseStudyId": "hillsborough" },
+    { "id": "n16-actor-families", "type": "actor", "label": "Hillsborough Family Support Group", "description": "Campaign group of bereaved families who fought for 27 years for truth and justice, ultimately achieving vindication through the 2012 Panel report and 2016 inquest.", "date": "1989-05-01", "confidence": 1.0, "metadata": { "role": "Campaign group" }, "caseStudyId": "hillsborough" }
+  ],
+  "edges": [
+    { "id": "e-1", "source": "n1-actor-duckenfield", "target": "n5-event-gate-c", "type": "causes", "weight": 0.99, "date": "1989-04-15", "metadata": { "detail": "Duckenfield ordered Gate C opened without closing the tunnel" } },
+    { "id": "e-2", "source": "n5-event-gate-c", "target": "n15-event-disaster", "type": "causes", "weight": 0.95, "date": "1989-04-15", "metadata": {} },
+    { "id": "e-3", "source": "n1-actor-duckenfield", "target": "n3-claim-fan-blame", "type": "fabricates", "weight": 0.95, "date": "1989-04-15", "metadata": { "detail": "Lied to FA officials that fans forced Gate C open" } },
+    { "id": "e-4", "source": "n4-actor-syp", "target": "n3-claim-fan-blame", "type": "claims", "weight": 0.9, "date": "1989-04-15", "metadata": {} },
+    { "id": "e-5", "source": "n2-actor-the-sun", "target": "n3-claim-fan-blame", "type": "claims", "weight": 0.9, "date": "1989-04-19", "metadata": { "detail": "'THE TRUTH' headline amplified police fabrications" } },
+    { "id": "e-6", "source": "n4-actor-syp", "target": "n8-evidence-altered-statements", "type": "fabricates", "weight": 0.99, "date": "1989-05-01", "metadata": { "detail": "Altered 164 of 228 witness statements to remove police criticism" } },
+    { "id": "e-7", "source": "n4-actor-syp", "target": "n9-evidence-cctv", "type": "suppresses", "weight": 0.8, "date": "1989-04-16", "metadata": { "detail": "Some CCTV footage went missing from police custody" } },
+    { "id": "e-8", "source": "n4-actor-syp", "target": "n10-evidence-bac-testing", "type": "fabricates", "weight": 0.9, "date": "1989-04-16", "metadata": { "detail": "Tested children's blood alcohol to build false narrative" } },
+    { "id": "e-9", "source": "n3-claim-fan-blame", "target": "n7-claim-police-failure", "type": "contradicts", "weight": 1.0, "metadata": {} },
+    { "id": "e-10", "source": "n6-source-taylor-report", "target": "n7-claim-police-failure", "type": "cites", "weight": 0.9, "date": "1989-08-01", "metadata": {} },
+    { "id": "e-11", "source": "n11-source-hip-report", "target": "n8-evidence-altered-statements", "type": "cites", "weight": 0.99, "date": "2012-09-12", "metadata": {} },
+    { "id": "e-12", "source": "n11-source-hip-report", "target": "n14-narrative-coverup", "type": "cites", "weight": 0.99, "date": "2012-09-12", "metadata": {} },
+    { "id": "e-13", "source": "n13-narrative-fan-hooliganism", "target": "n14-narrative-coverup", "type": "contradicts", "weight": 0.98, "metadata": {} },
+    { "id": "e-14", "source": "n4-actor-syp", "target": "n2-actor-the-sun", "type": "claims", "weight": 0.85, "date": "1989-04-18", "metadata": { "detail": "Police briefed The Sun with false claims about fan behaviour" } },
+    { "id": "e-15", "source": "n15-event-disaster", "target": "n12-event-inquest-verdict", "type": "precedes", "weight": 1.0, "date": "1989-04-15", "metadata": {} },
+    { "id": "e-16", "source": "n16-actor-families", "target": "n14-narrative-coverup", "type": "derived_from", "weight": 0.9, "date": "1989-05-01", "metadata": { "detail": "27-year campaign by families drove revelations" } },
+    { "id": "e-17", "source": "n4-actor-syp", "target": "n13-narrative-fan-hooliganism", "type": "benefits", "weight": 0.95, "metadata": { "detail": "Fan blame narrative shielded SYP from accountability" } },
+    { "id": "e-18", "source": "n12-event-inquest-verdict", "target": "n3-claim-fan-blame", "type": "contradicts", "weight": 0.99, "date": "2016-04-26", "metadata": { "detail": "Jury found fan behaviour did not cause or contribute to disaster" } }
+  ],
+  "causalFactors": [
+    { "id": "cf1", "type": "institutional", "label": "Police failures in crowd management at Hillsborough", "date": "1989-04-15" },
+    { "id": "cf2", "type": "narrative_change", "label": "SYP constructs fan-blame narrative within hours", "date": "1989-04-15" },
+    { "id": "cf3", "type": "evidence_action", "label": "164 witness statements altered to remove police criticism", "date": "1989-05-01" },
+    { "id": "cf4", "type": "narrative_change", "label": "The Sun publishes 'THE TRUTH' amplifying police lies", "date": "1989-04-19" },
+    { "id": "cf5", "type": "evidence_action", "label": "Blood alcohol testing of all victims including children", "date": "1989-04-16" },
+    { "id": "cf6", "type": "institutional", "label": "Original inquests return verdict of accidental death (1991)", "date": "1991-03-28" },
+    { "id": "cf7", "type": "demographic", "label": "27-year family campaign for truth and justice", "date": "1989-05-01" },
+    { "id": "cf8", "type": "evidence_action", "label": "Hillsborough Independent Panel reviews 450,000+ documents", "date": "2012-09-12" },
+    { "id": "cf9", "type": "institutional", "label": "Original inquest verdicts quashed, fresh inquests ordered", "date": "2012-12-19" },
+    { "id": "cf10", "type": "narrative_change", "label": "2016 inquest: unlawful killing, fans exonerated", "date": "2016-04-26" }
+  ],
+  "causalLinks": [
+    { "from": "cf1", "to": "cf2", "mechanism": "Police immediately recognised their culpability and began constructing an alternative narrative blaming fans to deflect responsibility", "strength": 0.95 },
+    { "from": "cf2", "to": "cf3", "mechanism": "Sustaining the fan-blame narrative required tampering with witness evidence that contradicted it", "strength": 0.95 },
+    { "from": "cf2", "to": "cf4", "mechanism": "SYP briefed sympathetic media with false claims, which The Sun published without verification", "strength": 0.9 },
+    { "from": "cf2", "to": "cf5", "mechanism": "Blood alcohol testing of victims, including children, was designed to manufacture evidence supporting the drunkenness claim", "strength": 0.9 },
+    { "from": "cf3", "to": "cf6", "mechanism": "Altered statements and suppressed evidence contributed to the original inquests returning accidental death verdicts", "strength": 0.85 },
+    { "from": "cf6", "to": "cf7", "mechanism": "Families rejected the accidental death verdict and campaigned for decades to overturn it", "strength": 0.95, "timelag": "21 years" },
+    { "from": "cf7", "to": "cf8", "mechanism": "Sustained family campaigning led the government to establish the Independent Panel to review all documents", "strength": 0.9, "timelag": "23 years" },
+    { "from": "cf8", "to": "cf9", "mechanism": "Panel findings were so damning that the High Court quashed original verdicts and ordered new inquests", "strength": 0.95 },
+    { "from": "cf9", "to": "cf10", "mechanism": "Fresh inquests with full evidence resulted in unlawful killing verdicts and complete exoneration of fans", "strength": 0.95, "timelag": "4 years" }
+  ],
+  "timeSlices": [
+    {
+      "date": "1989-04-15",
+      "label": "The disaster and immediate police lies",
+      "description": "97 fans killed in the crush. Duckenfield immediately lies to FA officials, claiming fans forced Gate C. SYP begins constructing the fan-blame narrative.",
+      "activeNodeIds": ["n1-actor-duckenfield", "n4-actor-syp", "n5-event-gate-c", "n15-event-disaster", "n3-claim-fan-blame"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4"],
+      "narrativeShift": "Police narrative takes hold: drunken fans caused the disaster"
+    },
+    {
+      "date": "1989-04-19",
+      "label": "The Sun amplifies the cover-up",
+      "description": "The Sun publishes 'THE TRUTH' with fabricated claims sourced from police. Fan-blame narrative reaches national scale. Boycott of The Sun begins in Liverpool.",
+      "activeNodeIds": ["n1-actor-duckenfield", "n2-actor-the-sun", "n3-claim-fan-blame", "n4-actor-syp", "n5-event-gate-c", "n15-event-disaster", "n13-narrative-fan-hooliganism"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-14", "e-17"],
+      "narrativeShift": "Media amplification entrenches the false police narrative nationally"
+    },
+    {
+      "date": "1989-08-01",
+      "label": "Taylor Report contradicts police",
+      "description": "Lord Justice Taylor's interim report finds police failure was the main cause. Despite this, SYP continues altering statements and maintaining the fan-blame narrative. The cover-up deepens.",
+      "activeNodeIds": ["n1-actor-duckenfield", "n2-actor-the-sun", "n3-claim-fan-blame", "n4-actor-syp", "n5-event-gate-c", "n6-source-taylor-report", "n7-claim-police-failure", "n8-evidence-altered-statements", "n9-evidence-cctv", "n10-evidence-bac-testing", "n13-narrative-fan-hooliganism", "n15-event-disaster", "n16-actor-families"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-14", "e-17"],
+      "narrativeShift": "First official challenge to the police narrative, but cover-up machinery already in motion"
+    },
+    {
+      "date": "2012-09-12",
+      "label": "Hillsborough Independent Panel report",
+      "description": "After reviewing 450,000+ documents, the Panel exposes the full cover-up: 164 altered statements, victim smearing, inadequate emergency response. PM Cameron apologises on behalf of the state.",
+      "activeNodeIds": ["n1-actor-duckenfield", "n2-actor-the-sun", "n3-claim-fan-blame", "n4-actor-syp", "n5-event-gate-c", "n6-source-taylor-report", "n7-claim-police-failure", "n8-evidence-altered-statements", "n9-evidence-cctv", "n10-evidence-bac-testing", "n11-source-hip-report", "n13-narrative-fan-hooliganism", "n14-narrative-coverup", "n15-event-disaster", "n16-actor-families"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13", "e-14", "e-16", "e-17"],
+      "narrativeShift": "The cover-up is fully exposed. Fan-blame narrative collapses. National reckoning begins."
+    },
+    {
+      "date": "2016-04-26",
+      "label": "Inquest verdict: unlawful killing",
+      "description": "After the longest jury case in English legal history, the 97 are found unlawfully killed. Fan behaviour did not cause or contribute. Police failures and the cover-up are definitively established as historical fact.",
+      "activeNodeIds": ["n1-actor-duckenfield", "n2-actor-the-sun", "n3-claim-fan-blame", "n4-actor-syp", "n5-event-gate-c", "n6-source-taylor-report", "n7-claim-police-failure", "n8-evidence-altered-statements", "n9-evidence-cctv", "n10-evidence-bac-testing", "n11-source-hip-report", "n12-event-inquest-verdict", "n13-narrative-fan-hooliganism", "n14-narrative-coverup", "n15-event-disaster", "n16-actor-families"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13", "e-14", "e-15", "e-16", "e-17", "e-18"],
+      "narrativeShift": "The definitive reversal: legal system formally repudiates the 27-year police narrative. Justice for the 97."
+    }
+  ]
+}

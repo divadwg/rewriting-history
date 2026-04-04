@@ -51,6 +51,7 @@ export interface EvidenceItem {
   sourceReliability: number;
   wasClassified: boolean;
   declassifiedDate?: string;
+  linkedNodeIds?: string[];
 }
 
 export interface CausalFactor {

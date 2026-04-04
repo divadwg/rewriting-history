@@ -1,0 +1,257 @@
+{
+  "id": "bengal-famine",
+  "title": "Bengal Famine of 1943",
+  "period": "1943-1981",
+  "summary": "The Bengal famine of 1943 killed an estimated 2-3 million people in British India. The official colonial narrative attributed the catastrophe to natural causes — a cyclone, flooding, and rice crop disease. Decades of scholarship, most notably Amartya Sen's 1981 entitlement analysis, demonstrated that the famine was primarily caused by policy failures: wartime inflation, speculative hoarding, rice export policies, the military 'denial policy' that destroyed food stocks and boats in coastal Bengal, and the British War Cabinet's repeated rejection of relief shipments. Declassified documents reveal Churchill was informed of mass starvation and dismissed requests for aid.",
+  "hypotheses": [
+    {
+      "id": "h1",
+      "caseStudyId": "bengal-famine",
+      "label": "Natural causes and unavoidable wartime tragedy",
+      "description": "The official British colonial position: the famine resulted from a cyclone, flooding, and brown spot rice disease in 1942, compounded by the disruption of rice imports from Japanese-occupied Burma. Wartime shipping constraints made relief impractical. The famine was a natural disaster beyond administrative control.",
+      "prior": 0.33,
+      "posterior": 0.33,
+      "isOfficial": true
+    },
+    {
+      "id": "h2",
+      "caseStudyId": "bengal-famine",
+      "label": "Policy-driven famine caused by colonial decisions and wartime priorities",
+      "description": "The famine was primarily an entitlement failure driven by wartime inflation, speculative hoarding, continued rice exports, the military denial policy, and the diversion of shipping to other theaters. Administrative incompetence and imperial economic priorities turned a manageable food shortage into mass death.",
+      "prior": 0.33,
+      "posterior": 0.33,
+      "isOfficial": false
+    },
+    {
+      "id": "h3",
+      "caseStudyId": "bengal-famine",
+      "label": "Deliberate neglect amounting to imperial indifference to colonial subjects",
+      "description": "Beyond policy failure, the British War Cabinet — and Churchill personally — displayed conscious indifference to Bengali lives. Relief was available and repeatedly requested but was denied. Racial attitudes toward Indian subjects contributed to the willingness to let millions die rather than divert wartime resources.",
+      "prior": 0.33,
+      "posterior": 0.33,
+      "isOfficial": false
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1",
+      "label": "Famine Inquiry Commission Report (1945)",
+      "description": "The official British inquiry led by Sir John Woodhead concluded that the famine was caused primarily by crop failure due to the 1942 cyclone and brown spot disease, with secondary factors including wartime disruption. It downplayed policy failures and exonerated the government of negligence. Criticized by later scholars as whitewashing colonial responsibility.",
+      "date": "1945-05-01",
+      "likelihoodRatios": { "h1": 1.5, "h2": 0.4, "h3": 0.3 },
+      "sourceReliability": 0.35,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-famine-commission", "n5-narrative-natural", "n8-actor-colonial-govt"]
+    },
+    {
+      "id": "e2",
+      "label": "Cyclone and flooding data (October 1942)",
+      "description": "A major cyclone struck Bengal on October 16, 1942, causing extensive flooding in the rice-growing districts of Midnapore, 24 Parganas, and Khulna. The storm damaged the aman (winter) rice crop. Brown spot disease (Helminthosporium oryzae) further reduced yields. Total crop loss estimated at 30-50% in affected areas.",
+      "date": "1942-10-16",
+      "likelihoodRatios": { "h1": 2.0, "h2": 0.8, "h3": 0.7 },
+      "sourceReliability": 0.9,
+      "wasClassified": false,
+      "linkedNodeIds": ["n2-cyclone", "n5-narrative-natural"]
+    },
+    {
+      "id": "e3",
+      "label": "Rice export data during famine period",
+      "description": "Despite worsening food scarcity, rice continued to be exported from India through early 1943. Between January and July 1943, as famine conditions spread, the colonial government maintained export commitments. A ban on rice exports from Bengal was not implemented until late, and interprovincial trade barriers worsened regional shortages.",
+      "date": "1943-03-01",
+      "likelihoodRatios": { "h1": 0.2, "h2": 2.5, "h3": 1.8 },
+      "sourceReliability": 0.85,
+      "wasClassified": false,
+      "linkedNodeIds": ["n3-rice-exports", "n8-actor-colonial-govt", "n6-narrative-policy"]
+    },
+    {
+      "id": "e4",
+      "label": "Churchill's War Cabinet minutes on Bengal famine",
+      "description": "War Cabinet records show that Churchill was briefed on the famine multiple times from mid-1943. Secretary of State for India Leo Amery and Viceroy Linlithgow (later Wavell) requested emergency food shipments. Churchill's War Cabinet repeatedly declined or delayed action, citing shipping priorities for the war effort in Europe and the Pacific.",
+      "date": "1943-10-01",
+      "likelihoodRatios": { "h1": 0.15, "h2": 1.8, "h3": 2.8 },
+      "sourceReliability": 0.95,
+      "wasClassified": true,
+      "declassifiedDate": "2006",
+      "linkedNodeIds": ["n9-actor-churchill", "n10-actor-amery", "n11-actor-wavell", "n7-narrative-neglect", "n14-war-cabinet"]
+    },
+    {
+      "id": "e5",
+      "label": "Amartya Sen's entitlement analysis (1981)",
+      "description": "In 'Poverty and Famines: An Essay on Entitlement and Deprivation,' economist Amartya Sen demonstrated that Bengal's total food supply in 1943 was not dramatically lower than in previous non-famine years. The famine was caused by entitlement failures: wartime inflation destroyed the purchasing power of rural laborers, fishermen, and artisans. Speculative hoarding by merchants and panic buying by the urban middle class redistributed available food away from the poor.",
+      "date": "1981-01-01",
+      "likelihoodRatios": { "h1": 0.15, "h2": 3.0, "h3": 1.5 },
+      "sourceReliability": 0.95,
+      "wasClassified": false,
+      "linkedNodeIds": ["n12-actor-sen", "n6-narrative-policy", "n13-entitlement-analysis"]
+    },
+    {
+      "id": "e6",
+      "label": "Denial policy documents (1942)",
+      "description": "In anticipation of a Japanese invasion via Burma, the British military implemented a 'denial policy' in coastal Bengal in 1942. Thousands of boats were confiscated or destroyed to prevent Japanese use, devastating the fishing communities and rice transport networks. Rice stocks in coastal areas were removed or destroyed. The policy crippled the local food distribution system and the livelihoods of fishing communities.",
+      "date": "1942-05-01",
+      "likelihoodRatios": { "h1": 0.2, "h2": 2.8, "h3": 2.2 },
+      "sourceReliability": 0.9,
+      "wasClassified": true,
+      "declassifiedDate": "1970",
+      "linkedNodeIds": ["n4-denial-policy", "n6-narrative-policy", "n8-actor-colonial-govt"]
+    },
+    {
+      "id": "e7",
+      "label": "Wavell's correspondence requesting aid (1943-1944)",
+      "description": "Lord Wavell, appointed Viceroy in October 1943, sent repeated urgent telegrams to London requesting food imports. He described the famine as 'one of the greatest disasters that has befallen any people under British rule.' His requests for 1 million tons of grain imports were met with allocations of only a fraction. Wavell recorded his frustration with London's indifference in his journal.",
+      "date": "1943-11-01",
+      "likelihoodRatios": { "h1": 0.15, "h2": 2.0, "h3": 2.8 },
+      "sourceReliability": 0.92,
+      "wasClassified": true,
+      "declassifiedDate": "1973",
+      "linkedNodeIds": ["n11-actor-wavell", "n9-actor-churchill", "n7-narrative-neglect"]
+    },
+    {
+      "id": "e8",
+      "label": "Australian wheat offer rejected (1943)",
+      "description": "Australia offered to send wheat to India to relieve the famine, but shipping allocation was controlled by the British War Transport Ministry. Churchill's War Cabinet did not prioritize ships for this purpose. Wheat shipments that could have reached Calcutta were diverted to build stockpiles in the Mediterranean and Balkans for potential future use.",
+      "date": "1943-11-01",
+      "likelihoodRatios": { "h1": 0.1, "h2": 2.0, "h3": 3.0 },
+      "sourceReliability": 0.88,
+      "wasClassified": true,
+      "declassifiedDate": "2006",
+      "linkedNodeIds": ["n9-actor-churchill", "n14-war-cabinet", "n15-australian-offer", "n7-narrative-neglect"]
+    },
+    {
+      "id": "e9",
+      "label": "Bengal rice price inflation data (1943)",
+      "description": "Rice prices in Calcutta rose by approximately 300-400% between March and October 1943. The inflation was driven by speculative hoarding, panic purchasing by government agencies for military supplies, and the collapse of interprovincial trade due to transport restrictions. Rural wages did not keep pace, destroying the purchasing power of agricultural laborers, weavers, and fishermen.",
+      "date": "1943-06-01",
+      "likelihoodRatios": { "h1": 0.3, "h2": 2.8, "h3": 1.5 },
+      "sourceReliability": 0.9,
+      "wasClassified": false,
+      "linkedNodeIds": ["n16-price-inflation", "n13-entitlement-analysis", "n6-narrative-policy"]
+    },
+    {
+      "id": "e10",
+      "label": "Leo Amery's diary entries (1943-1944)",
+      "description": "Leo Amery, Secretary of State for India, recorded in his diary his repeated failures to secure famine relief from the War Cabinet. He wrote that Churchill's attitude toward India was 'negligent, hostile, and contemptuous.' In a September 1944 entry he recorded Churchill saying Indians were 'a beastly people with a beastly religion' and blaming the famine on Indians 'breeding like rabbits.' Amery compared Churchill's attitude to Hitler's.",
+      "date": "1944-09-01",
+      "likelihoodRatios": { "h1": 0.1, "h2": 1.5, "h3": 3.5 },
+      "sourceReliability": 0.9,
+      "wasClassified": false,
+      "declassifiedDate": "1988",
+      "linkedNodeIds": ["n10-actor-amery", "n9-actor-churchill", "n7-narrative-neglect", "n17-racial-attitudes"]
+    }
+  ],
+  "nodes": [
+    { "id": "n1-famine-commission", "type": "source", "label": "Famine Inquiry Commission Report (1945)", "description": "Official British inquiry that attributed the famine primarily to natural causes and crop failure", "date": "1945-05-01", "confidence": 0.35, "metadata": { "author": "Sir John Woodhead" }, "caseStudyId": "bengal-famine" },
+    { "id": "n2-cyclone", "type": "event", "label": "1942 Bengal cyclone and flooding", "description": "Major cyclone struck Bengal on October 16, 1942, damaging rice crops and causing widespread flooding", "date": "1942-10-16", "confidence": 0.99, "metadata": {}, "caseStudyId": "bengal-famine" },
+    { "id": "n3-rice-exports", "type": "event", "label": "Continued rice exports during scarcity", "description": "Rice exports from India continued into 1943 despite growing food shortages in Bengal", "date": "1943-03-01", "confidence": 0.9, "metadata": {}, "caseStudyId": "bengal-famine" },
+    { "id": "n4-denial-policy", "type": "event", "label": "Military denial policy in coastal Bengal", "description": "Boats destroyed and food stocks removed in coastal areas to deny resources to potential Japanese invaders", "date": "1942-05-01", "confidence": 0.95, "metadata": {}, "caseStudyId": "bengal-famine" },
+    { "id": "n5-narrative-natural", "type": "narrative", "label": "Official narrative: natural disaster and wartime misfortune", "description": "The British colonial narrative attributing the famine to cyclone, crop disease, and unavoidable wartime disruption", "date": "1943-12-01", "confidence": 0.15, "metadata": {}, "caseStudyId": "bengal-famine" },
+    { "id": "n6-narrative-policy", "type": "narrative", "label": "Revised narrative: policy-driven entitlement failure", "description": "Academic consensus led by Sen that the famine was caused by economic policy failures, not food shortage alone", "date": "1981-01-01", "confidence": 0.85, "metadata": {}, "caseStudyId": "bengal-famine" },
+    { "id": "n7-narrative-neglect", "type": "narrative", "label": "Imperial indifference narrative", "description": "The view that the famine reflected deliberate neglect driven by racial attitudes and imperial priorities", "date": "2010-01-01", "confidence": 0.7, "metadata": {}, "caseStudyId": "bengal-famine" },
+    { "id": "n8-actor-colonial-govt", "type": "actor", "label": "Bengal Provincial Government", "description": "The colonial administration in Bengal responsible for food policy, price controls, and famine relief", "date": "1943-01-01", "confidence": 1.0, "metadata": { "role": "Provincial Administration" }, "caseStudyId": "bengal-famine" },
+    { "id": "n9-actor-churchill", "type": "actor", "label": "Winston Churchill", "description": "British Prime Minister who oversaw the War Cabinet's decisions on food allocation and rejected repeated requests for famine relief", "date": "1943-06-01", "confidence": 1.0, "metadata": { "role": "Prime Minister" }, "caseStudyId": "bengal-famine" },
+    { "id": "n10-actor-amery", "type": "actor", "label": "Leo Amery", "description": "Secretary of State for India who advocated for famine relief but was overruled by Churchill's War Cabinet", "date": "1943-06-01", "confidence": 1.0, "metadata": { "role": "Secretary of State for India" }, "caseStudyId": "bengal-famine" },
+    { "id": "n11-actor-wavell", "type": "actor", "label": "Lord Wavell", "description": "Viceroy of India from October 1943 who urgently requested food imports and documented London's indifference", "date": "1943-10-20", "confidence": 1.0, "metadata": { "role": "Viceroy of India" }, "caseStudyId": "bengal-famine" },
+    { "id": "n12-actor-sen", "type": "actor", "label": "Amartya Sen", "description": "Economist who witnessed the famine as a child and later demonstrated its entitlement-failure causes in his 1981 work", "date": "1981-01-01", "confidence": 1.0, "metadata": { "role": "Economist, Nobel Laureate" }, "caseStudyId": "bengal-famine" },
+    { "id": "n13-entitlement-analysis", "type": "evidence", "label": "Sen's entitlement framework", "description": "Analytical framework showing famine resulted from collapse of purchasing power, not absolute food shortage", "date": "1981-01-01", "confidence": 0.9, "metadata": {}, "caseStudyId": "bengal-famine" },
+    { "id": "n14-war-cabinet", "type": "actor", "label": "British War Cabinet", "description": "The wartime decision-making body that controlled shipping allocations and repeatedly declined famine relief requests", "date": "1943-06-01", "confidence": 1.0, "metadata": { "role": "War Cabinet" }, "caseStudyId": "bengal-famine" },
+    { "id": "n15-australian-offer", "type": "event", "label": "Australian wheat offer rejected", "description": "Australia offered wheat for Bengal relief but shipping was not allocated by the War Cabinet", "date": "1943-11-01", "confidence": 0.88, "metadata": {}, "caseStudyId": "bengal-famine" },
+    { "id": "n16-price-inflation", "type": "event", "label": "Rice price hyperinflation in Bengal", "description": "Rice prices rose 300-400% in 1943 due to hoarding, speculation, and wartime demand", "date": "1943-06-01", "confidence": 0.95, "metadata": {}, "caseStudyId": "bengal-famine" },
+    { "id": "n17-racial-attitudes", "type": "claim", "label": "Racial attitudes influenced policy decisions", "description": "Churchill's documented racial contempt for Indians contributed to the indifference toward Bengali famine victims", "date": "1943-09-01", "confidence": 0.75, "metadata": {}, "caseStudyId": "bengal-famine" },
+    { "id": "n18-burma-fall", "type": "event", "label": "Fall of Burma to Japan (1942)", "description": "Japanese conquest of Burma cut off Bengal's rice imports from its largest external supplier", "date": "1942-05-01", "confidence": 0.99, "metadata": {}, "caseStudyId": "bengal-famine" },
+    { "id": "n19-claim-unavoidable", "type": "claim", "label": "Famine was unavoidable wartime tragedy", "description": "Official claim that wartime shipping constraints and natural disasters made the famine impossible to prevent", "date": "1943-12-01", "confidence": 0.15, "metadata": {}, "caseStudyId": "bengal-famine" },
+    { "id": "n20-claim-policy-caused", "type": "claim", "label": "Famine was caused by policy failures", "description": "Scholarly claim that colonial economic policies, not food shortage, caused mass starvation", "date": "1981-01-01", "confidence": 0.85, "metadata": {}, "caseStudyId": "bengal-famine" }
+  ],
+  "edges": [
+    { "id": "e-1", "source": "n1-famine-commission", "target": "n5-narrative-natural", "type": "cites", "weight": 0.8, "date": "1945-05-01", "metadata": {} },
+    { "id": "e-2", "source": "n8-actor-colonial-govt", "target": "n19-claim-unavoidable", "type": "claims", "weight": 0.9, "date": "1943-12-01", "metadata": {} },
+    { "id": "e-3", "source": "n9-actor-churchill", "target": "n19-claim-unavoidable", "type": "claims", "weight": 0.85, "date": "1943-10-01", "metadata": {} },
+    { "id": "e-4", "source": "n12-actor-sen", "target": "n20-claim-policy-caused", "type": "claims", "weight": 0.95, "date": "1981-01-01", "metadata": {} },
+    { "id": "e-5", "source": "n13-entitlement-analysis", "target": "n5-narrative-natural", "type": "contradicts", "weight": 0.9, "date": "1981-01-01", "metadata": {} },
+    { "id": "e-6", "source": "n5-narrative-natural", "target": "n6-narrative-policy", "type": "contradicts", "weight": 0.85, "metadata": {} },
+    { "id": "e-7", "source": "n19-claim-unavoidable", "target": "n20-claim-policy-caused", "type": "contradicts", "weight": 0.9, "metadata": {} },
+    { "id": "e-8", "source": "n2-cyclone", "target": "n16-price-inflation", "type": "causes", "weight": 0.5, "date": "1942-10-16", "metadata": { "detail": "Crop damage contributed to but did not solely cause price rises" } },
+    { "id": "e-9", "source": "n18-burma-fall", "target": "n4-denial-policy", "type": "causes", "weight": 0.9, "date": "1942-05-01", "metadata": { "detail": "Fear of Japanese invasion through Bengal triggered the denial policy" } },
+    { "id": "e-10", "source": "n4-denial-policy", "target": "n16-price-inflation", "type": "causes", "weight": 0.7, "date": "1942-05-01", "metadata": { "detail": "Destruction of boats and food stocks disrupted distribution and inflated prices" } },
+    { "id": "e-11", "source": "n14-war-cabinet", "target": "n15-australian-offer", "type": "suppresses", "weight": 0.85, "date": "1943-11-01", "metadata": { "detail": "War Cabinet did not allocate shipping for Australian wheat to reach India" } },
+    { "id": "e-12", "source": "n14-war-cabinet", "target": "n11-actor-wavell", "type": "suppresses", "weight": 0.8, "date": "1943-11-01", "metadata": { "detail": "Wavell's urgent relief requests were repeatedly denied or minimized" } },
+    { "id": "e-13", "source": "n9-actor-churchill", "target": "n14-war-cabinet", "type": "benefits", "weight": 0.7, "metadata": { "detail": "Churchill's war priorities dominated Cabinet decisions on shipping allocation" } },
+    { "id": "e-14", "source": "n10-actor-amery", "target": "n9-actor-churchill", "type": "contradicts", "weight": 0.75, "date": "1943-09-01", "metadata": { "detail": "Amery privately challenged Churchill's indifference but was overruled" } },
+    { "id": "e-15", "source": "n17-racial-attitudes", "target": "n7-narrative-neglect", "type": "cites", "weight": 0.8, "date": "1943-09-01", "metadata": {} },
+    { "id": "e-16", "source": "n2-cyclone", "target": "n18-burma-fall", "type": "precedes", "weight": 0.5, "date": "1942-05-01", "metadata": { "detail": "Burma fell months before the cyclone; both contributed to food crisis" } },
+    { "id": "e-17", "source": "n3-rice-exports", "target": "n16-price-inflation", "type": "causes", "weight": 0.75, "date": "1943-03-01", "metadata": { "detail": "Continued exports during shortage intensified price inflation" } },
+    { "id": "e-18", "source": "n13-entitlement-analysis", "target": "n6-narrative-policy", "type": "derived_from", "weight": 0.95, "date": "1981-01-01", "metadata": {} },
+    { "id": "e-19", "source": "n1-famine-commission", "target": "n8-actor-colonial-govt", "type": "benefits", "weight": 0.7, "date": "1945-05-01", "metadata": { "detail": "Commission report exonerated colonial administration" } }
+  ],
+  "causalFactors": [
+    { "id": "cf1", "type": "demographic", "label": "1942 cyclone and brown spot disease reduce rice crop", "date": "1942-10-16" },
+    { "id": "cf2", "type": "institutional", "label": "Fall of Burma cuts off rice imports", "date": "1942-05-01" },
+    { "id": "cf3", "type": "institutional", "label": "Military denial policy destroys boats and food stocks in coastal Bengal", "date": "1942-05-01" },
+    { "id": "cf4", "type": "economic", "label": "Wartime inflation and speculative hoarding cause rice prices to soar 300-400%", "date": "1943-03-01" },
+    { "id": "cf5", "type": "institutional", "label": "Continued rice exports and interprovincial trade barriers worsen shortage", "date": "1943-03-01" },
+    { "id": "cf6", "type": "power_change", "label": "War Cabinet repeatedly rejects famine relief requests", "date": "1943-10-01" },
+    { "id": "cf7", "type": "evidence_action", "label": "Famine Inquiry Commission attributes blame to natural causes, exonerating government", "date": "1945-05-01" },
+    { "id": "cf8", "type": "narrative_change", "label": "Amartya Sen's entitlement analysis reframes famine as policy failure", "date": "1981-01-01" },
+    { "id": "cf9", "type": "evidence_action", "label": "Declassified War Cabinet documents reveal Churchill's role and rejected relief offers", "date": "2006-01-01" },
+    { "id": "cf10", "type": "narrative_change", "label": "Publication of Amery's diaries reveals racial dimension of imperial indifference", "date": "1988-01-01" }
+  ],
+  "causalLinks": [
+    { "from": "cf1", "to": "cf4", "mechanism": "Crop damage from cyclone and disease reduced supply, creating conditions for speculative hoarding and price inflation", "strength": 0.6 },
+    { "from": "cf2", "to": "cf3", "mechanism": "Japanese advance through Burma triggered military denial policy to prevent further invasion via coastal Bengal", "strength": 0.9 },
+    { "from": "cf3", "to": "cf4", "mechanism": "Destruction of boats crippled food transport networks; removal of food stocks worsened local supply, feeding price inflation", "strength": 0.8 },
+    { "from": "cf4", "to": "cf6", "mechanism": "As famine deepened, colonial officials requested relief from London, but War Cabinet prioritized European and Pacific shipping", "strength": 0.85 },
+    { "from": "cf5", "to": "cf4", "mechanism": "Exports and trade barriers reduced available food supply, intensifying price inflation and hoarding", "strength": 0.75 },
+    { "from": "cf6", "to": "cf7", "mechanism": "Having denied relief, the government needed an official narrative attributing the famine to natural causes rather than policy decisions", "strength": 0.7 },
+    { "from": "cf7", "to": "cf8", "mechanism": "The official natural-causes narrative stood largely unchallenged until Sen's rigorous economic analysis reframed the debate", "strength": 0.8, "timelag": "36 years" },
+    { "from": "cf8", "to": "cf9", "mechanism": "Sen's work drove renewed interest in primary sources; declassification of War Cabinet records provided documentary proof of policy failures", "strength": 0.6, "timelag": "25 years" },
+    { "from": "cf9", "to": "cf10", "mechanism": "Declassified documents corroborated Amery's diary accounts and established the racial and political dimensions of the neglect", "strength": 0.7 }
+  ],
+  "timeSlices": [
+    {
+      "date": "1942-10-17",
+      "label": "After the cyclone",
+      "description": "Cyclone and flooding damage the rice crop. Burma has fallen to Japan. The denial policy has already destroyed boats and food stocks in coastal Bengal. The stage is set for famine.",
+      "activeNodeIds": ["n2-cyclone", "n4-denial-policy", "n8-actor-colonial-govt", "n18-burma-fall"],
+      "activeEdgeIds": ["e-9", "e-16"]
+    },
+    {
+      "date": "1943-07-01",
+      "label": "Famine conditions spread",
+      "description": "Rice prices have tripled. Mass starvation begins in rural Bengal. Rice exports continue. The colonial government has failed to implement effective price controls or food distribution.",
+      "activeNodeIds": ["n2-cyclone", "n3-rice-exports", "n4-denial-policy", "n8-actor-colonial-govt", "n9-actor-churchill", "n14-war-cabinet", "n16-price-inflation", "n18-burma-fall"],
+      "activeEdgeIds": ["e-2", "e-8", "e-9", "e-10", "e-16", "e-17"],
+      "narrativeShift": "Colonial administration begins to acknowledge food crisis but attributes it to natural causes and wartime disruption"
+    },
+    {
+      "date": "1943-12-01",
+      "label": "Peak famine and official narrative established",
+      "description": "Death toll reaches catastrophic levels. Wavell arrives as Viceroy and requests massive relief. Churchill's War Cabinet rejects Australian wheat offer. Official narrative blames cyclone, Burma's fall, and wartime logistics.",
+      "activeNodeIds": ["n2-cyclone", "n3-rice-exports", "n4-denial-policy", "n5-narrative-natural", "n8-actor-colonial-govt", "n9-actor-churchill", "n10-actor-amery", "n11-actor-wavell", "n14-war-cabinet", "n15-australian-offer", "n16-price-inflation", "n17-racial-attitudes", "n18-burma-fall", "n19-claim-unavoidable"],
+      "activeEdgeIds": ["e-2", "e-3", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13", "e-14", "e-16", "e-17"],
+      "narrativeShift": "Official natural-disaster narrative takes hold. Relief requests suppressed. The famine is framed as an unavoidable wartime tragedy."
+    },
+    {
+      "date": "1945-05-01",
+      "label": "Famine Inquiry Commission reports",
+      "description": "The Woodhead Commission publishes its report, attributing the famine primarily to natural causes. It downplays government failures and does not examine War Cabinet decisions. This becomes the official historical record for decades.",
+      "activeNodeIds": ["n1-famine-commission", "n2-cyclone", "n3-rice-exports", "n4-denial-policy", "n5-narrative-natural", "n8-actor-colonial-govt", "n9-actor-churchill", "n10-actor-amery", "n11-actor-wavell", "n14-war-cabinet", "n15-australian-offer", "n16-price-inflation", "n18-burma-fall", "n19-claim-unavoidable"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13", "e-16", "e-17", "e-19"],
+      "narrativeShift": "Official inquiry codifies the natural-causes narrative. Colonial government exonerated."
+    },
+    {
+      "date": "1981-01-01",
+      "label": "Sen's entitlement analysis published",
+      "description": "Amartya Sen publishes 'Poverty and Famines,' demonstrating that total food supply was not drastically lower than non-famine years. The famine was an entitlement failure driven by inflation, hoarding, and policy. The natural-causes narrative is fundamentally challenged.",
+      "activeNodeIds": ["n1-famine-commission", "n2-cyclone", "n3-rice-exports", "n4-denial-policy", "n5-narrative-natural", "n6-narrative-policy", "n8-actor-colonial-govt", "n9-actor-churchill", "n12-actor-sen", "n13-entitlement-analysis", "n16-price-inflation", "n18-burma-fall", "n19-claim-unavoidable", "n20-claim-policy-caused"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-16", "e-17", "e-18", "e-19"],
+      "narrativeShift": "Paradigm shift: famine reframed from natural disaster to policy failure. The official narrative begins to collapse under scholarly scrutiny."
+    },
+    {
+      "date": "2010-01-01",
+      "label": "Declassified documents and imperial indifference thesis",
+      "description": "Declassified War Cabinet records, Amery's published diaries, and Wavell's journal have revealed Churchill's personal role in denying relief and the racial attitudes that shaped imperial policy. Academic consensus now holds the famine was primarily policy-driven, with significant evidence of deliberate neglect.",
+      "activeNodeIds": ["n1-famine-commission", "n2-cyclone", "n3-rice-exports", "n4-denial-policy", "n5-narrative-natural", "n6-narrative-policy", "n7-narrative-neglect", "n8-actor-colonial-govt", "n9-actor-churchill", "n10-actor-amery", "n11-actor-wavell", "n12-actor-sen", "n13-entitlement-analysis", "n14-war-cabinet", "n15-australian-offer", "n16-price-inflation", "n17-racial-attitudes", "n18-burma-fall", "n19-claim-unavoidable", "n20-claim-policy-caused"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13", "e-14", "e-15", "e-16", "e-17", "e-18", "e-19"],
+      "narrativeShift": "The full picture emerges: natural factors contributed but policy decisions and imperial indifference caused the catastrophe. The official narrative is decisively overturned."
+    }
+  ]
+}

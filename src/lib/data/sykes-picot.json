@@ -41,7 +41,8 @@
       "likelihoodRatios": { "h1-deliberate-betrayal": 0.5, "h2-over-commitment": 0.85, "h3-french-pressure": 0.6 },
       "sourceReliability": 0.9,
       "wasClassified": true,
-      "declassifiedDate": "1939"
+      "declassifiedDate": "1939",
+      "linkedNodeIds": ["n6-actor-mcmahon", "n5-actor-hussein", "n1-mcmahon-promise"]
     },
     {
       "id": "e2-sykes-picot-agreement",
@@ -51,7 +52,8 @@
       "likelihoodRatios": { "h1-deliberate-betrayal": 0.75, "h2-over-commitment": 0.7, "h3-french-pressure": 0.8 },
       "sourceReliability": 0.99,
       "wasClassified": true,
-      "declassifiedDate": "1917"
+      "declassifiedDate": "1917",
+      "linkedNodeIds": ["n7-actor-sykes", "n2-sykes-picot"]
     },
     {
       "id": "e3-balfour-declaration",
@@ -60,7 +62,8 @@
       "date": "1917-11-02",
       "likelihoodRatios": { "h1-deliberate-betrayal": 0.7, "h2-over-commitment": 0.85, "h3-french-pressure": 0.4 },
       "sourceReliability": 0.99,
-      "wasClassified": false
+      "wasClassified": false,
+      "linkedNodeIds": ["n3-balfour"]
     },
     {
       "id": "e4-hogarth-message",
@@ -70,7 +73,8 @@
       "likelihoodRatios": { "h1-deliberate-betrayal": 0.3, "h2-over-commitment": 0.9, "h3-french-pressure": 0.5 },
       "sourceReliability": 0.85,
       "wasClassified": true,
-      "declassifiedDate": "1939"
+      "declassifiedDate": "1939",
+      "linkedNodeIds": ["n5-actor-hussein", "n10-claim-overcommit"]
     },
     {
       "id": "e5-bolshevik-leak",
@@ -79,7 +83,8 @@
       "date": "1917-11-23",
       "likelihoodRatios": { "h1-deliberate-betrayal": 0.6, "h2-over-commitment": 0.75, "h3-french-pressure": 0.5 },
       "sourceReliability": 0.95,
-      "wasClassified": false
+      "wasClassified": false,
+      "linkedNodeIds": ["n2-sykes-picot"]
     },
     {
       "id": "e6-declaration-to-seven",
@@ -88,7 +93,8 @@
       "date": "1918-06-16",
       "likelihoodRatios": { "h1-deliberate-betrayal": 0.4, "h2-over-commitment": 0.95, "h3-french-pressure": 0.5 },
       "sourceReliability": 0.9,
-      "wasClassified": false
+      "wasClassified": false,
+      "linkedNodeIds": ["n10-claim-overcommit"]
     },
     {
       "id": "e7-faisal-clemenceau",
@@ -97,7 +103,8 @@
       "date": "1920-01-06",
       "likelihoodRatios": { "h1-deliberate-betrayal": 0.3, "h2-over-commitment": 0.7, "h3-french-pressure": 0.85 },
       "sourceReliability": 0.85,
-      "wasClassified": false
+      "wasClassified": false,
+      "linkedNodeIds": ["n12-faisal-damascus"]
     },
     {
       "id": "e8-churchill-1922",
@@ -106,7 +113,8 @@
       "date": "1922-06-03",
       "likelihoodRatios": { "h1-deliberate-betrayal": 0.4, "h2-over-commitment": 0.85, "h3-french-pressure": 0.5 },
       "sourceReliability": 0.8,
-      "wasClassified": false
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-mcmahon-promise", "n10-claim-overcommit"]
     },
     {
       "id": "e9-arab-bureau-memos",
@@ -116,7 +124,8 @@
       "likelihoodRatios": { "h1-deliberate-betrayal": 0.2, "h2-over-commitment": 0.9, "h3-french-pressure": 0.6 },
       "sourceReliability": 0.9,
       "wasClassified": true,
-      "declassifiedDate": "1968"
+      "declassifiedDate": "1968",
+      "linkedNodeIds": ["n15-source-arab-bureau", "n8-actor-lawrence", "n10-claim-overcommit"]
     },
     {
       "id": "e10-arab-nationalist-framing",
@@ -125,7 +134,8 @@
       "date": "1920-07-24",
       "likelihoodRatios": { "h1-deliberate-betrayal": 0.5, "h2-over-commitment": 0.8, "h3-french-pressure": 0.5 },
       "sourceReliability": 0.75,
-      "wasClassified": false
+      "wasClassified": false,
+      "linkedNodeIds": ["n13-narrative-betrayal", "n9-claim-betrayal"]
     }
   ],
   "nodes": [

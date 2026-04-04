@@ -32,7 +32,8 @@
       "likelihoodRatios": { "h1-both-attacks-real": 0.2, "h2-second-fabricated": 0.9 },
       "sourceReliability": 0.95,
       "wasClassified": true,
-      "declassifiedDate": "1968"
+      "declassifiedDate": "1968",
+      "linkedNodeIds": ["n7-actor-herrick", "n12-claim-second-false"]
     },
     {
       "id": "e2-mcnamara-testimony",
@@ -41,7 +42,8 @@
       "date": "1964-08-06",
       "likelihoodRatios": { "h1-both-attacks-real": 0.6, "h2-second-fabricated": 0.4 },
       "sourceReliability": 0.4,
-      "wasClassified": false
+      "wasClassified": false,
+      "linkedNodeIds": ["n5-actor-mcnamara", "n11-claim-second-real", "n3-claim-unprovoked"]
     },
     {
       "id": "e3-nsa-intercepts-original",
@@ -51,7 +53,8 @@
       "likelihoodRatios": { "h1-both-attacks-real": 0.7, "h2-second-fabricated": 0.3 },
       "sourceReliability": 0.6,
       "wasClassified": true,
-      "declassifiedDate": "2005"
+      "declassifiedDate": "2005",
+      "linkedNodeIds": ["n11-claim-second-real"]
     },
     {
       "id": "e4-nsa-2005-report",
@@ -61,7 +64,8 @@
       "likelihoodRatios": { "h1-both-attacks-real": 0.02, "h2-second-fabricated": 0.98 },
       "sourceReliability": 0.99,
       "wasClassified": true,
-      "declassifiedDate": "2005"
+      "declassifiedDate": "2005",
+      "linkedNodeIds": ["n9-nsa-study", "n12-claim-second-false"]
     },
     {
       "id": "e5-lbj-tapes",
@@ -71,7 +75,8 @@
       "likelihoodRatios": { "h1-both-attacks-real": 0.1, "h2-second-fabricated": 0.85 },
       "sourceReliability": 0.98,
       "wasClassified": true,
-      "declassifiedDate": "1997"
+      "declassifiedDate": "1997",
+      "linkedNodeIds": ["n6-actor-lbj", "n12-claim-second-false"]
     },
     {
       "id": "e6-resolution-speed",
@@ -80,7 +85,8 @@
       "date": "1964-08-07",
       "likelihoodRatios": { "h1-both-attacks-real": 0.3, "h2-second-fabricated": 0.8 },
       "sourceReliability": 0.99,
-      "wasClassified": false
+      "wasClassified": false,
+      "linkedNodeIds": ["n8-resolution", "n4-claim-justified-war"]
     },
     {
       "id": "e7-oplan34a",
@@ -90,7 +96,8 @@
       "likelihoodRatios": { "h1-both-attacks-real": 0.3, "h2-second-fabricated": 0.75 },
       "sourceReliability": 0.95,
       "wasClassified": true,
-      "declassifiedDate": "1971"
+      "declassifiedDate": "1971",
+      "linkedNodeIds": ["n10-oplan34a", "n3-claim-unprovoked"]
     },
     {
       "id": "e8-vietnamese-accounts",
@@ -99,7 +106,8 @@
       "date": "1995-11-09",
       "likelihoodRatios": { "h1-both-attacks-real": 0.1, "h2-second-fabricated": 0.9 },
       "sourceReliability": 0.8,
-      "wasClassified": false
+      "wasClassified": false,
+      "linkedNodeIds": ["n12-claim-second-false", "n2-alleged-attack-2"]
     }
   ],
   "nodes": [

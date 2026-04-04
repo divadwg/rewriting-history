@@ -32,7 +32,8 @@
       "likelihoodRatios": { "h1-wmds-existed": 0.15, "h2-no-wmds": 0.85 },
       "sourceReliability": 0.1,
       "wasClassified": true,
-      "declassifiedDate": "2005"
+      "declassifiedDate": "2005",
+      "linkedNodeIds": ["n4-source-curveball", "n3-claim-bio"]
     },
     {
       "id": "e2-aluminum-tubes",
@@ -42,7 +43,8 @@
       "likelihoodRatios": { "h1-wmds-existed": 0.2, "h2-no-wmds": 0.8 },
       "sourceReliability": 0.85,
       "wasClassified": true,
-      "declassifiedDate": "2004"
+      "declassifiedDate": "2004",
+      "linkedNodeIds": ["n11-evidence-doe-dissent", "n2-claim-nuclear"]
     },
     {
       "id": "e3-powell-un",
@@ -51,7 +53,8 @@
       "date": "2003-02-05",
       "likelihoodRatios": { "h1-wmds-existed": 0.35, "h2-no-wmds": 0.55 },
       "sourceReliability": 0.3,
-      "wasClassified": false
+      "wasClassified": false,
+      "linkedNodeIds": ["n5-actor-powell", "n8-event-un-speech", "n1-claim-wmds"]
     },
     {
       "id": "e4-duelfer-report",
@@ -60,7 +63,8 @@
       "date": "2004-09-30",
       "likelihoodRatios": { "h1-wmds-existed": 0.02, "h2-no-wmds": 0.98 },
       "sourceReliability": 0.99,
-      "wasClassified": false
+      "wasClassified": false,
+      "linkedNodeIds": ["n7-evidence-duelfer", "n10-claim-no-wmds"]
     },
     {
       "id": "e5-downing-street-memo",
@@ -70,7 +74,8 @@
       "likelihoodRatios": { "h1-wmds-existed": 0.1, "h2-no-wmds": 0.9 },
       "sourceReliability": 0.95,
       "wasClassified": true,
-      "declassifiedDate": "2005"
+      "declassifiedDate": "2005",
+      "linkedNodeIds": ["n14-narrative-fixed"]
     },
     {
       "id": "e6-unmovic-inspections",
@@ -79,7 +84,8 @@
       "date": "2003-03-07",
       "likelihoodRatios": { "h1-wmds-existed": 0.1, "h2-no-wmds": 0.85 },
       "sourceReliability": 0.95,
-      "wasClassified": false
+      "wasClassified": false,
+      "linkedNodeIds": ["n10-claim-no-wmds"]
     },
     {
       "id": "e7-niger-uranium",
@@ -88,7 +94,8 @@
       "date": "2003-03-07",
       "likelihoodRatios": { "h1-wmds-existed": 0.05, "h2-no-wmds": 0.9 },
       "sourceReliability": 0.95,
-      "wasClassified": false
+      "wasClassified": false,
+      "linkedNodeIds": ["n12-evidence-niger-forgery", "n2-claim-nuclear"]
     },
     {
       "id": "e8-state-inr-dissent",
@@ -98,7 +105,8 @@
       "likelihoodRatios": { "h1-wmds-existed": 0.2, "h2-no-wmds": 0.8 },
       "sourceReliability": 0.9,
       "wasClassified": true,
-      "declassifiedDate": "2004"
+      "declassifiedDate": "2004",
+      "linkedNodeIds": ["n11-evidence-doe-dissent", "n2-claim-nuclear"]
     }
   ],
   "nodes": [

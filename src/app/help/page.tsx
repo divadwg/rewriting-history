@@ -319,6 +319,70 @@ export default function HelpPage() {
           </div>
         </div>
 
+        {/* ── INTEGRATION ───────────────────────────────────────────────── */}
+        <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+          <div className="flex items-baseline gap-3 mb-3">
+            <span className="text-xl font-mono" style={{ color: '#e87b35' }}>&harr;</span>
+            <h3 className="text-lg font-bold" style={{ color: '#1a1a1a' }}>How the Three Systems Connect</h3>
+          </div>
+
+          <div className="rounded p-4 mb-4" style={{ background: '#f7f7f7' }}>
+            <p className="leading-relaxed" style={{ color: '#6b6b6b' }}>
+              <strong style={{ color: '#1a1a1a' }}>In plain English:</strong> The knowledge graph, causal model,
+              and Bayesian engine are not separate tools &mdash; they feed into each other. If the graph shows an
+              actor suppressing evidence, the Bayesian engine automatically trusts that actor&apos;s claims less. If
+              a causal factor describes evidence being classified, evidence that was classified during that period
+              gets scrutinized more heavily. After the Bayesian math runs, the results update the confidence
+              scores on claim nodes in the graph. The systems reinforce each other.
+            </p>
+          </div>
+
+          <div className="space-y-3 text-sm">
+            <div className="flex gap-3 items-start">
+              <div className="font-mono text-xs px-2 py-1 rounded flex-shrink-0"
+                style={{ background: '#1a1a1a', color: 'white' }}>Graph &rarr; Bayes</div>
+              <div>
+                <div className="font-bold" style={{ color: '#1a1a1a' }}>Edge types adjust evidence reliability</div>
+                <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                  A <strong>suppresses</strong> edge reduces the reliability of evidence from that actor.
+                  A <strong>fabricates</strong> edge drastically reduces source reliability (&times;0.2).
+                  A <strong>benefits</strong> edge discounts self-serving evidence (&minus;10%).
+                  A <strong>contradicts</strong> edge between claims penalises evidence supporting the
+                  lower-confidence claim.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-3 items-start">
+              <div className="font-mono text-xs px-2 py-1 rounded flex-shrink-0"
+                style={{ background: '#1a1a1a', color: 'white' }}>Causal &rarr; Bayes</div>
+              <div>
+                <div className="font-bold" style={{ color: '#1a1a1a' }}>Evidence actions modify weight</div>
+                <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                  Causal factors of type <strong>evidence_action</strong> (classification, suppression,
+                  declassification) adjust the reliability of evidence from the same period. Classified
+                  evidence that supported the official narrative during active suppression gets penalised;
+                  declassified evidence that contradicts the official narrative gets a boost.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-3 items-start">
+              <div className="font-mono text-xs px-2 py-1 rounded flex-shrink-0"
+                style={{ background: '#1a1a1a', color: 'white' }}>Bayes &rarr; Graph</div>
+              <div>
+                <div className="font-bold" style={{ color: '#1a1a1a' }}>Posteriors update claim confidence</div>
+                <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                  After Bayesian inference runs, claim nodes in the knowledge graph have their confidence
+                  scores blended toward the posterior of their aligned hypothesis (70% original, 30%
+                  posterior-derived). This means the graph visualisation reflects what the evidence
+                  actually supports, not just the initial hand-coded confidence.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* ── THE PIPELINE ───────────────────────────────────────────────── */}
         <div className="rounded-lg p-6" style={{ background: '#ffffff', border: '1px solid #e5e5e5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
           <div className="flex items-baseline gap-3 mb-3">

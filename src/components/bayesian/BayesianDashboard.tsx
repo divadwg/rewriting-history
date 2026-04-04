@@ -3,10 +3,12 @@
 import { useState, useMemo } from 'react';
 import { Hypothesis, EvidenceItem, BayesianVerdict } from '@/lib/types/graph';
 import { updatePosteriors, evidenceSensitivity, generateVerdict } from '@/lib/engine/bayesian';
+import { IntegrationAdjustment } from '@/lib/engine/integration';
 
 interface BayesianDashboardProps {
   hypotheses: Hypothesis[];
   evidence: EvidenceItem[];
+  adjustments?: IntegrationAdjustment[];
 }
 
 function formatProb(value: number): string {
@@ -58,7 +60,7 @@ function VerdictBadge({ verdict }: { verdict: BayesianVerdict }) {
   );
 }
 
-export default function BayesianDashboard({ hypotheses, evidence }: BayesianDashboardProps) {
+export default function BayesianDashboard({ hypotheses, evidence, adjustments = [] }: BayesianDashboardProps) {
   const [activeEvidence, setActiveEvidence] = useState<Set<string>>(
     new Set(evidence.map(e => e.id))
   );
@@ -118,6 +120,7 @@ export default function BayesianDashboard({ hypotheses, evidence }: BayesianDash
           {evidence.map(e => {
             const isActive = activeEvidence.has(e.id);
             const sens = sensitivity.find(s => s.evidenceId === e.id);
+            const adj = adjustments.find(a => a.evidenceId === e.id);
             return (
               <button
                 key={e.id}
@@ -125,7 +128,7 @@ export default function BayesianDashboard({ hypotheses, evidence }: BayesianDash
                 className="w-full text-left rounded-lg p-3 transition-all text-xs"
                 style={{
                   background: isActive ? '#ffffff' : '#f0f0f0',
-                  border: `1px solid ${isActive ? '#e5e5e5' : '#eeeeee'}`,
+                  border: `1px solid ${isActive ? (adj ? '#e87b3540' : '#e5e5e5') : '#eeeeee'}`,
                   opacity: isActive ? 1 : 0.5,
                   boxShadow: isActive ? '0 1px 3px rgba(0,0,0,0.06)' : 'none',
                 }}
@@ -146,7 +149,21 @@ export default function BayesianDashboard({ hypotheses, evidence }: BayesianDash
                       <span className="ml-2 font-mono" style={{ color: '#999999' }}>
                         reliability: {(e.sourceReliability * 100).toFixed(0)}%
                       </span>
+                      {adj && (
+                        <span className="ml-1 font-mono" style={{ color: adj.adjustedReliability < adj.originalReliability ? '#c44536' : '#2a9d5c' }}>
+                          ({adj.adjustedReliability < adj.originalReliability ? '' : '+'}{((adj.adjustedReliability - adj.originalReliability) * 100).toFixed(0)}% from graph)
+                        </span>
+                      )}
                     </div>
+                    {adj && isActive && (
+                      <div className="mt-1 space-y-0.5">
+                        {adj.reasons.map((r, i) => (
+                          <div key={i} className="text-xs italic" style={{ color: '#d06a2a' }}>
+                            {r}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                   {sens && (
                     <div className="text-right flex-shrink-0">

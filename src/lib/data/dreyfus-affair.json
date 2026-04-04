@@ -1,0 +1,243 @@
+{
+  "id": "dreyfus-affair",
+  "title": "The Dreyfus Affair",
+  "period": "1894-1906",
+  "summary": "In 1894, French Army Captain Alfred Dreyfus, a Jewish artillery officer, was wrongly convicted of treason for allegedly passing military secrets to Germany. The real spy was Major Ferdinand Walsin Esterhazy. The French military fabricated evidence, suppressed exculpatory findings, and forged documents to maintain the conviction. Emile Zola's open letter 'J'accuse...!' (1898) brought massive public attention. After years of political turmoil that split France, Dreyfus was fully exonerated by the Court of Cassation in 1906. The affair exposed deep antisemitism in French military and political institutions.",
+  "hypotheses": [
+    {
+      "id": "h1-dreyfus-guilty",
+      "caseStudyId": "dreyfus-affair",
+      "label": "Dreyfus was guilty of espionage, passing military secrets to Germany",
+      "description": "The official French military position from 1894-1906: Captain Alfred Dreyfus authored the bordereau and committed treason by delivering classified documents to the German military attache.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": true
+    },
+    {
+      "id": "h2-dreyfus-framed",
+      "caseStudyId": "dreyfus-affair",
+      "label": "Dreyfus was innocent, framed by an antisemitic military establishment; the real spy was Esterhazy",
+      "description": "Dreyfus was a convenient scapegoat chosen due to antisemitic prejudice. The actual author of the bordereau was Major Ferdinand Walsin Esterhazy. When the truth emerged, the military fabricated and forged evidence to protect the institution and cover up the miscarriage of justice.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": false
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1-bordereau",
+      "label": "The bordereau (intercepted letter to German attache, 1894)",
+      "description": "An unsigned letter (the 'bordereau') was retrieved from the wastebasket of German military attache Max von Schwartzkoppen by a French cleaning woman who was a spy. It offered classified French military documents. The Statistical Section attributed it to Dreyfus based on superficial handwriting similarity and the fact that he had access to the types of documents listed.",
+      "date": "1894-09-26",
+      "likelihoodRatios": { "h1-dreyfus-guilty": 0.3, "h2-dreyfus-framed": 0.7 },
+      "sourceReliability": 0.8,
+      "wasClassified": true,
+      "declassifiedDate": "1898",
+      "linkedNodeIds": ["n1-bordereau", "n5-actor-schwartzkoppen", "n3-actor-dreyfus"]
+    },
+    {
+      "id": "e2-bertillon-analysis",
+      "label": "Bertillon's handwriting analysis attributing bordereau to Dreyfus (1894)",
+      "description": "Alphonse Bertillon, a criminologist with no graphology expertise, devised an elaborate and pseudoscientific theory that Dreyfus had disguised his handwriting using a complex geometric method. His analysis was later widely discredited by independent experts as absurd and scientifically worthless.",
+      "date": "1894-10-15",
+      "likelihoodRatios": { "h1-dreyfus-guilty": 0.35, "h2-dreyfus-framed": 0.65 },
+      "sourceReliability": 0.15,
+      "wasClassified": false,
+      "linkedNodeIds": ["n6-actor-bertillon", "n1-bordereau", "n9-claim-dreyfus-guilty"]
+    },
+    {
+      "id": "e3-independent-experts",
+      "label": "Independent handwriting experts find bordereau not in Dreyfus's hand (1894-1899)",
+      "description": "Multiple independent graphology experts, including Alfred Gobert (Bank of France expert) and Paul Moriaud, concluded the bordereau was not written by Dreyfus. Their findings were suppressed or ignored by the military during the original trial.",
+      "date": "1894-10-20",
+      "likelihoodRatios": { "h1-dreyfus-guilty": 0.15, "h2-dreyfus-framed": 0.9 },
+      "sourceReliability": 0.85,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-bordereau", "n3-actor-dreyfus", "n10-claim-dreyfus-innocent"]
+    },
+    {
+      "id": "e4-esterhazy-handwriting",
+      "label": "Esterhazy's handwriting matches the bordereau (1897)",
+      "description": "When Colonel Picquart compared Esterhazy's handwriting to the bordereau in 1896, the match was unmistakable. Multiple experts later confirmed that Esterhazy wrote the bordereau. Even Esterhazy himself eventually admitted authorship after fleeing to England.",
+      "date": "1897-11-15",
+      "likelihoodRatios": { "h1-dreyfus-guilty": 0.03, "h2-dreyfus-framed": 0.98 },
+      "sourceReliability": 0.97,
+      "wasClassified": false,
+      "linkedNodeIds": ["n4-actor-esterhazy", "n1-bordereau", "n7-actor-picquart"]
+    },
+    {
+      "id": "e5-secret-dossier",
+      "label": "Secret dossier shown to judges but not defense (1894)",
+      "description": "During the 1894 court-martial, the prosecution secretly communicated a dossier of documents to the military judges without showing it to Dreyfus or his lawyer. This was a fundamental violation of the rights of the accused. The dossier contained documents that did not actually mention Dreyfus by name and were later shown to be irrelevant or misinterpreted.",
+      "date": "1894-12-22",
+      "likelihoodRatios": { "h1-dreyfus-guilty": 0.2, "h2-dreyfus-framed": 0.9 },
+      "sourceReliability": 0.95,
+      "wasClassified": true,
+      "declassifiedDate": "1898",
+      "linkedNodeIds": ["n2-event-courtmartial", "n8-actor-mercier", "n11-secret-dossier"]
+    },
+    {
+      "id": "e6-henry-forgery",
+      "label": "The faux Henry — Colonel Henry's forged document (1896)",
+      "description": "Lieutenant Colonel Hubert-Joseph Henry fabricated a document purporting to be a letter from the Italian military attache Panizzardi to Schwartzkoppen, explicitly naming Dreyfus. When War Minister Cavaignac presented this as proof in 1898, Captain Louis Cuignet discovered the forgery: the letter was composed of pieces from two different documents with mismatched paper gridlines. Henry confessed under interrogation on August 30, 1898, and committed suicide the next day.",
+      "date": "1896-11-01",
+      "likelihoodRatios": { "h1-dreyfus-guilty": 0.02, "h2-dreyfus-framed": 0.99 },
+      "sourceReliability": 0.99,
+      "wasClassified": true,
+      "declassifiedDate": "1898",
+      "linkedNodeIds": ["n12-actor-henry", "n11-secret-dossier", "n13-event-henry-forgery"]
+    },
+    {
+      "id": "e7-picquart-investigation",
+      "label": "Colonel Picquart's investigation identifying Esterhazy (1896)",
+      "description": "Lieutenant Colonel Georges Picquart, new head of the Statistical Section (military intelligence), discovered in March 1896 that a document (the petit bleu) addressed to Esterhazy came from the German embassy. He compared Esterhazy's handwriting to the bordereau and found a match. When he reported this to his superiors, he was silenced, transferred to Tunisia, and eventually imprisoned.",
+      "date": "1896-03-15",
+      "likelihoodRatios": { "h1-dreyfus-guilty": 0.05, "h2-dreyfus-framed": 0.95 },
+      "sourceReliability": 0.95,
+      "wasClassified": true,
+      "declassifiedDate": "1898",
+      "linkedNodeIds": ["n7-actor-picquart", "n4-actor-esterhazy", "n14-event-petit-bleu"]
+    },
+    {
+      "id": "e8-zola-jaccuse",
+      "label": "Emile Zola's 'J'accuse...!' open letter (Jan 13, 1898)",
+      "description": "Novelist Emile Zola published an open letter on the front page of L'Aurore, directly accusing the military of framing Dreyfus and covering up the truth. Zola named specific officers and accused them of specific crimes. He was convicted of libel and fled to England, but the letter galvanized the Dreyfusard movement and forced the affair into public debate.",
+      "date": "1898-01-13",
+      "likelihoodRatios": { "h1-dreyfus-guilty": 0.25, "h2-dreyfus-framed": 0.85 },
+      "sourceReliability": 0.8,
+      "wasClassified": false,
+      "linkedNodeIds": ["n15-actor-zola", "n16-event-jaccuse", "n10-claim-dreyfus-innocent"]
+    },
+    {
+      "id": "e9-rennes-retrial",
+      "label": "Rennes retrial and presidential pardon (1899)",
+      "description": "The Court of Cassation annulled the 1894 conviction and ordered a retrial. At the Rennes court-martial in 1899, Dreyfus was again found guilty but 'with extenuating circumstances' (a legally absurd verdict for treason) and sentenced to 10 years. President Loubet pardoned Dreyfus ten days later. The perverse verdict demonstrated the military's continued unwillingness to admit error.",
+      "date": "1899-09-09",
+      "likelihoodRatios": { "h1-dreyfus-guilty": 0.15, "h2-dreyfus-framed": 0.85 },
+      "sourceReliability": 0.9,
+      "wasClassified": false,
+      "linkedNodeIds": ["n3-actor-dreyfus", "n17-event-rennes-retrial"]
+    },
+    {
+      "id": "e10-final-exoneration",
+      "label": "Full exoneration by Court of Cassation (July 12, 1906)",
+      "description": "The Court of Cassation, France's highest court of appeal, annulled the Rennes verdict without ordering a further retrial, declaring Dreyfus fully innocent. Dreyfus was reinstated in the army as a major, and Picquart was promoted to brigadier general. The court found that the entire case against Dreyfus was baseless.",
+      "date": "1906-07-12",
+      "likelihoodRatios": { "h1-dreyfus-guilty": 0.01, "h2-dreyfus-framed": 0.99 },
+      "sourceReliability": 0.99,
+      "wasClassified": false,
+      "linkedNodeIds": ["n3-actor-dreyfus", "n7-actor-picquart", "n18-event-exoneration"]
+    }
+  ],
+  "nodes": [
+    { "id": "n1-bordereau", "type": "evidence", "label": "The bordereau", "description": "Unsigned letter intercepted from the German embassy offering classified French military documents. Written by Esterhazy, wrongly attributed to Dreyfus.", "date": "1894-09-26", "confidence": 0.99, "metadata": {}, "caseStudyId": "dreyfus-affair" },
+    { "id": "n2-event-courtmartial", "type": "event", "label": "First court-martial of Dreyfus (Dec 1894)", "description": "Closed military trial where Dreyfus was convicted of treason based on flawed handwriting analysis and a secret dossier illegally withheld from the defense.", "date": "1894-12-22", "confidence": 1.0, "metadata": {}, "caseStudyId": "dreyfus-affair" },
+    { "id": "n3-actor-dreyfus", "type": "actor", "label": "Captain Alfred Dreyfus", "description": "Jewish French artillery officer wrongly convicted of treason. Imprisoned on Devil's Island from 1895 to 1899.", "date": "1894-10-15", "confidence": 1.0, "metadata": { "role": "Accused" }, "caseStudyId": "dreyfus-affair" },
+    { "id": "n4-actor-esterhazy", "type": "actor", "label": "Major Ferdinand Walsin Esterhazy", "description": "The actual author of the bordereau and spy for Germany. Acquitted in a sham court-martial in January 1898. Fled to England where he eventually admitted his guilt.", "date": "1894-09-26", "confidence": 1.0, "metadata": { "role": "Actual spy" }, "caseStudyId": "dreyfus-affair" },
+    { "id": "n5-actor-schwartzkoppen", "type": "actor", "label": "Colonel Max von Schwartzkoppen", "description": "German military attache in Paris, recipient of the bordereau. His posthumously published papers confirmed Esterhazy was his agent and Dreyfus was unknown to him.", "date": "1894-09-26", "confidence": 1.0, "metadata": { "role": "German military attache" }, "caseStudyId": "dreyfus-affair" },
+    { "id": "n6-actor-bertillon", "type": "actor", "label": "Alphonse Bertillon", "description": "Head of criminal identification at the Paris Prefecture. Created pseudoscientific handwriting analysis to implicate Dreyfus.", "date": "1894-10-15", "confidence": 1.0, "metadata": { "role": "Criminologist" }, "caseStudyId": "dreyfus-affair" },
+    { "id": "n7-actor-picquart", "type": "actor", "label": "Colonel Georges Picquart", "description": "Head of the Statistical Section (intelligence) who discovered Esterhazy was the real spy. Silenced, transferred, and imprisoned for his efforts to reveal the truth.", "date": "1896-03-15", "confidence": 1.0, "metadata": { "role": "Head of Military Intelligence" }, "caseStudyId": "dreyfus-affair" },
+    { "id": "n8-actor-mercier", "type": "actor", "label": "General Auguste Mercier", "description": "Minister of War who ordered Dreyfus's prosecution and secretly communicated the illegal dossier to the judges.", "date": "1894-12-22", "confidence": 1.0, "metadata": { "role": "Minister of War" }, "caseStudyId": "dreyfus-affair" },
+    { "id": "n9-claim-dreyfus-guilty", "type": "claim", "label": "Dreyfus authored the bordereau and committed treason", "description": "The official military claim maintained from 1894 through 1906 despite mounting evidence to the contrary.", "date": "1894-12-22", "confidence": 0.02, "metadata": {}, "caseStudyId": "dreyfus-affair" },
+    { "id": "n10-claim-dreyfus-innocent", "type": "claim", "label": "Dreyfus is innocent; Esterhazy is the real traitor", "description": "The claim advanced by Dreyfusards, ultimately vindicated by the Court of Cassation.", "date": "1897-11-15", "confidence": 0.99, "metadata": {}, "caseStudyId": "dreyfus-affair" },
+    { "id": "n11-secret-dossier", "type": "evidence", "label": "Secret dossier (dossier secret)", "description": "Collection of documents illegally communicated to the judges at the 1894 court-martial, later expanded with Henry's forgeries.", "date": "1894-12-22", "confidence": 0.99, "metadata": {}, "caseStudyId": "dreyfus-affair" },
+    { "id": "n12-actor-henry", "type": "actor", "label": "Lieutenant Colonel Hubert-Joseph Henry", "description": "Intelligence officer who forged documents to strengthen the case against Dreyfus. Confessed to the forgery on August 30, 1898, and committed suicide the following day.", "date": "1896-11-01", "confidence": 1.0, "metadata": { "role": "Intelligence officer / Forger" }, "caseStudyId": "dreyfus-affair" },
+    { "id": "n13-event-henry-forgery", "type": "event", "label": "Discovery of Henry's forgery (Aug 1898)", "description": "Captain Cuignet discovered that Henry's key document was a composite forgery with mismatched paper. Henry confessed and killed himself.", "date": "1898-08-30", "confidence": 1.0, "metadata": {}, "caseStudyId": "dreyfus-affair" },
+    { "id": "n14-event-petit-bleu", "type": "event", "label": "Discovery of the petit bleu (March 1896)", "description": "Picquart discovered an express-delivery letter (petit bleu) from Schwartzkoppen addressed to Esterhazy, linking Esterhazy to the German embassy.", "date": "1896-03-15", "confidence": 0.99, "metadata": {}, "caseStudyId": "dreyfus-affair" },
+    { "id": "n15-actor-zola", "type": "actor", "label": "Emile Zola", "description": "Renowned novelist who published 'J'accuse...!' in L'Aurore, accusing the military of a cover-up and galvanizing public support for Dreyfus.", "date": "1898-01-13", "confidence": 1.0, "metadata": { "role": "Novelist / Public intellectual" }, "caseStudyId": "dreyfus-affair" },
+    { "id": "n16-event-jaccuse", "type": "event", "label": "Publication of 'J'accuse...!' (Jan 13, 1898)", "description": "Zola's open letter published on the front page of L'Aurore, directly naming the officers responsible for framing Dreyfus.", "date": "1898-01-13", "confidence": 1.0, "metadata": {}, "caseStudyId": "dreyfus-affair" },
+    { "id": "n17-event-rennes-retrial", "type": "event", "label": "Rennes retrial and pardon (Sept 1899)", "description": "Second court-martial that absurdly found Dreyfus guilty 'with extenuating circumstances.' Presidential pardon followed.", "date": "1899-09-09", "confidence": 1.0, "metadata": {}, "caseStudyId": "dreyfus-affair" },
+    { "id": "n18-event-exoneration", "type": "event", "label": "Full exoneration by Court of Cassation (July 1906)", "description": "France's highest court annulled the Rennes verdict and declared Dreyfus fully innocent without further retrial.", "date": "1906-07-12", "confidence": 1.0, "metadata": {}, "caseStudyId": "dreyfus-affair" },
+    { "id": "n19-narrative-official", "type": "narrative", "label": "Official narrative: Dreyfus was a Jewish traitor", "description": "The military narrative portraying Dreyfus as a traitor motivated by disloyalty, reinforced by antisemitic tropes about Jewish dual loyalty.", "date": "1894-12-22", "confidence": 0.02, "metadata": {}, "caseStudyId": "dreyfus-affair" },
+    { "id": "n20-narrative-revised", "type": "narrative", "label": "Revised narrative: institutional antisemitism and cover-up", "description": "The historical consensus that Dreyfus was framed due to antisemitism, and that the military systematically fabricated evidence and suppressed the truth to protect the institution.", "date": "1906-07-12", "confidence": 0.99, "metadata": {}, "caseStudyId": "dreyfus-affair" },
+    { "id": "n21-event-degradation", "type": "event", "label": "Public degradation of Dreyfus (Jan 5, 1895)", "description": "Dreyfus was publicly stripped of his rank in a humiliating ceremony at the Ecole Militaire. A mob shouted antisemitic slurs. He was then deported to Devil's Island.", "date": "1895-01-05", "confidence": 1.0, "metadata": {}, "caseStudyId": "dreyfus-affair" },
+    { "id": "n22-event-esterhazy-acquittal", "type": "event", "label": "Esterhazy's sham acquittal (Jan 11, 1898)", "description": "Esterhazy was court-martialed under public pressure but unanimously acquitted after only three minutes of deliberation, with the military closing ranks to protect him.", "date": "1898-01-11", "confidence": 1.0, "metadata": {}, "caseStudyId": "dreyfus-affair" }
+  ],
+  "edges": [
+    { "id": "e-1", "source": "n8-actor-mercier", "target": "n9-claim-dreyfus-guilty", "type": "claims", "weight": 0.9, "date": "1894-12-22", "metadata": {} },
+    { "id": "e-2", "source": "n6-actor-bertillon", "target": "n9-claim-dreyfus-guilty", "type": "claims", "weight": 0.7, "date": "1894-10-15", "metadata": { "detail": "Pseudoscientific handwriting analysis" } },
+    { "id": "e-3", "source": "n15-actor-zola", "target": "n10-claim-dreyfus-innocent", "type": "claims", "weight": 0.9, "date": "1898-01-13", "metadata": {} },
+    { "id": "e-4", "source": "n7-actor-picquart", "target": "n10-claim-dreyfus-innocent", "type": "claims", "weight": 0.95, "date": "1896-03-15", "metadata": {} },
+    { "id": "e-5", "source": "n9-claim-dreyfus-guilty", "target": "n10-claim-dreyfus-innocent", "type": "contradicts", "weight": 1.0, "metadata": {} },
+    { "id": "e-6", "source": "n19-narrative-official", "target": "n20-narrative-revised", "type": "contradicts", "weight": 1.0, "metadata": {} },
+    { "id": "e-7", "source": "n12-actor-henry", "target": "n11-secret-dossier", "type": "fabricates", "weight": 0.99, "date": "1896-11-01", "metadata": { "detail": "Henry forged a letter purporting to name Dreyfus, composited from two different documents" } },
+    { "id": "e-8", "source": "n8-actor-mercier", "target": "n11-secret-dossier", "type": "fabricates", "weight": 0.8, "date": "1894-12-22", "metadata": { "detail": "Mercier authorized the illegal secret communication of the dossier to judges" } },
+    { "id": "e-9", "source": "n8-actor-mercier", "target": "n7-actor-picquart", "type": "suppresses", "weight": 0.85, "date": "1896-11-01", "metadata": { "detail": "Picquart was transferred to Tunisia and later imprisoned for revealing the truth" } },
+    { "id": "e-10", "source": "n8-actor-mercier", "target": "n3-actor-dreyfus", "type": "suppresses", "weight": 0.9, "date": "1894-12-22", "metadata": { "detail": "Defense was denied access to the secret dossier used to convict" } },
+    { "id": "e-11", "source": "n14-event-petit-bleu", "target": "n4-actor-esterhazy", "type": "cites", "weight": 0.95, "date": "1896-03-15", "metadata": {} },
+    { "id": "e-12", "source": "n7-actor-picquart", "target": "n14-event-petit-bleu", "type": "derived_from", "weight": 0.95, "date": "1896-03-15", "metadata": {} },
+    { "id": "e-13", "source": "n2-event-courtmartial", "target": "n21-event-degradation", "type": "precedes", "weight": 1.0, "date": "1894-12-22", "metadata": {} },
+    { "id": "e-14", "source": "n21-event-degradation", "target": "n14-event-petit-bleu", "type": "precedes", "weight": 1.0, "date": "1895-01-05", "metadata": {} },
+    { "id": "e-15", "source": "n14-event-petit-bleu", "target": "n22-event-esterhazy-acquittal", "type": "precedes", "weight": 1.0, "date": "1896-03-15", "metadata": {} },
+    { "id": "e-16", "source": "n22-event-esterhazy-acquittal", "target": "n16-event-jaccuse", "type": "causes", "weight": 0.9, "date": "1898-01-11", "metadata": { "detail": "Esterhazy's acquittal provoked Zola to publish J'accuse two days later" } },
+    { "id": "e-17", "source": "n16-event-jaccuse", "target": "n13-event-henry-forgery", "type": "precedes", "weight": 1.0, "date": "1898-01-13", "metadata": {} },
+    { "id": "e-18", "source": "n13-event-henry-forgery", "target": "n17-event-rennes-retrial", "type": "causes", "weight": 0.85, "date": "1898-08-30", "metadata": { "detail": "Discovery of the forgery forced a retrial" } },
+    { "id": "e-19", "source": "n17-event-rennes-retrial", "target": "n18-event-exoneration", "type": "precedes", "weight": 1.0, "date": "1899-09-09", "metadata": {} },
+    { "id": "e-20", "source": "n4-actor-esterhazy", "target": "n1-bordereau", "type": "fabricates", "weight": 0.99, "date": "1894-09-26", "metadata": { "detail": "Esterhazy authored the bordereau offering French military secrets to Germany" } },
+    { "id": "e-21", "source": "n8-actor-mercier", "target": "n19-narrative-official", "type": "benefits", "weight": 0.9, "metadata": { "detail": "Mercier's career and reputation depended on the conviction being upheld" } },
+    { "id": "e-22", "source": "n16-event-jaccuse", "target": "n20-narrative-revised", "type": "causes", "weight": 0.85, "date": "1898-01-13", "metadata": { "detail": "Zola's letter was the turning point in public opinion" } },
+    { "id": "e-23", "source": "n18-event-exoneration", "target": "n9-claim-dreyfus-guilty", "type": "contradicts", "weight": 0.99, "date": "1906-07-12", "metadata": {} }
+  ],
+  "causalFactors": [
+    { "id": "cf1", "type": "institutional", "label": "Pervasive antisemitism in the French military and society", "date": "1894-01-01" },
+    { "id": "cf2", "type": "institutional", "label": "Military culture of institutional self-protection", "date": "1894-10-15" },
+    { "id": "cf3", "type": "evidence_action", "label": "Fabrication of evidence: Bertillon's pseudoscientific analysis and the secret dossier", "date": "1894-12-22" },
+    { "id": "cf4", "type": "evidence_action", "label": "Henry forges documents to reinforce the case against Dreyfus", "date": "1896-11-01" },
+    { "id": "cf5", "type": "evidence_action", "label": "Suppression of Picquart's findings and his imprisonment", "date": "1896-09-01" },
+    { "id": "cf6", "type": "narrative_change", "label": "Zola's 'J'accuse...!' forces the affair into public debate", "date": "1898-01-13" },
+    { "id": "cf7", "type": "evidence_action", "label": "Discovery of Henry's forgery collapses the fabricated evidence", "date": "1898-08-30" },
+    { "id": "cf8", "type": "power_change", "label": "Dreyfusard political coalition gains power; separation of church and state", "date": "1899-06-01" },
+    { "id": "cf9", "type": "narrative_change", "label": "Court of Cassation fully exonerates Dreyfus, establishing the revised historical narrative", "date": "1906-07-12" }
+  ],
+  "causalLinks": [
+    { "from": "cf1", "to": "cf2", "mechanism": "Antisemitism provided the motive to target Dreyfus; military culture ensured the institution would close ranks rather than admit error", "strength": 0.9 },
+    { "from": "cf2", "to": "cf3", "mechanism": "Institutional self-protection drove the fabrication of evidence and illegal procedures at the court-martial", "strength": 0.85 },
+    { "from": "cf3", "to": "cf4", "mechanism": "As the original case weakened, Henry forged new documents to shore up the crumbling prosecution", "strength": 0.9 },
+    { "from": "cf3", "to": "cf5", "mechanism": "When Picquart discovered the truth, the same institutional forces that fabricated evidence moved to silence him", "strength": 0.85 },
+    { "from": "cf5", "to": "cf6", "mechanism": "The suppression of truth and Esterhazy's sham acquittal provoked Zola to go public, breaking the military's information monopoly", "strength": 0.9 },
+    { "from": "cf6", "to": "cf7", "mechanism": "Public scrutiny forced re-examination of evidence, leading to the discovery of Henry's forgery", "strength": 0.8 },
+    { "from": "cf7", "to": "cf8", "mechanism": "Collapse of the fabricated evidence shifted political power toward the Dreyfusards and republican reformers", "strength": 0.75, "timelag": "1 year" },
+    { "from": "cf8", "to": "cf9", "mechanism": "Political shift enabled the Court of Cassation to act without military interference, culminating in full exoneration", "strength": 0.8, "timelag": "7 years" }
+  ],
+  "timeSlices": [
+    {
+      "date": "1894-12-23",
+      "label": "Dreyfus convicted",
+      "description": "Dreyfus is convicted by court-martial in a closed trial. The secret dossier was shown to judges but not the defense. Public and press accept the verdict.",
+      "activeNodeIds": ["n1-bordereau", "n2-event-courtmartial", "n3-actor-dreyfus", "n4-actor-esterhazy", "n5-actor-schwartzkoppen", "n6-actor-bertillon", "n8-actor-mercier", "n9-claim-dreyfus-guilty", "n11-secret-dossier", "n19-narrative-official"],
+      "activeEdgeIds": ["e-1", "e-2", "e-8", "e-10", "e-21"]
+    },
+    {
+      "date": "1896-09-01",
+      "label": "Picquart discovers the truth, is silenced",
+      "description": "Picquart finds the petit bleu linking Esterhazy to the German embassy and matches his handwriting to the bordereau. His superiors silence him and transfer him to Tunisia.",
+      "activeNodeIds": ["n1-bordereau", "n2-event-courtmartial", "n3-actor-dreyfus", "n4-actor-esterhazy", "n5-actor-schwartzkoppen", "n6-actor-bertillon", "n7-actor-picquart", "n8-actor-mercier", "n9-claim-dreyfus-guilty", "n10-claim-dreyfus-innocent", "n11-secret-dossier", "n12-actor-henry", "n14-event-petit-bleu", "n19-narrative-official", "n21-event-degradation"],
+      "activeEdgeIds": ["e-1", "e-2", "e-4", "e-5", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13", "e-14", "e-21"],
+      "narrativeShift": "A counter-narrative emerges within the military itself, but is immediately suppressed."
+    },
+    {
+      "date": "1898-01-14",
+      "label": "J'accuse...! published",
+      "description": "After Esterhazy's sham acquittal, Zola publishes his explosive open letter. France is split between Dreyfusards and anti-Dreyfusards. The affair becomes a national crisis.",
+      "activeNodeIds": ["n1-bordereau", "n2-event-courtmartial", "n3-actor-dreyfus", "n4-actor-esterhazy", "n5-actor-schwartzkoppen", "n6-actor-bertillon", "n7-actor-picquart", "n8-actor-mercier", "n9-claim-dreyfus-guilty", "n10-claim-dreyfus-innocent", "n11-secret-dossier", "n12-actor-henry", "n14-event-petit-bleu", "n15-actor-zola", "n16-event-jaccuse", "n19-narrative-official", "n21-event-degradation", "n22-event-esterhazy-acquittal"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13", "e-14", "e-15", "e-16", "e-21", "e-22"],
+      "narrativeShift": "The affair breaks into the public sphere. Two competing narratives now openly contend in French society."
+    },
+    {
+      "date": "1898-09-01",
+      "label": "Henry's forgery exposed",
+      "description": "The faux Henry is discovered. Henry confesses and commits suicide. The fabricated evidence collapses. The case for revision becomes irresistible.",
+      "activeNodeIds": ["n1-bordereau", "n2-event-courtmartial", "n3-actor-dreyfus", "n4-actor-esterhazy", "n5-actor-schwartzkoppen", "n6-actor-bertillon", "n7-actor-picquart", "n8-actor-mercier", "n9-claim-dreyfus-guilty", "n10-claim-dreyfus-innocent", "n11-secret-dossier", "n12-actor-henry", "n13-event-henry-forgery", "n14-event-petit-bleu", "n15-actor-zola", "n16-event-jaccuse", "n19-narrative-official", "n20-narrative-revised", "n21-event-degradation", "n22-event-esterhazy-acquittal"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13", "e-14", "e-15", "e-16", "e-17", "e-20", "e-21", "e-22"],
+      "narrativeShift": "The official narrative's evidentiary foundation collapses. Henry's suicide is a dramatic admission of fabrication."
+    },
+    {
+      "date": "1906-07-13",
+      "label": "Full exoneration",
+      "description": "The Court of Cassation annuls the Rennes verdict and declares Dreyfus fully innocent. Dreyfus is reinstated; Picquart is promoted. The revised narrative becomes definitive.",
+      "activeNodeIds": ["n1-bordereau", "n2-event-courtmartial", "n3-actor-dreyfus", "n4-actor-esterhazy", "n5-actor-schwartzkoppen", "n6-actor-bertillon", "n7-actor-picquart", "n8-actor-mercier", "n9-claim-dreyfus-guilty", "n10-claim-dreyfus-innocent", "n11-secret-dossier", "n12-actor-henry", "n13-event-henry-forgery", "n14-event-petit-bleu", "n15-actor-zola", "n16-event-jaccuse", "n17-event-rennes-retrial", "n18-event-exoneration", "n19-narrative-official", "n20-narrative-revised", "n21-event-degradation", "n22-event-esterhazy-acquittal"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13", "e-14", "e-15", "e-16", "e-17", "e-18", "e-19", "e-20", "e-21", "e-22", "e-23"],
+      "narrativeShift": "The definitive reversal: France's highest court declares Dreyfus completely innocent. The official military narrative is permanently discredited."
+    }
+  ]
+}

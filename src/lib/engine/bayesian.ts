@@ -56,17 +56,22 @@ export function evidenceSensitivity(
   hypotheses: Hypothesis[],
   evidence: EvidenceItem[]
 ): Array<{ evidenceId: string; label: string; impact: number }> {
+  // Track the official hypothesis, falling back to first if none marked
+  const tracked = hypotheses.find(h => h.isOfficial) ?? hypotheses[0];
+  if (!tracked) return evidence.map(e => ({ evidenceId: e.id, label: e.label, impact: 0 }));
+
+  const trackedPrior = tracked.prior;
+
   // Compute impact of each evidence item individually (from prior)
   return evidence
     .map(e => {
       const onlyThis = new Set([e.id]);
       const result = updatePosteriors(hypotheses, evidence, onlyThis);
-      const officialAfter = result.find(h => h.isOfficial)?.posterior ?? 0.5;
-      const officialPrior = hypotheses.find(h => h.isOfficial)?.prior ?? 0.5;
+      const trackedAfter = result.find(h => h.id === tracked.id)?.posterior ?? trackedPrior;
 
       // Use log-odds shift as impact metric, normalized to 0-1
-      const priorOdds = officialPrior / (1 - officialPrior + 1e-10);
-      const postOdds = officialAfter / (1 - officialAfter + 1e-10);
+      const priorOdds = trackedPrior / (1 - trackedPrior + 1e-10);
+      const postOdds = trackedAfter / (1 - trackedAfter + 1e-10);
       const logOddsShift = Math.abs(Math.log(postOdds / (priorOdds + 1e-10) + 1e-10));
       // Normalize: a shift of ~3 log-odds is very strong
       const normalized = Math.min(logOddsShift / 4, 1);
@@ -89,22 +94,22 @@ export function priorSensitivity(
   evidence: EvidenceItem[],
   officialPriorRange: number[] = [0.1, 0.3, 0.5, 0.7, 0.9]
 ): Array<{ prior: number; posterior: number }> {
-  const official = hypotheses.find(h => h.isOfficial);
+  const official = hypotheses.find(h => h.isOfficial) ?? hypotheses[0];
   if (!official) return [];
 
   return officialPriorRange.map(prior => {
     const remaining = 1 - prior;
-    const nonOfficial = hypotheses.filter(h => !h.isOfficial);
+    const nonOfficial = hypotheses.filter(h => h.id !== official.id);
     const share = remaining / Math.max(nonOfficial.length, 1);
 
     const adjusted = hypotheses.map(h => ({
       ...h,
-      prior: h.isOfficial ? prior : share,
-      posterior: h.isOfficial ? prior : share,
+      prior: h.id === official.id ? prior : share,
+      posterior: h.id === official.id ? prior : share,
     }));
 
     const result = updatePosteriors(adjusted, evidence);
-    const officialPosterior = result.find(h => h.isOfficial)?.posterior ?? 0;
+    const officialPosterior = result.find(h => h.id === official.id)?.posterior ?? 0;
 
     return { prior, posterior: officialPosterior };
   });

@@ -1,0 +1,209 @@
+{
+  "id": "katyn-massacre",
+  "title": "Katyn Massacre",
+  "period": "1940-2010",
+  "summary": "In April-May 1940, the Soviet NKVD executed approximately 22,000 Polish military officers, police officials, and intellectuals in the Katyn forest and other sites under direct orders from Stalin and the Politburo. When German forces discovered the mass graves in 1943, the Soviets blamed Nazi Germany for the killings — a fabrication maintained for nearly five decades. The Soviet Union even attempted to have Katyn included among Nazi war crimes at the Nuremberg Trials. Gorbachev acknowledged Soviet responsibility in 1990, Russian archives were partially opened in 1992, and the Russian State Duma formally acknowledged Stalin's direct order in 2010.",
+  "hypotheses": [
+    {
+      "id": "h1-german-responsibility",
+      "caseStudyId": "katyn-massacre",
+      "label": "Nazi Germany executed the Polish prisoners during their 1941 occupation",
+      "description": "The official Soviet position from 1943-1990: German forces killed the Polish prisoners in 1941 after capturing the Smolensk region. This was presented as another Nazi atrocity and the USSR attempted to have it prosecuted at Nuremberg.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": true
+    },
+    {
+      "id": "h2-soviet-responsibility",
+      "caseStudyId": "katyn-massacre",
+      "label": "The Soviet NKVD executed the Polish prisoners on Stalin's orders in 1940",
+      "description": "The NKVD carried out mass executions of Polish POWs in April-May 1940 at Katyn, Kalinin, Kharkiv, and other sites, pursuant to a Politburo decision of March 5, 1940 signed by Stalin, Voroshilov, Molotov, and Mikoyan.",
+      "prior": 0.5,
+      "posterior": 0.5,
+      "isOfficial": false
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1-burdenko-commission",
+      "label": "Burdenko Commission report (Jan 1944)",
+      "description": "The Soviet 'Special Commission' led by Nikolai Burdenko concluded that German forces committed the massacre in autumn 1941. The commission tampered with evidence, planted German ammunition at the site, and coerced local witnesses. The report was entirely fabricated to support the Soviet narrative.",
+      "date": "1944-01-24",
+      "likelihoodRatios": { "h1-german-responsibility": 0.3, "h2-soviet-responsibility": 0.8 },
+      "sourceReliability": 0.1,
+      "wasClassified": false,
+      "linkedNodeIds": ["n4-actor-burdenko", "n8-claim-german-guilt", "n13-narrative-soviet"]
+    },
+    {
+      "id": "e2-german-investigation",
+      "label": "German exhumation and forensic findings (1943)",
+      "description": "After discovering the graves in April 1943, Germany invited an international forensic commission. Forensic evidence — including the state of decomposition, documents dated no later than spring 1940, and the victims' winter uniforms — indicated the killings occurred in spring 1940, when the area was under Soviet control.",
+      "date": "1943-04-13",
+      "likelihoodRatios": { "h1-german-responsibility": 0.15, "h2-soviet-responsibility": 0.85 },
+      "sourceReliability": 0.6,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-event-discovery", "n10-evidence-forensic", "n9-claim-soviet-guilt"]
+    },
+    {
+      "id": "e3-nuremberg-prosecution",
+      "label": "Soviet attempt to prosecute Katyn at Nuremberg (1946)",
+      "description": "The Soviet Union included Katyn in the Nuremberg indictment under Count Three (war crimes). However, the tribunal quietly dropped the charge after the defense presented counter-evidence. The prosecution's failure at Nuremberg was an early crack in the Soviet narrative.",
+      "date": "1946-07-01",
+      "likelihoodRatios": { "h1-german-responsibility": 0.25, "h2-soviet-responsibility": 0.75 },
+      "sourceReliability": 0.85,
+      "wasClassified": false,
+      "linkedNodeIds": ["n3-event-nuremberg", "n8-claim-german-guilt", "n5-actor-ussr"]
+    },
+    {
+      "id": "e4-red-cross-request",
+      "label": "Polish Red Cross and International Red Cross investigation requests (1943)",
+      "description": "The Polish government-in-exile requested an International Red Cross investigation. The Soviet Union refused to cooperate and used the request as a pretext to sever diplomatic relations with the Polish exile government, calling it a 'Nazi provocation.'",
+      "date": "1943-04-17",
+      "likelihoodRatios": { "h1-german-responsibility": 0.15, "h2-soviet-responsibility": 0.85 },
+      "sourceReliability": 0.9,
+      "wasClassified": false,
+      "linkedNodeIds": ["n5-actor-ussr", "n6-actor-polish-gov", "n8-claim-german-guilt"]
+    },
+    {
+      "id": "e5-eyewitness-testimonies",
+      "label": "Eyewitness testimonies from local residents and survivors",
+      "description": "Local Smolensk residents reported seeing NKVD transports of Polish prisoners to the forest in spring 1940. Some witnesses were coerced by the Burdenko Commission to change their testimony. Polish survivors who were spared described the transport process and NKVD control of the camps.",
+      "date": "1943-04-13",
+      "likelihoodRatios": { "h1-german-responsibility": 0.15, "h2-soviet-responsibility": 0.9 },
+      "sourceReliability": 0.7,
+      "wasClassified": false,
+      "linkedNodeIds": ["n1-event-discovery", "n4-actor-burdenko", "n9-claim-soviet-guilt"]
+    },
+    {
+      "id": "e6-gorbachev-admission",
+      "label": "Gorbachev officially acknowledges Soviet responsibility (1990)",
+      "description": "On April 13, 1990, the Soviet Union officially acknowledged that the NKVD was responsible for the Katyn massacre. Gorbachev handed over sealed archive packets to Polish President Jaruzelski, calling it 'one of the gravest crimes of Stalinism.'",
+      "date": "1990-04-13",
+      "likelihoodRatios": { "h1-german-responsibility": 0.02, "h2-soviet-responsibility": 0.98 },
+      "sourceReliability": 0.95,
+      "wasClassified": false,
+      "linkedNodeIds": ["n7-actor-gorbachev", "n9-claim-soviet-guilt", "n14-narrative-revised"]
+    },
+    {
+      "id": "e7-russian-archives",
+      "label": "Russian state archives opened — 'Sealed Packet No. 1' (1992)",
+      "description": "In October 1992, Boris Yeltsin released 'Sealed Packet No. 1' from Soviet archives containing the March 5, 1940 Politburo execution order signed by Stalin, Voroshilov, Molotov, and Mikoyan, as well as Beria's proposal to shoot 25,700 Polish prisoners. Also included was Shelepin's 1959 memo to Khrushchev proposing destruction of the files.",
+      "date": "1992-10-14",
+      "likelihoodRatios": { "h1-german-responsibility": 0.01, "h2-soviet-responsibility": 0.99 },
+      "sourceReliability": 0.99,
+      "wasClassified": true,
+      "declassifiedDate": "1992",
+      "linkedNodeIds": ["n11-evidence-archives", "n2-event-execution-order", "n5-actor-ussr", "n9-claim-soviet-guilt"]
+    },
+    {
+      "id": "e8-forensic-evidence",
+      "label": "Forensic evidence: German ammunition and Soviet binding methods",
+      "description": "Victims were killed with German-manufactured Walther PPK pistols and 7.65mm Geco ammunition — which the NKVD had imported in bulk from Germany before the war. Victims' hands were bound behind their backs with a distinctive technique used by the NKVD. Bayonet wounds on some victims matched Soviet-issue bayonets. The Soviets later planted additional German cartridges to bolster their story.",
+      "date": "1943-04-13",
+      "likelihoodRatios": { "h1-german-responsibility": 0.2, "h2-soviet-responsibility": 0.9 },
+      "sourceReliability": 0.9,
+      "wasClassified": false,
+      "linkedNodeIds": ["n10-evidence-forensic", "n9-claim-soviet-guilt", "n1-event-discovery"]
+    },
+    {
+      "id": "e9-polish-investigation",
+      "label": "Polish Institute of National Remembrance investigation (2004)",
+      "description": "Poland's Institute of National Remembrance conducted a comprehensive investigation confirming 21,768 victims across multiple execution sites (Katyn, Kalinin, Kharkiv). The investigation documented the crime as genocide under international law. Russia controversially closed its own parallel investigation in 2004 without releasing full findings.",
+      "date": "2004-11-30",
+      "likelihoodRatios": { "h1-german-responsibility": 0.02, "h2-soviet-responsibility": 0.98 },
+      "sourceReliability": 0.95,
+      "wasClassified": false,
+      "linkedNodeIds": ["n12-event-polish-investigation", "n9-claim-soviet-guilt"]
+    },
+    {
+      "id": "e10-duma-declaration",
+      "label": "Russian State Duma acknowledges Stalin's order (2010)",
+      "description": "On November 26, 2010, the Russian State Duma passed a declaration stating that the Katyn massacre was carried out on direct orders from Stalin and other Soviet leaders. This was the first formal acknowledgment by Russia's parliament, though some Russian officials continued to resist full accountability.",
+      "date": "2010-11-26",
+      "likelihoodRatios": { "h1-german-responsibility": 0.01, "h2-soviet-responsibility": 0.99 },
+      "sourceReliability": 0.95,
+      "wasClassified": false,
+      "linkedNodeIds": ["n15-event-duma", "n9-claim-soviet-guilt", "n14-narrative-revised"]
+    }
+  ],
+  "nodes": [
+    { "id": "n1-event-discovery", "type": "event", "label": "German discovery of mass graves at Katyn (Apr 1943)", "description": "German forces discover mass graves containing thousands of Polish officers in the Katyn forest near Smolensk.", "date": "1943-04-13", "confidence": 1.0, "metadata": {}, "caseStudyId": "katyn-massacre" },
+    { "id": "n2-event-execution-order", "type": "event", "label": "Stalin signs Politburo execution order (Mar 5, 1940)", "description": "Stalin, Voroshilov, Molotov, and Mikoyan approve Beria's proposal to execute 25,700 Polish prisoners of war.", "date": "1940-03-05", "confidence": 0.99, "metadata": {}, "caseStudyId": "katyn-massacre" },
+    { "id": "n3-event-nuremberg", "type": "event", "label": "Nuremberg Trials — Katyn charge dropped (1946)", "description": "The Soviet Union attempts to include Katyn among Nazi war crimes at Nuremberg but the charge is quietly dropped after German defense challenges.", "date": "1946-07-01", "confidence": 1.0, "metadata": {}, "caseStudyId": "katyn-massacre" },
+    { "id": "n4-actor-burdenko", "type": "actor", "label": "Burdenko Commission", "description": "Soviet investigative commission that fabricated evidence to blame Germany for the Katyn massacre.", "date": "1944-01-24", "confidence": 1.0, "metadata": { "role": "Soviet propaganda commission" }, "caseStudyId": "katyn-massacre" },
+    { "id": "n5-actor-ussr", "type": "actor", "label": "Soviet Union / NKVD", "description": "The Soviet state security apparatus that carried out the mass executions and maintained the cover-up for decades.", "date": "1940-04-01", "confidence": 1.0, "metadata": { "role": "Perpetrator and cover-up orchestrator" }, "caseStudyId": "katyn-massacre" },
+    { "id": "n6-actor-polish-gov", "type": "actor", "label": "Polish Government-in-Exile", "description": "The London-based Polish government that demanded an international investigation and was diplomatically punished by the USSR.", "date": "1943-04-17", "confidence": 1.0, "metadata": { "role": "Government-in-exile" }, "caseStudyId": "katyn-massacre" },
+    { "id": "n7-actor-gorbachev", "type": "actor", "label": "Mikhail Gorbachev", "description": "Soviet leader who officially acknowledged Soviet responsibility for Katyn in 1990.", "date": "1990-04-13", "confidence": 1.0, "metadata": { "role": "General Secretary of the CPSU" }, "caseStudyId": "katyn-massacre" },
+    { "id": "n8-claim-german-guilt", "type": "claim", "label": "Germany committed the Katyn massacre in 1941", "description": "The official Soviet claim maintained from 1943 to 1990 that Nazi Germany executed the Polish prisoners during their occupation of the Smolensk region.", "date": "1943-04-15", "confidence": 0.02, "metadata": {}, "caseStudyId": "katyn-massacre" },
+    { "id": "n9-claim-soviet-guilt", "type": "claim", "label": "The NKVD executed the prisoners on Stalin's orders in 1940", "description": "The now-established historical truth that the Soviet NKVD carried out the mass executions in spring 1940.", "date": "1943-04-13", "confidence": 0.99, "metadata": {}, "caseStudyId": "katyn-massacre" },
+    { "id": "n10-evidence-forensic", "type": "evidence", "label": "Forensic evidence (decomposition, ammunition, binding)", "description": "Physical evidence from the exhumations: state of decomposition consistent with 1940, German-manufactured ammunition imported by NKVD, distinctive Soviet binding techniques.", "date": "1943-04-13", "confidence": 0.95, "metadata": {}, "caseStudyId": "katyn-massacre" },
+    { "id": "n11-evidence-archives", "type": "evidence", "label": "Sealed Packet No. 1 — Stalin's execution order", "description": "The original March 1940 Politburo decision document with Stalin's signature, Beria's proposal, and Shelepin's 1959 cover-up memo.", "date": "1992-10-14", "confidence": 0.99, "metadata": {}, "caseStudyId": "katyn-massacre" },
+    { "id": "n12-event-polish-investigation", "type": "event", "label": "Polish IPN investigation confirms 21,768 victims (2004)", "description": "Poland's Institute of National Remembrance concludes comprehensive investigation documenting the full scope of the massacre.", "date": "2004-11-30", "confidence": 0.98, "metadata": {}, "caseStudyId": "katyn-massacre" },
+    { "id": "n13-narrative-soviet", "type": "narrative", "label": "Official Soviet narrative: Nazi war crime", "description": "The Soviet propaganda narrative maintained for nearly 50 years blaming Germany for the Katyn massacre.", "date": "1943-04-15", "confidence": 0.02, "metadata": {}, "caseStudyId": "katyn-massacre" },
+    { "id": "n14-narrative-revised", "type": "narrative", "label": "Revised narrative: Stalinist crime acknowledged", "description": "The historical consensus established through forensic evidence, archive releases, and official admissions.", "date": "1990-04-13", "confidence": 0.99, "metadata": {}, "caseStudyId": "katyn-massacre" },
+    { "id": "n15-event-duma", "type": "event", "label": "Russian Duma formally acknowledges Stalin's order (2010)", "description": "The Russian parliament officially declares that the Katyn massacre was carried out on Stalin's direct orders.", "date": "2010-11-26", "confidence": 1.0, "metadata": {}, "caseStudyId": "katyn-massacre" }
+  ],
+  "edges": [
+    { "id": "e-1", "source": "n5-actor-ussr", "target": "n8-claim-german-guilt", "type": "fabricates", "weight": 0.95, "date": "1943-04-15", "metadata": { "detail": "Soviet Union fabricated the narrative blaming Germany to cover up NKVD executions" } },
+    { "id": "e-2", "source": "n4-actor-burdenko", "target": "n8-claim-german-guilt", "type": "claims", "weight": 0.9, "date": "1944-01-24", "metadata": {} },
+    { "id": "e-3", "source": "n8-claim-german-guilt", "target": "n9-claim-soviet-guilt", "type": "contradicts", "weight": 1.0, "metadata": {} },
+    { "id": "e-4", "source": "n5-actor-ussr", "target": "n6-actor-polish-gov", "type": "suppresses", "weight": 0.9, "date": "1943-04-25", "metadata": { "detail": "USSR severed diplomatic relations with Polish government-in-exile to suppress investigation demands" } },
+    { "id": "e-5", "source": "n10-evidence-forensic", "target": "n9-claim-soviet-guilt", "type": "cites", "weight": 0.9, "date": "1943-04-13", "metadata": {} },
+    { "id": "e-6", "source": "n11-evidence-archives", "target": "n9-claim-soviet-guilt", "type": "cites", "weight": 0.99, "date": "1992-10-14", "metadata": {} },
+    { "id": "e-7", "source": "n7-actor-gorbachev", "target": "n14-narrative-revised", "type": "claims", "weight": 0.95, "date": "1990-04-13", "metadata": {} },
+    { "id": "e-8", "source": "n2-event-execution-order", "target": "n1-event-discovery", "type": "precedes", "weight": 1.0, "date": "1940-03-05", "metadata": {} },
+    { "id": "e-9", "source": "n13-narrative-soviet", "target": "n14-narrative-revised", "type": "contradicts", "weight": 0.95, "metadata": {} },
+    { "id": "e-10", "source": "n5-actor-ussr", "target": "n3-event-nuremberg", "type": "benefits", "weight": 0.8, "date": "1946-07-01", "metadata": { "detail": "USSR attempted to use Nuremberg to permanently cement the false narrative" } },
+    { "id": "e-11", "source": "n5-actor-ussr", "target": "n10-evidence-forensic", "type": "suppresses", "weight": 0.85, "date": "1944-01-24", "metadata": { "detail": "Burdenko Commission tampered with forensic evidence and planted German cartridges" } },
+    { "id": "e-12", "source": "n1-event-discovery", "target": "n3-event-nuremberg", "type": "causes", "weight": 0.7, "date": "1943-04-13", "metadata": {} },
+    { "id": "e-13", "source": "n4-actor-burdenko", "target": "n10-evidence-forensic", "type": "fabricates", "weight": 0.85, "date": "1944-01-24", "metadata": { "detail": "Commission planted evidence and coerced witnesses to support the German-blame narrative" } }
+  ],
+  "causalFactors": [
+    { "id": "cf1", "type": "power_change", "label": "Soviet conquest and occupation of eastern Poland under Molotov-Ribbentrop Pact", "date": "1939-09-17" },
+    { "id": "cf2", "type": "institutional", "label": "NKVD decision to eliminate Polish leadership class as potential resistance", "date": "1940-03-05" },
+    { "id": "cf3", "type": "evidence_action", "label": "Burdenko Commission fabricates evidence and coerces witnesses", "date": "1944-01-24" },
+    { "id": "cf4", "type": "narrative_change", "label": "Cold War entrenchment of Soviet narrative — Western allies avoid confrontation", "date": "1946-07-01" },
+    { "id": "cf5", "type": "power_change", "label": "Glasnost and collapse of Soviet Union enables truth-telling", "date": "1990-04-13" },
+    { "id": "cf6", "type": "evidence_action", "label": "Archive release of Stalin's signed execution order", "date": "1992-10-14" }
+  ],
+  "causalLinks": [
+    { "from": "cf1", "to": "cf2", "mechanism": "Soviet occupation of eastern Poland placed 250,000 Polish POWs under NKVD control; Stalin viewed the officer class as an impediment to Sovietization", "strength": 0.9 },
+    { "from": "cf2", "to": "cf3", "mechanism": "After Germany discovered the graves, the USSR needed to fabricate an alternative narrative to deflect blame for the executions", "strength": 0.95 },
+    { "from": "cf3", "to": "cf4", "mechanism": "The fabricated Burdenko report became the basis for the Nuremberg charge; Cold War dynamics discouraged Western allies from challenging the Soviet account", "strength": 0.8, "timelag": "2 years" },
+    { "from": "cf4", "to": "cf5", "mechanism": "Decades of suppression ended only when Gorbachev's glasnost policy prioritized transparency over ideological control", "strength": 0.85, "timelag": "44 years" },
+    { "from": "cf5", "to": "cf6", "mechanism": "Gorbachev's admission opened the door for Yeltsin to release the actual archival documents proving Stalin's direct order", "strength": 0.9, "timelag": "2 years" }
+  ],
+  "timeSlices": [
+    {
+      "date": "1943-04-12",
+      "label": "Before discovery — Soviet narrative unchallenged",
+      "description": "The Polish officers have vanished. The Soviet Union claims they were released or transferred. No public knowledge of the massacre.",
+      "activeNodeIds": ["n2-event-execution-order", "n5-actor-ussr", "n6-actor-polish-gov"],
+      "activeEdgeIds": []
+    },
+    {
+      "date": "1944-01-25",
+      "label": "Soviet counter-narrative established",
+      "description": "Germany has discovered the graves and publicized the massacre. The Burdenko Commission produces its fabricated report blaming Germany. The USSR severs ties with the Polish government-in-exile.",
+      "activeNodeIds": ["n1-event-discovery", "n2-event-execution-order", "n4-actor-burdenko", "n5-actor-ussr", "n6-actor-polish-gov", "n8-claim-german-guilt", "n9-claim-soviet-guilt", "n10-evidence-forensic", "n13-narrative-soviet"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-8", "e-11", "e-13"],
+      "narrativeShift": "Two competing narratives emerge: Soviet blame on Germany vs. forensic evidence pointing to the USSR. Soviet diplomatic and propaganda power suppresses the truth."
+    },
+    {
+      "date": "1990-04-14",
+      "label": "Gorbachev acknowledges Soviet responsibility",
+      "description": "After nearly 50 years of denial, the Soviet Union officially admits the NKVD carried out the Katyn massacre. The official narrative collapses.",
+      "activeNodeIds": ["n1-event-discovery", "n2-event-execution-order", "n3-event-nuremberg", "n4-actor-burdenko", "n5-actor-ussr", "n6-actor-polish-gov", "n7-actor-gorbachev", "n8-claim-german-guilt", "n9-claim-soviet-guilt", "n10-evidence-forensic", "n13-narrative-soviet", "n14-narrative-revised"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-7", "e-8", "e-9", "e-10", "e-11", "e-13"],
+      "narrativeShift": "The Soviet government itself repudiates its own 47-year fabrication. The revised narrative becomes dominant."
+    },
+    {
+      "date": "2010-11-27",
+      "label": "Full historical acknowledgment",
+      "description": "Russian archives have confirmed Stalin's signed execution order. Poland's investigation has documented all victims. The Russian Duma formally acknowledges Stalin ordered the massacre.",
+      "activeNodeIds": ["n1-event-discovery", "n2-event-execution-order", "n3-event-nuremberg", "n4-actor-burdenko", "n5-actor-ussr", "n6-actor-polish-gov", "n7-actor-gorbachev", "n8-claim-german-guilt", "n9-claim-soviet-guilt", "n10-evidence-forensic", "n11-evidence-archives", "n12-event-polish-investigation", "n13-narrative-soviet", "n14-narrative-revised", "n15-event-duma"],
+      "activeEdgeIds": ["e-1", "e-2", "e-3", "e-4", "e-5", "e-6", "e-7", "e-8", "e-9", "e-10", "e-11", "e-12", "e-13"],
+      "narrativeShift": "The definitive reversal is complete: both archival proof and parliamentary acknowledgment confirm Soviet responsibility as established historical fact."
+    }
+  ]
+}
