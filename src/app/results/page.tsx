@@ -8,7 +8,7 @@ export default function ResultsListPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-      <h1 className="text-3xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Saved Results</h1>
+      <h1 className="text-3xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Saved Results</h1>
       <p className="text-sm mb-8" style={{ color: '#6b7374' }}>
         All saved analyses. Each result has a shareable link.
       </p>
@@ -18,7 +18,7 @@ export default function ResultsListPage() {
           <p className="text-sm mb-4" style={{ color: '#9ba2a3' }}>No saved results yet.</p>
           <div className="flex gap-3 justify-center">
             <Link href="/live" className="text-sm px-4 py-2 rounded-lg"
-              style={{ background: '#a23f00', color: 'white' }}>
+              style={{ background: '#e87b35', color: 'white' }}>
               Verify an Article
             </Link>
             <Link href="/challenge" className="text-sm px-4 py-2 rounded-lg"
@@ -40,7 +40,7 @@ export default function ResultsListPage() {
                     <span className="px-1.5 py-0.5 rounded"
                       style={{
                         background: r.type === 'live' ? 'rgba(162,63,0,0.06)' : 'rgba(42,125,76,0.06)',
-                        color: r.type === 'live' ? '#a23f00' : '#2a7d4c',
+                        color: r.type === 'live' ? '#e87b35' : '#2a7d4c',
                       }}>
                       {r.type === 'live' ? 'Article Verification' : 'Evidence Discovery'}
                     </span>

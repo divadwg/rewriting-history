@@ -2,8 +2,8 @@
 
 :root {
   /* Design System: The Scholarly Editorial */
-  --primary: #a23f00;
-  --primary-dim: #8f3600;
+  --primary: #e87b35;
+  --primary-dim: #d06a2a;
   --on-primary: #ffffff;
 
   --surface: #f9f9f9;
@@ -18,8 +18,8 @@
   --outline: #757c7d;
   --outline-variant: #c4cbcc;
 
-  --success: #2a7d4c;
-  --danger: #a23f00;
+  --success: #2a9d5c;
+  --danger: #c44536;
   --warning: #c47a20;
 
   /* Legacy aliases for graph/components */
@@ -33,16 +33,16 @@
   --surface-2: var(--surface-low);
 
   /* Font families */
-  --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Work Sans', system-ui, -apple-system, sans-serif;
-  --font-mono: 'DM Mono', 'SF Mono', monospace;
+  --font-serif: "EB Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "DM Mono", "SF Mono", monospace;
 }
 
 @theme inline {
   --color-background: var(--surface);
   --color-foreground: var(--on-surface);
-  --font-sans: 'Work Sans', system-ui, -apple-system, sans-serif;
-  --font-mono: 'DM Mono', 'SF Mono', monospace;
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "DM Mono", "SF Mono", monospace;
 }
 
 body {
@@ -145,7 +145,8 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 /* Input focus style */
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   outline: none;
 }
 

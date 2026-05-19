@@ -1,12 +1,17 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { ApiKeyProvider, ApiKeyBanner, ApiKeySettings } from "@/components/ApiKeyProvider";
-import { ScribbleLogo } from "@/components/ScribbleLogo";
-import MobileNav from "@/components/MobileNav";
+import type { Metadata } from 'next';
+import './globals.css';
+import {
+  ApiKeyProvider,
+  ApiKeyBanner,
+  ApiKeySettings,
+} from '@/components/ApiKeyProvider';
+import { ScribbleLogo } from '@/components/ScribbleLogo';
+import MobileNav from '@/components/MobileNav';
 
 export const metadata: Metadata = {
-  title: "Rewriting History",
-  description: "A scientific approach to detecting historical inconsistencies using Bayesian inference, causal models, and knowledge graphs.",
+  title: 'Rewriting History',
+  description:
+    'A scientific approach to detecting historical inconsistencies using Bayesian inference, causal models, and knowledge graphs.',
 };
 
 export default function RootLayout({
@@ -15,44 +20,80 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className="h-full antialiased"
-    >
+    <html lang="en" className="h-full antialiased">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=DM+Sans:ital,wght@0,400..700;1,400..700&family=DM+Mono:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
       </head>
-      <body className="min-h-full flex flex-col" style={{ background: '#f9f9f9', color: '#2d3435' }}>
+      <body
+        className="min-h-full flex flex-col"
+        style={{ background: '#f9f9f9', color: '#2d3435' }}
+      >
         <ApiKeyProvider>
           <nav className="glass-nav sticky top-0 z-50 px-4 sm:px-6 py-3 flex items-center gap-4 sm:gap-8">
             <a href="/" className="flex items-center gap-2 flex-shrink-0">
               <ScribbleLogo size={28} />
-              <span className="text-xs sm:text-sm font-medium tracking-widest uppercase hidden sm:inline"
-                style={{ color: '#2d3435', fontFamily: "'DM Mono', monospace" }}>
+              <span
+                className="text-xs sm:text-sm font-medium tracking-widest uppercase hidden sm:inline"
+                style={{ color: '#2d3435', fontFamily: "'DM Mono', monospace" }}
+              >
                 REWRITING HISTORY
               </span>
             </a>
             {/* Desktop nav */}
-            <div className="hidden md:flex gap-5 text-sm flex-1" style={{ fontFamily: "'Work Sans', sans-serif" }}>
-              <a href="/cases" className="hover:opacity-70 transition-opacity" style={{ color: '#6b7374' }}>
+            <div
+              className="hidden md:flex gap-5 text-sm flex-1"
+              style={{ fontFamily: "'DM Sans', sans-serif" }}
+            >
+              <a
+                href="/cases"
+                className="hover:opacity-70 transition-opacity"
+                style={{ color: '#6b7374' }}
+              >
                 Case Studies
               </a>
-              <a href="/live" className="hover:opacity-70 transition-opacity" style={{ color: '#6b7374' }}>
+              <a
+                href="/live"
+                className="hover:opacity-70 transition-opacity"
+                style={{ color: '#6b7374' }}
+              >
                 Live Analysis
               </a>
-              <a href="/challenge" className="hover:opacity-70 transition-opacity font-semibold" style={{ color: '#a23f00' }}>
+              <a
+                href="/challenge"
+                className="hover:opacity-70 transition-opacity font-semibold"
+                style={{ color: '#e87b35' }}
+              >
                 Evidence Discovery
               </a>
-              <a href="/results" className="hover:opacity-70 transition-opacity" style={{ color: '#6b7374' }}>
+              <a
+                href="/results"
+                className="hover:opacity-70 transition-opacity"
+                style={{ color: '#6b7374' }}
+              >
                 Results
               </a>
-              <a href="/validation" className="hover:opacity-70 transition-opacity" style={{ color: '#6b7374' }}>
+              <a
+                href="/validation"
+                className="hover:opacity-70 transition-opacity"
+                style={{ color: '#6b7374' }}
+              >
                 Validation
               </a>
-              <a href="/help" className="hover:opacity-70 transition-opacity" style={{ color: '#6b7374' }}>
+              <a
+                href="/help"
+                className="hover:opacity-70 transition-opacity"
+                style={{ color: '#6b7374' }}
+              >
                 Help
               </a>
             </div>
@@ -77,4 +118,4 @@ function NavSettingsButton() {
 }
 
 // Separate client component for the nav button
-import { NavSettingsButtonClient } from "@/components/NavSettingsButton";
+import { NavSettingsButtonClient } from '@/components/NavSettingsButton';

@@ -88,9 +88,9 @@ function formatProb(v: number): string {
 
 const STATUS_COLORS: Record<string, string> = {
   supported: '#2a7d4c',
-  partially_supported: '#a23f00',
-  unsupported: '#a23f00',
-  contradicted: '#a23f00',
+  partially_supported: '#e87b35',
+  unsupported: '#e87b35',
+  contradicted: '#e87b35',
   unverifiable: '#9ba2a3',
 };
 
@@ -240,7 +240,7 @@ export default function LivePage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-      <h1 className="text-3xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Live Article Verification</h1>
+      <h1 className="text-3xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Live Article Verification</h1>
       <p className="text-sm mb-2" style={{ color: '#6b7374' }}>
         Enter an article URL or paste text. The system extracts every verifiable claim, gathers <strong>independent
         evidence</strong> from outside the article, runs Bayesian inference, and tells you which claims
@@ -280,7 +280,7 @@ export default function LivePage() {
                     disabled={fetching || !urlInput.trim()}
                     className="px-6 py-3 rounded-lg font-bold text-sm transition-opacity"
                     style={{
-                      background: fetching ? '#8f3600' : '#a23f00',
+                      background: fetching ? '#d06a2a' : '#e87b35',
                       color: 'white',
                       opacity: fetching || !urlInput.trim() ? 0.5 : 1,
                     }}
@@ -357,7 +357,7 @@ export default function LivePage() {
                 disabled={loading || articleText.trim().length < 50}
                 className="px-6 py-3 rounded-lg font-bold text-sm transition-opacity"
                 style={{
-                  background: '#a23f00',
+                  background: '#e87b35',
                   color: 'white',
                   opacity: articleText.trim().length < 50 ? 0.5 : 1,
                 }}
@@ -379,7 +379,7 @@ export default function LivePage() {
                     <div className="flex flex-wrap gap-3 text-xs font-mono" style={{ color: '#9ba2a3' }}>
                       {articleUrl && (
                         <a href={articleUrl} target="_blank" rel="noopener noreferrer"
-                          className="hover:underline" style={{ color: '#a23f00' }}>
+                          className="hover:underline" style={{ color: '#e87b35' }}>
                           {new URL(articleUrl).hostname}
                         </a>
                       )}
@@ -425,7 +425,7 @@ export default function LivePage() {
                 onClick={analyze}
                 disabled={loading}
                 className="px-6 py-3 rounded-lg font-bold text-sm transition-opacity"
-                style={{ background: '#a23f00', color: 'white' }}
+                style={{ background: '#e87b35', color: 'white' }}
               >
                 Verify Claims
               </button>
@@ -433,7 +433,7 @@ export default function LivePage() {
           )}
 
           {error && (
-            <div className="text-xs rounded-lg p-3" style={{ background: 'rgba(162,63,0,0.06)', color: '#a23f00' }}>
+            <div className="text-xs rounded-lg p-3" style={{ background: 'rgba(162,63,0,0.06)', color: '#e87b35' }}>
               {error}
             </div>
           )}
@@ -449,7 +449,7 @@ export default function LivePage() {
             </div>
           )}
           <div className="inline-block w-10 h-10 rounded-full border-2 animate-spin mb-4"
-            style={{ borderColor: 'rgba(196,203,204,0.15)', borderTopColor: '#a23f00' }} />
+            style={{ borderColor: 'rgba(196,203,204,0.15)', borderTopColor: '#e87b35' }} />
           <div className="text-sm font-medium" style={{ color: '#2d3435' }}>{loadingStep}</div>
           <div className="text-xs mt-3 max-w-lg mx-auto" style={{ color: '#9ba2a3' }}>
             The system extracts claims, gathers independent evidence, runs Bayesian inference,
@@ -463,9 +463,9 @@ export default function LivePage() {
               return (
                 <div key={step} className="flex items-center gap-2">
                   <div className="text-xs px-2 py-1 rounded font-mono" style={{
-                    background: isActive ? '#a23f00' : isDone ? 'rgba(42,125,76,0.06)' : '#f2f4f4',
+                    background: isActive ? '#e87b35' : isDone ? 'rgba(42,125,76,0.06)' : '#f2f4f4',
                     color: isActive ? '#ffffff' : isDone ? '#2a7d4c' : '#9ba2a3',
-                    border: `1px solid ${isActive ? '#a23f00' : isDone ? 'rgba(42,125,76,0.18)' : 'rgba(196,203,204,0.15)'}`,
+                    border: `1px solid ${isActive ? '#e87b35' : isDone ? 'rgba(42,125,76,0.18)' : 'rgba(196,203,204,0.15)'}`,
                   }}>
                     {step}
                   </div>
@@ -489,7 +489,7 @@ export default function LivePage() {
                   <div className="flex flex-wrap gap-3 text-xs font-mono mt-1" style={{ color: '#9ba2a3' }}>
                     {articleUrl && (
                       <a href={articleUrl} target="_blank" rel="noopener noreferrer"
-                        className="hover:underline" style={{ color: '#a23f00' }}>
+                        className="hover:underline" style={{ color: '#e87b35' }}>
                         {(() => { try { return new URL(articleUrl).hostname; } catch { return articleUrl; } })()}
                       </a>
                     )}
@@ -502,7 +502,7 @@ export default function LivePage() {
                     disabled={saving || !!shareUrl}
                     className="text-xs px-3 py-1 rounded font-bold transition-colors"
                     style={{
-                      background: shareUrl ? '#2a7d4c' : '#a23f00',
+                      background: shareUrl ? '#2a7d4c' : '#e87b35',
                       color: 'white',
                       opacity: saving ? 0.5 : 1,
                     }}
@@ -537,7 +537,7 @@ export default function LivePage() {
               <button
                 onClick={() => { navigator.clipboard.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
                 className="text-xs font-bold px-3 py-1 rounded flex-shrink-0"
-                style={{ background: copied ? '#2a7d4c' : '#a23f00', color: 'white' }}
+                style={{ background: copied ? '#2a7d4c' : '#e87b35', color: 'white' }}
               >
                 {copied ? 'Copied' : 'Copy'}
               </button>
@@ -564,7 +564,7 @@ export default function LivePage() {
           {/* Overall Assessment */}
           {result.synthesis?.overallAssessment && (
             <div className="rounded-lg p-5" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.15)' }}>
-              <div className="text-xs font-bold mb-1" style={{ color: '#a23f00' }}>OVERALL ASSESSMENT</div>
+              <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>OVERALL ASSESSMENT</div>
               <p className="text-base leading-relaxed" style={{ color: '#2d3435' }}>
                 {result.synthesis.overallAssessment}
               </p>
@@ -573,7 +573,7 @@ export default function LivePage() {
 
           {/* Bayesian Posteriors */}
           <div>
-            <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Article Reliability — Bayesian Posteriors</h3>
+            <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Article Reliability — Bayesian Posteriors</h3>
             <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
               Computed from {result.evidence.length} independent evidence items.
             </p>
@@ -595,7 +595,7 @@ export default function LivePage() {
                     <div className="w-full h-4 rounded-full" style={{ background: '#eeeeee' }}>
                       <div className="h-full rounded-full transition-all duration-700" style={{
                         width: `${Math.max(h.posterior * 100, 2)}%`,
-                        background: isWinner ? '#2a7d4c' : h.isOfficial ? '#a23f00' : '#9ba2a3',
+                        background: isWinner ? '#2a7d4c' : h.isOfficial ? '#e87b35' : '#9ba2a3',
                       }} />
                     </div>
                   </div>
@@ -606,7 +606,7 @@ export default function LivePage() {
 
           {/* Claim-by-Claim Verification */}
           <div>
-            <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>
+            <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>
               Claim-by-Claim Verification ({result.claims.length} claims)
             </h3>
             <div className="space-y-3">
@@ -634,7 +634,7 @@ export default function LivePage() {
                     <div className="flex flex-wrap gap-3 text-xs mb-2" style={{ color: '#9ba2a3' }}>
                       <span>By: {claim.claimant} ({claim.claimantRole})</span>
                       {claim.benefitsClaimant && (
-                        <span className="font-mono" style={{ color: '#a23f00' }}>SELF-SERVING</span>
+                        <span className="font-mono" style={{ color: '#e87b35' }}>SELF-SERVING</span>
                       )}
                       <span>Confidence: {claim.confidenceLanguage}</span>
                       <span>Article cites: {claim.evidenceCited}</span>
@@ -647,7 +647,7 @@ export default function LivePage() {
                             {verification.verifyUrl && (
                               <a href={verification.verifyUrl} target="_blank" rel="noopener noreferrer"
                                 className="inline-flex items-center gap-1 font-mono hover:underline"
-                                style={{ color: '#a23f00' }}>
+                                style={{ color: '#e87b35' }}>
                                 [source]
                               </a>
                             )}
@@ -671,7 +671,7 @@ export default function LivePage() {
           {/* Contradictions / Hypocrisy */}
           {result.contradictions && result.contradictions.length > 0 && (
             <div>
-              <h3 className="text-lg font-bold mb-1" style={{ color: '#a23f00', fontFamily: "'Newsreader', serif" }}>
+              <h3 className="text-lg font-bold mb-1" style={{ color: '#e87b35', fontFamily: "'EB Garamond', serif" }}>
                 Contradictions &amp; Past Statements ({result.contradictions.length})
               </h3>
               <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
@@ -682,7 +682,7 @@ export default function LivePage() {
                 {result.contradictions
                   .sort((a, b) => b.severity - a.severity)
                   .map(x => {
-                    const severityColor = x.severity >= 4 ? '#a23f00' : x.severity >= 3 ? '#a23f00' : '#8f3600';
+                    const severityColor = x.severity >= 4 ? '#e87b35' : x.severity >= 3 ? '#e87b35' : '#d06a2a';
                     const typeLabel: Record<string, string> = {
                       direct_reversal: 'DIRECT REVERSAL',
                       selective_memory: 'SELECTIVE MEMORY',
@@ -710,7 +710,7 @@ export default function LivePage() {
 
                         <div className="grid md:grid-cols-2 gap-3 mb-3">
                           <div className="rounded p-3" style={{ background: '#f2f4f4' }}>
-                            <div className="text-xs font-mono mb-1" style={{ color: '#a23f00' }}>
+                            <div className="text-xs font-mono mb-1" style={{ color: '#e87b35' }}>
                               NOW ({x.currentDate})
                             </div>
                             <p className="text-xs leading-relaxed" style={{ color: '#2d3435' }}>
@@ -718,7 +718,7 @@ export default function LivePage() {
                             </p>
                           </div>
                           <div className="rounded p-3" style={{ background: 'rgba(162,63,0,0.06)' }}>
-                            <div className="text-xs font-mono mb-1" style={{ color: '#a23f00' }}>
+                            <div className="text-xs font-mono mb-1" style={{ color: '#e87b35' }}>
                               PREVIOUSLY ({x.pastDate})
                             </div>
                             <p className="text-xs leading-relaxed" style={{ color: '#2d3435' }}>
@@ -736,7 +736,7 @@ export default function LivePage() {
                             <span className="ml-2">
                               {x.sourceUrl && (
                                 <a href={x.sourceUrl} target="_blank" rel="noopener noreferrer"
-                                  className="font-mono hover:underline" style={{ color: '#a23f00' }}>
+                                  className="font-mono hover:underline" style={{ color: '#e87b35' }}>
                                   [source]
                                 </a>
                               )}
@@ -758,7 +758,7 @@ export default function LivePage() {
 
           {/* Independent Evidence */}
           <div>
-            <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Independent Evidence Gathered</h3>
+            <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Independent Evidence Gathered</h3>
             <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
               {result.evidence.length} items from sources outside the article, sorted by Bayesian impact.
             </p>
@@ -773,7 +773,7 @@ export default function LivePage() {
                   <div key={e.id} className="rounded-lg p-4" style={{
                     background: '#ffffff',
                     border: '1px solid rgba(196,203,204,0.15)',
-                    borderLeftColor: e.supports === true ? '#2a7d4c' : e.supports === false ? '#a23f00' : '#9ba2a3',
+                    borderLeftColor: e.supports === true ? '#2a7d4c' : e.supports === false ? '#e87b35' : '#9ba2a3',
                     borderLeftWidth: '3px',
                   }}>
                     <div className="flex items-start justify-between gap-3">
@@ -785,14 +785,14 @@ export default function LivePage() {
                           <span>reliability: {(e.sourceReliability * 100).toFixed(0)}%</span>
                           <span className="px-1 rounded" style={{
                             background: e.type === 'statistic' ? 'rgba(162,63,0,0.06)' : e.type === 'unverifiable_recent' ? 'rgba(162,63,0,0.06)' : '#f2f4f4',
-                            color: e.type === 'statistic' ? '#8f3600' : e.type === 'unverifiable_recent' ? '#a23f00' : '#9ba2a3',
+                            color: e.type === 'statistic' ? '#d06a2a' : e.type === 'unverifiable_recent' ? '#e87b35' : '#9ba2a3',
                           }}>
                             {e.type.replace(/_/g, ' ')}
                           </span>
-                          {e.dataPoint && <span style={{ color: '#a23f00' }}>Data: {e.dataPoint}</span>}
+                          {e.dataPoint && <span style={{ color: '#e87b35' }}>Data: {e.dataPoint}</span>}
                           {e.sourceUrl && (
                             <a href={e.sourceUrl} target="_blank" rel="noopener noreferrer"
-                              className="hover:underline" style={{ color: '#a23f00' }}>
+                              className="hover:underline" style={{ color: '#e87b35' }}>
                               [source]
                             </a>
                           )}
@@ -805,7 +805,7 @@ export default function LivePage() {
                         </div>
                       </div>
                       <div className="text-xs font-mono text-right flex-shrink-0" style={{
-                        color: impact > 0.3 ? '#a23f00' : '#9ba2a3',
+                        color: impact > 0.3 ? '#e87b35' : '#9ba2a3',
                       }}>
                         impact<br />{(impact * 100).toFixed(0)}%
                       </div>
@@ -818,7 +818,7 @@ export default function LivePage() {
           {/* Missing Context */}
           {result.synthesis?.missingContext && (
             <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
-              <div className="text-xs font-bold mb-1" style={{ color: '#a23f00' }}>CONTEXT THE ARTICLE OMITS</div>
+              <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>CONTEXT THE ARTICLE OMITS</div>
               <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>
                 {result.synthesis.missingContext}
               </p>
@@ -838,11 +838,11 @@ export default function LivePage() {
           {/* Recommendations */}
           {result.synthesis?.recommendations && result.synthesis.recommendations.length > 0 && (
             <div>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>How to Verify Further</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>How to Verify Further</h3>
               <div className="space-y-2">
                 {result.synthesis.recommendations.map((rec, i) => (
                   <div key={i} className="flex items-start gap-3 rounded-lg p-4" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
-                    <span className="text-sm font-mono font-bold flex-shrink-0" style={{ color: '#a23f00' }}>{i + 1}.</span>
+                    <span className="text-sm font-mono font-bold flex-shrink-0" style={{ color: '#e87b35' }}>{i + 1}.</span>
                     <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>{rec}</p>
                   </div>
                 ))}

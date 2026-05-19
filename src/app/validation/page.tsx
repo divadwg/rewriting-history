@@ -3,21 +3,21 @@ import { getAllCases } from "@/lib/data";
 import { runValidation, type ValidationResult } from "@/lib/engine/fragility";
 
 function fragilityColor(score: number): string {
-  if (score >= 0.7) return '#a23f00';
+  if (score >= 0.7) return '#e87b35';
   if (score >= 0.5) return '#c47a20';
-  if (score >= 0.3) return '#8f3600';
+  if (score >= 0.3) return '#d06a2a';
   return '#2a7d4c';
 }
 
 function certaintyColor(score: number): string {
   if (score >= 0.7) return '#2a7d4c';
   if (score >= 0.4) return '#c47a20';
-  return '#a23f00';
+  return '#e87b35';
 }
 
 function statusColor(status: string): string {
   switch (status) {
-    case 'overturned': return '#a23f00';
+    case 'overturned': return '#e87b35';
     case 'confirmed': return '#2a7d4c';
     case 'contested': return '#c47a20';
     default: return '#9ba2a3';
@@ -59,7 +59,7 @@ export default function ValidationPage() {
       {/* Title + intro */}
       <div className="mb-8 sm:mb-10">
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 tracking-tight"
-          style={{ fontFamily: "'Newsreader', serif", color: '#2d3435' }}>
+          style={{ fontFamily: "'EB Garamond', serif", color: '#2d3435' }}>
           Validation Experiment
         </h1>
         <p className="text-sm leading-relaxed max-w-3xl mb-4" style={{ color: '#6b7374' }}>
@@ -79,7 +79,7 @@ export default function ValidationPage() {
         <h2 className="text-sm font-bold mb-3" style={{ color: '#2d3435' }}>How to read the results</h2>
         <div className="grid md:grid-cols-2 gap-5 sm:gap-6 text-xs leading-relaxed" style={{ color: '#6b7374' }}>
           <div>
-            <div className="font-bold mb-1" style={{ color: '#a23f00' }}>Structural fragility (0–100)</div>
+            <div className="font-bold mb-1" style={{ color: '#e87b35' }}>Structural fragility (0–100)</div>
             <p className="mb-2">
               Measures <em>manipulation hallmarks</em> in how the narrative was constructed and maintained:
               Was evidence suppressed? Were dissenters punished? Did the narrative primarily benefit those in power?
@@ -119,19 +119,19 @@ export default function ValidationPage() {
           label="Structural detection"
           value={overturnedWithPre > 0 ? `${overturnedDetected}/${overturnedWithPre}` : 'N/A'}
           detail="Overturned cases flagged as fragile during active suppression"
-          color="#a23f00"
+          color="#e87b35"
         />
         <SummaryCard
           label="False positives"
           value={confirmed.length > 0 ? `${confirmedFP}/${confirmed.length}` : 'N/A'}
           detail="Confirmed narratives incorrectly flagged as fragile"
-          color={confirmedFP === 0 ? '#2a7d4c' : '#a23f00'}
+          color={confirmedFP === 0 ? '#2a7d4c' : '#e87b35'}
         />
         <SummaryCard
           label="Structural gap"
           value={`${(avgOverturnedStructural * 100).toFixed(0)} vs ${(avgConfirmedStructural * 100).toFixed(0)}`}
           detail="Avg structural score: overturned vs confirmed"
-          color="#a23f00"
+          color="#e87b35"
         />
         <SummaryCard
           label="Certainty shift"
@@ -156,7 +156,7 @@ export default function ValidationPage() {
               <tr style={{ background: '#f2f4f4' }}>
                 <th className="text-left px-4 py-3 font-bold text-xs" style={{ color: '#2d3435' }}>Case</th>
                 <th className="text-center px-2 py-3 font-bold text-xs" style={{ color: '#2d3435' }}>Status</th>
-                <th className="text-center px-2 py-3 font-bold text-xs" style={{ color: '#a23f00' }} colSpan={2}>Structural</th>
+                <th className="text-center px-2 py-3 font-bold text-xs" style={{ color: '#e87b35' }} colSpan={2}>Structural</th>
                 <th className="text-center px-2 py-3 font-bold text-xs" style={{ color: '#2a7d4c' }} colSpan={2}>Certainty</th>
                 <th className="text-center px-2 py-3 font-bold text-xs" style={{ color: '#2d3435' }}>Peak</th>
               </tr>
@@ -174,7 +174,7 @@ export default function ValidationPage() {
               {overturned.length > 0 && (
                 <tr style={{ background: '#f9f9f9' }}>
                   <td colSpan={7} className="px-4 pt-4 pb-1">
-                    <span className="text-[10px] font-mono font-bold tracking-wide" style={{ color: '#a23f00' }}>
+                    <span className="text-[10px] font-mono font-bold tracking-wide" style={{ color: '#e87b35' }}>
                       OVERTURNED — official narrative was later proven false
                     </span>
                   </td>
@@ -219,9 +219,9 @@ export default function ValidationPage() {
       {/* Significance section — findings box with terracotta left accent, no border */}
       <div className="rounded-lg overflow-hidden mb-8 sm:mb-10" style={{ background: '#ffffff', outline: '1px solid rgba(196,203,204,0.15)' }}>
         <div className="flex">
-          <div className="w-1 flex-shrink-0 rounded-l-lg" style={{ background: '#a23f00' }} />
+          <div className="w-1 flex-shrink-0 rounded-l-lg" style={{ background: '#e87b35' }} />
           <div className="flex-1 p-5 sm:p-6">
-            <h2 className="text-base sm:text-lg font-bold mb-1" style={{ fontFamily: "'Newsreader', serif", color: '#2d3435' }}>
+            <h2 className="text-base sm:text-lg font-bold mb-1" style={{ fontFamily: "'EB Garamond', serif", color: '#2d3435' }}>
               Is this significant?
             </h2>
             <p className="text-xs mb-5" style={{ color: '#9ba2a3' }}>
@@ -233,11 +233,11 @@ export default function ValidationPage() {
               <div>
                 <div className="flex items-center gap-2 mb-1.5">
                   <span className="text-xs font-mono font-bold px-2 py-0.5 rounded"
-                    style={{ background: 'rgba(162,63,0,0.06)', color: '#a23f00' }}>TEST 1</span>
+                    style={{ background: 'rgba(162,63,0,0.06)', color: '#e87b35' }}>TEST 1</span>
                   <strong style={{ color: '#2d3435' }}>Can it tell real from fake?</strong>
                 </div>
                 <p className="mb-1">
-                  Overturned narratives average <strong style={{ color: '#a23f00' }}>{(avgOverturnedStructural * 100).toFixed(0)}</strong> structural
+                  Overturned narratives average <strong style={{ color: '#e87b35' }}>{(avgOverturnedStructural * 100).toFixed(0)}</strong> structural
                   fragility vs <strong style={{ color: '#2a7d4c' }}>{(avgConfirmedStructural * 100).toFixed(0)}</strong> for confirmed.
                   Using a threshold of 30, the framework correctly flags{' '}
                   <strong style={{ color: '#2d3435' }}>{overturnedDetected} of {overturnedWithPre} overturned cases</strong> as
@@ -255,14 +255,14 @@ export default function ValidationPage() {
               <div>
                 <div className="flex items-center gap-2 mb-1.5">
                   <span className="text-xs font-mono font-bold px-2 py-0.5 rounded"
-                    style={{ background: 'rgba(162,63,0,0.06)', color: '#a23f00' }}>TEST 2</span>
+                    style={{ background: 'rgba(162,63,0,0.06)', color: '#e87b35' }}>TEST 2</span>
                   <strong style={{ color: '#2d3435' }}>Does it work without hindsight?</strong>
                 </div>
                 <p className="mb-1">
                   The structural score is nearly identical during active suppression and after the truth emerges.
-                  For example, the Gulf of Tonkin scored <strong style={{ color: '#a23f00' }}>52</strong> at peak
+                  For example, the Gulf of Tonkin scored <strong style={{ color: '#e87b35' }}>52</strong> at peak
                   suppression (1967, before any documents were declassified) and{' '}
-                  <strong style={{ color: '#a23f00' }}>49</strong> today — an analyst in 1967 would have
+                  <strong style={{ color: '#e87b35' }}>49</strong> today — an analyst in 1967 would have
                   flagged it correctly. Across all overturned cases, the "then" vs "now" structural scores track closely.
                 </p>
                 <p style={{ color: '#9ba2a3' }}>
@@ -277,14 +277,14 @@ export default function ValidationPage() {
               <div>
                 <div className="flex items-center gap-2 mb-1.5">
                   <span className="text-xs font-mono font-bold px-2 py-0.5 rounded"
-                    style={{ background: 'rgba(162,63,0,0.06)', color: '#a23f00' }}>TEST 3</span>
+                    style={{ background: 'rgba(162,63,0,0.06)', color: '#e87b35' }}>TEST 3</span>
                   <strong style={{ color: '#2d3435' }}>Does the temporal model behave correctly?</strong>
                 </div>
                 {withCertaintyShift.length > 0 ? (
                   <>
                     <p className="mb-1">
                       Evidential certainty averages{' '}
-                      <strong style={{ color: '#a23f00' }}>{(avgPreCertainty * 100).toFixed(0)}</strong> during peak
+                      <strong style={{ color: '#e87b35' }}>{(avgPreCertainty * 100).toFixed(0)}</strong> during peak
                       suppression and <strong style={{ color: '#2a7d4c' }}>{(avgPostCertainty * 100).toFixed(0)}</strong>{' '}
                       after declassification — an average jump of <strong style={{ color: '#2a7d4c' }}>+{(avgCertaintyDelta * 100).toFixed(0)}</strong>{' '}
                       points across {withCertaintyShift.length} cases. The largest shifts: Gulf of Tonkin (+53),
@@ -331,7 +331,7 @@ export default function ValidationPage() {
       {/* Contested cases — predictions */}
       {contested.length > 0 && (
         <div className="mb-8 sm:mb-10">
-          <h2 className="text-lg sm:text-xl font-bold mb-2" style={{ fontFamily: "'Newsreader', serif", color: '#2d3435' }}>
+          <h2 className="text-lg sm:text-xl font-bold mb-2" style={{ fontFamily: "'EB Garamond', serif", color: '#2d3435' }}>
             Predictions: Contested Cases
           </h2>
           <p className="text-sm leading-relaxed mb-2" style={{ color: '#6b7374' }}>
@@ -357,7 +357,7 @@ export default function ValidationPage() {
 
       {/* Methodology */}
       <div className="rounded-lg p-5 sm:p-6" style={{ background: '#ffffff', outline: '1px solid rgba(196,203,204,0.15)' }}>
-        <h2 className="text-base sm:text-lg font-bold mb-3" style={{ fontFamily: "'Newsreader', serif", color: '#2d3435' }}>
+        <h2 className="text-base sm:text-lg font-bold mb-3" style={{ fontFamily: "'EB Garamond', serif", color: '#2d3435' }}>
           Methodology
         </h2>
         <div className="text-sm leading-relaxed space-y-3" style={{ color: '#6b7374' }}>
@@ -495,7 +495,7 @@ function PredictionCard({ result: r }: { result: ValidationResult }) {
   let predictionExplain: string;
   if (highStructural && lowCertainty) {
     prediction = 'LIKELY TO BE REVISED';
-    predictionColor = '#a23f00';
+    predictionColor = '#e87b35';
     predictionExplain = 'Manipulation hallmarks are present and the evidence hasn\'t settled. Future disclosures or declassifications are most likely to overturn or significantly revise this narrative.';
   } else if (highStructural && !lowCertainty) {
     prediction = 'EVIDENCE SETTLED AGAINST NARRATIVE';
@@ -531,7 +531,7 @@ function PredictionCard({ result: r }: { result: ValidationResult }) {
   return (
     <div className="rounded-lg p-4 sm:p-5" style={{ background: '#ffffff', outline: '1px solid rgba(196,203,204,0.15)', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
       <div className="flex items-start justify-between gap-3 sm:gap-4 mb-2">
-        <Link href={`/cases/${r.caseId}`} className="text-base sm:text-lg font-bold hover:underline leading-snug" style={{ fontFamily: "'Newsreader', serif", color: '#2d3435' }}>
+        <Link href={`/cases/${r.caseId}`} className="text-base sm:text-lg font-bold hover:underline leading-snug" style={{ fontFamily: "'EB Garamond', serif", color: '#2d3435' }}>
           {r.title}
         </Link>
         <div className="flex gap-3 flex-shrink-0">
@@ -560,7 +560,7 @@ function PredictionCard({ result: r }: { result: ValidationResult }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <div className="text-[10px] font-mono font-bold mb-1.5 tracking-wide" style={{ color: '#a23f00' }}>STRUCTURAL COMPONENTS</div>
+          <div className="text-[10px] font-mono font-bold mb-1.5 tracking-wide" style={{ color: '#e87b35' }}>STRUCTURAL COMPONENTS</div>
           <div className="space-y-1.5">
             {structuralComponents.filter(([, v]) => v > 0).map(([label, value]) => (
               <div key={label} className="flex items-center gap-2 text-xs">
@@ -568,7 +568,7 @@ function PredictionCard({ result: r }: { result: ValidationResult }) {
                 <div className="flex-1 h-1.5 rounded-full" style={{ background: '#e4e9ea' }}>
                   <div className="h-full rounded-full" style={{
                     width: `${Math.min(value * 100, 100)}%`,
-                    background: value >= 0.7 ? '#a23f00' : value >= 0.4 ? '#c47a20' : '#9ba2a3',
+                    background: value >= 0.7 ? '#e87b35' : value >= 0.4 ? '#c47a20' : '#9ba2a3',
                   }} />
                 </div>
                 <span className="font-mono w-6 text-right" style={{ color: '#9ba2a3' }}>
@@ -587,7 +587,7 @@ function PredictionCard({ result: r }: { result: ValidationResult }) {
                 <div className="flex-1 h-1.5 rounded-full" style={{ background: '#e4e9ea' }}>
                   <div className="h-full rounded-full" style={{
                     width: `${Math.min(value * 100, 100)}%`,
-                    background: value >= 0.7 ? '#2a7d4c' : value >= 0.4 ? '#c47a20' : '#a23f00',
+                    background: value >= 0.7 ? '#2a7d4c' : value >= 0.4 ? '#c47a20' : '#e87b35',
                   }} />
                 </div>
                 <span className="font-mono w-6 text-right" style={{ color: '#9ba2a3' }}>
@@ -602,7 +602,7 @@ function PredictionCard({ result: r }: { result: ValidationResult }) {
       {r.postRevelation.riskFactors.length > 0 && (
         <div className="mt-3 pt-3" style={{ borderTop: '1px solid #e4e9ea' }}>
           {r.postRevelation.riskFactors.map((rf, i) => (
-            <div key={i} className="text-xs mt-1" style={{ color: '#a23f00' }}>{rf}</div>
+            <div key={i} className="text-xs mt-1" style={{ color: '#e87b35' }}>{rf}</div>
           ))}
         </div>
       )}

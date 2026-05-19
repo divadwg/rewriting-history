@@ -16,9 +16,9 @@ function searchUrl(query: string): string {
 
 const STATUS_COLORS: Record<string, string> = {
   supported: '#2a7d4c',
-  partially_supported: '#a23f00',
-  unsupported: '#a23f00',
-  contradicted: '#a23f00',
+  partially_supported: '#e87b35',
+  unsupported: '#e87b35',
+  contradicted: '#e87b35',
   unverifiable: '#9ba2a3',
 };
 
@@ -42,7 +42,7 @@ function ShareBar({ id, title }: { id: string; title: string }) {
         onClick={copy}
         className="text-xs font-bold px-4 py-1.5 rounded transition-colors flex-shrink-0"
         style={{
-          background: copied ? '#2a7d4c' : '#a23f00',
+          background: copied ? '#2a7d4c' : '#e87b35',
           color: 'white',
         }}
       >
@@ -64,7 +64,7 @@ export default function ResultClient({ result }: { result: StoredResult }) {
             {' '}&middot;{' '}
             {new Date(result.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
           </div>
-          <h1 className="text-2xl font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>{result.title}</h1>
+          <h1 className="text-2xl font-bold" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>{result.title}</h1>
         </div>
         <Link
           href={result.type === 'live' ? '/live' : '/challenge'}
@@ -125,11 +125,11 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
       {/* Article header */}
       {articleTitle && (
         <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
-          <h3 className="font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>{articleTitle}</h3>
+          <h3 className="font-bold" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>{articleTitle}</h3>
           <div className="flex flex-wrap gap-3 text-xs font-mono mt-1" style={{ color: '#9ba2a3' }}>
             {articleUrl && (
               <a href={articleUrl} target="_blank" rel="noopener noreferrer"
-                className="hover:underline" style={{ color: '#a23f00' }}>
+                className="hover:underline" style={{ color: '#e87b35' }}>
                 {(() => { try { return new URL(articleUrl).hostname; } catch { return articleUrl; } })()}
               </a>
             )}
@@ -151,7 +151,7 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
       {/* Overall Assessment */}
       {synthesis?.overallAssessment && (
         <div className="rounded-lg p-5" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.2)' }}>
-          <div className="text-xs font-bold mb-1" style={{ color: '#a23f00' }}>OVERALL ASSESSMENT</div>
+          <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>OVERALL ASSESSMENT</div>
           <p className="text-base leading-relaxed" style={{ color: '#2d3435' }}>
             {synthesis.overallAssessment}
           </p>
@@ -161,7 +161,7 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
       {/* Bayesian Posteriors */}
       {bayesian && (
         <div>
-          <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Article Reliability — Bayesian Posteriors</h3>
+          <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Article Reliability — Bayesian Posteriors</h3>
           <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
             Computed from {evidence.length} independent evidence items.
           </p>
@@ -183,7 +183,7 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
                   <div className="w-full h-4 rounded-full" style={{ background: '#e4e9ea' }}>
                     <div className="h-full rounded-full" style={{
                       width: `${Math.max(h.posterior * 100, 2)}%`,
-                      background: isWinner ? '#2a7d4c' : h.isOfficial ? '#a23f00' : '#9ba2a3',
+                      background: isWinner ? '#2a7d4c' : h.isOfficial ? '#e87b35' : '#9ba2a3',
                     }} />
                   </div>
                 </div>
@@ -195,7 +195,7 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
 
       {/* Claim-by-Claim Verification */}
       <div>
-        <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>
+        <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>
           Claim-by-Claim Verification ({claims.length} claims)
         </h3>
         <div className="space-y-3">
@@ -220,7 +220,7 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
                 </div>
                 <div className="flex flex-wrap gap-3 text-xs mb-2" style={{ color: '#9ba2a3' }}>
                   <span>By: {claim.claimant} ({claim.claimantRole})</span>
-                  {claim.benefitsClaimant && <span className="font-mono" style={{ color: '#a23f00' }}>SELF-SERVING</span>}
+                  {claim.benefitsClaimant && <span className="font-mono" style={{ color: '#e87b35' }}>SELF-SERVING</span>}
                   <span>Confidence: {claim.confidenceLanguage}</span>
                 </div>
                 {verification?.explanation && (
@@ -244,12 +244,12 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
       {/* Contradictions */}
       {contradictions.length > 0 && (
         <div>
-          <h3 className="text-lg font-bold mb-1" style={{ color: '#a23f00', fontFamily: "'Newsreader', serif" }}>
+          <h3 className="text-lg font-bold mb-1" style={{ color: '#e87b35', fontFamily: "'EB Garamond', serif" }}>
             Contradictions &amp; Past Statements ({contradictions.length})
           </h3>
           <div className="space-y-3 mt-4">
             {contradictions.sort((a, b) => b.severity - a.severity).map(x => {
-              const sevColor = x.severity >= 4 ? '#a23f00' : x.severity >= 3 ? '#a23f00' : '#8f3600';
+              const sevColor = x.severity >= 4 ? '#e87b35' : x.severity >= 3 ? '#e87b35' : '#d06a2a';
               return (
                 <div key={x.id} className="rounded-lg p-4" style={{
                   background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)',
@@ -266,11 +266,11 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
                   </div>
                   <div className="grid md:grid-cols-2 gap-3 mb-3">
                     <div className="rounded p-3" style={{ background: '#f2f4f4' }}>
-                      <div className="text-xs font-mono mb-1" style={{ color: '#a23f00' }}>NOW ({x.currentDate})</div>
+                      <div className="text-xs font-mono mb-1" style={{ color: '#e87b35' }}>NOW ({x.currentDate})</div>
                       <p className="text-xs leading-relaxed" style={{ color: '#2d3435' }}>&ldquo;{x.currentStatement}&rdquo;</p>
                     </div>
                     <div className="rounded p-3" style={{ background: 'rgba(162,63,0,0.04)' }}>
-                      <div className="text-xs font-mono mb-1" style={{ color: '#a23f00' }}>PREVIOUSLY ({x.pastDate})</div>
+                      <div className="text-xs font-mono mb-1" style={{ color: '#e87b35' }}>PREVIOUSLY ({x.pastDate})</div>
                       <p className="text-xs leading-relaxed" style={{ color: '#2d3435' }}>&ldquo;{x.pastStatement}&rdquo;</p>
                       <div className="text-xs mt-1 font-mono" style={{ color: '#9ba2a3' }}>Source: {x.pastSource}</div>
                     </div>
@@ -291,7 +291,7 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
 
       {/* Independent Evidence */}
       <div>
-        <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Independent Evidence Gathered</h3>
+        <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Independent Evidence Gathered</h3>
         <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
           {evidence.length} items from sources outside the article, sorted by Bayesian impact.
         </p>
@@ -305,7 +305,7 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
             .map(({ e, impact }) => (
               <div key={e.id} className="rounded-lg p-4" style={{
                 background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)',
-                borderLeftColor: e.supports === true ? '#2a7d4c' : e.supports === false ? '#a23f00' : '#9ba2a3',
+                borderLeftColor: e.supports === true ? '#2a7d4c' : e.supports === false ? '#e87b35' : '#9ba2a3',
                 borderLeftWidth: '3px',
               }}>
                 <div className="flex items-start justify-between gap-3">
@@ -322,7 +322,7 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
                     </div>
                   </div>
                   <div className="text-xs font-mono text-right flex-shrink-0"
-                    style={{ color: impact > 0.3 ? '#a23f00' : '#9ba2a3' }}>
+                    style={{ color: impact > 0.3 ? '#e87b35' : '#9ba2a3' }}>
                     impact<br />{(impact * 100).toFixed(0)}%
                   </div>
                 </div>
@@ -334,7 +334,7 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
       {/* Missing Context */}
       {synthesis?.missingContext && (
         <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
-          <div className="text-xs font-bold mb-1" style={{ color: '#a23f00' }}>CONTEXT THE ARTICLE OMITS</div>
+          <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>CONTEXT THE ARTICLE OMITS</div>
           <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>{synthesis.missingContext}</p>
         </div>
       )}
@@ -342,12 +342,12 @@ function LiveResultDisplay({ data }: { data: Record<string, unknown> }) {
       {/* Recommendations */}
       {synthesis?.recommendations && synthesis.recommendations.length > 0 && (
         <div>
-          <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>How to Verify Further</h3>
+          <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>How to Verify Further</h3>
           <div className="space-y-2">
             {synthesis.recommendations.map((rec, i) => (
               <div key={i} className="flex items-start gap-3 rounded-lg p-4"
                 style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
-                <span className="text-sm font-mono font-bold flex-shrink-0" style={{ color: '#a23f00' }}>{i + 1}.</span>
+                <span className="text-sm font-mono font-bold flex-shrink-0" style={{ color: '#e87b35' }}>{i + 1}.</span>
                 <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>{rec}</p>
               </div>
             ))}
@@ -402,14 +402,14 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
       {/* Research Question */}
       <div className="rounded-lg p-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
         <div className="text-xs font-mono mb-2" style={{ color: '#9ba2a3' }}>RESEARCH QUESTION</div>
-        <h2 className="text-xl font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>{result.belief}</h2>
+        <h2 className="text-xl font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>{result.belief}</h2>
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <div className="text-xs font-bold mb-1" style={{ color: '#9ba2a3' }}>Popular understanding</div>
             <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>{result.standardNarrative}</p>
           </div>
           <div>
-            <div className="text-xs font-bold mb-1" style={{ color: '#a23f00' }}>What the evidence shows</div>
+            <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>What the evidence shows</div>
             <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>{result.contrarianCase}</p>
           </div>
         </div>
@@ -417,7 +417,7 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
 
       {/* Key Insight */}
       <div className="rounded-lg p-5" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.2)' }}>
-        <div className="text-xs font-bold mb-1" style={{ color: '#a23f00' }}>KEY FINDING</div>
+        <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>KEY FINDING</div>
         <p className="text-base leading-relaxed" style={{ color: '#2d3435' }}>{result.keyInsight}</p>
       </div>
 
@@ -440,7 +440,7 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
       {/* Bayesian Results */}
       {bayesian && (
         <div>
-          <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Bayesian Posteriors</h3>
+          <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Bayesian Posteriors</h3>
           <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
             Computed mathematically from {rawEvidenceCount} evidence items.
           </p>
@@ -462,7 +462,7 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
                   <div className="w-full h-4 rounded-full" style={{ background: '#e4e9ea' }}>
                     <div className="h-full rounded-full" style={{
                       width: `${Math.max(h.posterior * 100, 2)}%`,
-                      background: isWinner ? '#2a7d4c' : h.isOfficial ? '#a23f00' : '#9ba2a3',
+                      background: isWinner ? '#2a7d4c' : h.isOfficial ? '#e87b35' : '#9ba2a3',
                     }} />
                   </div>
                 </div>
@@ -473,9 +473,9 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
           {(() => {
             const v = bayesian.verdict;
             const config: Record<string, { color: string; label: string }> = {
-              official_refuted: { color: '#a23f00', label: 'STANDARD NARRATIVE NOT SUPPORTED BY EVIDENCE' },
-              official_unlikely: { color: '#a23f00', label: 'STANDARD NARRATIVE UNLIKELY GIVEN EVIDENCE' },
-              official_questionable: { color: '#8f3600', label: 'STANDARD NARRATIVE QUESTIONABLE' },
+              official_refuted: { color: '#e87b35', label: 'STANDARD NARRATIVE NOT SUPPORTED BY EVIDENCE' },
+              official_unlikely: { color: '#e87b35', label: 'STANDARD NARRATIVE UNLIKELY GIVEN EVIDENCE' },
+              official_questionable: { color: '#d06a2a', label: 'STANDARD NARRATIVE QUESTIONABLE' },
               official_supported: { color: '#2a7d4c', label: 'STANDARD NARRATIVE SUPPORTED BY EVIDENCE' },
             };
             const c = config[v.verdict] || { color: '#9ba2a3', label: v.verdict };
@@ -491,7 +491,7 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
       {/* Evidence */}
       {result.evidence && result.evidence.length > 0 && (
         <div>
-          <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Primary Source Evidence</h3>
+          <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Primary Source Evidence</h3>
           <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
             {result.evidence.length} items gathered. Sorted by Bayesian impact.
           </p>
@@ -513,7 +513,7 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
                 return (
                   <div key={e.id} className="rounded-lg p-4" style={{
                     background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)',
-                    borderLeftColor: supportsWinner ? '#2a7d4c' : '#a23f00',
+                    borderLeftColor: supportsWinner ? '#2a7d4c' : '#e87b35',
                     borderLeftWidth: '3px',
                   }}>
                     <div className="flex items-start justify-between gap-3">
@@ -522,7 +522,7 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
                         <div className="flex flex-wrap gap-3 text-xs font-mono items-center" style={{ color: '#9ba2a3' }}>
                           <span>{e.date}</span>
                           <span>reliability: {(e.sourceReliability * 100).toFixed(0)}%</span>
-                          {e.wasClassified && <span style={{ color: '#a23f00' }}>DECLASSIFIED</span>}
+                          {e.wasClassified && <span style={{ color: '#e87b35' }}>DECLASSIFIED</span>}
                           {links?.searchQuery && (
                             <a href={searchUrl(links.searchQuery)} target="_blank" rel="noopener noreferrer"
                               className="hover:underline" style={{ color: '#9ba2a3' }}>[verify]</a>
@@ -530,7 +530,7 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
                         </div>
                       </div>
                       <div className="text-xs font-mono text-right flex-shrink-0"
-                        style={{ color: impact > 0.3 ? '#a23f00' : '#9ba2a3' }}>
+                        style={{ color: impact > 0.3 ? '#e87b35' : '#9ba2a3' }}>
                         impact<br />{(impact * 100).toFixed(0)}%
                       </div>
                     </div>
@@ -544,15 +544,15 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
       {/* Causal Chain */}
       {result.causalFactors && result.causalFactors.length > 0 && (
         <div>
-          <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Causal Structure</h3>
+          <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Causal Structure</h3>
           <div className="rounded-lg p-5" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
             {result.causalFactors.map((cf, i) => (
               <div key={cf.id}>
                 <div className="flex items-start gap-2">
                   <div className="w-2.5 h-2.5 rounded-full mt-1.5 flex-shrink-0" style={{
-                    background: cf.type === 'power_change' ? '#a23f00' :
-                      cf.type === 'narrative_change' ? '#a23f00' :
-                      cf.type === 'evidence_action' ? '#8f3600' : '#9ba2a3'
+                    background: cf.type === 'power_change' ? '#e87b35' :
+                      cf.type === 'narrative_change' ? '#e87b35' :
+                      cf.type === 'evidence_action' ? '#d06a2a' : '#9ba2a3'
                   }} />
                   <div>
                     <div className="text-sm" style={{ color: '#2d3435' }}>{cf.label}</div>
@@ -583,7 +583,7 @@ function ChallengeResultDisplay({ data }: { data: Record<string, unknown> }) {
             <div className="text-xs font-bold mb-2" style={{ color: '#9ba2a3' }}>PRIMARY SOURCES / FURTHER READING</div>
             <ul className="space-y-1.5">
               {result.furtherReading.map((ref, i) => (
-                <li key={i} className="text-xs pl-3 leading-relaxed" style={{ color: '#6b7374', borderLeft: '2px solid #a23f00' }}>
+                <li key={i} className="text-xs pl-3 leading-relaxed" style={{ color: '#6b7374', borderLeft: '2px solid #e87b35' }}>
                   {ref}
                 </li>
               ))}

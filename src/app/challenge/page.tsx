@@ -189,7 +189,7 @@ export default function ChallengePage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-      <h1 className="text-3xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Evidence-First Discovery</h1>
+      <h1 className="text-3xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Evidence-First Discovery</h1>
       <p className="text-sm mb-2" style={{ color: '#6b7374' }}>
         This system gathers <strong>raw primary source evidence first</strong>, then generates hypotheses
         from the evidence, runs Bayesian inference, and surfaces what the data actually shows —
@@ -222,7 +222,7 @@ export default function ChallengePage() {
           disabled={loading || belief.trim().length < 10}
           className="px-6 py-3 rounded-lg font-bold text-sm transition-opacity"
           style={{
-            background: loading ? '#8f3600' : '#a23f00',
+            background: loading ? '#d06a2a' : '#e87b35',
             color: 'white',
             opacity: loading || belief.trim().length < 10 ? 0.5 : 1,
           }}
@@ -232,7 +232,7 @@ export default function ChallengePage() {
       </div>
 
       {error && (
-        <div className="text-xs rounded-lg p-3 mb-6" style={{ background: 'rgba(162,63,0,0.06)', color: '#a23f00' }}>
+        <div className="text-xs rounded-lg p-3 mb-6" style={{ background: 'rgba(162,63,0,0.06)', color: '#e87b35' }}>
           {error}
         </div>
       )}
@@ -240,7 +240,7 @@ export default function ChallengePage() {
       {/* Topic category buttons */}
       {!response && !loading && (
         <>
-          <h2 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>
+          <h2 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>
             Auto-discover by topic — the system finds an underexplored question:
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mb-10">
@@ -255,7 +255,7 @@ export default function ChallengePage() {
                   border: `1px solid ${cat.id === 'surprise' ? 'rgba(162,63,0,0.25)' : 'rgba(196,203,204,0.15)'}`,
                 }}
               >
-                <div className="text-2xl font-mono mb-1" style={{ color: cat.id === 'surprise' ? '#a23f00' : '#8f3600' }}>
+                <div className="text-2xl font-mono mb-1" style={{ color: cat.id === 'surprise' ? '#e87b35' : '#d06a2a' }}>
                   {cat.icon}
                 </div>
                 <div className="text-sm font-bold mb-0.5" style={{ color: '#2d3435' }}>{cat.label}</div>
@@ -265,7 +265,7 @@ export default function ChallengePage() {
           </div>
 
           {/* Suggested research questions */}
-          <h2 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>
+          <h2 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>
             Or try a specific research question:
           </h2>
           <div className="grid md:grid-cols-2 gap-3">
@@ -280,7 +280,7 @@ export default function ChallengePage() {
                   {s.belief}
                 </div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs px-2 py-0.5 rounded" style={{ background: 'rgba(162,63,0,0.06)', color: '#8f3600' }}>
+                  <span className="text-xs px-2 py-0.5 rounded" style={{ background: 'rgba(162,63,0,0.06)', color: '#d06a2a' }}>
                     {s.category}
                   </span>
                 </div>
@@ -297,7 +297,7 @@ export default function ChallengePage() {
       {loading && (
         <div className="text-center py-20">
           <div className="inline-block w-10 h-10 rounded-full border-2 animate-spin mb-4"
-            style={{ borderColor: 'rgba(196,203,204,0.15)', borderTopColor: '#a23f00' }} />
+            style={{ borderColor: 'rgba(196,203,204,0.15)', borderTopColor: '#e87b35' }} />
           <div className="text-sm font-medium" style={{ color: '#2d3435' }}>
             {loadingStep}
           </div>
@@ -320,9 +320,9 @@ export default function ChallengePage() {
               return (
                 <div key={step} className="flex items-center gap-2">
                   <div className="text-xs px-2 py-1 rounded font-mono" style={{
-                    background: isActive ? '#a23f00' : isDone ? 'rgba(42,125,76,0.06)' : '#f2f4f4',
+                    background: isActive ? '#e87b35' : isDone ? 'rgba(42,125,76,0.06)' : '#f2f4f4',
                     color: isActive ? '#ffffff' : isDone ? '#2a7d4c' : '#9ba2a3',
-                    border: `1px solid ${isActive ? '#a23f00' : isDone ? 'rgba(42,125,76,0.18)' : 'rgba(196,203,204,0.15)'}`,
+                    border: `1px solid ${isActive ? '#e87b35' : isDone ? 'rgba(42,125,76,0.18)' : 'rgba(196,203,204,0.15)'}`,
                   }}>
                     {step}
                   </div>
@@ -352,7 +352,7 @@ export default function ChallengePage() {
           {/* Research Question */}
           <div className="rounded-lg p-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
             <div className="text-xs font-mono mb-2" style={{ color: '#9ba2a3' }}>RESEARCH QUESTION</div>
-            <h2 className="text-xl font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>
+            <h2 className="text-xl font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>
               {response.result.belief}
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
@@ -363,7 +363,7 @@ export default function ChallengePage() {
                 </p>
               </div>
               <div>
-                <div className="text-xs font-bold mb-1" style={{ color: '#a23f00' }}>What the evidence shows</div>
+                <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>What the evidence shows</div>
                 <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>
                   {response.result.contrarianCase}
                 </p>
@@ -373,7 +373,7 @@ export default function ChallengePage() {
 
           {/* Key Insight */}
           <div className="rounded-lg p-5" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.15)' }}>
-            <div className="text-xs font-bold mb-1" style={{ color: '#a23f00' }}>KEY FINDING</div>
+            <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>KEY FINDING</div>
             <p className="text-base leading-relaxed" style={{ color: '#2d3435' }}>
               {response.result.keyInsight}
             </p>
@@ -401,7 +401,7 @@ export default function ChallengePage() {
 
           {/* Bayesian Results */}
           <div>
-            <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Bayesian Posteriors</h3>
+            <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Bayesian Posteriors</h3>
             <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
               Computed mathematically from {response.rawEvidenceCount || '?'} evidence items.
               These are not opinions — they follow from P(H|E) = P(E|H)P(H)/P(E).
@@ -425,7 +425,7 @@ export default function ChallengePage() {
                     <div className="w-full h-4 rounded-full" style={{ background: '#eeeeee' }}>
                       <div className="h-full rounded-full transition-all duration-700" style={{
                         width: `${width}%`,
-                        background: isWinner ? '#2a7d4c' : h.isOfficial ? '#a23f00' : '#9ba2a3',
+                        background: isWinner ? '#2a7d4c' : h.isOfficial ? '#e87b35' : '#9ba2a3',
                       }} />
                     </div>
                   </div>
@@ -436,9 +436,9 @@ export default function ChallengePage() {
             {(() => {
               const v = response.bayesian.verdict;
               const config = {
-                official_refuted: { color: '#a23f00', label: 'STANDARD NARRATIVE NOT SUPPORTED BY EVIDENCE' },
-                official_unlikely: { color: '#a23f00', label: 'STANDARD NARRATIVE UNLIKELY GIVEN EVIDENCE' },
-                official_questionable: { color: '#8f3600', label: 'STANDARD NARRATIVE QUESTIONABLE' },
+                official_refuted: { color: '#e87b35', label: 'STANDARD NARRATIVE NOT SUPPORTED BY EVIDENCE' },
+                official_unlikely: { color: '#e87b35', label: 'STANDARD NARRATIVE UNLIKELY GIVEN EVIDENCE' },
+                official_questionable: { color: '#d06a2a', label: 'STANDARD NARRATIVE QUESTIONABLE' },
                 official_supported: { color: '#2a7d4c', label: 'STANDARD NARRATIVE SUPPORTED BY EVIDENCE' },
               }[v.verdict];
               const stability = response.stability;
@@ -446,7 +446,7 @@ export default function ChallengePage() {
                 ? stability >= 0.9 ? 'HIGH STABILITY' : stability >= 0.7 ? 'MODERATE STABILITY' : 'LOW STABILITY'
                 : null;
               const stabColor = stability !== undefined
-                ? stability >= 0.9 ? '#2a7d4c' : stability >= 0.7 ? '#c47a20' : '#a23f00'
+                ? stability >= 0.9 ? '#2a7d4c' : stability >= 0.7 ? '#c47a20' : '#e87b35'
                 : '#9ba2a3';
               return (
                 <div className="mt-4 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center gap-3" style={{ background: `${config.color}08`, border: `1px solid ${config.color}30` }}>
@@ -465,7 +465,7 @@ export default function ChallengePage() {
 
           {/* Evidence — now showing as primary source items */}
           <div>
-            <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Primary Source Evidence</h3>
+            <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Primary Source Evidence</h3>
             <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
               {response.result.evidence.length} items gathered. Sorted by Bayesian impact.
             </p>
@@ -490,7 +490,7 @@ export default function ChallengePage() {
                     <div key={e.id} className="rounded-lg p-4" style={{
                       background: '#ffffff',
                       border: '1px solid rgba(196,203,204,0.15)',
-                      borderLeftColor: supportsWinner ? '#2a7d4c' : '#a23f00',
+                      borderLeftColor: supportsWinner ? '#2a7d4c' : '#e87b35',
                       borderLeftWidth: '3px',
                     }}>
                       <div className="flex items-start justify-between gap-3">
@@ -499,9 +499,9 @@ export default function ChallengePage() {
                           <div className="flex flex-wrap gap-3 text-xs font-mono items-center" style={{ color: '#9ba2a3' }}>
                             <span>{e.date}</span>
                             <span>reliability: {(e.sourceReliability * 100).toFixed(0)}%</span>
-                            {e.wasClassified && <span style={{ color: '#a23f00' }}>DECLASSIFIED</span>}
+                            {e.wasClassified && <span style={{ color: '#e87b35' }}>DECLASSIFIED</span>}
                             {bestHyp && (
-                              <span style={{ color: supportsWinner ? '#2a7d4c' : '#a23f00' }}>
+                              <span style={{ color: supportsWinner ? '#2a7d4c' : '#e87b35' }}>
                                 strongest for: {bestHyp.label.slice(0, 50)}
                               </span>
                             )}
@@ -511,7 +511,7 @@ export default function ChallengePage() {
                                 <>
                                   {links.sourceUrl && (
                                     <a href={links.sourceUrl} target="_blank" rel="noopener noreferrer"
-                                      className="hover:underline" style={{ color: '#a23f00' }}>
+                                      className="hover:underline" style={{ color: '#e87b35' }}>
                                       [source]
                                     </a>
                                   )}
@@ -528,7 +528,7 @@ export default function ChallengePage() {
                         </div>
                         {sens && (
                           <div className="text-xs font-mono text-right flex-shrink-0" style={{
-                            color: impact > 0.3 ? '#a23f00' : '#9ba2a3'
+                            color: impact > 0.3 ? '#e87b35' : '#9ba2a3'
                           }}>
                             impact<br />{(impact * 100).toFixed(0)}%
                           </div>
@@ -543,7 +543,7 @@ export default function ChallengePage() {
           {/* Causal Chain */}
           {response.result.causalFactors.length > 0 && (
             <div>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>
+              <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>
                 Causal Structure
               </h3>
               <div className="rounded-lg p-5" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
@@ -551,9 +551,9 @@ export default function ChallengePage() {
                   <div key={cf.id}>
                     <div className="flex items-start gap-2">
                       <div className="w-2.5 h-2.5 rounded-full mt-1.5 flex-shrink-0" style={{
-                        background: cf.type === 'power_change' ? '#a23f00' :
-                          cf.type === 'narrative_change' ? '#a23f00' :
-                          cf.type === 'evidence_action' ? '#8f3600' :
+                        background: cf.type === 'power_change' ? '#e87b35' :
+                          cf.type === 'narrative_change' ? '#e87b35' :
+                          cf.type === 'evidence_action' ? '#d06a2a' :
                           cf.type === 'economic' ? '#b07030' :
                           cf.type === 'demographic' ? '#4a8fa8' : '#9ba2a3'
                       }} />
@@ -588,7 +588,7 @@ export default function ChallengePage() {
                 <div className="text-xs font-bold mb-2" style={{ color: '#9ba2a3' }}>PRIMARY SOURCES / FURTHER READING</div>
                 <ul className="space-y-1.5">
                   {response.result.furtherReading.map((ref, i) => (
-                    <li key={i} className="text-xs pl-3 leading-relaxed" style={{ color: '#6b7374', borderLeft: '2px solid #a23f00' }}>
+                    <li key={i} className="text-xs pl-3 leading-relaxed" style={{ color: '#6b7374', borderLeft: '2px solid #e87b35' }}>
                       {ref}
                     </li>
                   ))}
@@ -604,7 +604,7 @@ export default function ChallengePage() {
               <button
                 onClick={() => { navigator.clipboard.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
                 className="text-xs font-bold px-3 py-1 rounded flex-shrink-0"
-                style={{ background: copied ? '#2a7d4c' : '#a23f00', color: 'white' }}
+                style={{ background: copied ? '#2a7d4c' : '#e87b35', color: 'white' }}
               >
                 {copied ? 'Copied' : 'Copy'}
               </button>
@@ -618,7 +618,7 @@ export default function ChallengePage() {
               disabled={saving || !!shareUrl}
               className="text-sm px-6 py-2.5 rounded-lg font-bold transition-opacity hover:opacity-90"
               style={{
-                background: shareUrl ? '#2a7d4c' : '#a23f00',
+                background: shareUrl ? '#2a7d4c' : '#e87b35',
                 color: 'white',
                 opacity: saving ? 0.5 : 1,
               }}

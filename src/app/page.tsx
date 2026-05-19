@@ -4,7 +4,7 @@ import { generateVerdict } from "@/lib/engine/bayesian";
 
 function getVerdictColor(verdict: string) {
   switch (verdict) {
-    case 'official_refuted': return '#a23f00';
+    case 'official_refuted': return '#e87b35';
     case 'official_unlikely': return '#c47a20';
     case 'official_questionable': return '#c47a20';
     case 'official_supported': return '#2a7d4c';
@@ -41,7 +41,7 @@ export default function Home() {
         <h1
           className="font-editorial text-4xl sm:text-5xl md:text-6xl leading-tight mb-6"
           style={{
-            fontFamily: "'Newsreader', Georgia, serif",
+            fontFamily: "'EB Garamond', Georgia, serif",
             fontWeight: 600,
             color: '#2d3435',
             letterSpacing: '-0.02em',
@@ -62,7 +62,7 @@ export default function Home() {
             href="/cases"
             className="inline-flex items-center justify-center px-6 py-3 rounded-md font-medium text-sm transition-opacity hover:opacity-90"
             style={{
-              background: 'linear-gradient(45deg, #a23f00, #8f3600)',
+              background: 'linear-gradient(45deg, #e87b35, #d06a2a)',
               color: '#ffffff',
             }}
           >
@@ -73,7 +73,7 @@ export default function Home() {
             className="inline-flex items-center justify-center px-6 py-3 rounded-md font-medium text-sm transition-colors"
             style={{
               background: '#ffffff',
-              color: '#a23f00',
+              color: '#e87b35',
               outline: '1px solid rgba(196,203,204,0.15)',
             }}
           >
@@ -102,7 +102,7 @@ export default function Home() {
         <h2
           className="font-editorial text-2xl sm:text-3xl mb-10"
           style={{
-            fontFamily: "'Newsreader', Georgia, serif",
+            fontFamily: "'EB Garamond', Georgia, serif",
             fontWeight: 600,
             color: '#2d3435',
             letterSpacing: '-0.01em',
@@ -118,7 +118,7 @@ export default function Home() {
           >
             <div
               className="text-xl font-mono mb-4"
-              style={{ color: '#a23f00', fontFamily: "'DM Mono', monospace" }}
+              style={{ color: '#e87b35', fontFamily: "'DM Mono', monospace" }}
             >
               G
             </div>
@@ -141,7 +141,7 @@ export default function Home() {
           >
             <div
               className="text-xl font-mono mb-4"
-              style={{ color: '#a23f00', fontFamily: "'DM Mono', monospace" }}
+              style={{ color: '#e87b35', fontFamily: "'DM Mono', monospace" }}
             >
               C
             </div>
@@ -164,7 +164,7 @@ export default function Home() {
           >
             <div
               className="text-xl font-mono mb-4"
-              style={{ color: '#a23f00', fontFamily: "'DM Mono', monospace" }}
+              style={{ color: '#e87b35', fontFamily: "'DM Mono', monospace" }}
             >
               P(H|E)
             </div>
@@ -197,7 +197,7 @@ export default function Home() {
             <h2
               className="font-editorial text-2xl sm:text-3xl mb-4"
               style={{
-                fontFamily: "'Newsreader', Georgia, serif",
+                fontFamily: "'EB Garamond', Georgia, serif",
                 fontWeight: 600,
                 color: '#2d3435',
                 letterSpacing: '-0.01em',
@@ -226,7 +226,7 @@ export default function Home() {
               href="/challenge"
               className="inline-flex items-center justify-center px-6 py-3 rounded-md font-semibold text-sm transition-opacity hover:opacity-90"
               style={{
-                background: 'linear-gradient(45deg, #a23f00, #8f3600)',
+                background: 'linear-gradient(45deg, #e87b35, #d06a2a)',
                 color: '#ffffff',
               }}
             >
@@ -275,7 +275,7 @@ export default function Home() {
         <h2
           className="font-editorial text-2xl sm:text-3xl mb-8"
           style={{
-            fontFamily: "'Newsreader', Georgia, serif",
+            fontFamily: "'EB Garamond', Georgia, serif",
             fontWeight: 600,
             color: '#2d3435',
             letterSpacing: '-0.01em',

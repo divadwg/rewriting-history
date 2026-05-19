@@ -5,9 +5,9 @@ import { generateVerdict } from "@/lib/engine/bayesian";
 import { narrativeFragilityScore } from "@/lib/engine/fragility";
 
 function fragilityColor(score: number): string {
-  if (score >= 0.7) return '#a23f00';
+  if (score >= 0.7) return '#e87b35';
   if (score >= 0.5) return '#c47a20';
-  if (score >= 0.3) return '#8f3600';
+  if (score >= 0.3) return '#d06a2a';
   return '#2a7d4c';
 }
 
@@ -21,7 +21,7 @@ function fragilityLabel(score: number): string {
 function statusBadgeStyle(status: string): React.CSSProperties {
   switch (status) {
     case 'overturned':
-      return { background: 'rgba(162,63,0,0.08)', color: '#a23f00' };
+      return { background: 'rgba(162,63,0,0.08)', color: '#e87b35' };
     case 'confirmed':
       return { background: 'rgba(42,125,76,0.08)', color: '#2a7d4c' };
     case 'contested':
@@ -43,7 +43,7 @@ function statusLabel(status: string): string {
 function certaintyColor(score: number): string {
   if (score >= 0.7) return '#2a7d4c';
   if (score >= 0.4) return '#c47a20';
-  return '#a23f00';
+  return '#e87b35';
 }
 
 export default function CasesPage() {
@@ -70,11 +70,11 @@ export default function CasesPage() {
         <div>
           <h1
             className="text-xl sm:text-2xl md:text-3xl font-bold mb-2"
-            style={{ fontFamily: "'Newsreader', serif", color: '#2d3435', letterSpacing: '-0.02em' }}
+            style={{ fontFamily: "'EB Garamond', serif", color: '#2d3435', letterSpacing: '-0.02em' }}
           >
             Case Studies
           </h1>
-          <p className="text-sm" style={{ fontFamily: "'Work Sans', sans-serif", color: '#6b7374', lineHeight: 1.6 }}>
+          <p className="text-sm" style={{ fontFamily: "'DM Sans', sans-serif", color: '#6b7374', lineHeight: 1.6 }}>
             {cases.length} cases across 3 categories. The fragility score measures how structurally
             vulnerable the official narrative is to revision.
           </p>
@@ -84,7 +84,7 @@ export default function CasesPage() {
           className="self-start sm:flex-shrink-0 text-xs px-4 py-2 rounded-lg transition-colors"
           style={{
             fontFamily: "'DM Mono', monospace",
-            background: 'linear-gradient(45deg, #a23f00, #8f3600)',
+            background: 'linear-gradient(45deg, #e87b35, #d06a2a)',
             color: '#ffffff',
             borderRadius: '0.5rem',
             whiteSpace: 'nowrap',
@@ -99,12 +99,12 @@ export default function CasesPage() {
         <div key={group.label} className="mb-10">
           <h2
             className="text-base font-semibold mb-0.5"
-            style={{ fontFamily: "'Work Sans', sans-serif", color: '#2d3435' }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: '#2d3435' }}
           >
             {group.label}
           </h2>
           {group.desc && (
-            <p className="text-xs mb-4" style={{ fontFamily: "'Work Sans', sans-serif", color: '#9ba2a3' }}>
+            <p className="text-xs mb-4" style={{ fontFamily: "'DM Sans', sans-serif", color: '#9ba2a3' }}>
               {group.desc}
             </p>
           )}
@@ -132,20 +132,20 @@ export default function CasesPage() {
                       <div className="flex flex-wrap items-center gap-2 mb-1">
                         <h3
                           className="text-base sm:text-lg font-semibold leading-snug"
-                          style={{ fontFamily: "'Newsreader', serif", color: '#2d3435', letterSpacing: '-0.01em' }}
+                          style={{ fontFamily: "'EB Garamond', serif", color: '#2d3435', letterSpacing: '-0.01em' }}
                         >
                           {c.title}
                         </h3>
                         <span
                           className="text-[10px] font-bold px-2 py-0.5 rounded-full flex-shrink-0"
-                          style={{ fontFamily: "'Work Sans', sans-serif", letterSpacing: '0.04em', ...badgeStyle }}
+                          style={{ fontFamily: "'DM Sans', sans-serif", letterSpacing: '0.04em', ...badgeStyle }}
                         >
                           {statusLabel(c.status ?? '')}
                         </span>
                       </div>
                       <div
                         className="text-xs"
-                        style={{ fontFamily: "'Work Sans', sans-serif", color: '#9ba2a3' }}
+                        style={{ fontFamily: "'DM Sans', sans-serif", color: '#9ba2a3' }}
                       >
                         {c.period}
                       </div>
@@ -162,7 +162,7 @@ export default function CasesPage() {
                         </div>
                         <div
                           className="text-[9px] mt-0.5 uppercase tracking-wide"
-                          style={{ fontFamily: "'Work Sans', sans-serif", color: fColor }}
+                          style={{ fontFamily: "'DM Sans', sans-serif", color: fColor }}
                         >
                           {fragilityLabel(fragility.structural)}
                         </div>
@@ -176,7 +176,7 @@ export default function CasesPage() {
                         </div>
                         <div
                           className="text-[9px] mt-0.5 uppercase tracking-wide"
-                          style={{ fontFamily: "'Work Sans', sans-serif", color: '#9ba2a3' }}
+                          style={{ fontFamily: "'DM Sans', sans-serif", color: '#9ba2a3' }}
                         >
                           CERTAINTY
                         </div>
@@ -187,7 +187,7 @@ export default function CasesPage() {
                   {/* Summary */}
                   <p
                     className="text-sm leading-relaxed mb-3"
-                    style={{ fontFamily: "'Work Sans', sans-serif", color: '#6b7374' }}
+                    style={{ fontFamily: "'DM Sans', sans-serif", color: '#6b7374' }}
                   >
                     {c.summary.slice(0, 180)}...
                   </p>
@@ -200,7 +200,7 @@ export default function CasesPage() {
                           key={i}
                           className="text-[10px] px-2 py-0.5 rounded-full"
                           style={{
-                            fontFamily: "'Work Sans', sans-serif",
+                            fontFamily: "'DM Sans', sans-serif",
                             background: `${fColor}12`,
                             color: fColor,
                           }}
@@ -214,7 +214,7 @@ export default function CasesPage() {
                   {/* Meta row */}
                   <div
                     className="flex flex-wrap gap-3 sm:gap-4 text-xs"
-                    style={{ fontFamily: "'Work Sans', sans-serif", color: '#9ba2a3' }}
+                    style={{ fontFamily: "'DM Sans', sans-serif", color: '#9ba2a3' }}
                   >
                     <span>{c.hypotheses.length} hypotheses</span>
                     <span>{c.evidence.length} evidence</span>

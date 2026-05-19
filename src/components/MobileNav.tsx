@@ -42,7 +42,7 @@ export default function MobileNav() {
               onClick={() => setOpen(false)}
               className="block py-2.5 px-3 rounded text-sm transition-colors"
               style={{
-                color: item.accent ? '#a23f00' : '#2d3435',
+                color: item.accent ? '#e87b35' : '#2d3435',
                 fontWeight: item.accent ? 600 : 400,
                 background: 'transparent',
               }}

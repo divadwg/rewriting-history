@@ -1,7 +1,7 @@
 export default function HelpPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-      <h1 className="text-4xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>How It Works</h1>
+      <h1 className="text-4xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>How It Works</h1>
       <p className="text-lg mb-12 leading-relaxed" style={{ color: '#6b7374' }}>
         Rewriting History tests official narratives against evidence using mathematics,
         not opinions. It combines a knowledge graph, causal model, and Bayesian inference
@@ -13,11 +13,11 @@ export default function HelpPage() {
 
       {/* ── PLAIN ENGLISH OVERVIEW ──────────────────────────────────────── */}
       <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-6" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>What it does</h2>
+        <h2 className="text-2xl font-bold mb-6" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>What it does</h2>
 
         <div className="space-y-6">
           <div className="rounded-lg p-6" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
-            <h3 className="font-bold text-lg mb-2" style={{ color: '#a23f00', fontFamily: "'Newsreader', serif" }}>Evidence Discovery</h3>
+            <h3 className="font-bold text-lg mb-2" style={{ color: '#e87b35', fontFamily: "'EB Garamond', serif" }}>Evidence Discovery</h3>
             <p className="leading-relaxed" style={{ color: '#6b7374' }}>
               You ask a question about history &mdash; for example, &ldquo;What do ship manifests reveal about
               Viking trade vs. raiding?&rdquo; The system goes and finds real primary source evidence: documents,
@@ -28,7 +28,7 @@ export default function HelpPage() {
           </div>
 
           <div className="rounded-lg p-6" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
-            <h3 className="font-bold text-lg mb-2" style={{ color: '#a23f00', fontFamily: "'Newsreader', serif" }}>Live Analysis</h3>
+            <h3 className="font-bold text-lg mb-2" style={{ color: '#e87b35', fontFamily: "'EB Garamond', serif" }}>Live Analysis</h3>
             <p className="leading-relaxed" style={{ color: '#6b7374' }}>
               Enter an article URL (or paste text). The system pulls out every verifiable claim the article makes,
               searches the web for independent evidence, runs probability math, and gives you a claim-by-claim
@@ -39,7 +39,7 @@ export default function HelpPage() {
           </div>
 
           <div className="rounded-lg p-6" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
-            <h3 className="font-bold text-lg mb-2" style={{ color: '#a23f00', fontFamily: "'Newsreader', serif" }}>Case Studies</h3>
+            <h3 className="font-bold text-lg mb-2" style={{ color: '#e87b35', fontFamily: "'EB Garamond', serif" }}>Case Studies</h3>
             <p className="leading-relaxed" style={{ color: '#6b7374' }}>
               The case studies are the validation corpus. Each one is a historical event where the official
               narrative was later overturned or substantially revised &mdash; the Gulf of Tonkin fabrication,
@@ -58,12 +58,12 @@ export default function HelpPage() {
 
       {/* ── HOW TO USE IT ───────────────────────────────────────────────── */}
       <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-6" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>How to use it</h2>
+        <h2 className="text-2xl font-bold mb-6" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>How to use it</h2>
 
         <div className="space-y-4">
           <div className="flex gap-4 items-start">
             <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
-              style={{ background: '#a23f00', color: 'white' }}>1</div>
+              style={{ background: '#e87b35', color: 'white' }}>1</div>
             <div>
               <div className="font-bold mb-1" style={{ color: '#2d3435' }}>Set your API key</div>
               <p className="text-sm" style={{ color: '#6b7374' }}>
@@ -75,7 +75,7 @@ export default function HelpPage() {
 
           <div className="flex gap-4 items-start">
             <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
-              style={{ background: '#a23f00', color: 'white' }}>2</div>
+              style={{ background: '#e87b35', color: 'white' }}>2</div>
             <div>
               <div className="font-bold mb-1" style={{ color: '#2d3435' }}>Ask a question or paste an article</div>
               <p className="text-sm" style={{ color: '#6b7374' }}>
@@ -87,7 +87,7 @@ export default function HelpPage() {
 
           <div className="flex gap-4 items-start">
             <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
-              style={{ background: '#a23f00', color: 'white' }}>3</div>
+              style={{ background: '#e87b35', color: 'white' }}>3</div>
             <div>
               <div className="font-bold mb-1" style={{ color: '#2d3435' }}>Wait for the pipeline (30&ndash;60 seconds)</div>
               <p className="text-sm" style={{ color: '#6b7374' }}>
@@ -99,11 +99,11 @@ export default function HelpPage() {
 
           <div className="flex gap-4 items-start">
             <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
-              style={{ background: '#a23f00', color: 'white' }}>4</div>
+              style={{ background: '#e87b35', color: 'white' }}>4</div>
             <div>
               <div className="font-bold mb-1" style={{ color: '#2d3435' }}>Read the results and check the sources</div>
               <p className="text-sm" style={{ color: '#6b7374' }}>
-                Every evidence item has a <span className="font-mono" style={{ color: '#a23f00' }}>[source]</span> link
+                Every evidence item has a <span className="font-mono" style={{ color: '#e87b35' }}>[source]</span> link
                 (when a direct URL is known) and a <span className="font-mono" style={{ color: '#9ba2a3' }}>[verify]</span> link
                 (a Google search you can run yourself). The percentages are computed mathematically &mdash; they&apos;re
                 not the AI&apos;s opinion.
@@ -115,7 +115,7 @@ export default function HelpPage() {
 
       {/* ── TECHNICAL DETAILS ───────────────────────────────────────────── */}
       <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Under the hood</h2>
+        <h2 className="text-2xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Under the hood</h2>
         <p className="text-sm mb-8" style={{ color: '#6b7374' }}>
           Three systems feed into each other. The <strong style={{ color: '#2d3435' }}>knowledge graph</strong> maps
           who said what, who benefits, and who suppressed evidence. The <strong style={{ color: '#2d3435' }}>causal
@@ -129,8 +129,8 @@ export default function HelpPage() {
         {/* ── BAYESIAN INFERENCE ─────────────────────────────────────────── */}
         <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-xl font-mono" style={{ color: '#a23f00' }}>P(H|E)</span>
-            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Bayesian Inference</h3>
+            <span className="text-xl font-mono" style={{ color: '#e87b35' }}>P(H|E)</span>
+            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Bayesian Inference</h3>
           </div>
 
           <div className="rounded p-4 mb-4" style={{ background: '#f2f4f4' }}>
@@ -147,7 +147,7 @@ export default function HelpPage() {
           <div className="space-y-4 text-sm" style={{ color: '#6b7374' }}>
             <div>
               <div className="font-bold font-mono mb-1" style={{ color: '#2d3435' }}>Bayes&apos; Theorem</div>
-              <div className="font-mono text-xs p-3 rounded mb-2" style={{ background: '#f2f4f4', color: '#a23f00' }}>
+              <div className="font-mono text-xs p-3 rounded mb-2" style={{ background: '#f2f4f4', color: '#e87b35' }}>
                 P(H|E) = P(E|H) &times; P(H) / P(E)
               </div>
               <ul className="space-y-1 text-xs" style={{ color: '#6b7374' }}>
@@ -166,7 +166,7 @@ export default function HelpPage() {
                 have less influence on the final result. A government census record at 95% reliability shifts
                 the probabilities much more than an anonymous claim at 30%.
               </p>
-              <div className="font-mono text-xs p-3 rounded mt-2" style={{ background: '#f2f4f4', color: '#a23f00' }}>
+              <div className="font-mono text-xs p-3 rounded mt-2" style={{ background: '#f2f4f4', color: '#e87b35' }}>
                 adjusted = reliability &times; raw_likelihood + (1 - reliability) &times; 0.5
               </div>
             </div>
@@ -189,15 +189,15 @@ export default function HelpPage() {
                   <span className="ml-2">posterior &ge; 70%</span>
                 </div>
                 <div className="p-2 rounded" style={{ background: 'rgba(143,54,0,0.06)', border: '1px solid rgba(143,54,0,0.18)' }}>
-                  <span className="font-mono font-bold" style={{ color: '#8f3600' }}>QUESTIONABLE</span>
+                  <span className="font-mono font-bold" style={{ color: '#d06a2a' }}>QUESTIONABLE</span>
                   <span className="ml-2">40&ndash;70%</span>
                 </div>
                 <div className="p-2 rounded" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.18)' }}>
-                  <span className="font-mono font-bold" style={{ color: '#a23f00' }}>UNLIKELY</span>
+                  <span className="font-mono font-bold" style={{ color: '#e87b35' }}>UNLIKELY</span>
                   <span className="ml-2">20&ndash;40%</span>
                 </div>
                 <div className="p-2 rounded" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.18)' }}>
-                  <span className="font-mono font-bold" style={{ color: '#a23f00' }}>REFUTED</span>
+                  <span className="font-mono font-bold" style={{ color: '#e87b35' }}>REFUTED</span>
                   <span className="ml-2">posterior &lt; 20%</span>
                 </div>
               </div>
@@ -208,8 +208,8 @@ export default function HelpPage() {
         {/* ── KNOWLEDGE GRAPH ────────────────────────────────────────────── */}
         <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-xl font-mono" style={{ color: '#a23f00' }}>G</span>
-            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Knowledge Graph</h3>
+            <span className="text-xl font-mono" style={{ color: '#e87b35' }}>G</span>
+            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Knowledge Graph</h3>
           </div>
 
           <div className="rounded p-4 mb-4" style={{ background: '#f2f4f4' }}>
@@ -236,7 +236,7 @@ export default function HelpPage() {
                   { type: 'narrative', desc: 'A broader story or explanation' },
                 ].map(n => (
                   <div key={n.type} className="p-2 rounded" style={{ background: '#f2f4f4' }}>
-                    <span className="font-mono font-bold" style={{ color: '#a23f00' }}>{n.type}</span>
+                    <span className="font-mono font-bold" style={{ color: '#e87b35' }}>{n.type}</span>
                     <div className="mt-1" style={{ color: '#9ba2a3' }}>{n.desc}</div>
                   </div>
                 ))}
@@ -258,7 +258,7 @@ export default function HelpPage() {
                   { type: 'fabricates', desc: 'Actor creates false evidence' },
                 ].map(e => (
                   <div key={e.type} className="p-2 rounded" style={{ background: '#f2f4f4' }}>
-                    <span className="font-mono font-bold" style={{ color: '#a23f00' }}>{e.type}</span>
+                    <span className="font-mono font-bold" style={{ color: '#e87b35' }}>{e.type}</span>
                     <div className="mt-1" style={{ color: '#9ba2a3' }}>{e.desc}</div>
                   </div>
                 ))}
@@ -281,8 +281,8 @@ export default function HelpPage() {
         {/* ── CAUSAL MODEL ───────────────────────────────────────────────── */}
         <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-xl font-mono" style={{ color: '#a23f00' }}>C</span>
-            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Causal Model</h3>
+            <span className="text-xl font-mono" style={{ color: '#e87b35' }}>C</span>
+            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Causal Model</h3>
           </div>
 
           <div className="rounded p-4 mb-4" style={{ background: '#f2f4f4' }}>
@@ -301,9 +301,9 @@ export default function HelpPage() {
               <div className="font-bold font-mono mb-1" style={{ color: '#2d3435' }}>Causal factor types</div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs mt-2">
                 {[
-                  { type: 'power_change', color: '#a23f00', desc: 'A shift in who holds power (election, coup, conquest)' },
-                  { type: 'narrative_change', color: '#a23f00', desc: 'The official story about an event changes' },
-                  { type: 'evidence_action', color: '#8f3600', desc: 'Evidence is created, destroyed, classified, or released' },
+                  { type: 'power_change', color: '#e87b35', desc: 'A shift in who holds power (election, coup, conquest)' },
+                  { type: 'narrative_change', color: '#e87b35', desc: 'The official story about an event changes' },
+                  { type: 'evidence_action', color: '#d06a2a', desc: 'Evidence is created, destroyed, classified, or released' },
                   { type: 'institutional', color: '#9ba2a3', desc: 'An organisation changes rules or structure' },
                   { type: 'economic', color: '#b07030', desc: 'Economic forces that shape incentives' },
                   { type: 'demographic', color: '#4a8fa8', desc: 'Population changes that shift the context' },
@@ -336,8 +336,8 @@ export default function HelpPage() {
         {/* ── INTEGRATION ───────────────────────────────────────────────── */}
         <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-xl font-mono" style={{ color: '#a23f00' }}>&harr;</span>
-            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>How the Three Systems Connect</h3>
+            <span className="text-xl font-mono" style={{ color: '#e87b35' }}>&harr;</span>
+            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>How the Three Systems Connect</h3>
           </div>
 
           <div className="rounded p-4 mb-4" style={{ background: '#f2f4f4' }}>
@@ -400,8 +400,8 @@ export default function HelpPage() {
         {/* ── FRAGILITY SCORE ────────────────────────────────────────────── */}
         <div className="rounded-lg p-6 mb-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-xl font-mono" style={{ color: '#a23f00' }}>F</span>
-            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Narrative Fragility Score</h3>
+            <span className="text-xl font-mono" style={{ color: '#e87b35' }}>F</span>
+            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Narrative Fragility Score</h3>
           </div>
 
           <div className="rounded p-4 mb-4" style={{ background: '#f2f4f4' }}>
@@ -489,15 +489,15 @@ export default function HelpPage() {
               <div className="font-bold font-mono mb-1" style={{ color: '#2d3435' }}>Score thresholds</div>
               <div className="text-xs grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
                 <div className="p-2 rounded" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.18)' }}>
-                  <span className="font-mono font-bold" style={{ color: '#a23f00' }}>HIGHLY FRAGILE</span>
+                  <span className="font-mono font-bold" style={{ color: '#e87b35' }}>HIGHLY FRAGILE</span>
                   <span className="ml-2">70&ndash;100</span>
                 </div>
                 <div className="p-2 rounded" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.18)' }}>
-                  <span className="font-mono font-bold" style={{ color: '#a23f00' }}>MODERATELY FRAGILE</span>
+                  <span className="font-mono font-bold" style={{ color: '#e87b35' }}>MODERATELY FRAGILE</span>
                   <span className="ml-2">50&ndash;69</span>
                 </div>
                 <div className="p-2 rounded" style={{ background: 'rgba(143,54,0,0.06)', border: '1px solid rgba(143,54,0,0.18)' }}>
-                  <span className="font-mono font-bold" style={{ color: '#8f3600' }}>LOW FRAGILITY</span>
+                  <span className="font-mono font-bold" style={{ color: '#d06a2a' }}>LOW FRAGILITY</span>
                   <span className="ml-2">30&ndash;49</span>
                 </div>
                 <div className="p-2 rounded" style={{ background: 'rgba(42,125,76,0.06)', border: '1px solid rgba(42,125,76,0.18)' }}>
@@ -524,8 +524,8 @@ export default function HelpPage() {
         {/* ── THE PIPELINE ───────────────────────────────────────────────── */}
         <div className="rounded-lg p-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-xl font-mono" style={{ color: '#a23f00' }}>1 &rarr; 4</span>
-            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>The Evidence-First Pipeline</h3>
+            <span className="text-xl font-mono" style={{ color: '#e87b35' }}>1 &rarr; 4</span>
+            <h3 className="text-lg font-bold" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>The Evidence-First Pipeline</h3>
           </div>
 
           <div className="rounded p-4 mb-4" style={{ background: '#f2f4f4' }}>
@@ -542,7 +542,7 @@ export default function HelpPage() {
           <div className="space-y-3 text-sm">
             <div className="flex gap-3 items-start">
               <div className="font-mono text-xs px-2 py-1 rounded flex-shrink-0"
-                style={{ background: '#a23f00', color: 'white' }}>Step 1</div>
+                style={{ background: '#e87b35', color: 'white' }}>Step 1</div>
               <div>
                 <div className="font-bold" style={{ color: '#2d3435' }}>Gather evidence</div>
                 <p className="text-xs" style={{ color: '#6b7374' }}>
@@ -557,7 +557,7 @@ export default function HelpPage() {
 
             <div className="flex gap-3 items-start">
               <div className="font-mono text-xs px-2 py-1 rounded flex-shrink-0"
-                style={{ background: '#a23f00', color: 'white' }}>Step 2</div>
+                style={{ background: '#e87b35', color: 'white' }}>Step 2</div>
               <div>
                 <div className="font-bold" style={{ color: '#2d3435' }}>Generate hypotheses</div>
                 <p className="text-xs" style={{ color: '#6b7374' }}>
@@ -570,7 +570,7 @@ export default function HelpPage() {
 
             <div className="flex gap-3 items-start">
               <div className="font-mono text-xs px-2 py-1 rounded flex-shrink-0"
-                style={{ background: '#a23f00', color: 'white' }}>Step 3</div>
+                style={{ background: '#e87b35', color: 'white' }}>Step 3</div>
               <div>
                 <div className="font-bold" style={{ color: '#2d3435' }}>Bayesian inference (pure math)</div>
                 <p className="text-xs" style={{ color: '#6b7374' }}>
@@ -583,7 +583,7 @@ export default function HelpPage() {
 
             <div className="flex gap-3 items-start">
               <div className="font-mono text-xs px-2 py-1 rounded flex-shrink-0"
-                style={{ background: '#a23f00', color: 'white' }}>Step 4</div>
+                style={{ background: '#e87b35', color: 'white' }}>Step 4</div>
               <div>
                 <div className="font-bold" style={{ color: '#2d3435' }}>Synthesis</div>
                 <p className="text-xs" style={{ color: '#6b7374' }}>
@@ -599,7 +599,7 @@ export default function HelpPage() {
 
       {/* ── LIMITATIONS ─────────────────────────────────────────────────── */}
       <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'Newsreader', serif" }}>Limitations</h2>
+        <h2 className="text-2xl font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Limitations</h2>
         <div className="space-y-3 text-sm" style={{ color: '#6b7374' }}>
           <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
             <strong style={{ color: '#2d3435' }}>Web search supplements but doesn&apos;t replace training data.</strong> The
