@@ -25,15 +25,15 @@ function ProbabilityBar({ label, value, color, isOfficial }: { label: string; va
   return (
     <div className="mb-3">
       <div className="flex justify-between text-xs mb-1">
-        <span style={{ color: '#6b7374' }}>
-          {isOfficial && <span className="font-mono mr-1" style={{ color: '#9ba2a3' }}>[OFFICIAL]</span>}
+        <span style={{ color: 'var(--body)' }}>
+          {isOfficial && <span className="font-mono mr-1" style={{ color: 'var(--muted)' }}>[OFFICIAL]</span>}
           {label.length > 60 ? label.slice(0, 60) + '...' : label}
         </span>
-        <span className="font-mono font-bold" style={{ color }}>{formatProb(value)}</span>
+        <span className="font-mono font-semibold" style={{ color }}>{formatProb(value)}</span>
       </div>
-      <div className="w-full h-3 rounded" style={{ background: '#e4e9ea' }}>
+      <div className="track w-full h-3">
         <div
-          className="h-full rounded prob-bar-fill"
+          className="ticks h-full"
           style={{ width: `${Math.min(displayWidth, 100)}%`, background: color }}
         />
       </div>
@@ -43,16 +43,21 @@ function ProbabilityBar({ label, value, color, isOfficial }: { label: string; va
 
 function VerdictBadge({ verdict }: { verdict: BayesianVerdict }) {
   const config = {
-    official_refuted: { color: '#e87b35', label: 'OFFICIAL NARRATIVE REFUTED', bg: 'rgba(162,63,0,0.06)' },
-    official_unlikely: { color: '#c47a20', label: 'OFFICIAL NARRATIVE UNLIKELY', bg: 'rgba(196,122,32,0.06)' },
-    official_questionable: { color: '#d06a2a', label: 'QUESTIONABLE', bg: 'rgba(143,54,0,0.06)' },
-    official_supported: { color: '#2a7d4c', label: 'OFFICIAL SUPPORTED', bg: 'rgba(42,125,76,0.06)' },
+    official_refuted: { tone: 'bad', label: 'OFFICIAL NARRATIVE REFUTED' },
+    official_unlikely: { tone: '', label: 'OFFICIAL NARRATIVE UNLIKELY' },
+    official_questionable: { tone: '', label: 'QUESTIONABLE' },
+    official_supported: { tone: 'ok', label: 'OFFICIAL SUPPORTED' },
   }[verdict.verdict];
 
   return (
-    <div className="rounded-md p-3 sm:p-4 mb-4" style={{ background: config.bg }}>
-      <div className="text-sm font-bold font-mono" style={{ color: config.color }}>{config.label}</div>
-      <div className="text-xs mt-1" style={{ color: '#6b7374' }}>
+    <div className="mb-4">
+      <span
+        className={`status ${config.tone}`}
+        style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.08em', color: 'var(--ink)' }}
+      >
+        {config.label}
+      </span>
+      <div className="text-xs mt-2 font-mono" style={{ color: 'var(--muted)' }}>
         Official posterior: {formatProb(verdict.officialPosterior)} |
         Best alternative: {formatProb(verdict.bestAlternativePosterior)}
       </div>
@@ -97,7 +102,7 @@ export default function BayesianDashboard({ hypotheses, evidence, adjustments = 
       <VerdictBadge verdict={verdict} />
 
       <div>
-        <h3 className="text-sm font-bold mb-3" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>
+        <h3 className="text-sm font-semibold mb-3" style={{ color: 'var(--ink)' }}>
           Hypothesis Probabilities
         </h3>
         {posteriors.map(h => (
@@ -105,17 +110,17 @@ export default function BayesianDashboard({ hypotheses, evidence, adjustments = 
             key={h.id}
             label={h.label}
             value={h.posterior}
-            color={h.isOfficial ? '#e87b35' : '#2a7d4c'}
+            color={h.isOfficial ? 'var(--alert-deep)' : 'var(--lime-deep)'}
             isOfficial={h.isOfficial}
           />
         ))}
       </div>
 
       <div>
-        <h3 className="text-sm font-bold mb-3" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>
+        <h3 className="text-sm font-semibold mb-3" style={{ color: 'var(--ink)' }}>
           Evidence ({activeEvidence.size}/{evidence.length} active)
         </h3>
-        <p className="text-xs mb-3" style={{ color: '#9ba2a3' }}>
+        <p className="text-xs mb-3" style={{ color: 'var(--muted)' }}>
           Toggle evidence items to see how posteriors shift
         </p>
         <div className="space-y-2 max-h-[400px] overflow-y-auto pr-1">
@@ -129,20 +134,20 @@ export default function BayesianDashboard({ hypotheses, evidence, adjustments = 
                 onClick={() => toggleEvidence(e.id)}
                 className="w-full text-left rounded-md p-3 transition-all text-xs"
                 style={{
-                  background: isActive ? '#ffffff' : '#e4e9ea',
-                  opacity: isActive ? 1 : 0.5,
+                  background: isActive ? 'var(--white)' : 'var(--well)',
+                  opacity: isActive ? 1 : 0.5
                 }}
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium mb-1" style={{ color: isActive ? '#2d3435' : '#9ba2a3' }}>
+                    <div className="font-medium mb-1" style={{ color: isActive ? 'var(--ink)' : 'var(--muted)' }}>
                       {e.label}
                     </div>
-                    <div className="text-xs flex flex-wrap gap-x-2 gap-y-0.5" style={{ color: '#9ba2a3' }}>
+                    <div className="text-xs flex flex-wrap gap-x-2 gap-y-0.5" style={{ color: 'var(--muted)' }}>
                       <span>{e.date}</span>
                       {e.wasClassified && (
-                        <span className="px-1.5 py-0.5 rounded text-xs font-mono"
-                          style={{ background: 'rgba(162,63,0,0.06)', color: '#e87b35' }}>
+                        <span className="tag px-1.5 py-0.5 rounded text-xs font-mono"
+                          style={{ color: 'var(--ink)' }}>
                           CLASSIFIED{e.declassifiedDate ? ` until ${e.declassifiedDate}` : ''}
                         </span>
                       )}
@@ -150,7 +155,7 @@ export default function BayesianDashboard({ hypotheses, evidence, adjustments = 
                         reliability: {(e.sourceReliability * 100).toFixed(0)}%
                       </span>
                       {adj && (
-                        <span className="font-mono" style={{ color: adj.adjustedReliability < adj.originalReliability ? '#e87b35' : '#2a7d4c' }}>
+                        <span className="font-mono" style={{ color: adj.adjustedReliability < adj.originalReliability ? 'var(--alert-deep)' : 'var(--lime-deep)' }}>
                           ({adj.adjustedReliability < adj.originalReliability ? '' : '+'}{((adj.adjustedReliability - adj.originalReliability) * 100).toFixed(0)}% from graph)
                         </span>
                       )}
@@ -158,7 +163,7 @@ export default function BayesianDashboard({ hypotheses, evidence, adjustments = 
                     {adj && isActive && (
                       <div className="mt-1 space-y-0.5">
                         {adj.reasons.map((r, i) => (
-                          <div key={i} className="text-xs italic" style={{ color: '#d06a2a' }}>
+                          <div key={i} className="text-xs italic" style={{ color: 'var(--body)' }}>
                             {r}
                           </div>
                         ))}
@@ -167,7 +172,7 @@ export default function BayesianDashboard({ hypotheses, evidence, adjustments = 
                   </div>
                   {sens && (
                     <div className="text-right flex-shrink-0">
-                      <div className="font-mono text-xs" style={{ color: sens.impact > 0.1 ? '#e87b35' : '#9ba2a3' }}>
+                      <div className="font-mono text-xs" style={{ color: sens.impact > 0.1 ? 'var(--ink)' : 'var(--muted)' }}>
                         {(sens.impact * 100).toFixed(1)}%
                       </div>
                     </div>
@@ -180,21 +185,21 @@ export default function BayesianDashboard({ hypotheses, evidence, adjustments = 
       </div>
 
       <div>
-        <h3 className="text-sm font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>
+        <h3 className="text-sm font-semibold mb-2" style={{ color: 'var(--ink)' }}>
           Most Impactful Evidence
         </h3>
         <div className="space-y-1">
           {sensitivity.slice(0, 5).map((s, i) => (
             <div key={s.evidenceId} className="flex items-center gap-2 text-xs">
-              <span className="font-mono w-4" style={{ color: '#9ba2a3' }}>{i + 1}.</span>
-              <div className="flex-1 h-1.5 rounded" style={{ background: '#e4e9ea' }}>
+              <span className="font-mono w-4" style={{ color: 'var(--muted)' }}>{i + 1}.</span>
+              <div className="track flex-1 h-1.5">
                 <div
-                  className="h-full rounded"
-                  style={{ width: `${Math.min(s.impact * 200, 100)}%`, background: '#e87b35' }}
+                  className="ticks h-full"
+                  style={{ width: `${Math.min(s.impact * 200, 100)}%`, background: 'var(--ink)' }}
                 />
               </div>
-              <span className="flex-1 truncate" style={{ color: '#6b7374' }}>{s.label}</span>
-              <span className="font-mono" style={{ color: '#e87b35' }}>{(s.impact * 100).toFixed(1)}%</span>
+              <span className="flex-1 truncate" style={{ color: 'var(--body)' }}>{s.label}</span>
+              <span className="font-mono" style={{ color: 'var(--ink)' }}>{(s.impact * 100).toFixed(1)}%</span>
             </div>
           ))}
         </div>

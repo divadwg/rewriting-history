@@ -36,55 +36,46 @@ export default function CaseStudyClient({ caseStudy }: Props) {
   }, [view, timeIndex, caseStudy, currentSlice, integrated]);
 
   const fragilityColor = (value: number) =>
-    value >= 0.7 ? '#e87b35' : value >= 0.4 ? '#c47a20' : '#9ba2a3';
+    value >= 0.7 ? 'var(--alert-deep)' : value >= 0.4 ? 'var(--body)' : 'var(--muted)';
 
   const certaintyColor = (value: number) =>
-    value >= 0.7 ? '#2a7d4c' : value >= 0.4 ? '#c47a20' : '#e87b35';
+    value >= 0.7 ? 'var(--lime-deep)' : value >= 0.4 ? 'var(--body)' : 'var(--alert-deep)';
 
   return (
-    <div className="flex flex-col h-[calc(100vh-52px)]">
+    <div className="case-frame flex flex-col gap-3 p-3 sm:p-4">
       {/* Header */}
-      <div
-        className="px-3 sm:px-6 py-3 sm:py-4 flex flex-wrap items-start sm:items-center justify-between gap-3"
-        style={{ background: '#ffffff', borderBottom: '1px solid rgba(196,203,204,0.15)' }}
-      >
+      <div className="card px-4 sm:px-6 py-3 sm:py-4 flex flex-wrap items-start sm:items-center justify-between gap-3 flex-shrink-0">
         <div>
           <h1
-            className="text-xl sm:text-2xl font-bold leading-tight"
-            style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}
+            className="text-xl sm:text-2xl leading-tight"
+            style={{ color: 'var(--ink)' }}
           >
             {caseStudy.title}
           </h1>
-          <p className="text-sm mt-0.5" style={{ color: '#6b7374', fontFamily: "'DM Sans', sans-serif" }}>
+          <p className="text-sm mt-0.5" style={{ color: 'var(--body)' }}>
             {caseStudy.period}
           </p>
         </div>
         <div className="flex gap-3 sm:gap-4 flex-shrink-0">
           <div className="text-right">
             <div
-              className="text-2xl sm:text-3xl font-bold leading-none"
-              style={{
-                color: fragilityColor(fragility.structural),
-                fontFamily: "'DM Mono', monospace",
-              }}
+              className="stat text-3xl sm:text-4xl leading-none"
+              style={{ color: fragilityColor(fragility.structural) }}
             >
               {(fragility.structural * 100).toFixed(0)}
             </div>
-            <div className="text-xs mt-0.5" style={{ color: '#9ba2a3', fontFamily: "'DM Mono', monospace" }}>
+            <div className="label mt-1.5">
               STRUCTURAL
             </div>
           </div>
           <div className="text-right">
             <div
-              className="text-2xl sm:text-3xl font-bold leading-none"
-              style={{
-                color: certaintyColor(fragility.evidentialCertainty),
-                fontFamily: "'DM Mono', monospace",
-              }}
+              className="stat text-3xl sm:text-4xl leading-none"
+              style={{ color: certaintyColor(fragility.evidentialCertainty) }}
             >
               {(fragility.evidentialCertainty * 100).toFixed(0)}
             </div>
-            <div className="text-xs mt-0.5" style={{ color: '#9ba2a3', fontFamily: "'DM Mono', monospace" }}>
+            <div className="label mt-1.5">
               CERTAINTY
             </div>
           </div>
@@ -92,44 +83,23 @@ export default function CaseStudyClient({ caseStudy }: Props) {
       </div>
 
       {/* Main content: graph + sidebar — column on mobile, row on md+ */}
-      <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
+      <div className="flex flex-col md:flex-row flex-1 gap-3 md:min-h-0">
         {/* Graph area */}
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="flex-1 flex flex-col gap-3 md:min-h-0 min-w-0">
           {/* View toggle */}
-          <div
-            className="px-3 sm:px-4 py-2 flex flex-wrap items-center gap-2 sm:gap-4"
-            style={{ background: '#ffffff', borderBottom: '1px solid rgba(196,203,204,0.15)' }}
-          >
-            <button
-              onClick={() => setView('full')}
-              className="text-xs px-3 py-1 rounded-full transition-colors"
-              style={{
-                background: view === 'full'
-                  ? 'linear-gradient(135deg, #e87b35, #d06a2a)'
-                  : 'transparent',
-                color: view === 'full' ? '#ffffff' : '#9ba2a3',
-                fontFamily: "'DM Sans', sans-serif",
-              }}
-            >
-              Full Graph
-            </button>
-            <button
-              onClick={() => setView('time-sliced')}
-              className="text-xs px-3 py-1 rounded-full transition-colors"
-              style={{
-                background: view === 'time-sliced'
-                  ? 'linear-gradient(135deg, #e87b35, #d06a2a)'
-                  : 'transparent',
-                color: view === 'time-sliced' ? '#ffffff' : '#9ba2a3',
-                fontFamily: "'DM Sans', sans-serif",
-              }}
-            >
-              Time-Sliced
-            </button>
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4 flex-shrink-0">
+            <div className="seg">
+              <button onClick={() => setView('full')} aria-pressed={view === 'full'}>
+                Full Graph
+              </button>
+              <button onClick={() => setView('time-sliced')} aria-pressed={view === 'time-sliced'}>
+                Time-Sliced
+              </button>
+            </div>
             {view === 'time-sliced' && (
               <span
                 className="text-xs break-all"
-                style={{ color: '#9ba2a3', fontFamily: "'DM Mono', monospace" }}
+                style={{ color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}
               >
                 {filteredData.nodes.length} nodes, {filteredData.edges.length} edges at {currentSlice.date}
               </span>
@@ -138,10 +108,7 @@ export default function CaseStudyClient({ caseStudy }: Props) {
 
           {/* Timeline (when time-sliced) */}
           {view === 'time-sliced' && (
-            <div
-              className="p-3 sm:p-4 flex-shrink-0"
-              style={{ background: '#ffffff', borderBottom: '1px solid rgba(196,203,204,0.15)' }}
-            >
+            <div className="flex-shrink-0">
               <TimeSlider
                 timeSlices={caseStudy.timeSlices}
                 currentIndex={timeIndex}
@@ -151,7 +118,7 @@ export default function CaseStudyClient({ caseStudy }: Props) {
           )}
 
           {/* Graph */}
-          <div className="flex-1 min-h-[300px] md:min-h-0" style={{ background: '#f9f9f9' }}>
+          <div className="card h-[420px] md:h-auto md:flex-1 md:min-h-0 overflow-hidden">
             <ForceGraph
               nodes={filteredData.nodes}
               edges={filteredData.edges}
@@ -162,26 +129,19 @@ export default function CaseStudyClient({ caseStudy }: Props) {
 
         {/* Sidebar — full width below graph on mobile, fixed width on md+ */}
         <div
-          className="w-full md:w-[420px] flex-shrink-0 overflow-y-auto p-3 sm:p-4 space-y-3"
-          style={{ background: '#f2f4f4' }}
+          className="well w-full md:w-[420px] flex-shrink-0 md:overflow-y-auto p-3 space-y-3"
+          style={{ borderRadius: 'var(--r-card)' }}
         >
           {/* Selected node detail */}
           {selectedNode && (
             <div
-              className="rounded-lg p-4"
-              style={{
-                background: '#ffffff',
-                outline: '1px solid rgba(196,203,204,0.15)',
-                
-              }}
-            >
+              className="card rounded-lg p-4">
               <div className="flex items-center justify-between mb-2">
                 <span
-                  className="text-xs px-2 py-0.5 rounded"
+                  className="tag text-xs px-2 py-0.5 rounded"
                   style={{
-                    background: '#f2f4f4',
-                    color: '#e87b35',
-                    fontFamily: "'DM Mono', monospace",
+                    color: 'var(--ink)',
+                    fontFamily: 'var(--font-mono)'
                   }}
                 >
                   {selectedNode.type.toUpperCase()}
@@ -189,26 +149,26 @@ export default function CaseStudyClient({ caseStudy }: Props) {
                 <button
                   onClick={() => setSelectedNode(null)}
                   className="text-xs"
-                  style={{ color: '#9ba2a3', fontFamily: "'DM Sans', sans-serif" }}
+                  style={{ color: 'var(--muted)' }}
                 >
                   close
                 </button>
               </div>
               <h4
-                className="font-bold text-sm mb-1"
-                style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}
+                className="font-semibold text-sm mb-1"
+                style={{ color: 'var(--ink)' }}
               >
                 {selectedNode.label}
               </h4>
               <p
                 className="text-xs leading-relaxed"
-                style={{ color: '#6b7374', fontFamily: "'DM Sans', sans-serif" }}
+                style={{ color: 'var(--body)' }}
               >
                 {selectedNode.description}
               </p>
               <div
                 className="mt-2 text-xs"
-                style={{ color: '#9ba2a3', fontFamily: "'DM Mono', monospace" }}
+                style={{ color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}
               >
                 confidence: {(selectedNode.confidence * 100).toFixed(0)}% | date: {selectedNode.date}
               </div>
@@ -217,29 +177,23 @@ export default function CaseStudyClient({ caseStudy }: Props) {
 
           {/* Narrative Fragility */}
           <div
-            className="rounded-lg p-4"
-            style={{
-              background: '#ffffff',
-              outline: '1px solid rgba(196,203,204,0.15)',
-              
-            }}
-          >
+            className="card rounded-lg p-4">
             <h3
-              className="text-sm font-bold mb-1"
-              style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}
+              className="text-sm font-semibold mb-1"
+              style={{ color: 'var(--ink)' }}
             >
               Narrative Fragility
             </h3>
             <p
               className="text-xs mb-3"
-              style={{ color: '#9ba2a3', fontFamily: "'DM Sans', sans-serif" }}
+              style={{ color: 'var(--muted)' }}
             >
               {fragility.interpretation}
             </p>
 
             <div
-              className="text-xs font-bold mb-1.5"
-              style={{ color: '#6b7374', fontFamily: "'DM Sans', sans-serif" }}
+              className="text-xs font-semibold mb-1.5"
+              style={{ color: 'var(--body)' }}
             >
               Structural Fragility
             </div>
@@ -256,22 +210,22 @@ export default function CaseStudyClient({ caseStudy }: Props) {
                 <div key={label} className="flex items-center gap-2 text-xs">
                   <span
                     className="w-32 flex-shrink-0"
-                    style={{ color: '#6b7374', fontFamily: "'DM Sans', sans-serif" }}
+                    style={{ color: 'var(--body)' }}
                   >
                     {label}
                   </span>
-                  <div className="flex-1 h-1.5 rounded-full" style={{ background: '#e4e9ea' }}>
+                  <div className="track flex-1 h-1.5">
                     <div
-                      className="h-full rounded-full"
+                      className="ticks h-full"
                       style={{
                         width: `${Math.min(value * 100, 100)}%`,
-                        background: fragilityColor(value),
+                        background: fragilityColor(value)
                       }}
                     />
                   </div>
                   <span
                     className="w-8 text-right"
-                    style={{ color: '#9ba2a3', fontFamily: "'DM Mono', monospace" }}
+                    style={{ color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}
                   >
                     {(value * 100).toFixed(0)}
                   </span>
@@ -280,8 +234,8 @@ export default function CaseStudyClient({ caseStudy }: Props) {
             </div>
 
             <div
-              className="text-xs font-bold mb-1.5"
-              style={{ color: '#6b7374', fontFamily: "'DM Sans', sans-serif" }}
+              className="text-xs font-semibold mb-1.5"
+              style={{ color: 'var(--body)' }}
             >
               Evidential Certainty
             </div>
@@ -295,22 +249,22 @@ export default function CaseStudyClient({ caseStudy }: Props) {
                 <div key={label} className="flex items-center gap-2 text-xs">
                   <span
                     className="w-32 flex-shrink-0"
-                    style={{ color: '#6b7374', fontFamily: "'DM Sans', sans-serif" }}
+                    style={{ color: 'var(--body)' }}
                   >
                     {label}
                   </span>
-                  <div className="flex-1 h-1.5 rounded-full" style={{ background: '#e4e9ea' }}>
+                  <div className="track flex-1 h-1.5">
                     <div
-                      className="h-full rounded-full"
+                      className="ticks h-full"
                       style={{
                         width: `${Math.min(value * 100, 100)}%`,
-                        background: certaintyColor(value),
+                        background: certaintyColor(value)
                       }}
                     />
                   </div>
                   <span
                     className="w-8 text-right"
-                    style={{ color: '#9ba2a3', fontFamily: "'DM Mono', monospace" }}
+                    style={{ color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}
                   >
                     {(value * 100).toFixed(0)}
                   </span>
@@ -321,11 +275,11 @@ export default function CaseStudyClient({ caseStudy }: Props) {
             {fragility.riskFactors.length > 0 && (
               <div
                 className="mt-3 pt-3"
-                style={{ borderTop: '1px solid rgba(196,203,204,0.15)' }}
+                style={{ borderTop: '1px solid var(--line)' }}
               >
                 <div
-                  className="text-xs font-bold mb-1"
-                  style={{ color: '#2d3435', fontFamily: "'DM Sans', sans-serif" }}
+                  className="text-xs font-semibold mb-1"
+                  style={{ color: 'var(--ink)' }}
                 >
                   Risk factors
                 </div>
@@ -333,7 +287,7 @@ export default function CaseStudyClient({ caseStudy }: Props) {
                   <div
                     key={i}
                     className="text-xs mt-1"
-                    style={{ color: '#e87b35', fontFamily: "'DM Sans', sans-serif" }}
+                    style={{ color: 'var(--ink)' }}
                   >
                     {rf}
                   </div>
@@ -344,16 +298,10 @@ export default function CaseStudyClient({ caseStudy }: Props) {
 
           {/* Causal Chain */}
           <div
-            className="rounded-lg p-4"
-            style={{
-              background: '#ffffff',
-              outline: '1px solid rgba(196,203,204,0.15)',
-              
-            }}
-          >
+            className="card rounded-lg p-4">
             <h3
-              className="text-sm font-bold mb-3"
-              style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}
+              className="text-sm font-semibold mb-3"
+              style={{ color: 'var(--ink)' }}
             >
               Causal Chain
             </h3>
@@ -365,21 +313,21 @@ export default function CaseStudyClient({ caseStudy }: Props) {
                       className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0"
                       style={{
                         background:
-                          cf.type === 'power_change' ? '#e87b35' :
-                          cf.type === 'narrative_change' ? '#c47a20' :
-                          cf.type === 'evidence_action' ? '#d06a2a' : '#9ba2a3',
+                          cf.type === 'power_change' ? 'var(--alert)' :
+                          cf.type === 'narrative_change' ? 'var(--body)' :
+                          cf.type === 'evidence_action' ? 'var(--body)' : 'var(--muted)'
                       }}
                     />
                     <div>
                       <div
                         className="text-xs"
-                        style={{ color: '#2d3435', fontFamily: "'DM Sans', sans-serif" }}
+                        style={{ color: 'var(--ink)' }}
                       >
                         {cf.label}
                       </div>
                       <div
                         className="text-xs"
-                        style={{ color: '#9ba2a3', fontFamily: "'DM Mono', monospace" }}
+                        style={{ color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}
                       >
                         {cf.date}
                       </div>
@@ -388,11 +336,11 @@ export default function CaseStudyClient({ caseStudy }: Props) {
                   {i < caseStudy.causalLinks.length && (
                     <div
                       className="ml-1 pl-3 py-1"
-                      style={{ borderLeft: '1px solid rgba(196,203,204,0.3)' }}
+                      style={{ borderLeft: '1px solid var(--line)' }}
                     >
                       <div
                         className="text-xs italic"
-                        style={{ color: '#c4cbcc', fontFamily: "'DM Sans', sans-serif" }}
+                        style={{ color: 'var(--muted)' }}
                       >
                         {caseStudy.causalLinks[i]?.mechanism.slice(0, 80)}...
                       </div>
@@ -406,22 +354,16 @@ export default function CaseStudyClient({ caseStudy }: Props) {
           {/* Integration Effects */}
           {integrated.adjustments.length > 0 && (
             <div
-              className="rounded-lg p-4"
-              style={{
-                background: '#ffffff',
-                outline: '1px solid rgba(196,203,204,0.15)',
-                
-              }}
-            >
+              className="card rounded-lg p-4">
               <h3
-                className="text-sm font-bold mb-1"
-                style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}
+                className="text-sm font-semibold mb-1"
+                style={{ color: 'var(--ink)' }}
               >
                 Cross-System Effects
               </h3>
               <p
                 className="text-xs mb-3"
-                style={{ color: '#9ba2a3', fontFamily: "'DM Sans', sans-serif" }}
+                style={{ color: 'var(--muted)' }}
               >
                 Graph edges and causal factors adjusting Bayesian evidence weights
               </p>
@@ -432,19 +374,17 @@ export default function CaseStudyClient({ caseStudy }: Props) {
                   return (
                     <div
                       key={adj.evidenceId}
-                      className="text-xs rounded p-2"
-                      style={{ background: '#f2f4f4' }}
-                    >
+                      className="well text-xs rounded p-2">
                       <div
                         className="font-medium mb-1"
-                        style={{ color: '#2d3435', fontFamily: "'DM Sans', sans-serif" }}
+                        style={{ color: 'var(--ink)' }}
                       >
                         {evidence?.label ?? adj.evidenceId}
                       </div>
                       <div
                         style={{
-                          color: delta < 0 ? '#e87b35' : '#2a7d4c',
-                          fontFamily: "'DM Mono', monospace",
+                          color: delta < 0 ? 'var(--alert-deep)' : 'var(--lime-deep)',
+                          fontFamily: 'var(--font-mono)'
                         }}
                       >
                         {(adj.originalReliability * 100).toFixed(0)}% → {(adj.adjustedReliability * 100).toFixed(0)}%
@@ -454,7 +394,7 @@ export default function CaseStudyClient({ caseStudy }: Props) {
                         <div
                           key={i}
                           className="mt-0.5 italic"
-                          style={{ color: '#9ba2a3', fontFamily: "'DM Sans', sans-serif" }}
+                          style={{ color: 'var(--muted)' }}
                         >
                           {r}
                         </div>
@@ -467,11 +407,13 @@ export default function CaseStudyClient({ caseStudy }: Props) {
           )}
 
           {/* Bayesian Dashboard */}
-          <BayesianDashboard
-            hypotheses={caseStudy.hypotheses}
-            evidence={integrated.adjustedEvidence}
-            adjustments={integrated.adjustments}
-          />
+          <div className="card p-4">
+            <BayesianDashboard
+              hypotheses={caseStudy.hypotheses}
+              evidence={integrated.adjustedEvidence}
+              adjustments={integrated.adjustments}
+            />
+          </div>
         </div>
       </div>
     </div>

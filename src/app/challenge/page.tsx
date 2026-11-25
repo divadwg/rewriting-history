@@ -189,19 +189,19 @@ export default function ChallengePage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-      <h1 className="text-3xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Evidence-First Discovery</h1>
-      <p className="text-sm mb-2" style={{ color: '#6b7374' }}>
+      <h1 className="text-3xl font-semibold mb-2" style={{ color: 'var(--ink)' }}>Evidence-First Discovery</h1>
+      <p className="text-sm mb-2" style={{ color: 'var(--body)' }}>
         This system gathers <strong>raw primary source evidence first</strong>, then generates hypotheses
         from the evidence, runs Bayesian inference, and surfaces what the data actually shows —
         including things nobody may have noticed.
       </p>
-      <div className="text-xs mb-8 font-mono flex flex-wrap gap-4" style={{ color: '#9ba2a3' }}>
+      <div className="text-xs mb-8 font-mono flex flex-wrap gap-4" style={{ color: 'var(--muted)' }}>
         <span>1. Evidence</span>
-        <span style={{ color: 'rgba(196,203,204,0.15)' }}>→</span>
+        <span style={{ color: 'var(--faint)' }}>→</span>
         <span>2. Hypotheses</span>
-        <span style={{ color: 'rgba(196,203,204,0.15)' }}>→</span>
+        <span style={{ color: 'var(--faint)' }}>→</span>
         <span>3. Bayesian Math</span>
-        <span style={{ color: 'rgba(196,203,204,0.15)' }}>→</span>
+        <span style={{ color: 'var(--faint)' }}>→</span>
         <span>4. Discovery</span>
       </div>
 
@@ -213,18 +213,17 @@ export default function ChallengePage() {
           onChange={e => setBelief(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && analyzeByBelief(belief)}
           placeholder="Enter a specific research question, e.g. 'What do casualty records reveal about...'"
-          className="flex-1 rounded-lg px-4 py-3 text-sm"
-          style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)', color: '#2d3435' }}
+          className="field flex-1 rounded-lg px-4 py-3 text-sm"
+          style={{ color: 'var(--ink)' }}
           disabled={loading}
         />
         <button
           onClick={() => analyzeByBelief(belief)}
           disabled={loading || belief.trim().length < 10}
-          className="px-6 py-3 rounded-lg font-bold text-sm transition-opacity"
+          className="btn-primary px-6 py-3 rounded-lg font-semibold text-sm transition-opacity"
           style={{
-            background: loading ? '#d06a2a' : '#e87b35',
-            color: 'white',
-            opacity: loading || belief.trim().length < 10 ? 0.5 : 1,
+            color: 'var(--on-key)',
+            opacity: loading || belief.trim().length < 10 ? 0.5 : 1
           }}
         >
           Analyze Evidence
@@ -232,7 +231,7 @@ export default function ChallengePage() {
       </div>
 
       {error && (
-        <div className="text-xs rounded-lg p-3 mb-6" style={{ background: 'rgba(162,63,0,0.06)', color: '#e87b35' }}>
+        <div className="well text-xs rounded-lg p-3 mb-6" style={{ color: 'var(--ink)' }}>
           {error}
         </div>
       )}
@@ -240,7 +239,7 @@ export default function ChallengePage() {
       {/* Topic category buttons */}
       {!response && !loading && (
         <>
-          <h2 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>
+          <h2 className="text-lg font-semibold mb-4" style={{ color: 'var(--ink)' }}>
             Auto-discover by topic — the system finds an underexplored question:
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mb-10">
@@ -249,23 +248,18 @@ export default function ChallengePage() {
                 key={cat.id}
                 onClick={() => discoverByCategory(cat.id)}
                 disabled={loading}
-                className="rounded-lg p-4 text-left transition-all hover:scale-[1.03] active:scale-[0.98]"
-                style={{
-                  background: '#ffffff',
-                  border: `1px solid ${cat.id === 'surprise' ? 'rgba(162,63,0,0.25)' : 'rgba(196,203,204,0.15)'}`,
-                }}
-              >
-                <div className="text-2xl font-mono mb-1" style={{ color: cat.id === 'surprise' ? '#e87b35' : '#d06a2a' }}>
+                className="card rounded-lg p-4 text-left transition-all hover:scale-[1.03] active:scale-[0.98]">
+                <div className="text-2xl font-mono mb-1" style={{ color: cat.id === 'surprise' ? 'var(--ink)' : 'var(--body)' }}>
                   {cat.icon}
                 </div>
-                <div className="text-sm font-bold mb-0.5" style={{ color: '#2d3435' }}>{cat.label}</div>
-                <div className="text-xs" style={{ color: '#9ba2a3' }}>{cat.description}</div>
+                <div className="text-sm font-semibold mb-0.5" style={{ color: 'var(--ink)' }}>{cat.label}</div>
+                <div className="text-xs" style={{ color: 'var(--muted)' }}>{cat.description}</div>
               </button>
             ))}
           </div>
 
           {/* Suggested research questions */}
-          <h2 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>
+          <h2 className="text-lg font-semibold mb-4" style={{ color: 'var(--ink)' }}>
             Or try a specific research question:
           </h2>
           <div className="grid md:grid-cols-2 gap-3">
@@ -273,18 +267,16 @@ export default function ChallengePage() {
               <button
                 key={i}
                 onClick={() => analyzeByBelief(s.belief)}
-                className="text-left rounded-lg p-4 transition-all hover:scale-[1.01]"
-                style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}
-              >
-                <div className="text-sm font-medium mb-1" style={{ color: '#2d3435' }}>
+                className="card text-left rounded-lg p-4 transition-all hover:scale-[1.01]">
+                <div className="text-sm font-medium mb-1" style={{ color: 'var(--ink)' }}>
                   {s.belief}
                 </div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs px-2 py-0.5 rounded" style={{ background: 'rgba(162,63,0,0.06)', color: '#d06a2a' }}>
+                  <span className="tag text-xs px-2 py-0.5 rounded" style={{ color: 'var(--body)' }}>
                     {s.category}
                   </span>
                 </div>
-                <div className="text-xs italic" style={{ color: '#9ba2a3' }}>
+                <div className="text-xs italic" style={{ color: 'var(--muted)' }}>
                   Evidence: {s.hint}
                 </div>
               </button>
@@ -297,16 +289,16 @@ export default function ChallengePage() {
       {loading && (
         <div className="text-center py-20">
           <div className="inline-block w-10 h-10 rounded-full border-2 animate-spin mb-4"
-            style={{ borderColor: 'rgba(196,203,204,0.15)', borderTopColor: '#e87b35' }} />
-          <div className="text-sm font-medium" style={{ color: '#2d3435' }}>
+            style={{ borderColor: 'var(--line)', borderTopColor: 'var(--ink)' }} />
+          <div className="text-sm font-medium" style={{ color: 'var(--ink)' }}>
             {loadingStep}
           </div>
           {loadingCategory && (
-            <div className="text-xs mt-1" style={{ color: '#6b7374' }}>
+            <div className="text-xs mt-1" style={{ color: 'var(--body)' }}>
               Topic: {TOPIC_CATEGORIES.find(c => c.id === loadingCategory)?.label || loadingCategory}
             </div>
           )}
-          <div className="text-xs mt-3 max-w-lg mx-auto" style={{ color: '#9ba2a3' }}>
+          <div className="text-xs mt-3 max-w-lg mx-auto" style={{ color: 'var(--muted)' }}>
             The system gathers primary sources first, then builds hypotheses from the evidence,
             runs Bayesian inference, and synthesizes what the math reveals. This takes 30-60 seconds.
           </div>
@@ -320,13 +312,12 @@ export default function ChallengePage() {
               return (
                 <div key={step} className="flex items-center gap-2">
                   <div className="text-xs px-2 py-1 rounded font-mono" style={{
-                    background: isActive ? '#e87b35' : isDone ? 'rgba(42,125,76,0.06)' : '#f2f4f4',
-                    color: isActive ? '#ffffff' : isDone ? '#2a7d4c' : '#9ba2a3',
-                    border: `1px solid ${isActive ? '#e87b35' : isDone ? 'rgba(42,125,76,0.18)' : 'rgba(196,203,204,0.15)'}`,
+                    background: isActive ? 'var(--key)' : isDone ? 'var(--white)' : 'var(--well)',
+                    color: isActive ? 'var(--on-key)' : isDone ? 'var(--lime-deep)' : 'var(--muted)'
                   }}>
                     {step}
                   </div>
-                  {i < 3 && <span style={{ color: 'rgba(196,203,204,0.15)' }}>→</span>}
+                  {i < 3 && <span style={{ color: 'var(--faint)' }}>→</span>}
                 </div>
               );
             })}
@@ -339,8 +330,8 @@ export default function ChallengePage() {
         <div className="space-y-8">
           {/* Pipeline badge */}
           {response.pipeline === 'evidence-first' && (
-            <div className="flex items-center gap-3 text-xs font-mono" style={{ color: '#9ba2a3' }}>
-              <span className="px-2 py-1 rounded" style={{ background: 'rgba(42,125,76,0.06)', color: '#2a7d4c', border: '1px solid rgba(42,125,76,0.18)' }}>
+            <div className="flex items-center gap-3 text-xs font-mono" style={{ color: 'var(--muted)' }}>
+              <span className="tag px-2 py-1 rounded" style={{ color: 'var(--lime-deep)' }}>
                 Evidence-first pipeline
               </span>
               <span>{response.rawEvidenceCount} primary sources gathered</span>
@@ -350,21 +341,21 @@ export default function ChallengePage() {
           )}
 
           {/* Research Question */}
-          <div className="rounded-lg p-6" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
-            <div className="text-xs font-mono mb-2" style={{ color: '#9ba2a3' }}>RESEARCH QUESTION</div>
-            <h2 className="text-xl font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>
+          <div className="card rounded-lg p-6">
+            <div className="text-xs font-mono mb-2" style={{ color: 'var(--muted)' }}>RESEARCH QUESTION</div>
+            <h2 className="text-xl font-semibold mb-4" style={{ color: 'var(--ink)' }}>
               {response.result.belief}
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <div className="text-xs font-bold mb-1" style={{ color: '#9ba2a3' }}>Popular understanding</div>
-                <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>
+                <div className="text-xs font-semibold mb-1" style={{ color: 'var(--muted)' }}>Popular understanding</div>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--body)' }}>
                   {response.result.standardNarrative}
                 </p>
               </div>
               <div>
-                <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>What the evidence shows</div>
-                <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>
+                <div className="text-xs font-semibold mb-1" style={{ color: 'var(--ink)' }}>What the evidence shows</div>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--body)' }}>
                   {response.result.contrarianCase}
                 </p>
               </div>
@@ -372,18 +363,18 @@ export default function ChallengePage() {
           </div>
 
           {/* Key Insight */}
-          <div className="rounded-lg p-5" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.15)' }}>
-            <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>KEY FINDING</div>
-            <p className="text-base leading-relaxed" style={{ color: '#2d3435' }}>
+          <div className="well rounded-lg p-5">
+            <div className="text-xs font-semibold mb-1" style={{ color: 'var(--ink)' }}>KEY FINDING</div>
+            <p className="text-base leading-relaxed" style={{ color: 'var(--ink)' }}>
               {response.result.keyInsight}
             </p>
           </div>
 
           {/* Novel Finding */}
           {response.synthesis?.novelFinding && (
-            <div className="rounded-lg p-5" style={{ background: 'rgba(42,125,76,0.06)', border: '1px solid rgba(42,125,76,0.18)' }}>
-              <div className="text-xs font-bold mb-1" style={{ color: '#2a7d4c' }}>NOVEL FINDING — possibly not widely known</div>
-              <p className="text-base leading-relaxed" style={{ color: '#2d3435' }}>
+            <div className="well rounded-lg p-5">
+              <div className="text-xs font-semibold mb-1" style={{ color: 'var(--lime-deep)' }}>NOVEL FINDING — possibly not widely known</div>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--ink)' }}>
                 {response.synthesis.novelFinding}
               </p>
             </div>
@@ -391,9 +382,9 @@ export default function ChallengePage() {
 
           {/* Missing Evidence */}
           {response.synthesis?.missingEvidence && (
-            <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
-              <div className="text-xs font-bold mb-1" style={{ color: '#9ba2a3' }}>WHAT WOULD RESOLVE THE UNCERTAINTY</div>
-              <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>
+            <div className="well rounded-lg p-4">
+              <div className="text-xs font-semibold mb-1" style={{ color: 'var(--muted)' }}>WHAT WOULD RESOLVE THE UNCERTAINTY</div>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--body)' }}>
                 {response.synthesis.missingEvidence}
               </p>
             </div>
@@ -401,8 +392,8 @@ export default function ChallengePage() {
 
           {/* Bayesian Results */}
           <div>
-            <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Bayesian Posteriors</h3>
-            <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
+            <h3 className="text-lg font-semibold mb-1" style={{ color: 'var(--ink)' }}>Bayesian Posteriors</h3>
+            <p className="text-xs mb-4" style={{ color: 'var(--muted)' }}>
               Computed mathematically from {response.rawEvidenceCount || '?'} evidence items.
               These are not opinions — they follow from P(H|E) = P(E|H)P(H)/P(E).
             </p>
@@ -410,22 +401,22 @@ export default function ChallengePage() {
               {response.bayesian.posteriors.map(h => {
                 const maxPosterior = Math.max(...response.bayesian.posteriors.map(p => p.posterior));
                 const isWinner = h.posterior === maxPosterior;
-                const color = isWinner ? '#2a7d4c' : '#9ba2a3';
+                const color = isWinner ? 'var(--lime-deep)' : 'var(--muted)';
                 const width = Math.max(h.posterior * 100, 2);
                 return (
                   <div key={h.id}>
                     <div className="flex justify-between text-xs mb-1">
-                      <span style={{ color: '#6b7374' }}>
-                        {isWinner && <span className="font-mono mr-1" style={{ color: '#2a7d4c' }}>[BEST FIT]</span>}
-                        {h.isOfficial && <span className="font-mono mr-1" style={{ color: '#9ba2a3' }}>[STANDARD]</span>}
+                      <span style={{ color: 'var(--body)' }}>
+                        {isWinner && <span className="font-mono mr-1" style={{ color: 'var(--lime-deep)' }}>[BEST FIT]</span>}
+                        {h.isOfficial && <span className="font-mono mr-1" style={{ color: 'var(--muted)' }}>[STANDARD]</span>}
                         {h.label}
                       </span>
-                      <span className="font-mono font-bold" style={{ color }}>{formatProb(h.posterior)}</span>
+                      <span className="font-mono font-semibold" style={{ color }}>{formatProb(h.posterior)}</span>
                     </div>
-                    <div className="w-full h-4 rounded-full" style={{ background: '#eeeeee' }}>
-                      <div className="h-full rounded-full transition-all duration-700" style={{
+                    <div className="track w-full h-4">
+                      <div className="ticks h-full transition-all duration-700" style={{
                         width: `${width}%`,
-                        background: isWinner ? '#2a7d4c' : h.isOfficial ? '#e87b35' : '#9ba2a3',
+                        background: isWinner ? 'var(--ink)' : h.isOfficial ? 'var(--alert)' : 'var(--muted)'
                       }} />
                     </div>
                   </div>
@@ -436,25 +427,25 @@ export default function ChallengePage() {
             {(() => {
               const v = response.bayesian.verdict;
               const config = {
-                official_refuted: { color: '#e87b35', label: 'STANDARD NARRATIVE NOT SUPPORTED BY EVIDENCE' },
-                official_unlikely: { color: '#e87b35', label: 'STANDARD NARRATIVE UNLIKELY GIVEN EVIDENCE' },
-                official_questionable: { color: '#d06a2a', label: 'STANDARD NARRATIVE QUESTIONABLE' },
-                official_supported: { color: '#2a7d4c', label: 'STANDARD NARRATIVE SUPPORTED BY EVIDENCE' },
+                official_refuted: { color: 'var(--ink)', label: 'STANDARD NARRATIVE NOT SUPPORTED BY EVIDENCE' },
+                official_unlikely: { color: 'var(--ink)', label: 'STANDARD NARRATIVE UNLIKELY GIVEN EVIDENCE' },
+                official_questionable: { color: 'var(--body)', label: 'STANDARD NARRATIVE QUESTIONABLE' },
+                official_supported: { color: 'var(--lime-deep)', label: 'STANDARD NARRATIVE SUPPORTED BY EVIDENCE' },
               }[v.verdict];
               const stability = response.stability;
               const stabLabel = stability !== undefined
                 ? stability >= 0.9 ? 'HIGH STABILITY' : stability >= 0.7 ? 'MODERATE STABILITY' : 'LOW STABILITY'
                 : null;
               const stabColor = stability !== undefined
-                ? stability >= 0.9 ? '#2a7d4c' : stability >= 0.7 ? '#c47a20' : '#e87b35'
-                : '#9ba2a3';
+                ? stability >= 0.9 ? 'var(--lime-deep)' : stability >= 0.7 ? 'var(--body)' : 'var(--alert-deep)'
+                : 'var(--muted)';
               return (
-                <div className="mt-4 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center gap-3" style={{ background: `${config.color}08`, border: `1px solid ${config.color}30` }}>
-                  <span className="text-sm font-mono font-bold" style={{ color: config.color }}>
+                <div className="well mt-4 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center gap-3">
+                  <span className="text-sm font-mono font-semibold" style={{ color: config.color }}>
                     {config.label}
                   </span>
                   {stabLabel && (
-                    <span className="text-xs font-mono px-2 py-0.5 rounded" style={{ background: `${stabColor}10`, color: stabColor }}>
+                    <span className="tag text-xs font-mono px-2 py-0.5 rounded" style={{ color: stabColor }}>
                       {stabLabel} — verdict held in {((stability ?? 0) * 100).toFixed(0)}% of perturbation tests
                     </span>
                   )}
@@ -465,8 +456,8 @@ export default function ChallengePage() {
 
           {/* Evidence — now showing as primary source items */}
           <div>
-            <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Primary Source Evidence</h3>
-            <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
+            <h3 className="text-lg font-semibold mb-1" style={{ color: 'var(--ink)' }}>Primary Source Evidence</h3>
+            <p className="text-xs mb-4" style={{ color: 'var(--muted)' }}>
               {response.result.evidence.length} items gathered. Sorted by Bayesian impact.
             </p>
             <div className="space-y-3">
@@ -487,21 +478,16 @@ export default function ChallengePage() {
                   const supportsWinner = bestHyp && bestHyp.posterior === maxPosterior;
 
                   return (
-                    <div key={e.id} className="rounded-lg p-4" style={{
-                      background: '#ffffff',
-                      border: '1px solid rgba(196,203,204,0.15)',
-                      borderLeftColor: supportsWinner ? '#2a7d4c' : '#e87b35',
-                      borderLeftWidth: '3px',
-                    }}>
+                    <div key={e.id} className="card rounded-lg p-4">
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1">
-                          <div className="text-sm leading-relaxed mb-2" style={{ color: '#2d3435' }}>{e.description}</div>
-                          <div className="flex flex-wrap gap-3 text-xs font-mono items-center" style={{ color: '#9ba2a3' }}>
+                          <div className="text-sm leading-relaxed mb-2" style={{ color: 'var(--ink)' }}>{e.description}</div>
+                          <div className="flex flex-wrap gap-3 text-xs font-mono items-center" style={{ color: 'var(--muted)' }}>
                             <span>{e.date}</span>
                             <span>reliability: {(e.sourceReliability * 100).toFixed(0)}%</span>
-                            {e.wasClassified && <span style={{ color: '#e87b35' }}>DECLASSIFIED</span>}
+                            {e.wasClassified && <span style={{ color: 'var(--ink)' }}>DECLASSIFIED</span>}
                             {bestHyp && (
-                              <span style={{ color: supportsWinner ? '#2a7d4c' : '#e87b35' }}>
+                              <span style={{ color: supportsWinner ? 'var(--lime-deep)' : 'var(--alert-deep)' }}>
                                 strongest for: {bestHyp.label.slice(0, 50)}
                               </span>
                             )}
@@ -511,13 +497,13 @@ export default function ChallengePage() {
                                 <>
                                   {links.sourceUrl && (
                                     <a href={links.sourceUrl} target="_blank" rel="noopener noreferrer"
-                                      className="hover:underline" style={{ color: '#e87b35' }}>
+                                      className="hover:underline" style={{ color: 'var(--ink)' }}>
                                       [source]
                                     </a>
                                   )}
                                   {links.searchQuery && (
                                     <a href={searchUrl(links.searchQuery)} target="_blank" rel="noopener noreferrer"
-                                      className="hover:underline" style={{ color: '#9ba2a3' }}>
+                                      className="hover:underline" style={{ color: 'var(--muted)' }}>
                                       [verify]
                                     </a>
                                   )}
@@ -528,7 +514,7 @@ export default function ChallengePage() {
                         </div>
                         {sens && (
                           <div className="text-xs font-mono text-right flex-shrink-0" style={{
-                            color: impact > 0.3 ? '#e87b35' : '#9ba2a3'
+                            color: impact > 0.3 ? 'var(--ink)' : 'var(--muted)'
                           }}>
                             impact<br />{(impact * 100).toFixed(0)}%
                           </div>
@@ -543,28 +529,28 @@ export default function ChallengePage() {
           {/* Causal Chain */}
           {response.result.causalFactors.length > 0 && (
             <div>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>
+              <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--ink)' }}>
                 Causal Structure
               </h3>
-              <div className="rounded-lg p-5" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
+              <div className="card rounded-lg p-5">
                 {response.result.causalFactors.map((cf, i) => (
                   <div key={cf.id}>
                     <div className="flex items-start gap-2">
                       <div className="w-2.5 h-2.5 rounded-full mt-1.5 flex-shrink-0" style={{
-                        background: cf.type === 'power_change' ? '#e87b35' :
-                          cf.type === 'narrative_change' ? '#e87b35' :
-                          cf.type === 'evidence_action' ? '#d06a2a' :
-                          cf.type === 'economic' ? '#b07030' :
-                          cf.type === 'demographic' ? '#4a8fa8' : '#9ba2a3'
+                        background: cf.type === 'power_change' ? 'var(--alert)' :
+                          cf.type === 'narrative_change' ? 'var(--ink)' :
+                          cf.type === 'evidence_action' ? 'var(--body)' :
+                          cf.type === 'economic' ? 'var(--body)' :
+                          cf.type === 'demographic' ? 'var(--body)' : 'var(--muted)'
                       }} />
                       <div>
-                        <div className="text-sm" style={{ color: '#2d3435' }}>{cf.label}</div>
-                        <div className="text-xs font-mono" style={{ color: '#9ba2a3' }}>{cf.date}</div>
+                        <div className="text-sm" style={{ color: 'var(--ink)' }}>{cf.label}</div>
+                        <div className="text-xs font-mono" style={{ color: 'var(--muted)' }}>{cf.date}</div>
                       </div>
                     </div>
                     {i < response.result.causalLinks.length && response.result.causalLinks[i] && (
-                      <div className="ml-1.5 pl-3 py-2" style={{ borderLeft: '1px solid rgba(196,203,204,0.15)' }}>
-                        <div className="text-xs italic" style={{ color: '#9ba2a3' }}>
+                      <div className="ml-1.5 pl-3 py-2" style={{ borderLeft: '1px solid var(--line)' }}>
+                        <div className="text-xs italic" style={{ color: 'var(--muted)' }}>
                           {response.result.causalLinks[i].mechanism}
                         </div>
                       </div>
@@ -577,18 +563,18 @@ export default function ChallengePage() {
 
           {/* Confidence + Further Reading */}
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
-              <div className="text-xs font-bold mb-1" style={{ color: '#9ba2a3' }}>CONFIDENCE ASSESSMENT</div>
-              <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>
+            <div className="well rounded-lg p-4">
+              <div className="text-xs font-semibold mb-1" style={{ color: 'var(--muted)' }}>CONFIDENCE ASSESSMENT</div>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--body)' }}>
                 {response.result.confidenceNote}
               </p>
             </div>
             {response.result.furtherReading.length > 0 && (
-              <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
-                <div className="text-xs font-bold mb-2" style={{ color: '#9ba2a3' }}>PRIMARY SOURCES / FURTHER READING</div>
+              <div className="well rounded-lg p-4">
+                <div className="text-xs font-semibold mb-2" style={{ color: 'var(--muted)' }}>PRIMARY SOURCES / FURTHER READING</div>
                 <ul className="space-y-1.5">
                   {response.result.furtherReading.map((ref, i) => (
-                    <li key={i} className="text-xs pl-3 leading-relaxed" style={{ color: '#6b7374', borderLeft: '2px solid #e87b35' }}>
+                    <li key={i} className="text-xs pl-3 leading-relaxed" style={{ color: 'var(--body)', borderLeft: '2px solid var(--line)' }}>
                       {ref}
                     </li>
                   ))}
@@ -599,12 +585,12 @@ export default function ChallengePage() {
 
           {/* Share bar */}
           {shareUrl && (
-            <div className="rounded-lg p-3 flex items-center gap-3" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
-              <div className="text-xs font-mono truncate flex-1" style={{ color: '#9ba2a3' }}>{shareUrl}</div>
+            <div className="well rounded-lg p-3 flex items-center gap-3">
+              <div className="text-xs font-mono truncate flex-1" style={{ color: 'var(--muted)' }}>{shareUrl}</div>
               <button
                 onClick={() => { navigator.clipboard.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
-                className="text-xs font-bold px-3 py-1 rounded flex-shrink-0"
-                style={{ background: copied ? '#2a7d4c' : '#e87b35', color: 'white' }}
+                className="btn-primary text-xs font-semibold px-3 py-1 rounded flex-shrink-0"
+                style={{color: 'var(--on-key)' }}
               >
                 {copied ? 'Copied' : 'Copy'}
               </button>
@@ -616,27 +602,26 @@ export default function ChallengePage() {
             <button
               onClick={saveAndShare}
               disabled={saving || !!shareUrl}
-              className="text-sm px-6 py-2.5 rounded-lg font-bold transition-opacity hover:opacity-90"
+              className="btn-primary text-sm px-6 py-2.5 rounded-lg font-semibold transition-opacity hover:opacity-90"
               style={{
-                background: shareUrl ? '#2a7d4c' : '#e87b35',
-                color: 'white',
-                opacity: saving ? 0.5 : 1,
+                color: 'var(--on-key)',
+                opacity: saving ? 0.5 : 1
               }}
             >
               {saving ? 'Saving...' : shareUrl ? 'Saved' : 'Save & Share'}
             </button>
             <button
               onClick={reset}
-              className="text-sm px-6 py-2.5 rounded-lg font-medium transition-opacity hover:opacity-90"
-              style={{ border: '1px solid rgba(196,203,204,0.15)', color: '#6b7374' }}
+              className="btn text-sm px-6 py-2.5 rounded-lg font-medium transition-opacity hover:opacity-90"
+              style={{ color: 'var(--body)' }}
             >
               New Question
             </button>
             <button
               onClick={() => discoverByCategory('surprise')}
               disabled={loading}
-              className="text-sm px-6 py-2.5 rounded-lg font-medium transition-opacity hover:opacity-90"
-              style={{ border: '1px solid rgba(196,203,204,0.15)', color: '#6b7374' }}
+              className="btn text-sm px-6 py-2.5 rounded-lg font-medium transition-opacity hover:opacity-90"
+              style={{ color: 'var(--body)' }}
             >
               Discover Another
             </button>
@@ -646,7 +631,7 @@ export default function ChallengePage() {
 
       {/* History count */}
       {history.length > 0 && !loading && (
-        <div className="text-center mt-8 text-xs" style={{ color: '#9ba2a3' }}>
+        <div className="text-center mt-8 text-xs" style={{ color: 'var(--muted)' }}>
           {history.length} question{history.length !== 1 ? 's' : ''} analyzed this session
         </div>
       )}

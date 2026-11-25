@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import './globals.css';
 import {
   ApiKeyProvider,
@@ -7,6 +8,7 @@ import {
 } from '@/components/ApiKeyProvider';
 import { ScribbleLogo } from '@/components/ScribbleLogo';
 import MobileNav from '@/components/MobileNav';
+import SideRail from '@/components/SideRail';
 
 export const metadata: Metadata = {
   title: 'Rewriting History',
@@ -30,83 +32,31 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=DM+Sans:ital,wght@0,400..700;1,400..700&family=DM+Mono:wght@400;500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body
-        className="min-h-full flex flex-col"
-        style={{ background: '#f9f9f9', color: '#2d3435' }}
-      >
+      <body className="min-h-full">
         <ApiKeyProvider>
-          <nav className="glass-nav sticky top-0 z-50 px-4 sm:px-6 py-3 flex items-center gap-4 sm:gap-8">
-            <a href="/" className="flex items-center gap-2 flex-shrink-0">
-              <ScribbleLogo size={28} />
-              <span
-                className="text-xs sm:text-sm font-medium tracking-widest uppercase hidden sm:inline"
-                style={{ color: '#2d3435', fontFamily: "'DM Mono', monospace" }}
-              >
-                REWRITING HISTORY
-              </span>
-            </a>
-            {/* Desktop nav */}
-            <div
-              className="hidden md:flex gap-5 text-sm flex-1"
-              style={{ fontFamily: "'DM Sans', sans-serif" }}
-            >
-              <a
-                href="/cases"
-                className="hover:opacity-70 transition-opacity"
-                style={{ color: '#6b7374' }}
-              >
-                Case Studies
-              </a>
-              <a
-                href="/live"
-                className="hover:opacity-70 transition-opacity"
-                style={{ color: '#6b7374' }}
-              >
-                Live Analysis
-              </a>
-              <a
-                href="/challenge"
-                className="hover:opacity-70 transition-opacity font-semibold"
-                style={{ color: '#e87b35' }}
-              >
-                Evidence Discovery
-              </a>
-              <a
-                href="/results"
-                className="hover:opacity-70 transition-opacity"
-                style={{ color: '#6b7374' }}
-              >
-                Results
-              </a>
-              <a
-                href="/validation"
-                className="hover:opacity-70 transition-opacity"
-                style={{ color: '#6b7374' }}
-              >
-                Validation
-              </a>
-              <a
-                href="/help"
-                className="hover:opacity-70 transition-opacity"
-                style={{ color: '#6b7374' }}
-              >
-                Help
-              </a>
+          <div className="shell app-shell">
+            <SideRail />
+            <div className="tray app-main">
+              <header className="app-head">
+                <Link href="/" className="app-brand">
+                  <ScribbleLogo size={28} />
+                  <span className="label" style={{ color: 'var(--ink)' }}>Rewriting History</span>
+                </Link>
+                <div className="flex-1" />
+                <div className="hidden md:block">
+                  <NavSettingsButton />
+                </div>
+                <MobileNav />
+              </header>
+              <ApiKeyBanner />
+              <ApiKeySettings />
+              <main className="flex-1">{children}</main>
             </div>
-            <div className="hidden md:block">
-              <NavSettingsButton />
-            </div>
-            {/* Mobile nav */}
-            <div className="flex-1 md:hidden" />
-            <MobileNav />
-          </nav>
-          <ApiKeyBanner />
-          <ApiKeySettings />
-          <main className="flex-1">{children}</main>
+          </div>
         </ApiKeyProvider>
       </body>
     </html>

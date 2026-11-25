@@ -12,25 +12,27 @@ interface ForceGraphProps {
   onNodeClick?: (node: GraphNode) => void;
 }
 
-const NODE_COLORS: Record<string, string> = {
-  claim: '#e87b35',
-  evidence: '#2a9d5c',
-  event: '#d06a2a',
-  actor: '#c44536',
-  source: '#4a8fa8',
-  narrative: '#b07030',
+// Node types are told apart with ink, greys, a hollow ring and the two signal colours.
+const NODE_STYLES: Record<string, { fill: string; stroke: string }> = {
+  claim: { fill: '#1c1d1f', stroke: '#ffffff' },
+  evidence: { fill: '#c8f04a', stroke: '#4d6b00' },
+  event: { fill: '#6b6f76', stroke: '#ffffff' },
+  actor: { fill: '#a4a8ae', stroke: '#ffffff' },
+  source: { fill: '#ffffff', stroke: '#1c1d1f' },
+  narrative: { fill: '#f0502e', stroke: '#ffffff' },
 };
+const DEFAULT_NODE = { fill: '#a4a8ae', stroke: '#ffffff' };
 
 const EDGE_COLORS: Record<string, string> = {
-  contradicts: '#c44536',
-  causes: '#e87b35',
-  suppresses: '#d06a2a',
-  cites: '#999999',
-  claims: '#b07030',
-  benefits: '#d06a2a',
-  derived_from: '#999999',
-  fabricates: '#c44536',
-  precedes: '#cccccc',
+  contradicts: '#f0502e',
+  causes: '#1c1d1f',
+  suppresses: '#6b6f76',
+  cites: '#a4a8ae',
+  claims: '#6b6f76',
+  benefits: '#6b6f76',
+  derived_from: '#a4a8ae',
+  fabricates: '#f0502e',
+  precedes: '#cfd1d5',
 };
 
 interface SimNode extends d3.SimulationNodeDatum {
@@ -118,7 +120,7 @@ export default function ForceGraph({ nodes, edges, width = 800, height = 500, on
       .data(simEdges)
       .join('line')
       .attr('class', d => `edge-line ${d.type}`)
-      .attr('stroke', d => EDGE_COLORS[d.type] || '#cccccc')
+      .attr('stroke', d => EDGE_COLORS[d.type] || '#cfd1d5')
       .attr('stroke-width', d => Math.max(d.weight * 2, 0.5))
       .attr('stroke-dasharray', d => d.type === 'contradicts' ? '5 3' : d.type === 'suppresses' ? '8 4' : 'none');
 
@@ -127,7 +129,7 @@ export default function ForceGraph({ nodes, edges, width = 800, height = 500, on
       .data(simEdges)
       .join('text')
       .attr('font-size', '8px')
-      .attr('fill', '#999999')
+      .attr('fill', '#6b6f76')
       .attr('text-anchor', 'middle')
       .text(d => d.type);
 
@@ -137,19 +139,19 @@ export default function ForceGraph({ nodes, edges, width = 800, height = 500, on
       .data(simNodes)
       .join('circle')
       .attr('r', d => 6 + d.confidence * 8)
-      .attr('fill', d => NODE_COLORS[d.type] || '#999999')
-      .attr('stroke', '#ffffff')
+      .attr('fill', d => (NODE_STYLES[d.type] || DEFAULT_NODE).fill)
+      .attr('stroke', d => (NODE_STYLES[d.type] || DEFAULT_NODE).stroke)
       .attr('stroke-width', 1.5)
       .attr('cursor', 'pointer')
       .on('mouseover', function (event, d) {
-        d3.select(this).attr('stroke', '#1a1a1a').attr('stroke-width', 2);
+        d3.select(this).attr('stroke', '#1c1d1f').attr('stroke-width', 2.5);
         const original = nodes.find(n => n.id === d.id);
         if (original) {
           setTooltip({ x: event.clientX, y: event.clientY, node: original });
         }
       })
-      .on('mouseout', function () {
-        d3.select(this).attr('stroke', '#ffffff').attr('stroke-width', 1.5);
+      .on('mouseout', function (_, d) {
+        d3.select(this).attr('stroke', (NODE_STYLES[d.type] || DEFAULT_NODE).stroke).attr('stroke-width', 1.5);
         setTooltip(null);
       })
       .on('click', (_, d) => {
@@ -218,37 +220,34 @@ export default function ForceGraph({ nodes, edges, width = 800, height = 500, on
         ref={svgRef}
         width={dimensions.width}
         height={dimensions.height}
-        style={{ background: '#f7f7f7', borderRadius: '8px' }}
       />
       {tooltip && (
         <div
-          className="fixed z-50 max-w-xs rounded-lg p-3 text-xs pointer-events-none"
+          className="card fixed z-50 max-w-xs p-3 text-xs pointer-events-none"
           style={{
             left: tooltip.x + 12,
             top: tooltip.y - 10,
-            background: '#ffffff',
-            border: '1px solid #e5e5e5',
-            color: '#1a1a1a',
-            
+            background: 'var(--white)',
+            borderRadius: 'var(--r-item)',
+            color: 'var(--ink)',
           }}
         >
-          <div className="font-bold mb-1" style={{ color: NODE_COLORS[tooltip.node.type] }}>
-            [{tooltip.node.type.toUpperCase()}] {tooltip.node.label}
-          </div>
-          <div style={{ color: '#6b6b6b' }}>{tooltip.node.description}</div>
-          <div className="mt-1 font-mono" style={{ color: '#999999' }}>
+          <div className="label mb-1.5">{tooltip.node.type}</div>
+          <div className="font-medium mb-1" style={{ color: 'var(--ink)' }}>{tooltip.node.label}</div>
+          <div style={{ color: 'var(--body)' }}>{tooltip.node.description}</div>
+          <div className="mt-1 font-mono" style={{ color: 'var(--muted)' }}>
             confidence: {(tooltip.node.confidence * 100).toFixed(0)}% | {tooltip.node.date}
           </div>
         </div>
       )}
       {/* Legend */}
-      <div
-        className="absolute bottom-2 left-2 rounded p-2 text-xs flex flex-wrap gap-3"
-        style={{ background: 'rgba(255,255,255,0.9)', border: '1px solid #e5e5e5' }}
-      >
-        {Object.entries(NODE_COLORS).map(([type, color]) => (
-          <span key={type} className="flex items-center gap-1" style={{ color: '#6b6b6b' }}>
-            <span className="inline-block w-2.5 h-2.5 rounded-full" style={{ background: color }} />
+      <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-x-3 gap-y-1.5">
+        {Object.entries(NODE_STYLES).map(([type, s]) => (
+          <span key={type} className="label flex items-center gap-1.5" style={{ fontSize: 9 }}>
+            <span
+              className="inline-block w-2 h-2 rounded-full"
+              style={{ background: s.fill, boxShadow: `0 0 0 1px ${s.stroke === '#ffffff' ? s.fill : s.stroke}` }}
+            />
             {type}
           </span>
         ))}

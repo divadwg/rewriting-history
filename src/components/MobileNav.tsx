@@ -1,21 +1,25 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useApiKey } from '@/components/ApiKeyProvider';
+import { NAV_ITEMS, NavIcon, isCurrent } from '@/components/SideRail';
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
   const { setShowSettings } = useApiKey();
+  const pathname = usePathname();
 
   return (
     <div className="md:hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="p-2 rounded"
-        style={{ color: '#2d3435' }}
+        className="btn btn-icon"
         aria-label="Menu"
+        aria-expanded={open}
       >
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
           {open ? (
             <path d="M5 5l10 10M15 5L5 15" />
           ) : (
@@ -25,37 +29,26 @@ export default function MobileNav() {
       </button>
       {open && (
         <div
-          className="absolute top-full left-0 right-0 z-50 px-4 pb-4 pt-2 flex flex-col gap-1"
-          style={{ background: 'rgba(249,249,249,0.95)', backdropFilter: 'blur(12px)' }}
+          className="card nav-rows absolute left-3 right-3 z-50 p-2 flex flex-col gap-0.5"
+          style={{ top: 62 }}
         >
-          {[
-            { href: '/cases', label: 'Case Studies' },
-            { href: '/live', label: 'Live Analysis' },
-            { href: '/challenge', label: 'Evidence Discovery', accent: true },
-            { href: '/results', label: 'Results' },
-            { href: '/validation', label: 'Validation' },
-            { href: '/help', label: 'Help' },
-          ].map(item => (
-            <a
+          {NAV_ITEMS.map(item => (
+            <Link
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="block py-2.5 px-3 rounded text-sm transition-colors"
-              style={{
-                color: item.accent ? '#e87b35' : '#2d3435',
-                fontWeight: item.accent ? 600 : 400,
-                background: 'transparent',
-              }}
+              aria-current={isCurrent(pathname, item.href) ? 'page' : undefined}
             >
+              <NavIcon>{item.icon}</NavIcon>
               {item.label}
-            </a>
+            </Link>
           ))}
-          <button
-            onClick={() => { setShowSettings(true); setOpen(false); }}
-            className="text-left py-2.5 px-3 rounded text-sm"
-            style={{ color: '#6b7374' }}
-          >
-            Settings
+          <button onClick={() => { setShowSettings(true); setOpen(false); }}>
+            <NavIcon>
+              <circle cx="7" cy="10" r="3.2" />
+              <path d="M10.2 10h6.3M14 10v2.4M16.5 10v1.8" />
+            </NavIcon>
+            API key settings
           </button>
         </div>
       )}

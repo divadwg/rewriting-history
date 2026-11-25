@@ -87,11 +87,11 @@ function formatProb(v: number): string {
 }
 
 const STATUS_COLORS: Record<string, string> = {
-  supported: '#2a7d4c',
-  partially_supported: '#e87b35',
-  unsupported: '#e87b35',
-  contradicted: '#e87b35',
-  unverifiable: '#9ba2a3',
+  supported: 'var(--lime-deep)',
+  partially_supported: 'var(--body)',
+  unsupported: 'var(--alert-deep)',
+  contradicted: 'var(--alert-deep)',
+  unverifiable: 'var(--muted)',
 };
 
 export default function LivePage() {
@@ -240,19 +240,19 @@ export default function LivePage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-      <h1 className="text-3xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Live Article Verification</h1>
-      <p className="text-sm mb-2" style={{ color: '#6b7374' }}>
+      <h1 className="text-3xl font-semibold mb-2" style={{ color: 'var(--ink)' }}>Live Article Verification</h1>
+      <p className="text-sm mb-2" style={{ color: 'var(--body)' }}>
         Enter an article URL or paste text. The system extracts every verifiable claim, gathers <strong>independent
         evidence</strong> from outside the article, runs Bayesian inference, and tells you which claims
         the evidence actually supports.
       </p>
-      <div className="text-xs mb-8 font-mono flex flex-wrap gap-4" style={{ color: '#9ba2a3' }}>
+      <div className="text-xs mb-8 font-mono flex flex-wrap gap-4" style={{ color: 'var(--muted)' }}>
         <span>1. Extract Claims</span>
-        <span style={{ color: 'rgba(196,203,204,0.15)' }}>&rarr;</span>
+        <span style={{ color: 'var(--faint)' }}>&rarr;</span>
         <span>2. Independent Evidence</span>
-        <span style={{ color: 'rgba(196,203,204,0.15)' }}>&rarr;</span>
+        <span style={{ color: 'var(--faint)' }}>&rarr;</span>
         <span>3. Bayesian Math</span>
-        <span style={{ color: 'rgba(196,203,204,0.15)' }}>&rarr;</span>
+        <span style={{ color: 'var(--faint)' }}>&rarr;</span>
         <span>4. Claim-by-Claim Verdict</span>
       </div>
 
@@ -263,7 +263,7 @@ export default function LivePage() {
           {!fetched && !showManual && (
             <>
               <div>
-                <label className="text-xs font-bold mb-1 block" style={{ color: '#6b7374' }}>Article URL</label>
+                <label className="text-xs font-semibold mb-1 block" style={{ color: 'var(--body)' }}>Article URL</label>
                 <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                   <input
                     type="url"
@@ -271,18 +271,17 @@ export default function LivePage() {
                     onChange={e => setUrlInput(e.target.value)}
                     onKeyDown={e => e.key === 'Enter' && fetchArticle()}
                     placeholder="https://www.example.com/article..."
-                    className="flex-1 rounded-lg px-4 py-3 text-sm"
-                    style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)', color: '#2d3435' }}
+                    className="field flex-1 rounded-lg px-4 py-3 text-sm"
+                    style={{ color: 'var(--ink)' }}
                     disabled={fetching}
                   />
                   <button
                     onClick={fetchArticle}
                     disabled={fetching || !urlInput.trim()}
-                    className="px-6 py-3 rounded-lg font-bold text-sm transition-opacity"
+                    className="btn-primary px-6 py-3 rounded-lg font-semibold text-sm transition-opacity"
                     style={{
-                      background: fetching ? '#d06a2a' : '#e87b35',
-                      color: 'white',
-                      opacity: fetching || !urlInput.trim() ? 0.5 : 1,
+                      color: 'var(--on-key)',
+                      opacity: fetching || !urlInput.trim() ? 0.5 : 1
                     }}
                   >
                     {fetching ? 'Fetching...' : 'Fetch Article'}
@@ -293,7 +292,7 @@ export default function LivePage() {
                 <button
                   onClick={() => setShowManual(true)}
                   className="text-xs hover:underline"
-                  style={{ color: '#9ba2a3' }}
+                  style={{ color: 'var(--muted)' }}
                 >
                   Or paste article text manually
                 </button>
@@ -305,42 +304,42 @@ export default function LivePage() {
           {showManual && !fetched && (
             <>
               <div className="flex items-center justify-between">
-                <label className="text-xs font-bold" style={{ color: '#6b7374' }}>Paste Article Text</label>
+                <label className="text-xs font-semibold" style={{ color: 'var(--body)' }}>Paste Article Text</label>
                 <button
                   onClick={() => setShowManual(false)}
                   className="text-xs hover:underline"
-                  style={{ color: '#9ba2a3' }}
+                  style={{ color: 'var(--muted)' }}
                 >
                   Back to URL input
                 </button>
               </div>
               <div>
-                <label className="text-xs font-bold mb-1 block" style={{ color: '#6b7374' }}>Topic / Context</label>
+                <label className="text-xs font-semibold mb-1 block" style={{ color: 'var(--body)' }}>Topic / Context</label>
                 <input
                   type="text"
                   value={topic}
                   onChange={e => setTopic(e.target.value)}
                   placeholder="e.g., 'Government claims about defense spending'"
-                  className="w-full rounded-lg px-4 py-2 text-sm"
-                  style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)', color: '#2d3435' }}
+                  className="field w-full rounded-lg px-4 py-2 text-sm"
+                  style={{ color: 'var(--ink)' }}
                 />
               </div>
-              <div className="rounded-lg p-4 space-y-3" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
+              <div className="card rounded-lg p-4 space-y-3">
                 <div className="flex gap-2">
                   <input
                     type="text"
                     value={articleUrl}
                     onChange={e => setArticleUrl(e.target.value)}
                     placeholder="Source URL (optional)"
-                    className="rounded px-2 py-1 text-xs flex-1"
-                    style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)', color: '#2d3435' }}
+                    className="field rounded px-2 py-1 text-xs flex-1"
+                    style={{ color: 'var(--ink)' }}
                   />
                   <input
                     type="date"
                     value={articleDate}
                     onChange={e => setArticleDate(e.target.value)}
-                    className="rounded px-2 py-1 text-xs"
-                    style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)', color: '#2d3435' }}
+                    className="field rounded px-2 py-1 text-xs"
+                    style={{ color: 'var(--ink)' }}
                   />
                 </div>
                 <textarea
@@ -348,18 +347,17 @@ export default function LivePage() {
                   onChange={e => setArticleText(e.target.value)}
                   placeholder="Paste the article text here..."
                   rows={8}
-                  className="w-full rounded-lg px-4 py-3 text-sm resize-y"
-                  style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)', color: '#2d3435' }}
+                  className="field w-full rounded-lg px-4 py-3 text-sm resize-y"
+                  style={{ color: 'var(--ink)' }}
                 />
               </div>
               <button
                 onClick={analyze}
                 disabled={loading || articleText.trim().length < 50}
-                className="px-6 py-3 rounded-lg font-bold text-sm transition-opacity"
+                className="btn-primary px-6 py-3 rounded-lg font-semibold text-sm transition-opacity"
                 style={{
-                  background: '#e87b35',
-                  color: 'white',
-                  opacity: articleText.trim().length < 50 ? 0.5 : 1,
+                  color: 'var(--on-key)',
+                  opacity: articleText.trim().length < 50 ? 0.5 : 1
                 }}
               >
                 Verify Claims
@@ -370,16 +368,16 @@ export default function LivePage() {
           {/* Fetched article preview */}
           {fetched && (
             <>
-              <div className="rounded-lg p-5" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
+              <div className="card rounded-lg p-5">
                 <div className="flex items-start justify-between gap-4 mb-3">
                   <div className="flex-1">
                     {articleTitle && (
-                      <h3 className="font-bold text-lg mb-1" style={{ color: '#2d3435' }}>{articleTitle}</h3>
+                      <h3 className="font-semibold text-lg mb-1" style={{ color: 'var(--ink)' }}>{articleTitle}</h3>
                     )}
-                    <div className="flex flex-wrap gap-3 text-xs font-mono" style={{ color: '#9ba2a3' }}>
+                    <div className="flex flex-wrap gap-3 text-xs font-mono" style={{ color: 'var(--muted)' }}>
                       {articleUrl && (
                         <a href={articleUrl} target="_blank" rel="noopener noreferrer"
-                          className="hover:underline" style={{ color: '#e87b35' }}>
+                          className="hover:underline" style={{ color: 'var(--ink)' }}>
                           {new URL(articleUrl).hostname}
                         </a>
                       )}
@@ -389,8 +387,8 @@ export default function LivePage() {
                   </div>
                   <button
                     onClick={reset}
-                    className="text-xs px-3 py-1 rounded"
-                    style={{ border: '1px solid rgba(196,203,204,0.15)', color: '#9ba2a3' }}
+                    className="btn text-xs px-3 py-1 rounded"
+                    style={{ color: 'var(--muted)' }}
                   >
                     Change
                   </button>
@@ -398,11 +396,11 @@ export default function LivePage() {
 
                 {/* Expandable preview */}
                 <details className="mt-3">
-                  <summary className="text-xs cursor-pointer select-none" style={{ color: '#9ba2a3' }}>
+                  <summary className="text-xs cursor-pointer select-none" style={{ color: 'var(--muted)' }}>
                     Show article text
                   </summary>
-                  <div className="mt-2 rounded p-3 text-xs leading-relaxed max-h-48 overflow-y-auto"
-                    style={{ background: '#f2f4f4', color: '#6b7374' }}>
+                  <div className="well mt-2 rounded p-3 text-xs leading-relaxed max-h-48 overflow-y-auto"
+                    style={{ color: 'var(--body)' }}>
                     {articleText.slice(0, 3000)}
                     {articleText.length > 3000 && '...'}
                   </div>
@@ -410,22 +408,22 @@ export default function LivePage() {
               </div>
 
               <div>
-                <label className="text-xs font-bold mb-1 block" style={{ color: '#6b7374' }}>Topic / Context (auto-filled from title)</label>
+                <label className="text-xs font-semibold mb-1 block" style={{ color: 'var(--body)' }}>Topic / Context (auto-filled from title)</label>
                 <input
                   type="text"
                   value={topic}
                   onChange={e => setTopic(e.target.value)}
                   placeholder="e.g., 'Government claims about defense spending'"
-                  className="w-full rounded-lg px-4 py-2 text-sm"
-                  style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)', color: '#2d3435' }}
+                  className="field w-full rounded-lg px-4 py-2 text-sm"
+                  style={{ color: 'var(--ink)' }}
                 />
               </div>
 
               <button
                 onClick={analyze}
                 disabled={loading}
-                className="px-6 py-3 rounded-lg font-bold text-sm transition-opacity"
-                style={{ background: '#e87b35', color: 'white' }}
+                className="btn-primary px-6 py-3 rounded-lg font-semibold text-sm transition-opacity"
+                style={{ color: 'var(--on-key)' }}
               >
                 Verify Claims
               </button>
@@ -433,7 +431,7 @@ export default function LivePage() {
           )}
 
           {error && (
-            <div className="text-xs rounded-lg p-3" style={{ background: 'rgba(162,63,0,0.06)', color: '#e87b35' }}>
+            <div className="well text-xs rounded-lg p-3" style={{ color: 'var(--ink)' }}>
               {error}
             </div>
           )}
@@ -444,14 +442,14 @@ export default function LivePage() {
       {loading && (
         <div className="text-center py-16">
           {articleTitle && (
-            <div className="text-sm font-medium mb-4" style={{ color: '#6b7374' }}>
+            <div className="text-sm font-medium mb-4" style={{ color: 'var(--body)' }}>
               Analyzing: {articleTitle}
             </div>
           )}
           <div className="inline-block w-10 h-10 rounded-full border-2 animate-spin mb-4"
-            style={{ borderColor: 'rgba(196,203,204,0.15)', borderTopColor: '#e87b35' }} />
-          <div className="text-sm font-medium" style={{ color: '#2d3435' }}>{loadingStep}</div>
-          <div className="text-xs mt-3 max-w-lg mx-auto" style={{ color: '#9ba2a3' }}>
+            style={{ borderColor: 'var(--line)', borderTopColor: 'var(--ink)' }} />
+          <div className="text-sm font-medium" style={{ color: 'var(--ink)' }}>{loadingStep}</div>
+          <div className="text-xs mt-3 max-w-lg mx-auto" style={{ color: 'var(--muted)' }}>
             The system extracts claims, gathers independent evidence, runs Bayesian inference,
             and produces a claim-by-claim verdict. This takes 30-60 seconds.
           </div>
@@ -463,13 +461,12 @@ export default function LivePage() {
               return (
                 <div key={step} className="flex items-center gap-2">
                   <div className="text-xs px-2 py-1 rounded font-mono" style={{
-                    background: isActive ? '#e87b35' : isDone ? 'rgba(42,125,76,0.06)' : '#f2f4f4',
-                    color: isActive ? '#ffffff' : isDone ? '#2a7d4c' : '#9ba2a3',
-                    border: `1px solid ${isActive ? '#e87b35' : isDone ? 'rgba(42,125,76,0.18)' : 'rgba(196,203,204,0.15)'}`,
+                    background: isActive ? 'var(--key)' : isDone ? 'var(--white)' : 'var(--well)',
+                    color: isActive ? 'var(--on-key)' : isDone ? 'var(--lime-deep)' : 'var(--muted)'
                   }}>
                     {step}
                   </div>
-                  {i < 3 && <span style={{ color: 'rgba(196,203,204,0.15)' }}>&rarr;</span>}
+                  {i < 3 && <span style={{ color: 'var(--faint)' }}>&rarr;</span>}
                 </div>
               );
             })}
@@ -482,14 +479,14 @@ export default function LivePage() {
         <div className="space-y-8">
           {/* Article header in results */}
           {articleTitle && (
-            <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
+            <div className="well rounded-lg p-4">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="font-bold" style={{ color: '#2d3435' }}>{articleTitle}</h3>
-                  <div className="flex flex-wrap gap-3 text-xs font-mono mt-1" style={{ color: '#9ba2a3' }}>
+                  <h3 className="font-semibold" style={{ color: 'var(--ink)' }}>{articleTitle}</h3>
+                  <div className="flex flex-wrap gap-3 text-xs font-mono mt-1" style={{ color: 'var(--muted)' }}>
                     {articleUrl && (
                       <a href={articleUrl} target="_blank" rel="noopener noreferrer"
-                        className="hover:underline" style={{ color: '#e87b35' }}>
+                        className="hover:underline" style={{ color: 'var(--ink)' }}>
                         {(() => { try { return new URL(articleUrl).hostname; } catch { return articleUrl; } })()}
                       </a>
                     )}
@@ -500,11 +497,10 @@ export default function LivePage() {
                   <button
                     onClick={saveAndShare}
                     disabled={saving || !!shareUrl}
-                    className="text-xs px-3 py-1 rounded font-bold transition-colors"
+                    className="btn-primary text-xs px-3 py-1 rounded font-semibold transition-colors"
                     style={{
-                      background: shareUrl ? '#2a7d4c' : '#e87b35',
-                      color: 'white',
-                      opacity: saving ? 0.5 : 1,
+                      color: 'var(--on-key)',
+                      opacity: saving ? 0.5 : 1
                     }}
                   >
                     {saving ? 'Saving...' : shareUrl ? (copied ? 'Link Copied' : 'Saved') : 'Save & Share'}
@@ -512,16 +508,16 @@ export default function LivePage() {
                   {shareUrl && (
                     <button
                       onClick={() => { navigator.clipboard.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
-                      className="text-xs px-3 py-1 rounded"
-                      style={{ border: '1px solid rgba(196,203,204,0.15)', color: '#9ba2a3' }}
+                      className="btn text-xs px-3 py-1 rounded"
+                      style={{ color: 'var(--muted)' }}
                     >
                       {copied ? 'Copied' : 'Copy Link'}
                     </button>
                   )}
                   <button
                     onClick={reset}
-                    className="text-xs px-3 py-1 rounded"
-                    style={{ border: '1px solid rgba(196,203,204,0.15)', color: '#9ba2a3' }}
+                    className="btn text-xs px-3 py-1 rounded"
+                    style={{ color: 'var(--muted)' }}
                   >
                     New Analysis
                   </button>
@@ -532,12 +528,12 @@ export default function LivePage() {
 
           {/* Share URL bar */}
           {shareUrl && (
-            <div className="rounded-lg p-3 flex items-center gap-3" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
-              <div className="text-xs font-mono truncate flex-1" style={{ color: '#9ba2a3' }}>{shareUrl}</div>
+            <div className="well rounded-lg p-3 flex items-center gap-3">
+              <div className="text-xs font-mono truncate flex-1" style={{ color: 'var(--muted)' }}>{shareUrl}</div>
               <button
                 onClick={() => { navigator.clipboard.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
-                className="text-xs font-bold px-3 py-1 rounded flex-shrink-0"
-                style={{ background: copied ? '#2a7d4c' : '#e87b35', color: 'white' }}
+                className="btn-primary text-xs font-semibold px-3 py-1 rounded flex-shrink-0"
+                style={{color: 'var(--on-key)' }}
               >
                 {copied ? 'Copied' : 'Copy'}
               </button>
@@ -545,8 +541,8 @@ export default function LivePage() {
           )}
 
           {/* Pipeline badge */}
-          <div className="flex items-center gap-3 text-xs font-mono" style={{ color: '#9ba2a3' }}>
-            <span className="px-2 py-1 rounded" style={{ background: 'rgba(42,125,76,0.06)', color: '#2a7d4c', border: '1px solid rgba(42,125,76,0.18)' }}>
+          <div className="flex items-center gap-3 text-xs font-mono" style={{ color: 'var(--muted)' }}>
+            <span className="tag px-2 py-1 rounded" style={{ color: 'var(--lime-deep)' }}>
               Evidence-first verification
             </span>
             <span>{result.claims.length} claims extracted</span>
@@ -555,7 +551,7 @@ export default function LivePage() {
               <span>{result.contradictions.length} contradictions found</span>
             )}
             {result.webSearchUsed && (
-              <span className="px-2 py-0.5 rounded" style={{ background: '#4a8fa810', color: '#4a8fa8', border: '1px solid #4a8fa830' }}>
+              <span className="px-2 py-0.5 rounded" style={{ background: '#4a8fa810', color: 'var(--body)' }}>
                 web search
               </span>
             )}
@@ -563,9 +559,9 @@ export default function LivePage() {
 
           {/* Overall Assessment */}
           {result.synthesis?.overallAssessment && (
-            <div className="rounded-lg p-5" style={{ background: 'rgba(162,63,0,0.06)', border: '1px solid rgba(162,63,0,0.15)' }}>
-              <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>OVERALL ASSESSMENT</div>
-              <p className="text-base leading-relaxed" style={{ color: '#2d3435' }}>
+            <div className="well rounded-lg p-5">
+              <div className="text-xs font-semibold mb-1" style={{ color: 'var(--ink)' }}>OVERALL ASSESSMENT</div>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--ink)' }}>
                 {result.synthesis.overallAssessment}
               </p>
             </div>
@@ -573,29 +569,29 @@ export default function LivePage() {
 
           {/* Bayesian Posteriors */}
           <div>
-            <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Article Reliability — Bayesian Posteriors</h3>
-            <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
+            <h3 className="text-lg font-semibold mb-1" style={{ color: 'var(--ink)' }}>Article Reliability — Bayesian Posteriors</h3>
+            <p className="text-xs mb-4" style={{ color: 'var(--muted)' }}>
               Computed from {result.evidence.length} independent evidence items.
             </p>
             <div className="space-y-4">
               {result.bayesian.posteriors.map(h => {
                 const maxP = Math.max(...result.bayesian.posteriors.map(p => p.posterior));
                 const isWinner = h.posterior === maxP;
-                const color = isWinner ? '#2a7d4c' : '#9ba2a3';
+                const color = isWinner ? 'var(--lime-deep)' : 'var(--muted)';
                 return (
                   <div key={h.id}>
                     <div className="flex justify-between text-xs mb-1">
-                      <span style={{ color: '#6b7374' }}>
-                        {isWinner && <span className="font-mono mr-1" style={{ color: '#2a7d4c' }}>[BEST FIT]</span>}
-                        {h.isOfficial && <span className="font-mono mr-1" style={{ color: '#9ba2a3' }}>[ARTICLE&apos;S FRAMING]</span>}
+                      <span style={{ color: 'var(--body)' }}>
+                        {isWinner && <span className="font-mono mr-1" style={{ color: 'var(--lime-deep)' }}>[BEST FIT]</span>}
+                        {h.isOfficial && <span className="font-mono mr-1" style={{ color: 'var(--muted)' }}>[ARTICLE&apos;S FRAMING]</span>}
                         {h.label}
                       </span>
-                      <span className="font-mono font-bold" style={{ color }}>{formatProb(h.posterior)}</span>
+                      <span className="font-mono font-semibold" style={{ color }}>{formatProb(h.posterior)}</span>
                     </div>
-                    <div className="w-full h-4 rounded-full" style={{ background: '#eeeeee' }}>
-                      <div className="h-full rounded-full transition-all duration-700" style={{
+                    <div className="track w-full h-4">
+                      <div className="ticks h-full transition-all duration-700" style={{
                         width: `${Math.max(h.posterior * 100, 2)}%`,
-                        background: isWinner ? '#2a7d4c' : h.isOfficial ? '#e87b35' : '#9ba2a3',
+                        background: isWinner ? 'var(--ink)' : h.isOfficial ? 'var(--alert)' : 'var(--muted)'
                       }} />
                     </div>
                   </div>
@@ -606,55 +602,50 @@ export default function LivePage() {
 
           {/* Claim-by-Claim Verification */}
           <div>
-            <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>
+            <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--ink)' }}>
               Claim-by-Claim Verification ({result.claims.length} claims)
             </h3>
             <div className="space-y-3">
               {result.claims.map(claim => {
                 const verification = result.synthesis?.claimVerifications?.find(v => v.claimId === claim.id);
-                const statusColor = STATUS_COLORS[verification?.status || 'unverifiable'] || '#9ba2a3';
+                const statusColor = STATUS_COLORS[verification?.status || 'unverifiable'] || 'var(--muted)';
                 return (
-                  <div key={claim.id} className="rounded-lg p-4" style={{
-                    background: '#ffffff',
-                    border: '1px solid rgba(196,203,204,0.15)',
-                    borderLeftColor: statusColor,
-                    borderLeftWidth: '3px',
-                  }}>
+                  <div key={claim.id} className="card rounded-lg p-4">
                     <div className="flex items-start justify-between gap-3 mb-2">
-                      <div className="text-sm leading-relaxed" style={{ color: '#2d3435' }}>
+                      <div className="text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
                         &ldquo;{claim.claim}&rdquo;
                       </div>
                       {verification && (
-                        <span className="text-xs font-mono px-2 py-0.5 rounded flex-shrink-0"
-                          style={{ background: `${statusColor}10`, color: statusColor }}>
+                        <span className="tag text-xs font-mono px-2 py-0.5 rounded flex-shrink-0"
+                          style={{ color: statusColor }}>
                           {verification.status.replace(/_/g, ' ').toUpperCase()}
                         </span>
                       )}
                     </div>
-                    <div className="flex flex-wrap gap-3 text-xs mb-2" style={{ color: '#9ba2a3' }}>
+                    <div className="flex flex-wrap gap-3 text-xs mb-2" style={{ color: 'var(--muted)' }}>
                       <span>By: {claim.claimant} ({claim.claimantRole})</span>
                       {claim.benefitsClaimant && (
-                        <span className="font-mono" style={{ color: '#e87b35' }}>SELF-SERVING</span>
+                        <span className="font-mono" style={{ color: 'var(--ink)' }}>SELF-SERVING</span>
                       )}
                       <span>Confidence: {claim.confidenceLanguage}</span>
                       <span>Article cites: {claim.evidenceCited}</span>
                     </div>
                     {verification?.explanation && (
-                      <div className="text-xs leading-relaxed rounded p-2 mt-2" style={{ background: '#f2f4f4', color: '#6b7374' }}>
+                      <div className="well text-xs leading-relaxed rounded p-2 mt-2" style={{ color: 'var(--body)' }}>
                         {verification.explanation}
                         {(verification.verifyUrl || verification.verifySearchQuery) && (
                           <span className="ml-2">
                             {verification.verifyUrl && (
                               <a href={verification.verifyUrl} target="_blank" rel="noopener noreferrer"
                                 className="inline-flex items-center gap-1 font-mono hover:underline"
-                                style={{ color: '#e87b35' }}>
+                                style={{ color: 'var(--ink)' }}>
                                 [source]
                               </a>
                             )}
                             {verification.verifySearchQuery && (
                               <a href={searchUrl(verification.verifySearchQuery)} target="_blank" rel="noopener noreferrer"
                                 className="inline-flex items-center gap-1 font-mono hover:underline ml-1"
-                                style={{ color: '#9ba2a3' }}>
+                                style={{ color: 'var(--muted)' }}>
                                 [verify]
                               </a>
                             )}
@@ -671,10 +662,10 @@ export default function LivePage() {
           {/* Contradictions / Hypocrisy */}
           {result.contradictions && result.contradictions.length > 0 && (
             <div>
-              <h3 className="text-lg font-bold mb-1" style={{ color: '#e87b35', fontFamily: "'EB Garamond', serif" }}>
+              <h3 className="text-lg font-semibold mb-1" style={{ color: 'var(--ink)' }}>
                 Contradictions &amp; Past Statements ({result.contradictions.length})
               </h3>
-              <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
+              <p className="text-xs mb-4" style={{ color: 'var(--muted)' }}>
                 Cases where people in this article have previously said or done things that
                 contradict their current statements or actions.
               </p>
@@ -682,7 +673,7 @@ export default function LivePage() {
                 {result.contradictions
                   .sort((a, b) => b.severity - a.severity)
                   .map(x => {
-                    const severityColor = x.severity >= 4 ? '#e87b35' : x.severity >= 3 ? '#e87b35' : '#d06a2a';
+                    const severityColor = x.severity >= 4 ? 'var(--alert-deep)' : x.severity >= 3 ? 'var(--alert-deep)' : 'var(--body)';
                     const typeLabel: Record<string, string> = {
                       direct_reversal: 'DIRECT REVERSAL',
                       selective_memory: 'SELECTIVE MEMORY',
@@ -691,58 +682,53 @@ export default function LivePage() {
                       hypocrisy: 'HYPOCRISY',
                     };
                     return (
-                      <div key={x.id} className="rounded-lg p-4" style={{
-                        background: '#ffffff',
-                        border: '1px solid rgba(196,203,204,0.15)',
-                        borderLeftColor: severityColor,
-                        borderLeftWidth: '3px',
-                      }}>
+                      <div key={x.id} className="card rounded-lg p-4">
                         <div className="flex items-start justify-between gap-3 mb-3">
-                          <div className="font-bold text-sm" style={{ color: '#2d3435' }}>
+                          <div className="font-semibold text-sm" style={{ color: 'var(--ink)' }}>
                             {x.actor}
-                            <span className="font-normal ml-1" style={{ color: '#9ba2a3' }}>({x.actorRole})</span>
+                            <span className="font-normal ml-1" style={{ color: 'var(--muted)' }}>({x.actorRole})</span>
                           </div>
-                          <span className="text-xs font-mono px-2 py-0.5 rounded flex-shrink-0"
-                            style={{ background: `${severityColor}10`, color: severityColor }}>
+                          <span className="tag text-xs font-mono px-2 py-0.5 rounded flex-shrink-0"
+                            style={{ color: severityColor }}>
                             {typeLabel[x.contradictionType] || x.contradictionType.replace(/_/g, ' ').toUpperCase()}
                           </span>
                         </div>
 
                         <div className="grid md:grid-cols-2 gap-3 mb-3">
-                          <div className="rounded p-3" style={{ background: '#f2f4f4' }}>
-                            <div className="text-xs font-mono mb-1" style={{ color: '#e87b35' }}>
+                          <div className="well rounded p-3">
+                            <div className="text-xs font-mono mb-1" style={{ color: 'var(--ink)' }}>
                               NOW ({x.currentDate})
                             </div>
-                            <p className="text-xs leading-relaxed" style={{ color: '#2d3435' }}>
+                            <p className="text-xs leading-relaxed" style={{ color: 'var(--ink)' }}>
                               &ldquo;{x.currentStatement}&rdquo;
                             </p>
                           </div>
-                          <div className="rounded p-3" style={{ background: 'rgba(162,63,0,0.06)' }}>
-                            <div className="text-xs font-mono mb-1" style={{ color: '#e87b35' }}>
+                          <div className="well rounded p-3">
+                            <div className="text-xs font-mono mb-1" style={{ color: 'var(--ink)' }}>
                               PREVIOUSLY ({x.pastDate})
                             </div>
-                            <p className="text-xs leading-relaxed" style={{ color: '#2d3435' }}>
+                            <p className="text-xs leading-relaxed" style={{ color: 'var(--ink)' }}>
                               &ldquo;{x.pastStatement}&rdquo;
                             </p>
-                            <div className="text-xs mt-1 font-mono" style={{ color: '#9ba2a3' }}>
+                            <div className="text-xs mt-1 font-mono" style={{ color: 'var(--muted)' }}>
                               Source: {x.pastSource}
                             </div>
                           </div>
                         </div>
 
-                        <div className="text-xs leading-relaxed" style={{ color: '#6b7374' }}>
+                        <div className="text-xs leading-relaxed" style={{ color: 'var(--body)' }}>
                           {x.explanation}
                           {(x.sourceUrl || x.searchQuery) && (
                             <span className="ml-2">
                               {x.sourceUrl && (
                                 <a href={x.sourceUrl} target="_blank" rel="noopener noreferrer"
-                                  className="font-mono hover:underline" style={{ color: '#e87b35' }}>
+                                  className="font-mono hover:underline" style={{ color: 'var(--ink)' }}>
                                   [source]
                                 </a>
                               )}
                               {x.searchQuery && (
                                 <a href={searchUrl(x.searchQuery)} target="_blank" rel="noopener noreferrer"
-                                  className="font-mono hover:underline ml-1" style={{ color: '#9ba2a3' }}>
+                                  className="font-mono hover:underline ml-1" style={{ color: 'var(--muted)' }}>
                                   [verify]
                                 </a>
                               )}
@@ -758,8 +744,8 @@ export default function LivePage() {
 
           {/* Independent Evidence */}
           <div>
-            <h3 className="text-lg font-bold mb-1" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Independent Evidence Gathered</h3>
-            <p className="text-xs mb-4" style={{ color: '#9ba2a3' }}>
+            <h3 className="text-lg font-semibold mb-1" style={{ color: 'var(--ink)' }}>Independent Evidence Gathered</h3>
+            <p className="text-xs mb-4" style={{ color: 'var(--muted)' }}>
               {result.evidence.length} items from sources outside the article, sorted by Bayesian impact.
             </p>
             <div className="space-y-3">
@@ -770,42 +756,37 @@ export default function LivePage() {
                 }))
                 .sort((a, b) => b.impact - a.impact)
                 .map(({ e, impact }) => (
-                  <div key={e.id} className="rounded-lg p-4" style={{
-                    background: '#ffffff',
-                    border: '1px solid rgba(196,203,204,0.15)',
-                    borderLeftColor: e.supports === true ? '#2a7d4c' : e.supports === false ? '#e87b35' : '#9ba2a3',
-                    borderLeftWidth: '3px',
-                  }}>
+                  <div key={e.id} className="card rounded-lg p-4">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1">
-                        <div className="text-sm leading-relaxed mb-1" style={{ color: '#2d3435' }}>{e.fact}</div>
-                        <div className="flex flex-wrap gap-3 text-xs font-mono items-center" style={{ color: '#9ba2a3' }}>
+                        <div className="text-sm leading-relaxed mb-1" style={{ color: 'var(--ink)' }}>{e.fact}</div>
+                        <div className="flex flex-wrap gap-3 text-xs font-mono items-center" style={{ color: 'var(--muted)' }}>
                           <span>{e.source}</span>
                           <span>{e.date}</span>
                           <span>reliability: {(e.sourceReliability * 100).toFixed(0)}%</span>
                           <span className="px-1 rounded" style={{
-                            background: e.type === 'statistic' ? 'rgba(162,63,0,0.06)' : e.type === 'unverifiable_recent' ? 'rgba(162,63,0,0.06)' : '#f2f4f4',
-                            color: e.type === 'statistic' ? '#d06a2a' : e.type === 'unverifiable_recent' ? '#e87b35' : '#9ba2a3',
+                            background: 'var(--well)',
+                            color: e.type === 'statistic' ? 'var(--body)' : e.type === 'unverifiable_recent' ? 'var(--ink)' : 'var(--muted)'
                           }}>
                             {e.type.replace(/_/g, ' ')}
                           </span>
-                          {e.dataPoint && <span style={{ color: '#e87b35' }}>Data: {e.dataPoint}</span>}
+                          {e.dataPoint && <span style={{ color: 'var(--ink)' }}>Data: {e.dataPoint}</span>}
                           {e.sourceUrl && (
                             <a href={e.sourceUrl} target="_blank" rel="noopener noreferrer"
-                              className="hover:underline" style={{ color: '#e87b35' }}>
+                              className="hover:underline" style={{ color: 'var(--ink)' }}>
                               [source]
                             </a>
                           )}
                           {e.searchQuery && (
                             <a href={searchUrl(e.searchQuery)} target="_blank" rel="noopener noreferrer"
-                              className="hover:underline" style={{ color: '#9ba2a3' }}>
+                              className="hover:underline" style={{ color: 'var(--muted)' }}>
                               [verify]
                             </a>
                           )}
                         </div>
                       </div>
                       <div className="text-xs font-mono text-right flex-shrink-0" style={{
-                        color: impact > 0.3 ? '#e87b35' : '#9ba2a3',
+                        color: impact > 0.3 ? 'var(--ink)' : 'var(--muted)'
                       }}>
                         impact<br />{(impact * 100).toFixed(0)}%
                       </div>
@@ -817,9 +798,9 @@ export default function LivePage() {
 
           {/* Missing Context */}
           {result.synthesis?.missingContext && (
-            <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
-              <div className="text-xs font-bold mb-1" style={{ color: '#e87b35' }}>CONTEXT THE ARTICLE OMITS</div>
-              <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>
+            <div className="well rounded-lg p-4">
+              <div className="text-xs font-semibold mb-1" style={{ color: 'var(--ink)' }}>CONTEXT THE ARTICLE OMITS</div>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--body)' }}>
                 {result.synthesis.missingContext}
               </p>
             </div>
@@ -827,9 +808,9 @@ export default function LivePage() {
 
           {/* Missing Data */}
           {result.missingData && (
-            <div className="rounded-lg p-4" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
-              <div className="text-xs font-bold mb-1" style={{ color: '#9ba2a3' }}>DATA NOT PUBLICLY AVAILABLE</div>
-              <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>
+            <div className="well rounded-lg p-4">
+              <div className="text-xs font-semibold mb-1" style={{ color: 'var(--muted)' }}>DATA NOT PUBLICLY AVAILABLE</div>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--body)' }}>
                 {result.missingData}
               </p>
             </div>
@@ -838,12 +819,12 @@ export default function LivePage() {
           {/* Recommendations */}
           {result.synthesis?.recommendations && result.synthesis.recommendations.length > 0 && (
             <div>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>How to Verify Further</h3>
+              <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--ink)' }}>How to Verify Further</h3>
               <div className="space-y-2">
                 {result.synthesis.recommendations.map((rec, i) => (
-                  <div key={i} className="flex items-start gap-3 rounded-lg p-4" style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
-                    <span className="text-sm font-mono font-bold flex-shrink-0" style={{ color: '#e87b35' }}>{i + 1}.</span>
-                    <p className="text-sm leading-relaxed" style={{ color: '#6b7374' }}>{rec}</p>
+                  <div key={i} className="card flex items-start gap-3 rounded-lg p-4">
+                    <span className="text-sm font-mono font-semibold flex-shrink-0" style={{ color: 'var(--ink)' }}>{i + 1}.</span>
+                    <p className="text-sm leading-relaxed" style={{ color: 'var(--body)' }}>{rec}</p>
                   </div>
                 ))}
               </div>

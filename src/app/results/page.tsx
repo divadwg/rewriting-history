@@ -8,21 +8,21 @@ export default function ResultsListPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-      <h1 className="text-3xl font-bold mb-2" style={{ color: '#2d3435', fontFamily: "'EB Garamond', serif" }}>Saved Results</h1>
-      <p className="text-sm mb-8" style={{ color: '#6b7374' }}>
+      <h1 className="text-3xl font-semibold mb-2" style={{ color: 'var(--ink)' }}>Saved Results</h1>
+      <p className="text-sm mb-8" style={{ color: 'var(--body)' }}>
         All saved analyses. Each result has a shareable link.
       </p>
 
       {results.length === 0 ? (
-        <div className="rounded-lg p-8 text-center" style={{ background: '#f2f4f4', border: '1px solid rgba(196,203,204,0.15)' }}>
-          <p className="text-sm mb-4" style={{ color: '#9ba2a3' }}>No saved results yet.</p>
+        <div className="well rounded-lg p-8 text-center">
+          <p className="text-sm mb-4" style={{ color: 'var(--muted)' }}>No saved results yet.</p>
           <div className="flex gap-3 justify-center">
-            <Link href="/live" className="text-sm px-4 py-2 rounded-lg"
-              style={{ background: '#e87b35', color: 'white' }}>
+            <Link href="/live" className="btn-primary text-sm px-4 py-2 rounded-lg"
+              style={{ color: 'var(--on-key)' }}>
               Verify an Article
             </Link>
-            <Link href="/challenge" className="text-sm px-4 py-2 rounded-lg"
-              style={{ border: '1px solid rgba(196,203,204,0.15)', color: '#6b7374' }}>
+            <Link href="/challenge" className="btn text-sm px-4 py-2 rounded-lg"
+              style={{ color: 'var(--body)' }}>
               Discover Evidence
             </Link>
           </div>
@@ -31,17 +31,12 @@ export default function ResultsListPage() {
         <div className="space-y-3">
           {results.map(r => (
             <Link key={r.id} href={`/results/${r.id}`}
-              className="block rounded-lg p-4 transition-all hover:scale-[1.003]"
-              style={{ background: '#ffffff', border: '1px solid rgba(196,203,204,0.15)' }}>
+              className="card block rounded-lg p-4 transition-all hover:scale-[1.003]">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">
-                  <h2 className="text-sm font-bold truncate" style={{ color: '#2d3435' }}>{r.title}</h2>
-                  <div className="flex gap-3 text-xs font-mono mt-1" style={{ color: '#9ba2a3' }}>
-                    <span className="px-1.5 py-0.5 rounded"
-                      style={{
-                        background: r.type === 'live' ? 'rgba(162,63,0,0.06)' : 'rgba(42,125,76,0.06)',
-                        color: r.type === 'live' ? '#e87b35' : '#2a7d4c',
-                      }}>
+                  <h2 className="text-sm font-semibold truncate" style={{ color: 'var(--ink)' }}>{r.title}</h2>
+                  <div className="flex gap-3 text-xs font-mono mt-1" style={{ color: 'var(--muted)' }}>
+                    <span className="tag px-2 py-0.5" style={{ color: 'var(--body)' }}>
                       {r.type === 'live' ? 'Article Verification' : 'Evidence Discovery'}
                     </span>
                     <span>
@@ -49,7 +44,7 @@ export default function ResultsListPage() {
                     </span>
                   </div>
                 </div>
-                <span className="text-xs font-mono flex-shrink-0" style={{ color: '#c4cbcc' }}>{r.id}</span>
+                <span className="text-xs font-mono flex-shrink-0" style={{ color: 'var(--muted)' }}>{r.id}</span>
               </div>
             </Link>
           ))}
